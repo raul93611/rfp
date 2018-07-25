@@ -1,25 +1,25 @@
 <?php
-if (ControlSesion::sesion_iniciada()) {
-    Redireccion::redirigir1(PERFIL);
+if (SessionControl::session_started()) {
+    Redirection::redirect1(PROFILE);
 }
 
-include_once 'plantillas/validacion_login.inc.php';
+include_once 'templates/validation_login.inc.php';
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Inicio</title>
+        <title>Home</title>
 
         <!-- Font Awesome -->
         <link rel="stylesheet" href="<?php echo PLUGINS; ?>/font-awesome/css/font-awesome.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="<?php echo DIST; ?>css/adminlte.min.css">
         <!-- iCheck -->
-        <link rel="stylesheet" href="<?php echo RUTA_CSS; ?>estilos.css">
+        <link rel="stylesheet" href="<?php echo CSS; ?>estyles.css">
         <link rel="stylesheet" href="<?php echo PLUGINS; ?>iCheck/square/blue.css">
         <link rel="Shortcut Icon" href="<?php echo RUTA_IMG; ?>favicon.png" type="image/x-icon" />
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -27,30 +27,30 @@ include_once 'plantillas/validacion_login.inc.php';
     <body class="hold-transition login-page" style="font-family: 'Roboto', sans-serif;">
         <div class="login-box">
             <div class="login-logo">
-                <img class="mb-4" src="<?php echo RUTA_IMG; ?>elogic_logo.png" alt="" width="250" height="125">
+                <img class="mb-4" src="<?php echo IMG; ?>elogic_logo.png" alt="" width="250" height="125">
             </div>
             <!-- /.login-logo -->
             <div class="card">
                 <div class="card-body login-card-body">
                     <p class="login-box-msg" style="color: #BDC5CF !important;">Please log in</p>
 
-                    <form action="<?php echo SERVIDOR; ?>" method="post">
+                    <form action="<?php echo SERVER; ?>" method="post">
                         <div class="form-group has-feedback">
-                            <input type="text" class="form-control <?php if(isset($_POST['iniciar_sesion'])){echo 'is-invalid';} ?>" name="nombre_usuario" placeholder="Username" autofocus required
+                            <input type="text" class="form-control <?php if(isset($_POST['log_in'])){echo 'is-invalid';} ?>" name="username" placeholder="Username" autofocus required
                             <?php
-                            if (isset($_POST['iniciar_sesion']) && isset($_POST['nombre_usuario']) && !empty($_POST['nombre_usuario'])) {
-                                echo 'value="' . $_POST['nombre_usuario'] . '"';
+                            if (isset($_POST['log_in']) && isset($_POST['username']) && !empty($_POST['username'])) {
+                                echo 'value="' . $_POST['username'] . '"';
                             }
                             ?>
                                    >
                             <span class="fa fa-user form-control-feedback" style="color: #BDC5CF !important;"></span>
                         </div>
                         <div class="form-group has-feedback">
-                            <input type="password" class="form-control <?php if(isset($_POST['iniciar_sesion'])){echo 'is-invalid';} ?>" name="password" placeholder="Password" required>
+                            <input type="password" class="form-control <?php if(isset($_POST['log_in'])){echo 'is-invalid';} ?>" name="password" placeholder="Password" required>
                             <span class="fa fa-lock form-control-feedback" style="color: #BDC5CF !important;"></span>
                             <?php
-                            if (isset($_POST['iniciar_sesion'])) {
-                                $validador->mostrar_error();
+                            if (isset($_POST['log_in'])) {
+                                $validator->show_error();
                             }
                             ?>
                         </div>

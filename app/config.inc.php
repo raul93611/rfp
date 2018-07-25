@@ -1,19 +1,19 @@
 <?php
-define('NOMBRE_SERVIDOR', 'localhost');
-define('NOMBRE_USUARIO', 'root');
+define('SERVER_NAME', 'localhost');
+define('USER_NAME', 'root');
 define('PASSWORD', 'raul93611');
-define('NOMBRE_BD', 'rfp');
+define('BD_NAME', 'rfp');
 
-define('SERVIDOR', 'http://localhost/rfp/');
+define('SERVER', 'http://localhost/rfp/');
 define('ERROR', SERVIDOR . 'error');
-define('PERFIL', SERVIDOR . 'perfil/');
-define('LOGOUT', SERVIDOR . 'logout');
-define('REGISTRO', PERFIL . 'registro');
-define('ELIMINAR_USUARIO', PERFIL . 'eliminar_usuario');
+define('PROFILE', SERVIDOR . 'profile/');
+define('LOG_OUT', SERVIDOR . 'logout');
+define('SIGN_IN', PERFIL . 'sign_in');
+define('DELETE_USER', PERFIL . 'delete_user');
 
-define('RUTA_CSS', SERVIDOR . 'css/');
-define('RUTA_JS', SERVIDOR . 'js/');
-define('RUTA_IMG', SERVIDOR . 'img/');
+define('CSS', SERVIDOR . 'css/');
+define('JS', SERVIDOR . 'js/');
+define('IMG', SERVIDOR . 'img/');
 define('PLUGINS', SERVIDOR . 'plugins/');
 define('DIST', SERVIDOR . 'dist/');
 ?>

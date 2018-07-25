@@ -3,13 +3,13 @@ CREATE DATABASE rfp
 USE rfp;
 
 
-CREATE TABLE usuarios(
+CREATE TABLE users(
         id INT NOT NULL AUTO_INCREMENT UNIQUE,
-        nombre_usuario VARCHAR(100) NOT NULL UNIQUE,
+        username VARCHAR(100) NOT NULL UNIQUE,
         password VARCHAR(100) NOT NULL,
-        nombres VARCHAR(100) NOT NULL,
-        apellidos VARCHAR(100) NOT NULL,
-        cargo TINYINT NOT NULL,
+        names VARCHAR(100) NOT NULL,
+        last_names VARCHAR(100) NOT NULL,
+        level TINYINT NOT NULL,
         email VARCHAR(100) NOT NULL UNIQUE,
         PRIMARY KEY(id)
 );
