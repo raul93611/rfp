@@ -7,7 +7,7 @@
         <link rel="Shortcut Icon" href="<?php echo RUTA_IMG; ?>favicon_e.png" type="image/x-icon" />
         <?php
         if (!isset($title) || empty($title)) {
-            $title = Home;
+            $title = 'Home';
         }
         echo "<title>$title</title>";
         ?>

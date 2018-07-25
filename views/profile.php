@@ -13,8 +13,7 @@ $level = $user->get_level();
 include_once 'templates/head_document.inc.php';
 include_once 'templates/navbar.inc.php';
 include_once 'templates/sidebar.inc.php';
-?>
-<?php
+
 switch ($current_manager) {
     case '':
         include_once 'templates/dashboard.inc.php';

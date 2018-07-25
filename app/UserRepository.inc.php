@@ -2,8 +2,7 @@
 class UserRepository{
   public static function insert_user($connection, $user) {
       $user_inserted = false;
-
-      if (isset($conection)) {
+      if (isset($connection)) {
           try {
               $sql = 'INSERT INTO users(username, password, names, last_names, level, email) VALUES(:username, :password, :names, :last_names, :level, :email)';
 
