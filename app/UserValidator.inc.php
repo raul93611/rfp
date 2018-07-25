@@ -9,6 +9,7 @@ abstract class UserValidator {
     protected $password;
     protected $names;
     protected $last_names;
+    protected $email;
     protected $username_error;
     protected $password1_error;
     protected $password2_error;
@@ -76,7 +77,7 @@ abstract class UserValidator {
         return '';
     }
 
-    protected function validate_pasword1($password1) {
+    protected function validate_password1($password1) {
         if (!$this->started_variable($password1)) {
             return 'Must be fill out.';
         }
@@ -112,6 +113,10 @@ abstract class UserValidator {
 
     public function get_last_names(){
         return $this-> last_names;
+    }
+
+    public function get_email(){
+      return $this-> email;
     }
 
     public function get_username_error(){
@@ -150,6 +155,12 @@ abstract class UserValidator {
         if($this-> last_names != ''){
             echo 'value="' . $this-> last_names . '"';
         }
+    }
+
+    public function show_email(){
+      if($this-> email != ''){
+        echo 'value="' . $this-> email . '"';
+      }
     }
 
     public function show_username_error(){

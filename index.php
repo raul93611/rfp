@@ -8,6 +8,7 @@ include_once 'app/User.inc.php';
 include_once 'app/UserRepository.inc.php';
 include_once 'app/UserValidator.inc.php';
 include_once 'app/UserLoginValidator.inc.php';
+include_once 'app/UserSignInValidator.inc.php';
 
 $url_components = parse_url($_SERVER['REQUEST_URI']);
 $route = $url_components['path'];
@@ -32,6 +33,17 @@ if($parts_route[0] == 'rfp'){
         case 'log_out':
             $chosen_route = 'scripts/log_out.php';
             break;
+    }
+  }else if(count($parts_route) == 3){
+    if($parts_route[1] == 'profile'){
+      switch ($parts_route[2]) {
+        case 'sign_in':
+          $current_manager = 'sign_in';
+          $chosen_route = 'views/profile.php';
+          break;
+        default:
+          break;
+      }
     }
   }
 }

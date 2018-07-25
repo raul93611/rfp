@@ -18,7 +18,7 @@
                 <li class="nav-item has-treeview menu-open">
                   <a href="<?php echo PROFILE; ?>" class="nav-link
                   <?php
-                  if ($gestor_actual == '') {
+                  if ($current_manager == '') {
                       echo 'active';
                   }
                   ?>
@@ -28,7 +28,7 @@
                   </a>
                 </li>
                 <?php
-                if ($cargo == 1) {
+                if ($level == 1) {
                 ?>
                 <li class="nav-item has-treeview menu-open">
                     <a href="<?php echo SIGN_IN; ?>" class="nav-link

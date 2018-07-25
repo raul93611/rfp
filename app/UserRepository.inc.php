@@ -1,7 +1,7 @@
 <?php
 class UserRepository{
   public static function insert_user($connection, $user) {
-      $user_inserted = false;
+      $inserted_user = false;
       if (isset($connection)) {
           try {
               $sql = 'INSERT INTO users(username, password, names, last_names, level, email) VALUES(:username, :password, :names, :last_names, :level, :email)';
@@ -18,14 +18,14 @@ class UserRepository{
               $result = $sentence->execute();
 
               if ($result) {
-                  $user_inserted = true;
+                  $inserted_user = true;
               }
           } catch (PDOException $ex) {
               print 'ERROR:' . $ex->getMessage() . '<br>';
           }
       }
 
-      return $user_inserted;
+      return $inserted_user;
   }
 
   public static function get_user_by_username($connection, $username) {
@@ -82,7 +82,7 @@ class UserRepository{
               $sentence->bindParam(':username', $username, PDO::PARAM_STR);
               $sentence->execute();
 
-              $result = $sentenc->fetchAll();
+              $result = $sentence->fetchAll();
 
               if (count($result)) {
                   $username_exists = true;
@@ -175,12 +175,7 @@ class UserRepository{
       <tr>
           <td><?php echo $user->get_names(); ?></td>
           <td><?php echo $usuario->get_last_names(); ?></td>
-          <td class='text-center'>
-              <form method="post" action="<?php echo DELETE_USER; ?>">
-                  <input type="hidden" name="id_user" value="<?php echo $user->get_id(); ?>">
-                  <button type="submit" class="btn btn-sm btn-warning" name="delete_user"><i class="fa fa-trash"></i> Delete</button>
-              </form>
-          </td>
+          <td></td>
       </tr>
       <?php
   }
@@ -195,9 +190,9 @@ class UserRepository{
           <table class="table table-bordered table-hover">
               <thead>
                   <tr>
-                      <th>First names</th>
-                      <th>Last names</th>
-                      <th>Options</th>
+                      <th>FIRST NAMES</th>
+                      <th>LAST NAMES</th>
+                      <th>OPTIONS</th>
                   </tr>
               </thead>
               <tbody id="users_table">
@@ -210,27 +205,6 @@ class UserRepository{
           </table>
           <?php
       }
-  }
-
-  public static function delete_user($connection, $id_user) {
-      $deleted_user = false;
-      if (isset($connection)) {
-          try {
-              $sql = "DELETE FROM users WHERE id = :id_user";
-
-              $sentence = $conexion->prepare($sql);
-              $sentence->bindParam(':id_user', $id_user, PDO::PARAM_STR);
-              $result = $sentence->execute();
-
-              if ($result) {
-                  $deleted_user = true;
-              }
-          } catch (PDOException $ex) {
-              print 'ERROR:' . $ex->getMessage() . '<br>';
-          }
-      }
-
-      return $deleted_user;
   }
 }
 ?>
