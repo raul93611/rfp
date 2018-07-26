@@ -12,11 +12,9 @@ class UserLoginValidator extends UserValidator{
           $this->user = null;
           $this->error = 'Must be fill out.';
       } else {
-
           $this->user = UserRepository::get_user_by_username($connection, $username);
-
-          if (is_null($this->user) || !password_verify($password, $this->user->get_password())) {
-              $this->error = 'Wrong values.';
+          if (is_null($this->user) || !password_verify($password, $this->user->get_password()) || !$this-> user-> get_status()) {
+              $this->error = 'Error.';
           }
       }
   }

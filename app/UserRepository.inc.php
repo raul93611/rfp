@@ -4,7 +4,7 @@ class UserRepository{
       $inserted_user = false;
       if (isset($connection)) {
           try {
-              $sql = 'INSERT INTO users(username, password, names, last_names, level, email) VALUES(:username, :password, :names, :last_names, :level, :email)';
+              $sql = 'INSERT INTO users(username, password, names, last_names, level, email, status) VALUES(:username, :password, :names, :last_names, :level, :email, :status)';
 
               $sentence = $connection->prepare($sql);
 
@@ -14,6 +14,7 @@ class UserRepository{
               $sentence->bindParam(':last_names', $user->get_last_names(), PDO::PARAM_STR);
               $sentence->bindParam(':level', $user->get_level(), PDO::PARAM_STR);
               $sentence->bindParam(':email', $user->get_email(), PDO::PARAM_STR);
+              $sentence->bindParam(':status', $user->get_status(), PDO::PARAM_STR);
 
               $result = $sentence->execute();
 
@@ -41,7 +42,7 @@ class UserRepository{
               $result = $sentence->fetch();
 
               if (!empty($result)) {
-                  $user = new User($result['id'], $result['username'], $result['password'], $result['names'], $result['last_names'], $result['level'], $result['email']);
+                  $user = new User($result['id'], $result['username'], $result['password'], $result['names'], $result['last_names'], $result['level'], $result['email'], $result['status']);
               }
           } catch (PDOException $ex) {
               print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -63,7 +64,7 @@ class UserRepository{
               $result = $sentence->fetch();
 
               if (!empty($result)) {
-                  $user = new User($result['id'], $result['username'], $result['password'], $result['names'], $result['last_names'], $result['level'], $result['email']);
+                  $user = new User($result['id'], $result['username'], $result['password'], $result['names'], $result['last_names'], $result['level'], $result['email'], $result['status']);
               }
           } catch (PDOException $ex) {
               print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -157,7 +158,7 @@ class UserRepository{
 
               if (count($result)) {
                   foreach ($result as $row) {
-                      $users [] = new User($row['id'], $row['username'], $row['password'], $row['names'], $row['last_names'], $row['level'], $row['email']);
+                      $users [] = new User($row['id'], $row['username'], $row['password'], $row['names'], $row['last_names'], $row['level'], $row['email'], $row['status']);
                   }
               }
           } catch (PDOException $ex) {
@@ -175,7 +176,15 @@ class UserRepository{
       <tr>
           <td><?php echo $user->get_names(); ?></td>
           <td><?php echo $user->get_last_names(); ?></td>
-          <td></td>
+          <td>
+            <?php
+            if($user-> get_status()){
+              echo '<a href="' . DISABLE_USER . $user-> get_id() . '" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Disable</a>';
+            }else{
+              echo '<a href="' . ENABLE_USER . $user-> get_id() . '" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Enable</a>';
+            }
+            ?>
+          </td>
       </tr>
       <?php
   }
@@ -192,7 +201,7 @@ class UserRepository{
                   <tr>
                       <th>FIRST NAMES</th>
                       <th>LAST NAMES</th>
-                      <th>OPTIONS</th>
+                      <th id="disable_user">OPTIONS</th>
                   </tr>
               </thead>
               <tbody id="users_table">
@@ -205,6 +214,50 @@ class UserRepository{
           </table>
           <?php
       }
+  }
+
+  public static function disable_user($connection, $id_user){
+    $edited_user = false;
+
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE users SET status = 0 WHERE id = :id_user';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_user', $id_user, PDO::PARAM_STR);
+
+        $result = $sentence-> execute();
+
+        if($result){
+          $edited_user = true;
+        }
+
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $edited_user;
+  }
+
+  public static function enable_user($connection, $id_user){
+    $edited_user = false;
+
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE users SET status = 1 WHERE id = :id_user';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_user', $id_user, PDO::PARAM_STR);
+
+        $result = $sentence-> execute();
+
+        if($result){
+          $edited_user = true;
+        }
+
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $edited_user;
   }
 }
 ?>

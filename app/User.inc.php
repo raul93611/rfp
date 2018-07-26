@@ -7,8 +7,9 @@ class User{
     private $last_names;
     private $level;
     private $email;
+    private $status;
 
-    public function __construct($id, $username, $password, $names, $last_names, $level, $email){
+    public function __construct($id, $username, $password, $names, $last_names, $level, $email, $status){
         $this-> id = $id;
         $this-> username = $username;
         $this-> password = $password;
@@ -16,6 +17,7 @@ class User{
         $this-> last_names = $last_names;
         $this-> level = $level;
         $this-> email = $email;
+        $this-> status = $status;
     }
 
     public function get_id(){
@@ -44,6 +46,10 @@ class User{
 
     public function get_email(){
         return $this-> email;
+    }
+
+    public function get_status(){
+      return $this-> status;
     }
 }
 ?>

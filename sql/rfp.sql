@@ -10,6 +10,7 @@ CREATE TABLE users(
         names VARCHAR(100) NOT NULL,
         last_names VARCHAR(100) NOT NULL,
         level TINYINT NOT NULL,
-        email VARCHAR(100) NOT NULL UNIQUE,
+        email VARCHAR(100) NOT NULL,
+        status TINYINT NOT NULL,
         PRIMARY KEY(id)
 );
