@@ -26,3 +26,7 @@ function search_users() {
         }
     }
 }
+
+$(document).ready(function(){
+  $('#calendar_system').fullCalendar();
+});
