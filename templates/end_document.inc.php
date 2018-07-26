@@ -15,7 +15,7 @@
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
-<script src="<?php echo RUTA_JS; ?>raphael-min.js"></script>
+<script src="<?php echo JS; ?>raphael-min.js"></script>
 <script src="<?php echo PLUGINS; ?>morris/morris.min.js"></script>
 <script src="<?php echo PLUGINS; ?>sparkline/jquery.sparkline.min.js"></script>
 <script src="<?php echo PLUGINS; ?>jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
@@ -24,13 +24,14 @@
 <script src="<?php echo PLUGINS; ?>input-mask/jquery.inputmask.js"></script>
 <script src="<?php echo PLUGINS; ?>input-mask/jquery.inputmask.date.extensions.js"></script>
 <script src="<?php echo PLUGINS; ?>input-mask/jquery.inputmask.extensions.js"></script>
-<script src="<?php echo RUTA_JS; ?>moment.min.js"></script>
+<script src="<?php echo JS; ?>moment.min.js"></script>
 <script src="<?php echo PLUGINS; ?>daterangepicker/daterangepicker.js"></script>
 <script src="<?php echo PLUGINS; ?>datepicker/bootstrap-datepicker.js"></script>
 <script src="<?php echo PLUGINS; ?>ckeditor/ckeditor.js"></script>
 <script src="<?php echo PLUGINS; ?>bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script src="<?php echo PLUGINS; ?>slimScroll/jquery.slimscroll.min.js"></script>
 <script src="<?php echo DIST; ?>js/pages/dashboard.js"></script>
+<script src="<?php echo JS; ?>js_sistema.js"></script>
 <script src="<?php echo DIST; ?>js/pages/dashboard3.js"></script>
 </body>
 </html>

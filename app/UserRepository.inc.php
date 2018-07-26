@@ -123,7 +123,7 @@ class UserRepository{
 
   public static function count_users($connection) {
       $total_users = 0;
-      if (isset($conexion)) {
+      if (isset($connection)) {
           try {
               $sql = "SELECT COUNT(*) as total_users FROM users WHERE level != 1";
 
@@ -174,7 +174,7 @@ class UserRepository{
       ?>
       <tr>
           <td><?php echo $user->get_names(); ?></td>
-          <td><?php echo $usuario->get_last_names(); ?></td>
+          <td><?php echo $user->get_last_names(); ?></td>
           <td></td>
       </tr>
       <?php
@@ -182,7 +182,7 @@ class UserRepository{
 
   public static function print_users() {
       Connection::open_connection();
-      $usuarios = self::obtener_todos_usuarios(Conexion::obtener_conexion());
+      $users = self::get_all_users(Connection::get_connection());
       Connection::close_connection();
 
       if (count($users)) {

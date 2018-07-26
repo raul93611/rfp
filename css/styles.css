@@ -4,6 +4,9 @@ body{
   color: #39485A !important;
 }
 
+/**********************************************************************************************************************************************
+START SIDEBAR STYLES
+************************************************************************************************************************************************/
 .sidebar-dark-primary{
   background-color: #39485A !important;
 }
@@ -12,7 +15,6 @@ body{
   color: #C2C7D0 !important;
 }
 
-/*.sidebar-dark-primary .nav-sidebar > .nav-item.menu-open > .nav-link,*/
 .sidebar-dark-primary .nav-sidebar > .nav-item:hover > .nav-link {
   color: #ffffff !important;
   background-color: #485566 !important;
@@ -63,6 +65,14 @@ body{
   color: #39485A !important;
 }
 
+/***********************************************************************************************************************************************
+END SIDEBAR STYLES
+*************************************************************************************************************************************************/
+
+
+/**********************************************************************************************************************************************
+START BUTTON STYLES
+************************************************************************************************************************************************/
 .btn-primary {
   color: #ffffff;
   background-color: #13A8F0 !important;
@@ -74,28 +84,6 @@ body{
   color: #ffffff;
   background-color: #40B7EE !important;
   border-color: #40B7EE !important;
-}
-
-.alert-danger{
-  background-color: #DD355F !important;
-}
-
-.alert-danger:hover{
-  background-color: #E45D7F !important;
-}
-
-.card-primary:not(.card-outline) .card-header {
-  background-color: #E7E9EB !important;
-  border-bottom: 0;
-}
-
-.card-primary:not(.card-outline) .card-header,
-.card-primary:not(.card-outline) .card-header a {
-  color: #39485A !important;
-}
-
-.card-footer{
-  background-color: #E7E9EB !important;
 }
 
 .btn-success {
@@ -150,6 +138,10 @@ body{
   border-color: #F3EC43 !important;
 }
 
+.btn-warning{
+    font-size: 0.9em !important;
+}
+/**************************************START GOBACK BUTTON STYLES**********************************************************/
 #go_back{
   border-radius: 25px !important;
   background-color: #B0B6BD !important;
@@ -160,7 +152,9 @@ body{
   background-color: #C0C5CA !important;
   border-color: #C0C5CA !important;
 }
+/*********************************************END GOBACK BUTTON STYLES*****************************************************/
 
+/**********************************************START CALCULATE BUTTON STYLES******************************************************/
 .calculate{
   color: #ffffff !important;
   background-color: #007AFF !important;
@@ -171,7 +165,9 @@ body{
   background-color: #3395FF !important;
   border-color: #3395FF !important;
 }
+/****************************************************END CALCULATE BUTTON STYLES********************************************************/
 
+/***************************************************START SAVE BUTTON STYLES*********************************************************/
 #save_item{
   background-color: #03D3AB !important;
   border-color: #03D3AB !important;
@@ -181,7 +177,9 @@ body{
   background-color: #35DCBC !important;
   border-color: #35DCBC !important;
 }
+/**********************************************************END SAVE BUTTON STYLES*********************************************************/
 
+/****************************************************START ADD ITEM BUTTON STYLES*********************************************************/
 .add_item_charter{
   background-color: #40B7EE !important;
   border-color: #40B7EE !important;
@@ -192,10 +190,9 @@ body{
   border-color: #66C5F1 !important;
 }
 
-.waiting_for{
-  border-left: 5px solid #FBD200 !important;
-}
+/****************************************************END ADD ITEM BUTTON STYLES**************************************************************/
 
+/****************************************************START HOME BUTTON STYLES*****************************************************************/
 .btn_home{
   background-color: #39485A !important;
   color: #ffffff !important;
@@ -204,7 +201,70 @@ body{
 .btn_home:hover{
   background-color: #4f5359 !important;
 }
+/**************************************************END HOME BUTTON STYLES***********************************************************************/
 
+/***************************************************************************************************************************************************
+END BUTTON STYLES
+***************************************************************************************************************************************************/
+
+
+/**************************************************************************************************************************************************
+START ALERT STYLES
+****************************************************************************************************************************************************/
+.alert-danger{
+  background-color: #DD355F !important;
+}
+
+.alert-danger:hover{
+  background-color: #E45D7F !important;
+}
+
+/***************************************************************************************************************************************************
+END ALERT STYLES
+*****************************************************************************************************************************************************/
+
+
+/***************************************************************************************************************************************************
+START CARD PRIMARY STYLES
+******************************************************************************************************************************************************/
+.card-primary:not(.card-outline) .card-header {
+  background-color: #E7E9EB !important;
+  border-bottom: 0;
+}
+
+.card-primary:not(.card-outline) .card-header,
+.card-primary:not(.card-outline) .card-header a {
+  color: #39485A !important;
+}
+
+/********************************************************************************************************************************************************
+END CARD PRIMARY STYLES
+********************************************************************************************************************************************************/
+
+
+/*******************************************************************************************************************************************************
+START FIXED CARD FOOTER STYLES
+********************************************************************************************************************************************************/
+.card-footer{
+  background-color: #E7E9EB !important;
+}
+/*****************************************************************************************************************************************************
+END FIXED CARD FOOTER STYLES
+*********************************************************************************************************************************************************/
+
+
+/********************************************************START BORDER LEFT TR STYLES*********************************************************************/
+.waiting_for{
+  border-left: 5px solid #FBD200 !important;
+}
+
+/********************************************************END BORDER LEFT TR STYLES*********************************************************************/
+
+
+
+
+
+/******************************************************START PRIMARY INDICATOR STYLES*********************************************************************/
 .text-primary {
   color: #13A8F0 !important;
 }
@@ -212,34 +272,13 @@ body{
 a.text-primary:hover, a.text-primary:focus {
   color: #0062cc !important;
 }
-/*Aun no he usado
-.sidebar-dark-primary .user-panel a:hover {
-  color: #ffffff !important;
-}
-.sidebar-dark-primary .user-panel .status {
-  color: #C2C7D0;
-  background: rgba(255, 255, 255, 0.1);
-}
-.sidebar-dark-primary .user-panel .status:hover, .sidebar-dark-primary .user-panel .status:focus, .sidebar-dark-primary .user-panel .status:active {
-  color: #ffffff;
-  background: rgba(247, 247, 247, 0.1);
-}
-.sidebar-dark-primary .user-panel .dropdown-menu {
-  border-color: rgba(242, 242, 242, 0.1);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
+/***********************************************************END PRIMARY INDICATOR STYLES*******************************************************************/
 
-.sidebar-dark-primary .user-panel .dropdown-item {
-  color: #212529;
-}
-*/
-
-
+/******************************************************************************************************************************************************
+START TABLE STYLES
+********************************************************************************************************************************************************/
 table{
     font-size: 0.8em;
-}
-.btn-warning{
-    font-size: 0.9em !important;
 }
 
 .list-group-item:hover{
@@ -258,11 +297,11 @@ table{
   width: 100px !important;
 }
 
-.estrechar{
+.break_words{
   word-break: break-all !important;
 }
 
-#tabla_items #numeracion{
+#tabla_items #numeration{
     min-width: 20px !important;
 }
 
@@ -270,21 +309,6 @@ table{
     min-width: 200px !important;
 }
 
-.cuestionario{
-    width: 50px !important;
-}
-
-.footer_item{
-  position: fixed !important;
-  bottom: 0 !important;
-  width: auto;
-  background-color: #E7E9EB;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
-  transition: width 0.3s;
-}
-
-.footer_item1{
-  width: 94.5% !important;
-  transition: width 0.3s;
-}
+/****************************************************************************************************************************************************
+END TABLE STYLES
+*******************************************************************************************************************************************************/
