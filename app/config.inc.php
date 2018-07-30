@@ -8,14 +8,23 @@ define('SERVER', 'http://localhost/rfp/');
 define('ERROR', SERVER . 'error');
 define('PROFILE', SERVER . 'profile/');
 define('LOG_OUT', SERVER . 'log_out');
+
+/**************OPTIONS ADMIN****************************************************/
 define('SIGN_IN', PROFILE . 'sign_in');
 define('DELETE_USER', PROFILE . 'delete_user');
 define('DISABLE_USER', PROFILE . 'disable_user/');
 define('ENABLE_USER', PROFILE . 'enable_user/');
+/*******************************************************************************/
 
+/********************OPTIONS PROJECTS*******************************************/
+define('SAVE_PROJECT', SERVER . 'save_project');
+/*******************************************************************************/
+
+/*****************************EXTRA ROUTES**************************************/
 define('CSS', SERVER . 'css/');
 define('JS', SERVER . 'js/');
 define('IMG', SERVER . 'img/');
 define('PLUGINS', SERVER . 'plugins/');
 define('DIST', SERVER . 'dist/');
+/*******************************************************************************/
 ?>

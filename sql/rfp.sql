@@ -14,3 +14,15 @@ CREATE TABLE users(
         status TINYINT NOT NULL,
         PRIMARY KEY(id)
 );
+
+CREATE TABLE projects(
+  id INT NOT NULL AUTO_INCREMENT UNIQUE,
+  id_user INT NOT NULL,
+  project_date DATE,
+  link VARCHAR(255) NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(id_user)
+    REFERENCES users(id)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
+);

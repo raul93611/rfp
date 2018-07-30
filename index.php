@@ -10,6 +10,9 @@ include_once 'app/UserValidator.inc.php';
 include_once 'app/UserLoginValidator.inc.php';
 include_once 'app/UserSignInValidator.inc.php';
 
+include_once 'app/Project.inc.php';
+include_once 'app/ProjectRepository.inc.php';
+
 $url_components = parse_url($_SERVER['REQUEST_URI']);
 $route = $url_components['path'];
 
@@ -24,15 +27,18 @@ if($parts_route[0] == 'rfp'){
   }else if(count($parts_route) == 2){
     switch ($parts_route[1]) {
         case 'profile':
-            $current_manager = '';
-            $chosen_route = 'views/profile.php';
-            break;
+          $current_manager = '';
+          $chosen_route = 'views/profile.php';
+          break;
         case 'generate_user':
-            $chosen_route = 'tools/generate_user.php';
-            break;
+          $chosen_route = 'tools/generate_user.php';
+          break;
         case 'log_out':
-            $chosen_route = 'scripts/log_out.php';
-            break;
+          $chosen_route = 'scripts/events.php';
+          break;
+        case 'save_project':
+          $chosen_route = 'scripts/save_project.php';
+          break;
     }
   }else if(count($parts_route) == 3){
     if($parts_route[1] == 'profile'){
