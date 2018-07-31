@@ -27,6 +27,12 @@ switch ($current_manager) {
   case 'enable_user':
     include_once 'templates/enable_user.inc.php';
     break;
+  case 'info_project':
+    include_once 'templates/info_project.inc.php';
+    break;
+  case 'flowchart':
+    include_once 'templates/flowchart.inc.php';
+    break;
 }
 include_once 'templates/end_document.inc.php';
 ?>

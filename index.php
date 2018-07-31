@@ -34,7 +34,7 @@ if($parts_route[0] == 'rfp'){
           $chosen_route = 'tools/generate_user.php';
           break;
         case 'log_out':
-          $chosen_route = 'scripts/events.php';
+          $chosen_route = 'scripts/log_out.php';
           break;
         case 'save_project':
           $chosen_route = 'scripts/save_project.php';
@@ -54,6 +54,9 @@ if($parts_route[0] == 'rfp'){
         default:
           break;
       }
+    }else if($parts_route[1] == 'save_info_project'){
+      $id_project = $parts_route[2];
+      $chosen_route = 'scripts/save_info_project.php';
     }
   }else if(count($parts_route) == 4){
     if($parts_route[1] == 'profile'){
@@ -66,6 +69,16 @@ if($parts_route[0] == 'rfp'){
         case 'enable_user':
           $id_user = $parts_route[3];
           $current_manager = 'enable_user';
+          $chosen_route = 'views/profile.php';
+          break;
+        case 'info_project':
+          $id_project = $parts_route[3];
+          $current_manager = 'info_project';
+          $chosen_route = 'views/profile.php';
+          break;
+        case 'flowchart':
+          $id_project = $parts_route[3];
+          $current_manager = 'flowchart';
           $chosen_route = 'views/profile.php';
           break;
         default:

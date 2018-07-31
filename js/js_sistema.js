@@ -38,13 +38,31 @@ END SEARCH USERS
 STARTJQUERY CODE
 **********************************************************************************************************************/
 $(document).ready(function(){
-  var all_events = document.getElementById('all_events').value;
-  //console.log(all_events);
-  //console.log($('#calendar_system').fullCalendar());
-  all_events =  jQuery.parseJSON(all_events);
+  /*******************************************************************************************************************
+  INPUT MASK IN DATES
+  *********************************************************************************************************************/
+  $('#start_date').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'});
+  $('#end_date').inputmask("datetime", {
+      mask: "2/1/y h:s",
+      placeholder: "mm/dd/yyyy hh:mm",
+      leapday: "02/29/",
+      separator: "/",
+      alias: "mm/dd/yyyy"
+  });
+  /******************************************************************************************************************
+  FLOWCHART
+  ********************************************************************************************************************/
+  for(var i = 2; i <= 14; i++){
+    $('#q'+i).hide();
+  }
+
   /*******************************************************************************************************************
   START CALENDAR CODE
   *******************************************************************************************************************/
+  var all_events = document.getElementById('all_events').value;
+  all_events =  jQuery.parseJSON(all_events);
+
+  var link_fill_out = $('#fill_out').attr('href');
   $('#calendar_system').fullCalendar({
     themeSystem: 'bootstrap4',
     header:{
@@ -58,10 +76,12 @@ $(document).ready(function(){
       var fecha = parts_fecha[1] + '/' + parts_fecha[2] + '/' + parts_fecha[0];
       $('#date').val(fecha);
     },
-    //[{"start":"2018-07-03"},{"start":"2018-07-26"}]
     events: all_events,
     eventClick:function(calEvent, jsEvent, view){
-      $('#title_project').html(calEvent.title);
+
+      new_link_fill_out = link_fill_out + calEvent.id;
+      $('#fill_out').attr('href', new_link_fill_out);
+      $('#link_project').html(calEvent.title);
       $('#view_project').modal();
     }
   });
