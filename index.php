@@ -60,6 +60,9 @@ if($parts_route[0] == 'rfp'){
     }else if($parts_route[1] == 'save_flowchart'){
       $id_project = $parts_route[2];
       $chosen_route = 'scripts/save_flowchart.php';
+    }else if($parts_route[1] == 'delete_project'){
+      $id_project = $parts_route[2];
+      $chosen_route = 'scripts/delete_project.php';
     }
   }else if(count($parts_route) == 4){
     if($parts_route[1] == 'profile'){

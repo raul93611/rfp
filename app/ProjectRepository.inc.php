@@ -3,10 +3,9 @@ class ProjectRepository{
   public static function insert_project($connection, $project){
     if(isset($connection)){
       try{
-        $sql = 'INSERT INTO projects (id_user, project_date, link, project_name, start_date, end_date, priority, description, way, type, comments, flowchart) VALUES(:id_user, :project_date, :link, :project_name, :start_date, :end_date, :priority, :description, :way, :type, :comments, :flowchart)';
+        $sql = 'INSERT INTO projects (id_user, project_date, link, project_name, start_date, end_date, priority, description, way, type, comments, flowchart, designated_user) VALUES(:id_user, NOW(), :link, :project_name, :start_date, :end_date, :priority, :description, :way, :type, :comments, :flowchart, :designated_user)';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $project-> get_id_user(), PDO::PARAM_STR);
-        $sentence-> bindParam(':project_date', $project-> get_project_date(), PDO::PARAM_STR);
         $sentence-> bindParam(':link', $project-> get_link(), PDO::PARAM_STR);
         $sentence-> bindParam(':project_name', $project-> get_project_name(), PDO::PARAM_STR);
         $sentence-> bindParam(':start_date', $project-> get_start_date(), PDO::PARAM_STR);
@@ -17,6 +16,7 @@ class ProjectRepository{
         $sentence-> bindParam(':type', $project-> get_type(), PDO::PARAM_STR);
         $sentence-> bindParam(':comments', $project-> get_comments(), PDO::PARAM_STR);
         $sentence-> bindParam(':flowchart', $project-> get_flowchart(), PDO::PARAM_STR);
+        $sentence-> bindParam(':designated_user', $project-> get_designated_user(), PDO::PARAM_STR);
         $result = $sentence-> execute();
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -69,7 +69,7 @@ class ProjectRepository{
         $sentence-> execute();
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         if(!empty($result)){
-          $project = new Project($result['id'], $result['id_user'], $result['project_date'], $result['link'], $result['project_name'], $result['start_date'], $result['end_date'], $result['priority'], $result['description'], $result['way'], $result['type'], $result['comments'], $result['flowchart']);
+          $project = new Project($result['id'], $result['id_user'], $result['project_date'], $result['link'], $result['project_name'], $result['start_date'], $result['end_date'], $result['priority'], $result['description'], $result['way'], $result['type'], $result['comments'], $result['flowchart'], $result['designated_user']);
         }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -85,6 +85,19 @@ class ProjectRepository{
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':flowchart', $flowchart_result, PDO::PARAM_STR);
         $sentence-> bindParam(':comments', $project_comments, PDO::PARAM_STR);
+        $sentence-> bindParam(':id', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
+
+  public static function delete_project($connection, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'DELETE FROM projects WHERE id = :id';
+        $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id', $id_project, PDO::PARAM_STR);
         $sentence-> execute();
       }catch(PDOException $ex){

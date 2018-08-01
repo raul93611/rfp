@@ -131,7 +131,7 @@ class UserRepository{
               $sentence = $connection->prepare($sql);
               $sentence->execute();
 
-              $result = $sentence->fetch();
+              $result = $sentence->fetch(PDO::FETCH_ASSOC);
 
               if (!empty($result)) {
                   $total_users = $result['total_users'];
@@ -154,7 +154,32 @@ class UserRepository{
 
               $sentence->execute();
 
-              $result = $sentence->fetchAll();
+              $result = $sentence->fetchAll(PDO::FETCH_ASSOC);
+
+              if (count($result)) {
+                  foreach ($result as $row) {
+                      $users [] = new User($row['id'], $row['username'], $row['password'], $row['names'], $row['last_names'], $row['level'], $row['email'], $row['status']);
+                  }
+              }
+          } catch (PDOException $ex) {
+              print 'ERROR:' . $ex->getMessage() . '<br>';
+          }
+      }
+      return $users;
+  }
+
+  public static function get_users_3_4($connection) {
+      $users = [];
+
+      if (isset($connection)) {
+          try {
+              $sql = "SELECT * FROM users WHERE level > 2";
+
+              $sentence = $connection->prepare($sql);
+
+              $sentence->execute();
+
+              $result = $sentence->fetchAll(PDO::FETCH_ASSOC);
 
               if (count($result)) {
                   foreach ($result as $row) {
@@ -174,8 +199,10 @@ class UserRepository{
       }
       ?>
       <tr>
-          <td><?php echo $user->get_names(); ?></td>
-          <td><?php echo $user->get_last_names(); ?></td>
+          <td><?php echo $user-> get_id(); ?></td>
+          <td><?php echo $user-> get_level(); ?></td>
+          <td><?php echo $user-> get_names(); ?></td>
+          <td><?php echo $user-> get_last_names(); ?></td>
           <td>
             <?php
             if($user-> get_status()){
@@ -199,6 +226,8 @@ class UserRepository{
           <table class="table table-bordered table-hover">
               <thead>
                   <tr>
+                      <th>ID</th>
+                      <th>LEVEL</th>
                       <th>FIRST NAMES</th>
                       <th>LAST NAMES</th>
                       <th id="disable_user">OPTIONS</th>

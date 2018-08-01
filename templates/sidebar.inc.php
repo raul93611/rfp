@@ -44,6 +44,17 @@
                 </li>
                 <?php
                 }
+
+                if($level <= 2){
+                  ?>
+                  <li class="nav-item has-treeview menu-open">
+                      <a href="#" class="nav-link" id="new_project">
+                          <i class="fa fa-plus nav-icon"></i>
+                          <p>New Project</p>
+                      </a>
+                  </li>
+                  <?php
+                }
                 ?>
             </ul>
         </nav>

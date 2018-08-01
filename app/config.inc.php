@@ -4,7 +4,7 @@ define('USER_NAME', 'root');
 define('PASSWORD', 'raul93611');
 define('BD_NAME', 'rfp');
 
-define('SERVER', 'http://localhost/rfp/');
+define('SERVER', 'http://192.168.1.80/rfp/');
 define('ERROR', SERVER . 'error');
 define('PROFILE', SERVER . 'profile/');
 define('LOG_OUT', SERVER . 'log_out');
@@ -19,6 +19,7 @@ define('ENABLE_USER', PROFILE . 'enable_user/');
 /********************OPTIONS PROJECTS*******************************************/
 define('SAVE_PROJECT', SERVER . 'save_project');
 define('INFO_PROJECT', PROFILE . 'info_project/');
+define('DELETE_PROJECT', SERVER . 'delete_project/');
 define('SAVE_INFO_PROJECT', SERVER . 'save_info_project/');
 define('FLOWCHART', PROFILE . 'flowchart/');
 define('SAVE_FLOWCHART', SERVER . 'save_flowchart/');

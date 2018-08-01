@@ -39,10 +39,6 @@ Connection::close_connection();
                       <div class="modal-body">
                         <form id="form_new_project" method="post" action="<?php echo SAVE_PROJECT; ?>">
                           <div class="form-group">
-                            <label for="link">Date:</label>
-                            <input type="text" id="date" name="project_date" readonly class="form-control">
-                          </div>
-                          <div class="form-group">
                             <label for="link">Link:</label>
                             <input type="text" id="link" name="link" placeholder="Link ..." class="form-control" autofocus required>
                           </div>
@@ -59,15 +55,20 @@ Connection::close_connection();
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
+                        <h5 class="modal-title">Project info</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
-                        <div id="link_project"></div>
+                        <div class="form-group">
+                          <label>Link:</label>
+                          <p><a href="" target="_blank" class="link" id="link_project"></a></p>
+                        </div>
                       </div>
                       <div class="modal-footer">
                         <a href="<?php echo INFO_PROJECT; ?>" id="fill_out" class="btn btn-success"><i class="fa fa-pencil"></i> Review</a>
+                        <a href="<?php echo DELETE_PROJECT; ?>" id="delete_project" class="btn btn-danger"><i class="fa fa-times"></i> Delete</a>
                       </div>
                     </div>
                   </div>

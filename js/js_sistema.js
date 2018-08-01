@@ -38,6 +38,12 @@ END SEARCH USERS
 STARTJQUERY CODE
 **********************************************************************************************************************/
 $(document).ready(function(){
+  /**********************************************************************************************************
+  NEW PROJECT BUTTON
+  ***********************************************************************************************************/
+  $('#new_project').click(function(){
+      $('#add_project').modal();
+  });
   /*******************************************************************************************************************
   INPUT MASK IN DATES
   *********************************************************************************************************************/
@@ -205,6 +211,7 @@ $(document).ready(function(){
   all_events =  jQuery.parseJSON(all_events);
 
   var link_fill_out = $('#fill_out').attr('href');
+  var link_delete_project = $('#delete_project').attr('href');
   $('#calendar_system').fullCalendar({
     themeSystem: 'bootstrap4',
     header:{
@@ -212,18 +219,14 @@ $(document).ready(function(){
       center:'title',
       right:'month,basicWeek,basicDay,agendaWeek,agendaDay'
     },
-    dayClick:function(date, jsEvent, view){
-      $('#add_project').modal();
-      var parts_fecha = date.format().split('-');
-      var fecha = parts_fecha[1] + '/' + parts_fecha[2] + '/' + parts_fecha[0];
-      $('#date').val(fecha);
-    },
     events: all_events,
     eventClick:function(calEvent, jsEvent, view){
-
+      new_link_delete_project = link_delete_project + calEvent.id;
       new_link_fill_out = link_fill_out + calEvent.id;
       $('#fill_out').attr('href', new_link_fill_out);
+      $('#delete_project').attr('href', new_link_delete_project);
       $('#link_project').html(calEvent.title);
+      $('#link_project').attr('href', calEvent.title);
       $('#view_project').modal();
     }
   });
