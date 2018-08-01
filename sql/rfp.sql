@@ -27,6 +27,8 @@ CREATE TABLE projects(
   description TEXT CHARACTER SET utf8 NOT NULL,
   way VARCHAR(255) NOT NULL,
   type VARCHAR(255) NOT NULL,
+  comments TEXT CHARACTER SET utf8 NOT NULL,
+  flowchart TINYINT NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_user)
     REFERENCES users(id)

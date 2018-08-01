@@ -56,6 +56,148 @@ $(document).ready(function(){
     $('#q'+i).hide();
   }
 
+
+  $('#bid_alert').hide();
+  $('#no_bid_alert').hide();
+  $('#project_comments').hide();
+  $('#save_flowchart').hide();
+
+
+
+  $('input[name=q1]').click(function(){
+    $('#q1').slideUp();
+    if($(this).val() == '1'){
+      $('#q2').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q7').slideDown();
+    }
+  });
+
+  $('input[name=q2]').click(function(){
+    $('#q2').slideUp();
+    if($(this).val() == '1'){
+      $('#q3').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q8').slideDown();
+    }
+  });
+
+  $('input[name=q3]').click(function(){
+    $('#q3').slideUp();
+    if($(this).val() == '1'){
+      $('#q4').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q9').slideDown();
+    }
+  });
+
+  $('input[name=q4]').click(function(){
+    $('#q4').slideUp();
+    if($(this).val() == '1'){
+      $('#q5').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q10').slideDown();
+    }
+  });
+
+  $('input[name=q5]').click(function(){
+    $('#q5').slideUp();
+    if($(this).val() == '1'){
+      $('#q6').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q11').slideDown();
+    }
+  });
+
+  $('input[name=q6]').click(function(){
+    $('#q6').slideUp();
+    if($(this).val() == '1'){
+      $('#bid_alert').slideDown();
+      $('#project_comments').slideDown();
+      $('#save_flowchart').slideDown();
+      $('#flowchart_result').val('1');
+    }else if($(this).val() == '0'){
+      $('#q12').slideDown();
+    }
+  });
+
+  $('input[name=q7]').click(function(){
+    $('#q7').slideUp();
+    if($(this).val() == '1'){
+      $('#q2').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q14').slideDown();
+    }
+  });
+
+  $('input[name=q8]').click(function(){
+    $('#q8').slideUp();
+    if($(this).val() == '1'){
+      $('#q3').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q13').slideDown();
+    }
+  });
+
+  $('input[name=q9]').click(function(){
+    $('#q9').slideUp();
+    if($(this).val() == '1'){
+      $('#q13').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q4').slideDown();
+    }
+  });
+
+  $('input[name=q10]').click(function(){
+    $('#q10').slideUp();
+    if($(this).val() == '1'){
+      $('#q5').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q14').slideDown();
+    }
+  });
+
+  $('input[name=q11]').click(function(){
+    $('#q11').slideUp();
+    if($(this).val() == '1'){
+      $('#q6').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q14').slideDown();
+    }
+  });
+
+  $('input[name=q12]').click(function(){
+    $('#q12').slideUp();
+    if($(this).val() == '1'){
+      $('#bid_alert').slideDown();
+      $('#project_comments').slideDown();
+      $('#save_flowchart').slideDown();
+      $('#flowchart_result').val('1');
+    }else if($(this).val() == '0'){
+      $('#q14').slideDown();
+    }
+  });
+
+  $('input[name=q13]').click(function(){
+    $('#q13').slideUp();
+    if($(this).val() == '1'){
+      $('#q4').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q14').slideDown();
+    }
+  });
+
+  $('input[name=q14]').click(function(){
+    $('#q14').slideUp();
+    if($(this).val() == '1'){
+      $('#q6').slideDown();
+    }else if($(this).val() == '0'){
+      $('#no_bid_alert').slideDown();
+      $('#project_comments').slideDown();
+      $('#save_flowchart').slideDown();
+      $('#flowchart_result').val('0');
+    }
+  });
   /*******************************************************************************************************************
   START CALENDAR CODE
   *******************************************************************************************************************/

@@ -11,8 +11,10 @@ class Project{
   private $description;
   private $way;
   private $type;
+  private $comments;
+  private $flowchart;
 
-  public function __construct($id, $id_user, $project_date, $link, $project_name, $start_date, $end_date, $priority, $description, $way, $type){
+  public function __construct($id, $id_user, $project_date, $link, $project_name, $start_date, $end_date, $priority, $description, $way, $type, $comments, $flowchart){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> project_date = $project_date;
@@ -24,6 +26,8 @@ class Project{
     $this-> description = $description;
     $this-> way = $way;
     $this-> type = $type;
+    $this-> comments = $comments;
+    $this-> flowchart = $flowchart;
   }
 
   public function get_id(){
@@ -68,6 +72,14 @@ class Project{
 
   public function get_type(){
     return $this-> type;
+  }
+
+  public function get_comments(){
+    return $this-> comments;
+  }
+
+  public function get_flowchart(){
+    return $this-> flowchart;
   }
 }
 ?>

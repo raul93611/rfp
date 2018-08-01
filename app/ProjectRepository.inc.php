@@ -3,7 +3,7 @@ class ProjectRepository{
   public static function insert_project($connection, $project){
     if(isset($connection)){
       try{
-        $sql = 'INSERT INTO projects (id_user, project_date, link, project_name, start_date, end_date, priority, description, way, type) VALUES(:id_user, :project_date, :link, :project_name, :start_date, :end_date, :priority, :description, :way, :type)';
+        $sql = 'INSERT INTO projects (id_user, project_date, link, project_name, start_date, end_date, priority, description, way, type, comments, flowchart) VALUES(:id_user, :project_date, :link, :project_name, :start_date, :end_date, :priority, :description, :way, :type, :comments, :flowchart)';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $project-> get_id_user(), PDO::PARAM_STR);
         $sentence-> bindParam(':project_date', $project-> get_project_date(), PDO::PARAM_STR);
@@ -15,6 +15,8 @@ class ProjectRepository{
         $sentence-> bindParam(':description', $project-> get_description(), PDO::PARAM_STR);
         $sentence-> bindParam(':way', $project-> get_way(), PDO::PARAM_STR);
         $sentence-> bindParam(':type', $project-> get_type(), PDO::PARAM_STR);
+        $sentence-> bindParam(':comments', $project-> get_comments(), PDO::PARAM_STR);
+        $sentence-> bindParam(':flowchart', $project-> get_flowchart(), PDO::PARAM_STR);
         $result = $sentence-> execute();
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -67,13 +69,28 @@ class ProjectRepository{
         $sentence-> execute();
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         if(!empty($result)){
-          $project = new Project($result['id'], $result['id_user'], $result['project_date'], $result['link'], $result['project_name'], $result['start_date'], $result['end_date'], $result['priority'], $result['description'], $result['way'], $result['type']);
+          $project = new Project($result['id'], $result['id_user'], $result['project_date'], $result['link'], $result['project_name'], $result['start_date'], $result['end_date'], $result['priority'], $result['description'], $result['way'], $result['type'], $result['comments'], $result['flowchart']);
         }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
       }
     }
     return $project;
+  }
+
+  public static function save_flowchart_and_comments($connection, $flowchart_result, $project_comments, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE projects SET flowchart = :flowchart, comments = :comments WHERE id = :id';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':flowchart', $flowchart_result, PDO::PARAM_STR);
+        $sentence-> bindParam(':comments', $project_comments, PDO::PARAM_STR);
+        $sentence-> bindParam(':id', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
   }
 
   public static function mysql_date_to_english_format($mysql_date){
