@@ -30,6 +30,8 @@ CREATE TABLE projects(
   comments TEXT CHARACTER SET utf8 NOT NULL,
   flowchart TINYINT NOT NULL,
   designated_user TINYINT NOT NULL,
+  reviewed_project TINYINT NOT NULL,
+  priority_color VARCHAR(255) NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_user)
     REFERENCES users(id)

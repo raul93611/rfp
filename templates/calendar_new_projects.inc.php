@@ -1,6 +1,6 @@
 <?php
 Connection::open_connection();
-$projects = ProjectRepository::get_all_projects(Connection::get_connection());
+$projects = ProjectRepository::get_all_unreviewed_projects(Connection::get_connection());
 Connection::close_connection();
 ?>
 <input type="hidden" id="all_events" value='<?php echo json_encode($projects); ?>'>
@@ -8,11 +8,23 @@ Connection::close_connection();
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Home</h1>
+                <div class="col-sm-10">
+                    <h1 class="m-0 text-dark">Pending projects</h1>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-2">
+                  <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <a class="btn btn-primary" href="<?php echo PROFILE; ?>">Pending projects</a>
 
+                    <div class="btn-group" role="group">
+                      <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Projects
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <a class="dropdown-item" href="<?php echo PROFILE . 'calendar_projects'; ?>">All projects</a>
+                        <a class="dropdown-item" href="<?php echo PROFILE . 'calendar_my_projects'; ?>">My projects</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -26,7 +38,7 @@ Connection::close_connection();
           <div class="col-8">
             <div class="card">
               <div class="card-body">
-                <div id="calendar_system"></div>
+                <div id="calendar_new_projects"></div>
                 <div class="modal fade" id="add_project" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">

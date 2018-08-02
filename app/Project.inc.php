@@ -14,8 +14,10 @@ class Project{
   private $comments;
   private $flowchart;
   private $designated_user;
+  private $reviewed_project;
+  private $priority_color;
 
-  public function __construct($id, $id_user, $project_date, $link, $project_name, $start_date, $end_date, $priority, $description, $way, $type, $comments, $flowchart, $designated_user){
+  public function __construct($id, $id_user, $project_date, $link, $project_name, $start_date, $end_date, $priority, $description, $way, $type, $comments, $flowchart, $designated_user, $reviewed_project, $priority_color){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> project_date = $project_date;
@@ -30,6 +32,8 @@ class Project{
     $this-> comments = $comments;
     $this-> flowchart = $flowchart;
     $this-> designated_user = $designated_user;
+    $this-> reviewed_project = $reviewed_project;
+    $this-> priority_color = $priority_color;
   }
 
   public function get_id(){
@@ -86,6 +90,14 @@ class Project{
 
   public function get_designated_user(){
     return $this-> designated_user;
+  }
+
+  public function get_reviewed_project(){
+    return $this-> reviewed_project;
+  }
+
+  public function get_priority_color(){
+    return $this-> priority_color;
   }
 }
 ?>

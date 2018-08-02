@@ -1,3 +1,4 @@
+//'use strict'
 /*****************************************************************************************************************
 SEARCH USERS
 ******************************************************************************************************************/
@@ -207,29 +208,75 @@ $(document).ready(function(){
   /*******************************************************************************************************************
   START CALENDAR CODE
   *******************************************************************************************************************/
-  var all_events = document.getElementById('all_events').value;
-  all_events =  jQuery.parseJSON(all_events);
+  if($('#calendar_projects').length != 0){
+    var all_reviewed_events = document.getElementById('all_reviewed_events').value;
+    all_reviewed_events = jQuery.parseJSON(all_reviewed_events);
+    $('#calendar_projects').fullCalendar({
+      themeSystem: 'bootstrap4',
+      header:{
+        left:'today,prev,next',
+        center:'title',
+        right:'month,listWeek'
+      },
+      eventSources:[{
+        events: all_reviewed_events,
+        color: '#ff2e00',
+        textColor: 'white',
+        displayEventTime: true,
+        displayEventEnd: true
+      }]
+    });
+  }
 
-  var link_fill_out = $('#fill_out').attr('href');
-  var link_delete_project = $('#delete_project').attr('href');
-  $('#calendar_system').fullCalendar({
-    themeSystem: 'bootstrap4',
-    header:{
-      left:'today,prev,next',
-      center:'title',
-      right:'month,basicWeek,basicDay,agendaWeek,agendaDay'
-    },
-    events: all_events,
-    eventClick:function(calEvent, jsEvent, view){
-      new_link_delete_project = link_delete_project + calEvent.id;
-      new_link_fill_out = link_fill_out + calEvent.id;
-      $('#fill_out').attr('href', new_link_fill_out);
-      $('#delete_project').attr('href', new_link_delete_project);
-      $('#link_project').html(calEvent.title);
-      $('#link_project').attr('href', calEvent.title);
-      $('#view_project').modal();
-    }
-  });
+  if($('#calendar_new_projects').length != 0){
+    var all_events = document.getElementById('all_events').value;
+    all_events =  jQuery.parseJSON(all_events);
+
+    var link_fill_out = $('#fill_out').attr('href');
+    var link_delete_project = $('#delete_project').attr('href');
+    $('#calendar_new_projects').fullCalendar({
+      themeSystem: 'bootstrap4',
+      header:{
+        left:'today,prev,next',
+        center:'title',
+        right:'month,listMonth'
+      },
+      eventSources:[{
+        events: all_events,
+        color: '#ff2e00',
+        textColor: 'white'
+      }],
+      eventClick:function(calEvent, jsEvent, view){
+        new_link_delete_project = link_delete_project + calEvent.id;
+        new_link_fill_out = link_fill_out + calEvent.id;
+        $('#fill_out').attr('href', new_link_fill_out);
+        $('#delete_project').attr('href', new_link_delete_project);
+        $('#link_project').html(calEvent.title);
+        $('#link_project').attr('href', calEvent.title);
+        $('#view_project').modal();
+      }
+    });
+  }
+
+  if($('#calendar_my_projects').length != 0){
+    var all_my_events = document.getElementById('all_my_events').value;
+    all_my_events = jQuery.parseJSON(all_my_events);
+    $('#calendar_my_projects').fullCalendar({
+      themeSystem: 'bootstrap4',
+      header:{
+        left:'today,prev,next',
+        center:'title',
+        right:'month,listWeek'
+      },
+      eventSources:[{
+        events: all_my_events,
+        color: '#ff2e00',
+        textColor: 'white',
+        displayEventTime: true,
+        displayEventEnd: true
+      }]
+    });
+  }
   /***************************************************************************************************************************
   END CALENDAR CODE
   ***************************************************************************************************************************/

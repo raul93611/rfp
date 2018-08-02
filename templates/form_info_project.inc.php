@@ -14,7 +14,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
   $end_date = '';
 }
 ?>
-<input type="hidden" name="id_project" value="<?php echo $id_project; ?>">
+<input type="hidden" name="id_project" id="id_project" value="<?php echo $id_project; ?>">
 <div class="card-body">
   <div class="form-group">
     <label>Link:</label><br>
@@ -37,7 +37,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
     <select class="form-control" name="priority" id="priority">
       <option value="8a" <?php if($project-> get_priority() == '8a'){echo 'selected';} ?>>8(a)</option>
       <option value="hubzone" <?php if($project-> get_priority() == 'hubzone'){echo 'selected';} ?>>HUBZone</option>
-      <option value="small_bussiness" <?php if($project-> get_priority() == 'small_bussiness'){echo 'selected';} ?>>Small Bussiness</option>
+      <option value="small_business" <?php if($project-> get_priority() == 'small_business'){echo 'selected';} ?>>Small Business</option>
       <option value="full_and_open" <?php if($project-> get_priority() == 'full_and_open'){echo 'selected';} ?>>Full and Open</option>
     </select>
   </div>
