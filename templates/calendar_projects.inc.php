@@ -9,7 +9,7 @@ Connection::close_connection();
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-9">
-                    <h1 class="m-0 text-dark">Projects</h1>
+                    <h1 class="m-0 text-dark">All projects</h1>
                 </div>
                 <div class="col-sm-3">
                   <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -49,10 +49,14 @@ Connection::close_connection();
                         </button>
                       </div>
                       <div class="modal-body">
-                        <form id="form_new_project" method="post" action="<?php echo SAVE_PROJECT; ?>">
+                        <form id="form_new_project" method="post" enctype="multipart/form-data" action="<?php echo SAVE_PROJECT; ?>">
                           <div class="form-group">
                             <label for="link">Link:</label>
                             <input type="text" id="link" name="link" placeholder="Link ..." class="form-control" autofocus required>
+                          </div>
+                          <div class="form-group">
+                            <label for="documents">Documents:</label><br>
+                            <input type="file" id="documents" name="documents[]" class="btn btn-block btn-secondary" multiple>
                           </div>
                         </form>
                       </div>

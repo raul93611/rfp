@@ -20,10 +20,12 @@ class ProjectRepository{
         $sentence-> bindParam(':reviewed_project', $project-> get_reviewed_project(), PDO::PARAM_STR);
         $sentence-> bindParam(':priority_color', $project-> get_priority_color(), PDO::PARAM_STR);
         $result = $sentence-> execute();
+        $id = $connection-> lastInsertId();
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
       }
     }
+    return $id;
   }
 
   public static function get_all_unreviewed_projects($connection){
