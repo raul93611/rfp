@@ -38,3 +38,34 @@ CREATE TABLE projects(
     ON UPDATE CASCADE
     ON DELETE RESTRICT
 );
+
+CREATE TABLE services(
+  id INT NOT NULL AUTO_INCREMENT UNIQUE,
+  id_project INT NOT NULL,
+  plane DECIMAL(10,2),
+  car DECIMAL(10,2),
+  hotel DECIMAL(10,2),
+  meals DECIMAL(10,2),
+  gas DECIMAL(10,2),
+  tools DECIMAL(10,2),
+  PRIMARY KEY(id),
+  FOREIGN KEY(id_project)
+    REFERENCES projects(id)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE engineers(
+  id INT NOT NULL AUTO_INCREMENT UNIQUE,
+  id_service INT NOT NULL,
+  hourly_rate DECIMAL(10,2),
+  rate DECIMAL(10,2),
+  office_expenses DECIMAL(10,2),
+  burdened_rate DECIMAL(10,2),
+  fblr DECIMAL(10,2),
+  PRIMARY KEY(id),
+  FOREIGN KEY(id_service)
+    REFERENCES services(id)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
+);

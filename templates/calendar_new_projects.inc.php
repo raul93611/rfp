@@ -8,10 +8,10 @@ Connection::close_connection();
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <h1 class="m-0 text-dark">Pending projects</h1>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                   <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                     <a class="btn btn-primary" href="<?php echo PROFILE; ?>">Pending projects</a>
 

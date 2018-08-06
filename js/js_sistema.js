@@ -239,7 +239,7 @@ $(document).ready(function(){
       header:{
         left:'today,prev,next',
         center:'title',
-        right:'month,listMonth'
+        right:'month,listWeek'
       },
       eventSources:[{
         events: all_events,
