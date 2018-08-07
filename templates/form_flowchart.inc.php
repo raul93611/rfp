@@ -178,6 +178,6 @@
     </div>
   </div>
 </div>
-<div class="card-footer" id="save_flowchart">
-    <button type="submit" class="btn btn-success" name="save_flowchart"><i class="fa fa-check"></i> Save</button>
+<div class="card-footer">
+    <button id="save_flowchart" type="submit" class="btn btn-success" name="save_flowchart"><i class="fa fa-check"></i> Save</button>
 </div>

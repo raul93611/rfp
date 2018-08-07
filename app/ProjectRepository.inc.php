@@ -3,22 +3,22 @@ class ProjectRepository{
   public static function insert_project($connection, $project){
     if(isset($connection)){
       try{
-        $sql = 'INSERT INTO projects (id_user, project_date, link, project_name, start_date, end_date, priority, description, way, type, comments, flowchart, designated_user, reviewed_project, priority_color) VALUES(:id_user, NOW(), :link, :project_name, :start_date, :end_date, :priority, :description, :way, :type, :comments, :flowchart, :designated_user, :reviewed_project, :priority_color)';
+        $sql = 'INSERT INTO projects (id_user, start_date, link, project_name, end_date, priority, description, way, type, flowchart_comments, flowchart, designated_user, reviewed_project, priority_color, create_part_comments) VALUES(:id_user, NOW(), :link, :project_name, :end_date, :priority, :description, :way, :type, :flowchart_comments, :flowchart, :designated_user, :reviewed_project, :priority_color, :create_part_comments)';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $project-> get_id_user(), PDO::PARAM_STR);
         $sentence-> bindParam(':link', $project-> get_link(), PDO::PARAM_STR);
         $sentence-> bindParam(':project_name', $project-> get_project_name(), PDO::PARAM_STR);
-        $sentence-> bindParam(':start_date', $project-> get_start_date(), PDO::PARAM_STR);
         $sentence-> bindParam(':end_date', $project-> get_end_date(), PDO::PARAM_STR);
         $sentence-> bindParam(':priority', $project-> get_priority(), PDO::PARAM_STR);
         $sentence-> bindParam(':description', $project-> get_description(), PDO::PARAM_STR);
         $sentence-> bindParam(':way', $project-> get_way(), PDO::PARAM_STR);
         $sentence-> bindParam(':type', $project-> get_type(), PDO::PARAM_STR);
-        $sentence-> bindParam(':comments', $project-> get_comments(), PDO::PARAM_STR);
+        $sentence-> bindParam(':flowchart_comments', $project-> get_flowchart_comments(), PDO::PARAM_STR);
         $sentence-> bindParam(':flowchart', $project-> get_flowchart(), PDO::PARAM_STR);
         $sentence-> bindParam(':designated_user', $project-> get_designated_user(), PDO::PARAM_STR);
         $sentence-> bindParam(':reviewed_project', $project-> get_reviewed_project(), PDO::PARAM_STR);
         $sentence-> bindParam(':priority_color', $project-> get_priority_color(), PDO::PARAM_STR);
+        $sentence-> bindParam(':create_part_comments', $project-> get_create_part_comments(), PDO::PARAM_STR);
         $result = $sentence-> execute();
         $id = $connection-> lastInsertId();
       }catch(PDOException $ex){
@@ -31,7 +31,7 @@ class ProjectRepository{
   public static function get_all_unreviewed_projects($connection){
     if(isset($connection)){
       try{
-        $sql = 'SELECT id, project_date as start, link as title FROM projects WHERE reviewed_project = 0';
+        $sql = 'SELECT id, start_date as start, link as title FROM projects WHERE reviewed_project = 0';
         $sentence = $connection-> prepare($sql);
         $sentence->execute();
         $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
@@ -102,7 +102,7 @@ class ProjectRepository{
         $sentence-> execute();
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         if(!empty($result)){
-          $project = new Project($result['id'], $result['id_user'], $result['project_date'], $result['link'], $result['project_name'], $result['start_date'], $result['end_date'], $result['priority'], $result['description'], $result['way'], $result['type'], $result['comments'], $result['flowchart'], $result['designated_user'], $result['reviewed_project'], $result['priority_color']);
+          $project = new Project($result['id'], $result['id_user'], $result['start_date'], $result['link'], $result['project_name'], $result['end_date'], $result['priority'], $result['description'], $result['way'], $result['type'], $result['flowchart_comments'], $result['flowchart'], $result['designated_user'], $result['reviewed_project'], $result['priority_color'], $result['create_part_comments']);
         }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -111,13 +111,13 @@ class ProjectRepository{
     return $project;
   }
 
-  public static function save_flowchart_and_comments($connection, $flowchart_result, $project_comments, $priority_color, $id_project){
+  public static function save_flowchart_and_flowchart_comments($connection, $flowchart_result, $flowchart_comments, $priority_color, $id_project){
     if(isset($connection)){
       try{
-        $sql = 'UPDATE projects SET flowchart = :flowchart, comments = :comments, reviewed_project = 1, priority_color = :priority_color WHERE id = :id';
+        $sql = 'UPDATE projects SET flowchart = :flowchart, flowchart_comments = :flowchart_comments, reviewed_project = 1, priority_color = :priority_color WHERE id = :id';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':flowchart', $flowchart_result, PDO::PARAM_STR);
-        $sentence-> bindParam(':comments', $project_comments, PDO::PARAM_STR);
+        $sentence-> bindParam(':flowchart_comments', $flowchart_comments, PDO::PARAM_STR);
         $sentence-> bindParam(':priority_color', $priority_color, PDO::PARAM_STR);
         $sentence-> bindParam(':id', $id_project, PDO::PARAM_STR);
         $sentence-> execute();

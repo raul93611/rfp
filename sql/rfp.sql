@@ -18,20 +18,20 @@ CREATE TABLE users(
 CREATE TABLE projects(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_user INT NOT NULL,
-  project_date DATE,
+  start_date DATE,
   link VARCHAR(255) NOT NULL,
   project_name VARCHAR(255) NOT NULL,
-  start_date DATE,
   end_date DATETIME,
   priority VARCHAR(255) NOT NULL,
   description TEXT CHARACTER SET utf8 NOT NULL,
   way VARCHAR(255) NOT NULL,
   type VARCHAR(255) NOT NULL,
-  comments TEXT CHARACTER SET utf8 NOT NULL,
+  flowchart_comments TEXT CHARACTER SET utf8 NOT NULL,
   flowchart TINYINT NOT NULL,
   designated_user TINYINT NOT NULL,
   reviewed_project TINYINT NOT NULL,
   priority_color VARCHAR(255) NOT NULL,
+  create_part_comments TEXT CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_user)
     REFERENCES users(id)
