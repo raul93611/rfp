@@ -208,6 +208,12 @@ $(document).ready(function(){
   /*******************************************************************************************************************
   START CALENDAR CODE
   *******************************************************************************************************************/
+  if($('#restart_flowchart').length != 0){
+    $('#restart_flowchart').click(function(){
+      location.reload();
+    });
+  }
+
   if($('#calendar_projects').length != 0){
     var all_end_dates = document.getElementById('all_end_dates').value;
     all_end_dates = jQuery.parseJSON(all_end_dates);

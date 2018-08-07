@@ -179,5 +179,6 @@
   </div>
 </div>
 <div class="card-footer">
-    <button id="save_flowchart" type="submit" class="btn btn-success" name="save_flowchart"><i class="fa fa-check"></i> Save</button>
+  <button type="button" class="btn btn-info" id="restart_flowchart"><i class="fa fa-repeat"></i> Restart</button>
+  <button id="save_flowchart" type="submit" class="btn btn-success" name="save_flowchart"><i class="fa fa-check"></i> Save</button>
 </div>
