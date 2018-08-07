@@ -209,8 +209,8 @@ $(document).ready(function(){
   START CALENDAR CODE
   *******************************************************************************************************************/
   if($('#calendar_projects').length != 0){
-    var all_reviewed_events = document.getElementById('all_reviewed_events').value;
-    all_reviewed_events = jQuery.parseJSON(all_reviewed_events);
+    var all_end_dates = document.getElementById('all_end_dates').value;
+    all_end_dates = jQuery.parseJSON(all_end_dates);
     $('#calendar_projects').fullCalendar({
       themeSystem: 'bootstrap4',
       header:{
@@ -219,18 +219,16 @@ $(document).ready(function(){
         right:'month,listWeek'
       },
       eventSources:[{
-        events: all_reviewed_events,
-        color: '#ff2e00',
-        textColor: 'white',
-        displayEventTime: true,
-        displayEventEnd: true
+        events: all_end_dates,
+        color: '#7041f4',
+        textColor: 'white'
       }]
     });
   }
 
   if($('#calendar_new_projects').length != 0){
-    var all_events = document.getElementById('all_events').value;
-    all_events =  jQuery.parseJSON(all_events);
+    var all_new_dates = document.getElementById('all_new_dates').value;
+    all_new_dates =  jQuery.parseJSON(all_new_dates);
 
     var link_fill_out = $('#fill_out').attr('href');
     var link_delete_project = $('#delete_project').attr('href');
@@ -242,8 +240,8 @@ $(document).ready(function(){
         right:'month,listWeek'
       },
       eventSources:[{
-        events: all_events,
-        color: '#ff2e00',
+        events: all_new_dates,
+        color: '#7041f4',
         textColor: 'white'
       }],
       eventClick:function(calEvent, jsEvent, view){
@@ -259,8 +257,8 @@ $(document).ready(function(){
   }
 
   if($('#calendar_my_projects').length != 0){
-    var all_my_events = document.getElementById('all_my_events').value;
-    all_my_events = jQuery.parseJSON(all_my_events);
+    var all_my_end_dates = document.getElementById('all_my_end_dates').value;
+    all_my_end_dates = jQuery.parseJSON(all_my_end_dates);
     $('#calendar_my_projects').fullCalendar({
       themeSystem: 'bootstrap4',
       header:{
@@ -269,8 +267,8 @@ $(document).ready(function(){
         right:'month,listWeek'
       },
       eventSources:[{
-        events: all_my_events,
-        color: '#ff2e00',
+        events: all_my_end_dates,
+        color: '#7041f4',
         textColor: 'white',
         displayEventTime: true,
         displayEventEnd: true

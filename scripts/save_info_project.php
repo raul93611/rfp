@@ -14,7 +14,7 @@ if(isset($_POST['save_changes_project'])){
       $priority_color = '#0cd63f';
       break;
     case 'full_and_open';
-      $priority_color = '#13A8F0';
+      $priority_color = '#f441be';
       break;
     default:
       break;
