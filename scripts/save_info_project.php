@@ -24,7 +24,18 @@ if(isset($_POST['save_changes_project'])){
     default:
       break;
   }
+
+  ConnectionRfq::open_connection();
+  $users_rfq = UserRepositoryRfq::get_users(ConnectionRfq::get_connection());
+  ConnectionRfq::close_connection();
+  foreach ($users_rfq as $user_rfq) {
+    $id_users_rfq[] = $user_rfq-> get_id();
+  }
+  $designated_user_index = array_rand($id_users_rfq);
+  $designated_user = $id_users_rfq[$designated_user_index];
+  $quote = new Quote('', $id_project, $designated_user, '', '', 0, 0, '', '', '', '', '', 0, 0, '', 0, '');
   Connection::open_connection();
+  QuoteRepository::insert_quote(Connection::get_connection(), $quote);
   ProjectRepository::fill_out_project(Connection::get_connection(), $_POST['id_project'], $_POST['project_name'], $start_date, $end_date, $_POST['priority'], htmlspecialchars($_POST['description']), $_POST['way'], $_POST['type'], $priority_color);
   Connection::close_connection();
   Redirection::redirect1(FLOWCHART . $id_project);

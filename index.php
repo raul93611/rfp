@@ -4,14 +4,22 @@ include_once 'app/Connection.inc.php';
 include_once 'app/SessionControl.inc.php';
 include_once 'app/Redirection.inc.php';
 
+include_once 'app/ConnectionRfq.inc.php';
+
 include_once 'app/User.inc.php';
 include_once 'app/UserRepository.inc.php';
 include_once 'app/UserValidator.inc.php';
 include_once 'app/UserLoginValidator.inc.php';
 include_once 'app/UserSignInValidator.inc.php';
 
+include_once 'app/UserRfq.inc.php';
+include_once 'app/UserRepositoryRfq.inc.php';
+
 include_once 'app/Project.inc.php';
 include_once 'app/ProjectRepository.inc.php';
+
+include_once 'app/Quote.inc.php';
+include_once 'app/QuoteRepository.inc.php';
 
 $url_components = parse_url($_SERVER['REQUEST_URI']);
 $route = $url_components['path'];

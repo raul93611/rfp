@@ -3,6 +3,7 @@ define('SERVER_NAME', 'localhost');
 define('USER_NAME', 'root');
 define('PASSWORD', 'raul93611');
 define('BD_NAME', 'rfp');
+define('BD_NAME_RFQ', 'elogic');
 
 define('SERVER', 'http://192.168.1.80/rfp/');
 define('ERROR', SERVER . 'error');
