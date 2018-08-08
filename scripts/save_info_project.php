@@ -3,6 +3,11 @@ session_start();
 if(isset($_POST['save_changes_project'])){
   $start_date = ProjectRepository::english_format_to_mysql_date($_POST['start_date']);
   $end_date = ProjectRepository::english_format_to_mysql_datetime($_POST['end_date']);
+
+  if($_POST['way'] == 'mail'){
+    $end_date = date('Y-m-d', strtotime($end_date . '-5 days'));
+  }
+
   switch ($_POST['priority']) {
     case '8a':
       $priority_color = '#f75a6a';

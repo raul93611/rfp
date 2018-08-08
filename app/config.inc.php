@@ -23,6 +23,7 @@ define('DELETE_PROJECT', SERVER . 'delete_project/');
 define('SAVE_INFO_PROJECT', SERVER . 'save_info_project/');
 define('FLOWCHART', PROFILE . 'flowchart/');
 define('SAVE_FLOWCHART', SERVER . 'save_flowchart/');
+define('DELETE_DOCUMENT', SERVER . 'delete_document/');
 /*******************************************************************************/
 
 /*****************************EXTRA ROUTES**************************************/
@@ -31,5 +32,6 @@ define('JS', SERVER . 'js/');
 define('IMG', SERVER . 'img/');
 define('PLUGINS', SERVER . 'plugins/');
 define('DIST', SERVER . 'dist/');
+define('DOCS', SERVER . 'documents/');
 /*******************************************************************************/
 ?>

@@ -98,6 +98,11 @@ if($parts_route[0] == 'rfp'){
           break;
       }
     }
+    if($parts_route[1] == 'delete_document'){
+      $id_project = $parts_route[2];
+      $file = $parts_route[3];
+      $chosen_route = 'scripts/delete_document.php';
+    }
   }
 }
 include_once $chosen_route;

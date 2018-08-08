@@ -8,12 +8,12 @@ Connection::close_connection();
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-9">
-                    <h1 class="m-0 text-dark">Pending projects</h1>
+                <div class="col-sm-8">
+                    <h1 class="m-0 text-dark">New projects</h1>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <a class="btn btn-primary" href="<?php echo PROFILE; ?>">Pending projects</a>
+                    <a class="btn btn-primary" href="<?php echo PROFILE; ?>">New projects</a>
 
                     <div class="btn-group" role="group">
                       <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -49,7 +49,7 @@ Connection::close_connection();
               </div>
             </div>
           </div>
-          <div class="col-8">
+          <div class="col-10">
             <div class="card">
               <div class="card-body">
                 <div id="calendar_new_projects"></div>
@@ -77,9 +77,6 @@ Connection::close_connection();
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-2">
-
           </div>
         </div>
       </div>

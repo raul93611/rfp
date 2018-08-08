@@ -18,7 +18,42 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
 <div class="card-body">
   <div class="form-group">
     <label>Link:</label><br>
-    <span><a href="<?php echo $project-> get_link(); ?>" target="_blank"><?php echo $project-> get_link(); ?></a></span>
+    <span>
+      <?php if($project-> get_link() != ''){
+      ?>
+      <a href="<?php echo $project-> get_link(); ?>" target="_blank"><?php echo $project-> get_link(); ?></a>
+      <?php
+      }else{
+        ?>
+        <h3 class="text-center">No link!!!</h3>
+        <?php
+      }
+      ?>
+    </span>
+  </div>
+  <div class="form-group">
+    <label>Documents:</label>
+    <?php
+    $directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
+    if (is_dir($directory)) {
+        $manager = opendir($directory);
+        echo '<div class="list-group">';
+        $folder = @scandir($directory);
+        if(count($folder) <= 2){
+          echo '<h3 class="text-center">No files!</h3>';
+        }
+        while (($file = readdir($manager)) !== false) {
+            $complete_directory = $directory . "/" . $file;
+            if ($file != "." && $file != "..") {
+                $file_url = str_replace(' ', '%20', $file);
+                echo '<li class="list-group-item"><a download href="' . DOCS . $id_project . '/' . $file_url . '">' . $file . '</a><a href="' . DELETE_DOCUMENT . $id_project . '/' . $file . '" class="close"><span aria-hidden="true">&times;</span></a></li>';
+            }
+        }
+
+        closedir($manager);
+        echo "</div>";
+    }
+    ?>
   </div>
   <div class="form-group">
     <label for="project_name">Name:</label>
@@ -26,7 +61,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
   </div>
   <div class="form-group">
     <label for="start_date">Start date:</label>
-    <input class="form-control" type="text" id="start_date" name="start_date" required value="<?php echo $start_date; ?>">
+    <input class="form-control" type="text" id="start_date" readonly name="start_date" required value="<?php echo $start_date; ?>">
   </div>
   <div class="form-group">
     <label for="end_date">End date:</label>
@@ -50,6 +85,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
     <select class="form-control" name="way" id="way">
       <option value="email" <?php if($project-> get_way() == 'email'){echo 'selected';} ?>>E-mail</option>
       <option value="mail" <?php if($project-> get_way() == 'mail'){echo 'selected';} ?>>Mail</option>
+      <option value="vehicle" <?php if($project-> get_way() == 'vehicle'){echo 'selected';} ?>>Vehicle</option>
     </select>
   </div>
   <div class="form-group">
