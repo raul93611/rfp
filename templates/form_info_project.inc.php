@@ -49,7 +49,6 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
                 echo '<li class="list-group-item"><a download href="' . DOCS . $id_project . '/' . $file_url . '">' . $file . '</a><a href="' . DELETE_DOCUMENT . $id_project . '/' . $file . '" class="close"><span aria-hidden="true">&times;</span></a></li>';
             }
         }
-
         closedir($manager);
         echo "</div>";
     }

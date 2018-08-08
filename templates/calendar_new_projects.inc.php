@@ -8,22 +8,14 @@ Connection::close_connection();
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-8">
+                <div class="col-sm-6">
                     <h1 class="m-0 text-dark">New projects</h1>
                 </div>
-                <div class="col-sm-4">
-                  <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <div class="col-sm-6">
+                  <div class="btn-group" role="group">
                     <a class="btn btn-primary" href="<?php echo PROFILE; ?>">New projects</a>
-
-                    <div class="btn-group" role="group">
-                      <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Projects
-                      </button>
-                      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <a class="dropdown-item" href="<?php echo PROFILE . 'calendar_projects'; ?>">All projects</a>
-                        <a class="dropdown-item" href="<?php echo PROFILE . 'calendar_my_projects'; ?>">My projects</a>
-                      </div>
-                    </div>
+                    <a class="btn btn-primary" href="<?php echo PROFILE . 'calendar_projects'; ?>">All projects</a>
+                    <a class="btn btn-primary" href="<?php echo PROFILE . 'calendar_my_projects'; ?>">My projects</a>
                   </div>
                 </div>
             </div>
