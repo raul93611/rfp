@@ -45,7 +45,7 @@ class ProjectRepository{
   public static function get_all_end_dates_reviewed_projects($connection){
     if(isset($connection)){
       try{
-        $sql = 'SELECT project_name as title, end_date as start, priority_color as color FROM projects WHERE reviewed_project = 1';
+        $sql = 'SELECT id, project_name as title, end_date as start, priority_color as color FROM projects WHERE reviewed_project = 1';
         $sentence = $connection-> prepare($sql);
         $sentence-> execute();
         $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
@@ -59,7 +59,7 @@ class ProjectRepository{
   public static function get_all_end_dates_my_projects($connection, $id_user){
     if(isset($connection)){
       try{
-        $sql = 'SELECT project_name as title, end_date as start, priority_color as color FROM projects WHERE reviewed_project = 1 AND designated_user = :id_user';
+        $sql = 'SELECT id, project_name as title, end_date as start, priority_color as color FROM projects WHERE reviewed_project = 1 AND designated_user = :id_user';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $id_user, PDO::PARAM_STR);
         $sentence-> execute();

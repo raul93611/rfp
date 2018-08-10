@@ -214,6 +214,7 @@ $(document).ready(function(){
   /*******************************************************************************************************************
   START CALENDAR CODE
   *******************************************************************************************************************/
+  var info_project_and_services_route = 'http://' + document.location.hostname + '/rfp/profile/info_project_and_services/';
   if($('#calendar_projects').length != 0){
     var all_end_dates = document.getElementById('all_end_dates').value;
     all_end_dates = jQuery.parseJSON(all_end_dates);
@@ -228,7 +229,10 @@ $(document).ready(function(){
         events: all_end_dates,
         color: '#7041f4',
         textColor: 'white'
-      }]
+      }],
+      eventClick:function(calEvent, jsEvent, view){
+        window.location.assign(info_project_and_services_route + calEvent.id);
+      }
     });
   }
 

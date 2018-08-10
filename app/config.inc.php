@@ -20,11 +20,13 @@ define('ENABLE_USER', PROFILE . 'enable_user/');
 /********************OPTIONS PROJECTS*******************************************/
 define('SAVE_PROJECT', SERVER . 'save_project');
 define('INFO_PROJECT', PROFILE . 'info_project/');
+define('SAVE_INFO_PROJECT_AND_SERVICES', SERVER . 'save_info_project_and_services/');
 define('DELETE_PROJECT', SERVER . 'delete_project/');
 define('SAVE_INFO_PROJECT', SERVER . 'save_info_project/');
 define('FLOWCHART', PROFILE . 'flowchart/');
 define('SAVE_FLOWCHART', SERVER . 'save_flowchart/');
 define('DELETE_DOCUMENT', SERVER . 'delete_document/');
+define('INFO_PROJECT_AND_SERVICES', PROFILE . 'info_project_and_services/');
 /*******************************************************************************/
 
 /*****************************EXTRA ROUTES**************************************/

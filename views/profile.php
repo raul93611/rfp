@@ -3,7 +3,7 @@ if(!SessionControl::session_started()) {
     Redirection::redirect1(SERVER);
 }
 
-$titulo = 'Profile';
+$title = 'Profile';
 
 Connection::open_connection();
 $user = UserRepository::get_user_by_id(Connection::get_connection(), $_SESSION['id_user']);
@@ -35,6 +35,9 @@ switch ($current_manager) {
     break;
   case 'info_project':
     include_once 'templates/info_project.inc.php';
+    break;
+  case 'info_project_and_services':
+    include_once 'templates/info_project_and_services.inc.php';
     break;
   case 'flowchart':
     include_once 'templates/flowchart.inc.php';

@@ -12,14 +12,20 @@ include_once 'app/UserValidator.inc.php';
 include_once 'app/UserLoginValidator.inc.php';
 include_once 'app/UserSignInValidator.inc.php';
 
-include_once 'app/UserRfq.inc.php';
-include_once 'app/UserRepositoryRfq.inc.php';
+include_once '../rfq/app/Usuario.inc.php';
+include_once '../rfq/app/RepositorioUsuario.inc.php';
+
+include_once '../rfq/app/Rfq.inc.php';
+include_once '../rfq/app/RepositorioRfq.inc.php';
+
+include_once '../rfq/app/RfpConnection.inc.php';
+include_once '../rfq/app/RepositorioRfpConnection.inc.php';
 
 include_once 'app/Project.inc.php';
 include_once 'app/ProjectRepository.inc.php';
 
-include_once 'app/Quote.inc.php';
-include_once 'app/QuoteRepository.inc.php';
+include_once 'app/Service.inc.php';
+include_once 'app/ServiceRepository.inc.php';
 
 $url_components = parse_url($_SERVER['REQUEST_URI']);
 $route = $url_components['path'];
@@ -78,6 +84,9 @@ if($parts_route[0] == 'rfp'){
     }else if($parts_route[1] == 'delete_project'){
       $id_project = $parts_route[2];
       $chosen_route = 'scripts/delete_project.php';
+    }else if($parts_route[1] == 'save_info_project_and_services'){
+      $id_project = $parts_route[2];
+      $chosen_route = 'scripts/save_info_project_and_services.php';
     }
   }else if(count($parts_route) == 4){
     if($parts_route[1] == 'profile'){
@@ -95,6 +104,11 @@ if($parts_route[0] == 'rfp'){
         case 'info_project':
           $id_project = $parts_route[3];
           $current_manager = 'info_project';
+          $chosen_route = 'views/profile.php';
+          break;
+        case 'info_project_and_services':
+          $id_project = $parts_route[3];
+          $current_manager = 'info_project_and_services';
           $chosen_route = 'views/profile.php';
           break;
         case 'flowchart':
