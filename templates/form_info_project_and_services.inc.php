@@ -1,4 +1,8 @@
 <?php
+Conexion::abrir_conexion();
+$rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $id_project);
+Conexion::cerrar_conexion();
+$id_rfq = $rfp_connection-> obtener_id_rfq();
 Connection::open_connection();
 $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
 Connection::close_connection();
@@ -114,4 +118,8 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
 <div class="card-footer">
   <a class="btn btn-primary" id="go_back" href="<?php echo PROFILE; ?>"><i class="fa fa-reply"></i></a>
   <button type="submit" class="btn btn-success" name="save_info_project_and_services"><i class="fa fa-check"></i> Save</button>
+  <span class="float-right">
+    <a class="btn btn-info" href="<?php echo VIEW_QUOTE_RFQ . $id_rfq; ?>"><i class="fa fa-money"></i> Items</a>
+    <a class="btn btn-info" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
+  </span>
 </div>

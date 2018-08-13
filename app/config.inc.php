@@ -3,7 +3,10 @@ define('SERVER_NAME', 'localhost');
 define('USER_NAME', 'root');
 define('PASSWORD', 'raul93611');
 define('BD_NAME', 'rfp');
-define('BD_NAME_RFQ', 'elogic');
+
+define('NOMBRE_SERVIDOR', 'localhost');
+define('NOMBRE_USUARIO', 'root');
+define('NOMBRE_BD', 'elogic');
 
 define('SERVER', 'http://192.168.1.80/rfp/');
 define('ERROR', SERVER . 'error');
@@ -28,7 +31,9 @@ define('SAVE_FLOWCHART', SERVER . 'save_flowchart/');
 define('DELETE_DOCUMENT', SERVER . 'delete_document/');
 define('INFO_PROJECT_AND_SERVICES', PROFILE . 'info_project_and_services/');
 /*******************************************************************************/
-
+/*************************QUOTE_RFQ*********************************************/
+define('VIEW_QUOTE_RFQ', PROFILE . 'view_quote_rfq/');
+/*******************************************************************************/
 /*****************************EXTRA ROUTES**************************************/
 define('CSS', SERVER . 'css/');
 define('JS', SERVER . 'js/');

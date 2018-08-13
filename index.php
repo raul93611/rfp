@@ -4,7 +4,7 @@ include_once 'app/Connection.inc.php';
 include_once 'app/SessionControl.inc.php';
 include_once 'app/Redirection.inc.php';
 
-include_once 'app/ConnectionRfq.inc.php';
+include_once '../rfq/app/Conexion.inc.php';
 
 include_once 'app/User.inc.php';
 include_once 'app/UserRepository.inc.php';
@@ -17,6 +17,9 @@ include_once '../rfq/app/RepositorioUsuario.inc.php';
 
 include_once '../rfq/app/Rfq.inc.php';
 include_once '../rfq/app/RepositorioRfq.inc.php';
+
+include_once '../rfq/app/Item.inc.php';
+include_once '../rfq/app/RepositorioItem.inc.php';
 
 include_once '../rfq/app/RfpConnection.inc.php';
 include_once '../rfq/app/RepositorioRfpConnection.inc.php';
@@ -114,6 +117,11 @@ if($parts_route[0] == 'rfp'){
         case 'flowchart':
           $id_project = $parts_route[3];
           $current_manager = 'flowchart';
+          $chosen_route = 'views/profile.php';
+          break;
+        case 'view_quote_rfq':
+          $id_rfq = $parts_route[3];
+          $current_manager = 'view_quote_rfq';
           $chosen_route = 'views/profile.php';
           break;
         default:

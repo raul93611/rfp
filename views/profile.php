@@ -42,6 +42,9 @@ switch ($current_manager) {
   case 'flowchart':
     include_once 'templates/flowchart.inc.php';
     break;
+  case 'view_quote_rfq':
+    include_once 'templates/view_quote_rfq.inc.php';
+    break;
 }
 include_once 'templates/end_document.inc.php';
 ?>

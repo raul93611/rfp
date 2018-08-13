@@ -25,8 +25,8 @@ if(isset($_POST['save_changes_project'])){
       break;
   }
   if($_POST['type'] == 'services_and_equipment'){
-    ConnectionRfq::open_connection();
-    $rfq_users = RepositorioUsuario::obtener_usuarios_rfq(ConnectionRfq::get_connection());
+    Conexion::abrir_conexion();
+    $rfq_users = RepositorioUsuario::obtener_usuarios_rfq(Conexion::obtener_conexion());
     foreach ($rfq_users as $rfq_user) {
       $id_rfq_users[] = $rfq_user-> obtener_id();
     }
@@ -34,10 +34,10 @@ if(isset($_POST['save_changes_project'])){
     $designated_user = $id_rfq_users[$designated_user_index];
     echo $designated_user;
     $quote_rfq = New Rfq('', $designated_user, $designated_user, '', '', '', $start_date, $end_date, 0, 0, 0, 0, '', 0, '', '', '', '', '', '', '', '', 0, 0, '', '', 0);
-    list($cotizacion_insertada, $id_rfq) = RepositorioRfq::insertar_cotizacion(ConnectionRfq::get_connection(), $quote_rfq);
+    list($cotizacion_insertada, $id_rfq) = RepositorioRfq::insertar_cotizacion(Conexion::obtener_conexion(), $quote_rfq);
     $rfp_connection = New RfpConnection('', $id_rfq, $_POST['id_project']);
-    RepositorioRfpConnection::insertar_rfp_connection(ConnectionRfq::get_connection(), $rfp_connection);
-    ConnectionRfq::close_connection();
+    RepositorioRfpConnection::insertar_rfp_connection(Conexion::obtener_conexion(), $rfp_connection);
+    Conexion::cerrar_conexion();
     Connection::open_connection();
     $service = New Service('', $_POST['id_project'], 0);
     ServiceRepository::insert_service(Connection::get_connection(), $service);
