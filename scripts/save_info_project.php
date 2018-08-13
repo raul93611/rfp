@@ -33,7 +33,7 @@ if(isset($_POST['save_changes_project'])){
     $designated_user_index = array_rand($id_rfq_users);
     $designated_user = $id_rfq_users[$designated_user_index];
     echo $designated_user;
-    $quote_rfq = New Rfq('', $designated_user, $designated_user, '', '', '', $start_date, $end_date, 0, 0, 0, 0, '', 0, '', '', '', '', '', '', '', '', 0, 0, '', '', 0);
+    $quote_rfq = New Rfq('', $designated_user, $designated_user, '', '(Detail the code ...)', '', $_POST['start_date'], $_POST['end_date'], 0, 0, 0, 0, '', 0, '', '', '', '', '', '', '', '', 0, 0, '', '', 0);
     list($cotizacion_insertada, $id_rfq) = RepositorioRfq::insertar_cotizacion(Conexion::obtener_conexion(), $quote_rfq);
     $rfp_connection = New RfpConnection('', $id_rfq, $_POST['id_project']);
     RepositorioRfpConnection::insertar_rfp_connection(Conexion::obtener_conexion(), $rfp_connection);
