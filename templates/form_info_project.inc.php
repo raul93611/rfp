@@ -46,7 +46,8 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
             $complete_directory = $directory . "/" . $file;
             if ($file != "." && $file != "..") {
                 $file_url = str_replace(' ', '%20', $file);
-                echo '<li class="list-group-item"><a download href="' . DOCS . $id_project . '/' . $file_url . '">' . $file . '</a><a href="' . DELETE_DOCUMENT . $id_project . '/' . $file . '" class="close"><span aria-hidden="true">&times;</span></a></li>';
+                $file_url = str_replace('#', '%23', $file_url);
+                echo '<li class="list-group-item"><a download href="' . DOCS . $id_project . '/' . $file_url . '">' . $file . '</a><a href="' . DELETE_DOCUMENT . $id_project . '/' . $file_url . '" class="close"><span aria-hidden="true">&times;</span></a></li>';
             }
         }
         closedir($manager);
