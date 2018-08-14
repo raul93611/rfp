@@ -21,6 +21,12 @@ include_once '../rfq/app/RepositorioRfq.inc.php';
 include_once '../rfq/app/Item.inc.php';
 include_once '../rfq/app/RepositorioItem.inc.php';
 
+include_once '../rfq/app/Provider.inc.php';
+include_once '../rfq/app/RepositorioProvider.inc.php';
+
+include_once '../rfq/app/Subitem.inc.php';
+include_once '../rfq/app/RepositorioSubitem.inc.php';
+
 include_once '../rfq/app/RfpConnection.inc.php';
 include_once '../rfq/app/RepositorioRfpConnection.inc.php';
 
@@ -117,11 +123,6 @@ if($parts_route[0] == 'rfp'){
         case 'flowchart':
           $id_project = $parts_route[3];
           $current_manager = 'flowchart';
-          $chosen_route = 'views/profile.php';
-          break;
-        case 'view_quote_rfq':
-          $id_rfq = $parts_route[3];
-          $current_manager = 'view_quote_rfq';
           $chosen_route = 'views/profile.php';
           break;
         default:

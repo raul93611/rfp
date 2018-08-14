@@ -31,9 +31,6 @@ define('SAVE_FLOWCHART', SERVER . 'save_flowchart/');
 define('DELETE_DOCUMENT', SERVER . 'delete_document/');
 define('INFO_PROJECT_AND_SERVICES', PROFILE . 'info_project_and_services/');
 /*******************************************************************************/
-/*************************QUOTE_RFQ*********************************************/
-define('VIEW_QUOTE_RFQ', PROFILE . 'view_quote_rfq/');
-/*******************************************************************************/
 /*****************************EXTRA ROUTES**************************************/
 define('CSS', SERVER . 'css/');
 define('JS', SERVER . 'js/');
