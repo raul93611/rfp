@@ -1,6 +1,15 @@
 <?php
 session_start();
 if(isset($_POST['save_changes_project'])){
+  Connection::open_connection();
+  $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $_POST['id_project']);
+  Connection::close_connection();
+  if($_POST['designated_user'] != $project-> get_designated_user()){
+    Connection::open_connection();
+    ProjectRepository::change_designated_user(Connection::get_connection(), $_POST['designated_user'], $_POST['id_project']);
+    Connection::close_connection();
+    Redirection::redirect1(PROFILE);
+  }
   $start_date = ProjectRepository::english_format_to_mysql_date($_POST['start_date']);
   $end_date = ProjectRepository::english_format_to_mysql_datetime($_POST['end_date']);
 
@@ -51,6 +60,6 @@ if(isset($_POST['save_changes_project'])){
   Connection::open_connection();
   ProjectRepository::fill_out_project(Connection::get_connection(), $_POST['id_project'], $_POST['project_name'], $start_date, $end_date, $_POST['priority'], htmlspecialchars($_POST['description']), $_POST['way'], $_POST['type'], $priority_color);
   Connection::close_connection();
-  Redirection::redirect1(FLOWCHART . $id_project);
+  //Redirection::redirect1(FLOWCHART . $id_project);
 }
 ?>

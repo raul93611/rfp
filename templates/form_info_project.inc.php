@@ -56,16 +56,39 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
     ?>
   </div>
   <div class="form-group">
+    <?php
+    Connection::open_connection();
+    $users = UserRepository::get_users_3_4(Connection::get_connection());
+    Connection::close_connection();
+    ?>
+    <?php
+    if (count($users)) {
+      ?>
+      <label for="designated_user">Designated user:</label>
+      <select id="designated_user" class="form-control" name="designated_user">
+      <?php
+      foreach ($users as $user) {
+        ?>
+        <option value="<?php echo $user-> get_id(); ?>" <?php if ($user-> get_id() == $project-> get_designated_user()) {echo 'selected';}?>><?php echo $user-> get_username(); ?></option>
+        <?php
+        }
+        ?>
+      </select>
+      <?php
+    }
+    ?>
+  </div>
+  <div class="form-group">
     <label for="project_name">Name:</label>
-    <input class="form-control" type="text" id="project_name" name="project_name" placeholder="Project name ..." autofocus required value="<?php echo $project-> get_project_name(); ?>">
+    <input class="form-control" type="text" id="project_name" name="project_name" placeholder="Project name ..." autofocus value="<?php echo $project-> get_project_name(); ?>">
   </div>
   <div class="form-group">
     <label for="start_date">Start date:</label>
-    <input class="form-control" type="text" id="start_date" readonly name="start_date" required value="<?php echo $start_date; ?>">
+    <input class="form-control" type="text" id="start_date" readonly name="start_date" value="<?php echo $start_date; ?>">
   </div>
   <div class="form-group">
     <label for="end_date">End date:</label>
-    <input class="form-control" type="text" id="end_date" name="end_date" required value="<?php echo $end_date; ?>">
+    <input class="form-control" type="text" id="end_date" name="end_date" value="<?php echo $end_date; ?>">
   </div>
   <div class="form-group">
     <label for="priority">Priority:</label>

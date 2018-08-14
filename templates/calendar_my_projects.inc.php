@@ -1,9 +1,11 @@
 <?php
 Connection::open_connection();
 $end_dates = ProjectRepository::get_all_end_dates_my_projects(Connection::get_connection(), $_SESSION['id_user']);
+$new_dates = ProjectRepository::get_all_new_dates_my_projects(Connection::get_connection(), $_SESSION['id_user']);
 Connection::close_connection();
+$all_my_dates = array_merge($end_dates, $new_dates);
 ?>
-<input type="hidden" id="all_my_end_dates" value='<?php echo json_encode($end_dates); ?>'>
+<input type="hidden" id="all_my_dates" value='<?php echo json_encode($all_my_dates); ?>'>
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">

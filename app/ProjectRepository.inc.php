@@ -59,7 +59,22 @@ class ProjectRepository{
   public static function get_all_end_dates_my_projects($connection, $id_user){
     if(isset($connection)){
       try{
-        $sql = 'SELECT id, project_name as title, end_date as start, priority_color as color FROM projects WHERE reviewed_project = 1 AND designated_user = :id_user';
+        $sql = 'SELECT id, project_name as title, end_date as start, priority_color as color, reviewed_project FROM projects WHERE reviewed_project = 1 AND designated_user = :id_user';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_user', $id_user, PDO::PARAM_STR);
+        $sentence-> execute();
+        $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $result;
+  }
+
+  public static function get_all_new_dates_my_projects($connection, $id_user){
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT id, link as title, start_date as start, reviewed_project FROM projects WHERE reviewed_project = 0 AND designated_user = :id_user';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $id_user, PDO::PARAM_STR);
         $sentence-> execute();
@@ -86,6 +101,20 @@ class ProjectRepository{
         $sentence-> bindParam(':priority_color', $priority_color, PDO::PARAM_STR);
         $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
         $result = $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
+
+  public static function change_designated_user($connection, $designated_user, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE projects SET designated_user = :designated_user WHERE id = :id_project';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':designated_user', $designated_user, PDO::PARAM_STR);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
       }
