@@ -126,7 +126,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
     <?php
     if($rfq_quote-> obtener_completado()){
       ?>
-      <a href="#" class="float-right btn btn-warning"><i class="fa fa-exclamation-triangle"></i> Report error</a><br><br>
+      <a href="#" id="report_error_button" class="float-right btn btn-warning"><i class="fa fa-exclamation-triangle"></i> Report error</a><br><br>
       <table class="table table-bordered table-hover">
         <thead>
           <tr>

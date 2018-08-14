@@ -31,6 +31,9 @@ define('SAVE_FLOWCHART', SERVER . 'save_flowchart/');
 define('DELETE_DOCUMENT', SERVER . 'delete_document/');
 define('INFO_PROJECT_AND_SERVICES', PROFILE . 'info_project_and_services/');
 /*******************************************************************************/
+/*****************************SEND ERROR QUOTE EMAIL****************************/
+define('SEND_ERROR_QUOTE_EMAIL', SERVER . 'send_error_quote_email');
+/*******************************************************************************/
 /*****************************EXTRA ROUTES**************************************/
 define('CSS', SERVER . 'css/');
 define('JS', SERVER . 'js/');

@@ -30,6 +30,31 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="report_error_rfq_quote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Report error</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="form_error_quote_email" method="post" action="<?php echo SEND_ERROR_QUOTE_EMAIL; ?>">
+          <div class="form-group">
+            <label for="comments_error_quote_email">Comments:</label>
+            <textarea class="form-control" name="comments_error_quote_email" rows="5" id="comments_error_quote_email"></textarea>
+          </div>
+          <input type="hidden" name="id_project" value="<?php echo $id_project; ?>">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" name="send_error_quote_email" form="form_error_quote_email" class="btn btn-success"><i class="fa fa-check"></i> Send</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="modal fade" id="view_project" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

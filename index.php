@@ -62,6 +62,9 @@ if($parts_route[0] == 'rfp'){
         case 'save_project':
           $chosen_route = 'scripts/save_project.php';
           break;
+        case 'send_error_quote_email':
+          $chosen_route = 'scripts/send_error_quote_email.php';
+          break;
     }
   }else if(count($parts_route) == 3){
     if($parts_route[1] == 'profile'){
