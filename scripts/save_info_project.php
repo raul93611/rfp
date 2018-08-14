@@ -41,12 +41,24 @@ if(isset($_POST['save_changes_project'])){
     }
     $designated_user_index = array_rand($id_rfq_users);
     $designated_user = $id_rfq_users[$designated_user_index];
-    echo $designated_user;
     $quote_rfq = New Rfq('', $designated_user, $designated_user, '', '(Detail the code ...)', '', $_POST['start_date'], $_POST['end_date'], 0, 0, 0, 0, '', 0, '', '', '', '', '', '', '', '', 0, 0, '', '', 0);
     list($cotizacion_insertada, $id_rfq) = RepositorioRfq::insertar_cotizacion(Conexion::obtener_conexion(), $quote_rfq);
     $rfp_connection = New RfpConnection('', $id_rfq, $_POST['id_project']);
     RepositorioRfpConnection::insertar_rfp_connection(Conexion::obtener_conexion(), $rfp_connection);
     Conexion::cerrar_conexion();
+    $rfq_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfq/documentos/' . $id_rfq;
+    $rfp_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
+    mkdir($rfq_directory, 0777);
+    if(is_dir($rfp_directory)){
+      $manager = opendir($rfp_directory);
+      $folder = @scandir($rfp_directory);
+      while(($file = readdir($manager)) !== false){
+        if($file != '.' && $file != '..'){
+          copy($rfp_directory . '/' . $file, $rfq_directory . '/' . $file);
+        }
+      }
+      closedir($manager);
+    }
     Connection::open_connection();
     $service = New Service('', $_POST['id_project'], 0);
     ServiceRepository::insert_service(Connection::get_connection(), $service);
@@ -60,6 +72,6 @@ if(isset($_POST['save_changes_project'])){
   Connection::open_connection();
   ProjectRepository::fill_out_project(Connection::get_connection(), $_POST['id_project'], $_POST['project_name'], $start_date, $end_date, $_POST['priority'], htmlspecialchars($_POST['description']), $_POST['way'], $_POST['type'], $priority_color);
   Connection::close_connection();
-  //Redirection::redirect1(FLOWCHART . $id_project);
+  Redirection::redirect1(FLOWCHART . $id_project);
 }
 ?>
