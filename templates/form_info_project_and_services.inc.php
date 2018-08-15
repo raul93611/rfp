@@ -246,6 +246,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
   }
   Connection::open_connection();
   $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
+  echo '<br>';
   $total_staff = StaffRepository::print_all_staff($service-> get_id(), $vehicle);
   echo '<br>';
   $total_costs = CostRepository::print_costs($service-> get_id());
@@ -263,6 +264,11 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
   }
   ?>
   <input type="hidden" name="total_service" value="<?php echo $total_service; ?>">
+  <br><br>
+  <div class="form-group">
+    <label>Comments:</label>
+    <textarea class="form-control" name="story_comments" rows="5"></textarea>
+  </div>
 </div>
 <div class="card-footer">
   <a class="btn btn-primary" id="go_back" href="<?php echo PROFILE; ?>"><i class="fa fa-reply"></i></a>
