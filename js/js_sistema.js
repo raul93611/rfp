@@ -309,7 +309,52 @@ $(document).ready(function(){
   END CALENDAR CODE
   ***************************************************************************************************************************/
 });
+/****************************************ADD STAFF FORMULES**********************************************************/
+if($('#form_add_staff').length != 0){
+  var time = setInterval(function(){
+    if(!isNaN($('#rate').val()) && $('#rate').val() != ''){
+      var rate = parseFloat($('#rate').val())/100;
+    }else{
+      var rate = 0;
+    }
 
+    if(!isNaN($('#office_expenses').val()) && $('#office_expenses').val() != ''){
+      var office_expenses = parseFloat($('#office_expenses').val());
+    }else{
+      var office_expenses = 0;
+    }
+
+    if(!isNaN($('#hourly_rate').val()) && $('#hourly_rate').val() != ''){
+      var hourly_rate = parseFloat($('#hourly_rate').val());
+    }else{
+      var hourly_rate = 0;
+    }
+
+    if(!isNaN($('#hours_project').val()) && $('#hours_project').val() != ''){
+      var hours_project = parseFloat($('#hours_project').val());
+    }else{
+      var hours_project = 0;
+    }
+
+    if(rate == 0 && office_expenses == 0 && hourly_rate == 0 && hours_project == 0){
+      var total_burdened_rate = 0;
+      var burdened_rate = 0;
+      var fblr = 0;
+      var total_fblr = 0;
+    }else {
+      var burdened_rate = ((rate + 1.08)*(office_expenses + 2592.56*hourly_rate + 3000))/2080;
+      var fblr = burdened_rate + burdened_rate*0.0075;
+      var total_burdened_rate = hours_project*burdened_rate;
+      var total_fblr = hours_project*fblr;
+    }
+
+    $('#total_burdened_rate').val(total_burdened_rate.toFixed(2));
+    $('#total_fblr').val(total_fblr.toFixed(2));
+    $('#burdened_rate').val(burdened_rate.toFixed(2));
+    $('#fblr').val(fblr.toFixed(2));
+  }, 500);
+}
+/*******************************************************************************************************************/
 /***********************************************************************************************************************
 END JQUERY CODE
 ***********************************************************************************************************************/

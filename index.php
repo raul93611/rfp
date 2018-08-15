@@ -36,6 +36,12 @@ include_once 'app/ProjectRepository.inc.php';
 include_once 'app/Service.inc.php';
 include_once 'app/ServiceRepository.inc.php';
 
+include_once 'app/Staff.inc.php';
+include_once 'app/StaffRepository.inc.php';
+
+include_once 'app/Cost.inc.php';
+include_once 'app/CostRepository.inc.php';
+
 $url_components = parse_url($_SERVER['REQUEST_URI']);
 $route = $url_components['path'];
 
@@ -99,6 +105,18 @@ if($parts_route[0] == 'rfp'){
     }else if($parts_route[1] == 'save_info_project_and_services'){
       $id_project = $parts_route[2];
       $chosen_route = 'scripts/save_info_project_and_services.php';
+    }else if($parts_route[1] == 'save_staff'){
+      $id_project = $parts_route[2];
+      $chosen_route = 'scripts/save_staff.php';
+    }else if($parts_route[1] == 'save_edit_single_staff'){
+      $id_staff = $parts_route[2];
+      $chosen_route = 'scripts/save_edit_single_staff.php';
+    }else if($parts_route[1] == 'save_cost'){
+      $id_project = $parts_route[2];
+      $chosen_route = 'scripts/save_cost.php';
+    }else if($parts_route[1] == 'save_edit_cost'){
+      $id_cost = $parts_route[2];
+      $chosen_route = 'scripts/save_edit_cost.php';
     }
   }else if(count($parts_route) == 4){
     if($parts_route[1] == 'profile'){
@@ -126,6 +144,26 @@ if($parts_route[0] == 'rfp'){
         case 'flowchart':
           $id_project = $parts_route[3];
           $current_manager = 'flowchart';
+          $chosen_route = 'views/profile.php';
+          break;
+        case 'add_staff':
+          $id_project = $parts_route[3];
+          $current_manager = 'add_staff';
+          $chosen_route = 'views/profile.php';
+          break;
+        case 'edit_single_staff':
+          $id_staff = $parts_route[3];
+          $current_manager = 'edit_single_staff';
+          $chosen_route = 'views/profile.php';
+          break;
+        case 'add_cost':
+          $id_project = $parts_route[3];
+          $current_manager = 'add_cost';
+          $chosen_route = 'views/profile.php';
+          break;
+        case 'edit_cost':
+          $id_cost = $parts_route[3];
+          $current_manager = 'edit_cost';
           $chosen_route = 'views/profile.php';
           break;
         default:

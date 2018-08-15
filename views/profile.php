@@ -42,6 +42,18 @@ switch ($current_manager) {
   case 'flowchart':
     include_once 'templates/flowchart.inc.php';
     break;
+  case 'add_staff':
+    include_once 'templates/add_staff.inc.php';
+    break;
+  case 'edit_single_staff':
+    include_once 'templates/edit_single_staff.inc.php';
+    break;
+  case 'add_cost':
+    include_once 'templates/add_cost.inc.php';
+    break;
+  case 'edit_cost':
+    include_once 'templates/edit_cost.inc.php';
+    break;
 }
 include_once 'templates/end_document.inc.php';
 ?>

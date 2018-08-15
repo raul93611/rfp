@@ -62,10 +62,40 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
     <label for="documents">Upload documents:</label><br>
     <input type="file" id="documents" name="documents[]" class="btn btn-block btn-secondary" multiple>
   </div>
-  <div class="form-group">
-    <label for="project_name">Name:</label>
-    <input class="form-control" type="text" id="project_name" disabled name="project_name" placeholder="Project name ..." autofocus required value="<?php echo $project-> get_project_name(); ?>">
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label for="project_name">Name:</label>
+        <input class="form-control" type="text" id="project_name" disabled name="project_name" placeholder="Project name ..." autofocus required value="<?php echo $project-> get_project_name(); ?>">
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-group">
+        <?php
+        Connection::open_connection();
+        $users = UserRepository::get_users_3_4(Connection::get_connection());
+        Connection::close_connection();
+        ?>
+        <?php
+        if (count($users)) {
+          ?>
+          <label for="designated_user">Designated user:</label>
+          <select id="designated_user" disabled class="form-control" name="designated_user">
+          <?php
+          foreach ($users as $user) {
+            ?>
+            <option value="<?php echo $user-> get_id(); ?>" <?php if ($user-> get_id() == $project-> get_designated_user()) {echo 'selected';}?>><?php echo $user-> get_username(); ?></option>
+            <?php
+            }
+            ?>
+          </select>
+          <?php
+        }
+        ?>
+      </div>
+    </div>
   </div>
+
   <div class="row">
     <div class="col">
       <div class="form-group">
@@ -209,6 +239,16 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
       ?><h3 class="text-center">Quote is not completed!!</h3><?php
     }
   }
+  if($project-> get_way() == 'vehicle'){
+    $vehicle = '1';
+  }else{
+    $vehicle = '0';
+  }
+  Connection::open_connection();
+  $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
+  StaffRepository::print_all_staff($service-> get_id(), $vehicle);
+  CostRepository::print_costs($service-> get_id());
+  Connection::close_connection();
   ?>
 </div>
 <div class="card-footer">
@@ -216,5 +256,6 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
   <button type="submit" class="btn btn-success" name="save_info_project_and_services"><i class="fa fa-check"></i> Save</button>
   <span class="float-right">
     <a class="btn btn-info" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
+    <a class="btn btn-info" href="<?php echo ADD_COST . $id_project; ?>"><i class="fa fa-plus"></i> Add costs</a>
   </span>
 </div>

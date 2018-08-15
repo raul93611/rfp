@@ -62,14 +62,18 @@ CREATE TABLE costs(
     ON DELETE RESTRICT
 );
 
-CREATE TABLE engineers(
+CREATE TABLE staff(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_service INT NOT NULL,
+  name VARCHAR(255) NOT NULL,
   hourly_rate DECIMAL(10,2),
   rate DECIMAL(10,2),
   office_expenses DECIMAL(10,2),
   burdened_rate DECIMAL(10,2),
   fblr DECIMAL(10,2),
+  hours_project INT,
+  total_burdened_rate DECIMAL(10,2),
+  total_fblr DECIMAL(10,2),
   PRIMARY KEY(id),
   FOREIGN KEY(id_service)
     REFERENCES services(id)

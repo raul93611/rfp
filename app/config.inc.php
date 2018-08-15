@@ -31,6 +31,16 @@ define('SAVE_FLOWCHART', SERVER . 'save_flowchart/');
 define('DELETE_DOCUMENT', SERVER . 'delete_document/');
 define('INFO_PROJECT_AND_SERVICES', PROFILE . 'info_project_and_services/');
 /*******************************************************************************/
+/********************************SERVICES OPTIONS*******************************/
+define('ADD_STAFF', PROFILE . 'add_staff/');
+define('SAVE_STAFF', SERVER . 'save_staff/');
+define('EDIT_SINGLE_STAFF', PROFILE . 'edit_single_staff/');
+define('SAVE_EDIT_SINGLE_STAFF', SERVER . 'save_edit_single_staff/');
+define('ADD_COST', PROFILE . 'add_cost/');
+define('SAVE_COST', SERVER . 'save_cost/');
+define('EDIT_COST', PROFILE . 'edit_cost/');
+define('SAVE_EDIT_COST', SERVER . 'save_edit_cost/');
+/********************************************************************************/
 /*****************************SEND ERROR QUOTE EMAIL****************************/
 define('SEND_ERROR_QUOTE_EMAIL', SERVER . 'send_error_quote_email');
 /*******************************************************************************/
