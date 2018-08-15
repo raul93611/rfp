@@ -87,7 +87,7 @@ class StaffRepository{
     Connection::open_connection();
     $staff = self::get_all_staff_by_id_service(Connection::get_connection(), $id_service);
     Connection::close_connection();
-
+    $total_staff = 0;
     if(count($staff)){
       ?>
       <h3>Staff:</h3>
@@ -108,12 +108,23 @@ class StaffRepository{
           <?php
           foreach ($staff as $single_staff) {
             self::print_single_staff($single_staff, $vehicle);
+            if($vehicle){
+              $total_staff += $single_staff-> get_total_fblr();
+            }else{
+              $total_staff += $single_staff-> get_total_burdened_rate();
+            }
           }
           ?>
+          <tr>
+            <td colspan="6">TOTAL:</td>
+            <td>$ <?php echo $total_staff; ?></td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
       <?php
     }
+    return $total_staff;
   }
 
   public static function get_staff_by_id($connection, $id_staff){

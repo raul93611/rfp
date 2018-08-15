@@ -246,16 +246,34 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
   }
   Connection::open_connection();
   $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
-  StaffRepository::print_all_staff($service-> get_id(), $vehicle);
-  CostRepository::print_costs($service-> get_id());
+  $total_staff = StaffRepository::print_all_staff($service-> get_id(), $vehicle);
+  echo '<br>';
+  $total_costs = CostRepository::print_costs($service-> get_id());
   Connection::close_connection();
   ?>
+  <br>
+  <h3>Total:</h3>
+  <?php
+  if($project-> get_type() == 'services_and_equipment'){
+    $total_service = number_format($rfq_quote-> obtener_total_price(), 2) + $total_staff + $total_costs;
+    ?><h3 class="float-right">$ <?php echo $total_service; ?></h3><?php
+  }else{
+    $total_service = $total_staff + $total_costs;
+    ?><h3 class="float-right">$ <?php echo $total_service; ?></h3><?php
+  }
+  ?>
+  <input type="hidden" name="total_service" value="<?php echo $total_service; ?>">
 </div>
 <div class="card-footer">
   <a class="btn btn-primary" id="go_back" href="<?php echo PROFILE; ?>"><i class="fa fa-reply"></i></a>
   <button type="submit" class="btn btn-success" name="save_info_project_and_services"><i class="fa fa-check"></i> Save</button>
   <span class="float-right">
-    <a class="btn btn-info" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
+    <?php if($project-> get_type() == 'services_and_equipment'){
+      ?>
+      <a class="btn btn-info" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
+      <?php
+    }
+    ?>
     <a class="btn btn-info" href="<?php echo ADD_COST . $id_project; ?>"><i class="fa fa-plus"></i> Add costs</a>
   </span>
 </div>

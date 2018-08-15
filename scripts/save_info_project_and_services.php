@@ -10,6 +10,11 @@ if(isset($_POST['save_info_project_and_services'])){
           move_uploaded_file($tmp_path, $new_path);
       }
   }
+  Connection::open_connection();
+  $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
+  ServiceRepository::set_total_service(Connection::get_connection(), $_POST['total_service'], $service-> get_id());
+  Connection::close_connection();
+
   Redirection::redirect1(INFO_PROJECT_AND_SERVICES . $id_project);
 }
 ?>

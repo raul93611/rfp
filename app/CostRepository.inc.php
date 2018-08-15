@@ -68,7 +68,7 @@ class CostRepository{
     Connection::open_connection();
     $costs = self::get_all_costs_by_id_service(Connection::get_connection(), $id_service);
     Connection::close_connection();
-
+    $total_costs = 0;
     if(count($costs)){
       ?>
       <h3>Costs:</h3>
@@ -84,12 +84,19 @@ class CostRepository{
           <?php
           foreach ($costs as $cost) {
             self::print_cost($cost);
+            $total_costs += $cost-> get_amount();
           }
           ?>
+          <tr>
+            <td>TOTAL:</td>
+            <td>$ <?php echo $total_costs; ?></td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
       <?php
     }
+    return $total_costs;
   }
 
   public static function get_cost_by_id($connection, $id_cost){

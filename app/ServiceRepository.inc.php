@@ -51,5 +51,19 @@ class ServiceRepository{
     }
     return $service;
   }
+
+  public static function set_total_service($connection, $total_service, $id_service){
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE services SET total = :total_service WHERE id = :id_service';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':total_service', $total_service, PDO::PARAM_STR);
+        $sentence-> bindParam(':id_service', $id_service, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
 }
 ?>
