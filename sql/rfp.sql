@@ -33,6 +33,9 @@ CREATE TABLE projects(
   reviewed_project TINYINT NOT NULL,
   priority_color VARCHAR(255) NOT NULL,
   create_part_comments TEXT CHARACTER SET utf8 NOT NULL,
+  subject VARCHAR(255) NOT NULL,
+  result VARCHAR(255) NOT NULL,
+  proposed_price DECIMAL(20,2),
   PRIMARY KEY(id),
   FOREIGN KEY(id_user)
     REFERENCES users(id)
@@ -43,7 +46,7 @@ CREATE TABLE projects(
 CREATE TABLE services(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_project INT NOT NULL,
-  total DECIMAL(10,2),
+  total DECIMAL(20,2),
   PRIMARY KEY(id),
   FOREIGN KEY(id_project)
     REFERENCES projects(id)
@@ -55,7 +58,7 @@ CREATE TABLE costs(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_service INT NOT NULL,
   description VARCHAR(255) NOT NULL,
-  amount DECIMAL(10,2),
+  amount DECIMAL(20,2),
   PRIMARY KEY(id),
   FOREIGN KEY(id_service)
     REFERENCES services(id)
@@ -67,14 +70,14 @@ CREATE TABLE staff(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_service INT NOT NULL,
   name VARCHAR(255) NOT NULL,
-  hourly_rate DECIMAL(10,2),
-  rate DECIMAL(10,2),
-  office_expenses DECIMAL(10,2),
-  burdened_rate DECIMAL(10,2),
-  fblr DECIMAL(10,2),
+  hourly_rate DECIMAL(20,2),
+  rate DECIMAL(20,2),
+  office_expenses DECIMAL(20,2),
+  burdened_rate DECIMAL(20,2),
+  fblr DECIMAL(20,2),
   hours_project INT,
-  total_burdened_rate DECIMAL(10,2),
-  total_fblr DECIMAL(10,2),
+  total_burdened_rate DECIMAL(20,2),
+  total_fblr DECIMAL(20,2),
   PRIMARY KEY(id),
   FOREIGN KEY(id_service)
     REFERENCES services(id)

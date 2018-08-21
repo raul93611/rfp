@@ -9,7 +9,7 @@ if(isset($_POST['save_project'])){
   }
   $designated_user_index = array_rand($array_id_users);
   $designated_user = $array_id_users[$designated_user_index];
-  $project = new Project('', $_SESSION['id_user'], '', '', $_POST['link'], '', '', '', '', '', '', '', 0, $designated_user, 0, '', htmlspecialchars($_POST['create_part_comments']));
+  $project = new Project('', $_SESSION['id_user'], '', '', $_POST['link'], '', '', '', '', '', '', '', 0, $designated_user, 0, '', htmlspecialchars($_POST['create_part_comments']), '', '', 0);
   $id_project = ProjectRepository::insert_project(Connection::get_connection(), $project);
   Connection::close_connection();
 

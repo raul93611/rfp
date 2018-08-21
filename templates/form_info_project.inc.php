@@ -139,6 +139,17 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
         </select>
       </div>
     </div>
+    <div class="col">
+      <div class="form-group">
+        <label for="subject">Subject:</label>
+        <select class="form-control" name="subject" id="subject">
+          <option value="av" <?php if($project-> get_subject() == 'av'){echo 'selected';} ?>>AV</option>
+          <option value="it" <?php if($project-> get_subject() == 'it'){echo 'selected';} ?>>IT</option>
+          <option value="logistics" <?php if($project-> get_subject() == 'logistics'){echo 'selected';} ?>>Logistics</option>
+          <option value="sources_sought" <?php if($project-> get_subject() == 'sources_sought'){echo 'selected';} ?>>Sources sought</option>
+        </select>
+      </div>
+    </div>
   </div>
   <div class="form-group">
     <label for="description">Description:</label>
