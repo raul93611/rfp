@@ -19,6 +19,7 @@ CREATE TABLE projects(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_user INT NOT NULL,
   start_date DATE,
+  code VARCHAR(255) NOT NULL,
   link VARCHAR(255) NOT NULL,
   project_name VARCHAR(255) NOT NULL,
   end_date DATETIME,

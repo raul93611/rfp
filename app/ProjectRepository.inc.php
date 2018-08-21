@@ -3,9 +3,10 @@ class ProjectRepository{
   public static function insert_project($connection, $project){
     if(isset($connection)){
       try{
-        $sql = 'INSERT INTO projects (id_user, start_date, link, project_name, end_date, priority, description, way, type, flowchart_comments, flowchart, designated_user, reviewed_project, priority_color, create_part_comments) VALUES(:id_user, NOW(), :link, :project_name, :end_date, :priority, :description, :way, :type, :flowchart_comments, :flowchart, :designated_user, :reviewed_project, :priority_color, :create_part_comments)';
+        $sql = 'INSERT INTO projects (id_user, start_date, code, link, project_name, end_date, priority, description, way, type, flowchart_comments, flowchart, designated_user, reviewed_project, priority_color, create_part_comments) VALUES(:id_user, NOW(), :code, :link, :project_name, :end_date, :priority, :description, :way, :type, :flowchart_comments, :flowchart, :designated_user, :reviewed_project, :priority_color, :create_part_comments)';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $project-> get_id_user(), PDO::PARAM_STR);
+        $sentence-> bindParam(':code', $project-> get_code(), PDO::PARAM_STR);
         $sentence-> bindParam(':link', $project-> get_link(), PDO::PARAM_STR);
         $sentence-> bindParam(':project_name', $project-> get_project_name(), PDO::PARAM_STR);
         $sentence-> bindParam(':end_date', $project-> get_end_date(), PDO::PARAM_STR);
@@ -86,11 +87,12 @@ class ProjectRepository{
     return $result;
   }
 
-  public static function fill_out_project($connection, $id_project, $project_name, $start_date, $end_date, $priority, $description, $way, $type, $priority_color){
+  public static function fill_out_project($connection, $id_project, $code, $project_name, $start_date, $end_date, $priority, $description, $way, $type, $priority_color){
     if(isset($connection)){
       try{
-        $sql = 'UPDATE projects SET project_name = :project_name, start_date = :start_date, end_date = :end_date, priority = :priority, description = :description, way = :way, type = :type, priority_color = :priority_color WHERE id = :id_project';
+        $sql = 'UPDATE projects SET code = :code, project_name = :project_name, start_date = :start_date, end_date = :end_date, priority = :priority, description = :description, way = :way, type = :type, priority_color = :priority_color WHERE id = :id_project';
         $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':code', $code, PDO::PARAM_STR);
         $sentence-> bindParam(':project_name', $project_name, PDO::PARAM_STR);
         $sentence-> bindParam(':start_date', $start_date, PDO::PARAM_STR);
         $sentence-> bindParam(':end_date', $end_date, PDO::PARAM_STR);
@@ -131,7 +133,7 @@ class ProjectRepository{
         $sentence-> execute();
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         if(!empty($result)){
-          $project = new Project($result['id'], $result['id_user'], $result['start_date'], $result['link'], $result['project_name'], $result['end_date'], $result['priority'], $result['description'], $result['way'], $result['type'], $result['flowchart_comments'], $result['flowchart'], $result['designated_user'], $result['reviewed_project'], $result['priority_color'], $result['create_part_comments']);
+          $project = new Project($result['id'], $result['id_user'], $result['start_date'], $result['code'], $result['link'], $result['project_name'], $result['end_date'], $result['priority'], $result['description'], $result['way'], $result['type'], $result['flowchart_comments'], $result['flowchart'], $result['designated_user'], $result['reviewed_project'], $result['priority_color'], $result['create_part_comments']);
         }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';

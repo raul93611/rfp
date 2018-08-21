@@ -59,5 +59,15 @@ $email = 'oscar@campos';
 $activo = 1;
 $user = new User('', $username, $password, $names, $last_names, $level, $email, $activo);
 UserRepository::insert_user(Connection::get_connection(), $user);
+
+$username = 'Laura';
+$password = password_hash('123456', PASSWORD_DEFAULT);
+$names = 'laura';
+$last_names = 'villafan';
+$level = 2;
+$email = 'laura@villafan';
+$activo = 1;
+$user = new User('', $username, $password, $names, $last_names, $level, $email, $activo);
+UserRepository::insert_user(Connection::get_connection(), $user);
 Connection::close_connection();
 ?>

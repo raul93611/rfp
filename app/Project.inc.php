@@ -3,6 +3,7 @@ class Project{
   private $id;
   private $id_user;
   private $start_date;
+  private $code;
   private $link;
   private $project_name;
   private $end_date;
@@ -17,10 +18,11 @@ class Project{
   private $priority_color;
   private $create_part_comments;
 
-  public function __construct($id, $id_user, $start_date, $link, $project_name, $end_date, $priority, $description, $way, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $create_part_comments){
+  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $way, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $create_part_comments){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> start_date = $start_date;
+    $this-> code = $code;
     $this-> link = $link;
     $this-> project_name = $project_name;
     $this-> end_date = $end_date;
@@ -46,6 +48,10 @@ class Project{
 
   public function get_start_date(){
     return $this-> start_date;
+  }
+
+  public function get_code(){
+    return $this-> code;
   }
 
   public function get_link(){
