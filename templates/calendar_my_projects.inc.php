@@ -15,9 +15,9 @@ $all_my_dates = array_merge($end_dates, $new_dates);
                 </div>
                 <div class="col-sm-6">
                   <div class="btn-group" role="group">
-                    <a class="btn btn-primary" href="<?php echo PROFILE; ?>">New projects</a>
-                    <a class="btn btn-primary" href="<?php echo PROFILE . 'calendar_projects'; ?>">All projects</a>
-                    <a class="btn btn-primary" href="<?php echo PROFILE . 'calendar_my_projects'; ?>">My projects</a>
+                    <a class="btn btn-<?php if($current_manager == ''){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo PROFILE; ?>">New projects</a>
+                    <a class="btn btn-<?php if($current_manager == 'calendar_projects'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo PROFILE . 'calendar_projects'; ?>">All projects</a>
+                    <a class="btn btn-<?php if($current_manager == 'calendar_my_projects'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo PROFILE . 'calendar_my_projects'; ?>">My projects</a>
                   </div>
                 </div>
             </div>
