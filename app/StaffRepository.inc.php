@@ -89,6 +89,7 @@ class StaffRepository{
     Connection::close_connection();
     $total_staff = 0;
     if(count($staff)){
+      $staff_exists = 1;
       ?>
       <h3>Staff:</h3>
       <table class="table table-bordered table-hover">
@@ -123,8 +124,10 @@ class StaffRepository{
         </tbody>
       </table>
       <?php
+    }else{
+      $staff_exists = 0;
     }
-    return $total_staff;
+    return array($total_staff, $staff_exists);
   }
 
   public static function get_staff_by_id($connection, $id_staff){

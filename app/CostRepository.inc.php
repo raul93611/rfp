@@ -70,6 +70,7 @@ class CostRepository{
     Connection::close_connection();
     $total_costs = 0;
     if(count($costs)){
+      $costs_exists = 1;
       ?>
       <h3>Costs:</h3>
       <table class="table table-bordered table-hover">
@@ -95,8 +96,10 @@ class CostRepository{
         </tbody>
       </table>
       <?php
+    }else{
+      $costs_exists = 0;
     }
-    return $total_costs;
+    return array($total_costs, $costs_exists);
   }
 
   public static function get_cost_by_id($connection, $id_cost){

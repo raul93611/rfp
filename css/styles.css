@@ -334,3 +334,11 @@ END USERS TABLE STYLES
   word-break: break-all !important;
 }
 /**********************************************************************************************************************/
+.footer{
+  position: fixed !important;
+  bottom: 0 !important;
+  width: auto;
+  background-color: #E7E9EB;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
