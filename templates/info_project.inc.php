@@ -15,16 +15,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title"><i class="fa fa-plus"></i> Fill out</h3>
-                        </div>
-                        <form role="form" method="post" action="<?php echo SAVE_INFO_PROJECT . $id_project; ?>">
-                            <?php
-                              include_once 'templates/form_info_project.inc.php';
-                            ?>
-                        </form>
-                    </div>
+                  <form role="form" id="form_info_project" method="post" action="<?php echo SAVE_INFO_PROJECT . $id_project; ?>">
+                    <?php
+                      include_once 'templates/form_info_project.inc.php';
+                    ?>
+                  </form>
                 </div>
             </div>
         </div>

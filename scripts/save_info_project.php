@@ -13,7 +13,7 @@ if(isset($_POST['save_changes_project'])){
   $start_date = ProjectRepository::english_format_to_mysql_date($_POST['start_date']);
   $end_date = ProjectRepository::english_format_to_mysql_datetime($_POST['end_date']);
 
-  if($_POST['way'] == 'mail'){
+  if($_POST['submission_instructions'] == 'mail'){
     $end_date = date('Y-m-d', strtotime($end_date . '-5 days'));
   }
 
@@ -70,7 +70,7 @@ if(isset($_POST['save_changes_project'])){
     Connection::close_connection();
   }
   Connection::open_connection();
-  ProjectRepository::fill_out_project(Connection::get_connection(), $_POST['id_project'], $_POST['code'], $_POST['project_name'], $start_date, $end_date, $_POST['priority'], htmlspecialchars($_POST['description']), $_POST['way'], $_POST['type'], $priority_color, $_POST['subject']);
+  ProjectRepository::fill_out_project(Connection::get_connection(), $_POST['id_project'], $_POST['code'], $_POST['project_name'], $start_date, $end_date, $_POST['priority'], htmlspecialchars($_POST['description']), $_POST['submission_instructions'], $_POST['type'], $priority_color, $_POST['subject']);
   Connection::close_connection();
   Redirection::redirect1(FLOWCHART . $id_project);
 }

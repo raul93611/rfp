@@ -9,7 +9,7 @@ class Project{
   private $end_date;
   private $priority;
   private $description;
-  private $way;
+  private $submission_instructions;
   private $type;
   private $flowchart_comments;
   private $flowchart;
@@ -21,7 +21,7 @@ class Project{
   private $result;
   private $proposed_price;
 
-  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $way, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $create_part_comments, $subject, $result, $proposed_price){
+  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $create_part_comments, $subject, $result, $proposed_price){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> start_date = $start_date;
@@ -31,7 +31,7 @@ class Project{
     $this-> end_date = $end_date;
     $this-> priority = $priority;
     $this-> description = $description;
-    $this-> way = $way;
+    $this-> submission_instructions = $submission_instructions;
     $this-> type = $type;
     $this-> flowchart_comments = $flowchart_comments;
     $this-> flowchart = $flowchart;
@@ -80,8 +80,8 @@ class Project{
     return $this-> description;
   }
 
-  public function get_way(){
-    return $this-> way;
+  public function get_submission_instructions(){
+    return $this-> submission_instructions;
   }
 
   public function get_type(){

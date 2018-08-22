@@ -289,15 +289,15 @@ table{
     background-color: #F0E714;
 }
 
-#tabla_items .description{
+#items_table .description{
     width: 150px !important;
 }
 
-#tabla_items .options{
+#items_table .options{
     width: 150px !important;
 }
 
-#tabla_items .qty{
+#items_table .qty{
   width: 100px !important;
 }
 
@@ -305,12 +305,8 @@ table{
   word-break: break-all !important;
 }
 
-#tabla_items #numeration{
-    min-width: 20px !important;
-}
-
-#tabla_items #provider{
-    min-width: 200px !important;
+#items_table #numeration{
+    width: 20px !important;
 }
 
 /****************************************************************************************************************************************************
@@ -333,7 +329,7 @@ END USERS TABLE STYLES
 .break_words{
   word-break: break-all !important;
 }
-/**********************************************************************************************************************/
+/*************************************************FOOTER BUTTON***************************************************************/
 .footer{
   position: fixed !important;
   bottom: 0 !important;

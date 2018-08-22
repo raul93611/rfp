@@ -14,7 +14,7 @@
     <div class="col">
       <div class="form-group">
         <label for="office_expenses">Office expenses ($):</label>
-        <input type="number" step=".01" class="form-control" id="office_expenses" name="office_expenses" required value="0">
+        <input type="number" step=".01" class="form-control" id="office_expenses" name="office_expenses" required value="2200">
       </div>
     </div>
     <div class="col">

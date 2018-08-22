@@ -1,3 +1,19 @@
+<div class="modal modal-danger fade" id="form_uncompleted">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-danger"><i class="fa fa-exclamation-triangle"></i> ALERT</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4 class="text-center text-danger">Must be fill out</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="add_project" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -14,7 +30,7 @@
             <input type="text" id="link" name="link" placeholder="Link ..." class="form-control" autofocus required>
           </div>
           <div class="form-group">
-            <label for="create_part_comments"></label>
+            <label for="create_part_comments">Comments:</label>
             <textarea class="form-control" name="create_part_comments" rows="5" id="create_part_comments"></textarea>
           </div>
           <div class="form-group">
@@ -106,10 +122,11 @@
 <script src="<?php echo JS; ?>moment.min.js"></script>
 <script src="<?php echo PLUGINS; ?>daterangepicker/daterangepicker.js"></script>
 <script src="<?php echo PLUGINS; ?>datepicker/bootstrap-datepicker.js"></script>
+<script src="<?php echo PLUGINS; ?>datatables/jquery.dataTables.js"></script>
+<script src="<?php echo PLUGINS; ?>datatables/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo PLUGINS; ?>ckeditor/ckeditor.js"></script>
 <script src="<?php echo PLUGINS; ?>bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script src="<?php echo PLUGINS; ?>slimScroll/jquery.slimscroll.min.js"></script>
-<script src="<?php echo DIST; ?>js/pages/dashboard.js"></script>
 <script src="<?php echo PLUGINS; ?>fullcalendar/fullcalendar.js"></script>
 <script src="<?php echo JS; ?>js_sistema.js"></script>
 <script src="<?php echo DIST; ?>js/pages/dashboard3.js"></script>

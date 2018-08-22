@@ -73,7 +73,7 @@ class CostRepository{
       $costs_exists = 1;
       ?>
       <h3>Costs:</h3>
-      <table class="table table-bordered table-hover">
+      <table id="costs_table" class="table table-bordered table-hover">
         <thead>
           <tr>
             <th>DESCRIPTION</th>

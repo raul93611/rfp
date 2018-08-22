@@ -25,7 +25,7 @@ CREATE TABLE projects(
   end_date DATETIME,
   priority VARCHAR(255) NOT NULL,
   description TEXT CHARACTER SET utf8 NOT NULL,
-  way VARCHAR(255) NOT NULL,
+  submission_instructions VARCHAR(255) NOT NULL,
   type VARCHAR(255) NOT NULL,
   flowchart_comments TEXT CHARACTER SET utf8 NOT NULL,
   flowchart TINYINT NOT NULL,

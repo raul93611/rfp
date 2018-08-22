@@ -15,7 +15,27 @@ if(isset($_POST['save_info_project_and_services'])){
   $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
   ServiceRepository::set_total_service(Connection::get_connection(), $_POST['total_service'], $service-> get_id());
   $users = UserRepository::get_all_users(Connection::get_connection());
+  switch ($_POST['priority']) {
+    case '8a':
+      $priority_color = '#f75a6a';
+      break;
+    case 'hubzone':
+      $priority_color = '#f8d200';
+      break;
+    case 'small_business':
+      $priority_color = '#0cd63f';
+      break;
+    case 'full_and_open';
+      $priority_color = '#f441be';
+      break;
+    default:
+      break;
+  }
+  $end_date = ProjectRepository::english_format_to_mysql_datetime($_POST['end_date']);
+  ProjectRepository::change_main_information_project(Connection::get_connection(), $_POST['code'], $_POST['project_name'], $end_date, $_POST['priority'], $priority_color, $_POST['type'], $_POST['submission_instructions'], $_POST['description'], $id_project);
   Connection::close_connection();
+
+
   /*
   foreach ($users as $user) {
     $to = $user-> obtener_email();

@@ -39,6 +39,23 @@ END SEARCH USERS
 STARTJQUERY CODE
 **********************************************************************************************************************/
 $(document).ready(function(){
+/***************************************DATATABLES JQUERY**********************************************************/
+  $('#staff_table').DataTable({
+    paging: false,
+    ordering: false
+  });
+
+  $('#costs_table').DataTable({
+    paging: false,
+    ordering: false
+  });
+
+  $('#items_table').DataTable({
+    paging: false,
+    ordering: false
+  });
+/*********************************************************************************************************************/
+
   /************************************REPORT ERROR BUTTON*********************************************************/
   $('#report_error_button').click(function(){
     $('#report_error_rfq_quote').modal();
@@ -70,7 +87,7 @@ $(document).ready(function(){
   /******************************************************************************************************************
   FLOWCHART
   ********************************************************************************************************************/
-  for(var i = 2; i <= 14; i++){
+  for(var i = 2; i <= 15; i++){
     $('#q'+i).hide();
   }
 
@@ -87,16 +104,16 @@ $(document).ready(function(){
     if($(this).val() == '1'){
       $('#q2').slideDown();
     }else if($(this).val() == '0'){
-      $('#q7').slideDown();
+      $('#q8').slideDown();
     }
   });
 
   $('input[name=q2]').click(function(){
     $('#q2').slideUp();
     if($(this).val() == '1'){
-      $('#q3').slideDown();
+      $('#q14').slideDown();
     }else if($(this).val() == '0'){
-      $('#q8').slideDown();
+      $('#q3').slideDown();
     }
   });
 
@@ -130,10 +147,8 @@ $(document).ready(function(){
   $('input[name=q6]').click(function(){
     $('#q6').slideUp();
     if($(this).val() == '1'){
-      $('#bid_alert').slideDown();
-      $('#project_comments').slideDown();
-      $('#save_flowchart').slideDown();
-      $('#flowchart_result').val('1');
+      $('#q7').slideDown();
+      /**/
     }else if($(this).val() == '0'){
       $('#q12').slideDown();
     }
@@ -142,36 +157,39 @@ $(document).ready(function(){
   $('input[name=q7]').click(function(){
     $('#q7').slideUp();
     if($(this).val() == '1'){
-      $('#q2').slideDown();
+      $('#bid_alert').slideDown();
+      $('#project_comments').slideDown();
+      $('#save_flowchart').slideDown();
+      $('#flowchart_result').val('1');
     }else if($(this).val() == '0'){
-      $('#q14').slideDown();
+      $('#q13').slideDown();
     }
   });
 
   $('input[name=q8]').click(function(){
     $('#q8').slideUp();
     if($(this).val() == '1'){
-      $('#q3').slideDown();
+      $('#q2').slideDown();
     }else if($(this).val() == '0'){
-      $('#q13').slideDown();
+      $('#q15').slideDown();
     }
   });
 
   $('input[name=q9]').click(function(){
     $('#q9').slideUp();
     if($(this).val() == '1'){
-      $('#q13').slideDown();
-    }else if($(this).val() == '0'){
       $('#q4').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q14').slideDown();
     }
   });
 
   $('input[name=q10]').click(function(){
     $('#q10').slideUp();
     if($(this).val() == '1'){
-      $('#q5').slideDown();
-    }else if($(this).val() == '0'){
       $('#q14').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q5').slideDown();
     }
   });
 
@@ -180,35 +198,44 @@ $(document).ready(function(){
     if($(this).val() == '1'){
       $('#q6').slideDown();
     }else if($(this).val() == '0'){
-      $('#q14').slideDown();
+      $('#q15').slideDown();
     }
   });
 
   $('input[name=q12]').click(function(){
     $('#q12').slideUp();
     if($(this).val() == '1'){
-      $('#bid_alert').slideDown();
-      $('#project_comments').slideDown();
-      $('#save_flowchart').slideDown();
-      $('#flowchart_result').val('1');
+      $('#q7').slideDown();
     }else if($(this).val() == '0'){
-      $('#q14').slideDown();
+      $('#q15').slideDown();
     }
   });
 
   $('input[name=q13]').click(function(){
     $('#q13').slideUp();
     if($(this).val() == '1'){
-      $('#q4').slideDown();
+      $('#bid_alert').slideDown();
+      $('#project_comments').slideDown();
+      $('#save_flowchart').slideDown();
+      $('#flowchart_result').val('1');
     }else if($(this).val() == '0'){
-      $('#q14').slideDown();
+      $('#q15').slideDown();
     }
   });
 
   $('input[name=q14]').click(function(){
     $('#q14').slideUp();
     if($(this).val() == '1'){
-      $('#q6').slideDown();
+      $('#q5').slideDown();
+    }else if($(this).val() == '0'){
+      $('#q15').slideDown();
+    }
+  });
+
+  $('input[name=q15]').click(function(){
+    $('#q15').slideUp();
+    if($(this).val() == '1'){
+      $('#q7').slideDown();
     }else if($(this).val() == '0'){
       $('#no_bid_alert').slideDown();
       $('#project_comments').slideDown();
@@ -355,6 +382,32 @@ if($('#form_add_staff').length != 0){
   }, 500);
 }
 /*******************************************************************************************************************/
+/*******************************************FORM INFO***************************************************************/
+if($('#designated_user').length != 0){
+  var designated_user = $('#designated_user').val();
+}
+$('#form_info_project').submit(function(){
+  var new_designated_user = $('#designated_user').val();
+  if(new_designated_user == designated_user){
+    change_designated_user = false;
+  }else{
+    change_designated_user = true;
+  }
+  var code = $('#code').val();
+  var project_name = $('#project_name').val();
+  var end_date = $('#end_date').val();
+  var description = $('#description').val();
+
+  if(code.length == 0 || project_name.length == 0 || end_date.length == 0 || description.length == 0){
+    if(change_designated_user == true){
+      return true;
+    }else{
+      $('#form_uncompleted').modal();
+      return false;
+    }
+  }
+});
+/**********************************************************************************************************************/
 /***********************************************************************************************************************
 END JQUERY CODE
 ***********************************************************************************************************************/

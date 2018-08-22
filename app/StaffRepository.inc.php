@@ -65,7 +65,7 @@ class StaffRepository{
     return $staff;
   }
 
-  public static function print_single_staff($single_staff, $vehicle){
+  public static function print_single_staff($single_staff, $gsa){
     if(!isset($single_staff)){
       return;
     }
@@ -75,15 +75,15 @@ class StaffRepository{
       <td>$ <?php echo $single_staff-> get_hourly_rate(); ?></td>
       <td><?php echo $single_staff-> get_rate(); ?> %</td>
       <td>$ <?php echo $single_staff-> get_office_expenses(); ?></td>
-      <td>$ <?php if($vehicle){echo $single_staff-> get_fblr();}else{echo $single_staff-> get_burdened_rate();} ?></td>
+      <td>$ <?php if($gsa){echo $single_staff-> get_fblr();}else{echo $single_staff-> get_burdened_rate();} ?></td>
       <td><?php echo $single_staff-> get_hours_project(); ?></td>
-      <td>$ <?php if($vehicle){echo $single_staff-> get_total_fblr();}else{echo $single_staff-> get_total_burdened_rate();} ?></td>
-      <td><?php echo '<a href="' . EDIT_SINGLE_STAFF . $single_staff-> get_id() . '" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Edit</a>'; ?></td>
+      <td>$ <?php if($gsa){echo $single_staff-> get_total_fblr();}else{echo $single_staff-> get_total_burdened_rate();} ?></td>
+      <td><?php echo '<a href="' . EDIT_SINGLE_STAFF . $single_staff-> get_id() . '" class="btn btn-block btn-sm btn-warning"><i class="fa fa-edit"></i> Edit</a>'; ?></td>
     </tr>
     <?php
   }
 
-  public static function print_all_staff($id_service, $vehicle){
+  public static function print_all_staff($id_service, $gsa){
     Connection::open_connection();
     $staff = self::get_all_staff_by_id_service(Connection::get_connection(), $id_service);
     Connection::close_connection();
@@ -92,7 +92,7 @@ class StaffRepository{
       $staff_exists = 1;
       ?>
       <h3>Staff:</h3>
-      <table class="table table-bordered table-hover">
+      <table id="staff_table" class="table table-bordered table-hover">
         <thead>
           <tr>
             <th>NAME</th>
@@ -108,8 +108,8 @@ class StaffRepository{
         <tbody>
           <?php
           foreach ($staff as $single_staff) {
-            self::print_single_staff($single_staff, $vehicle);
-            if($vehicle){
+            self::print_single_staff($single_staff, $gsa);
+            if($gsa){
               $total_staff += $single_staff-> get_total_fblr();
             }else{
               $total_staff += $single_staff-> get_total_burdened_rate();
@@ -117,7 +117,12 @@ class StaffRepository{
           }
           ?>
           <tr>
-            <td colspan="6">TOTAL:</td>
+            <td>TOTAL:</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td>$ <?php echo $total_staff; ?></td>
             <td></td>
           </tr>

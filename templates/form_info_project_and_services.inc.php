@@ -1,11 +1,15 @@
 <?php
-Conexion::abrir_conexion();
-$rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $id_project);
-Conexion::cerrar_conexion();
-$id_rfq = $rfp_connection-> obtener_id_rfq();
 Connection::open_connection();
 $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
 Connection::close_connection();
+
+if($project-> get_type() == 'services_and_equipment'){
+  Conexion::abrir_conexion();
+  $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $id_project);
+  Conexion::cerrar_conexion();
+  $id_rfq = $rfp_connection-> obtener_id_rfq();
+}
+
 if($project-> get_start_date() != '0000-00-00'){
   $start_date = ProjectRepository::mysql_date_to_english_format($project-> get_start_date());
 }else{
@@ -85,7 +89,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
           if (count($users)) {
             ?>
             <label for="designated_user">Designated user:</label>
-            <select id="designated_user" class="form-control" name="designated_user">
+            <select id="designated_user" disabled class="form-control" name="designated_user">
             <?php
             foreach ($users as $user) {
               ?>
@@ -147,11 +151,14 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
       </div>
       <div class="col">
         <div class="form-group">
-          <label for="way">Way:</label>
-          <select class="form-control" name="way" id="way">
-            <option value="email" <?php if($project-> get_way() == 'email'){echo 'selected';} ?>>E-mail</option>
-            <option value="mail" <?php if($project-> get_way() == 'mail'){echo 'selected';} ?>>Mail</option>
-            <option value="vehicle" <?php if($project-> get_way() == 'vehicle'){echo 'selected';} ?>>Vehicle</option>
+          <label for="submission_instructions">Submission instructions:</label>
+          <select class="form-control" name="submission_instructions" id="submission_instructions">
+            <option value="email" <?php if($project-> get_submission_instructions() == 'email'){echo 'selected';} ?>>E-mail</option>
+            <option value="mail" <?php if($project-> get_submission_instructions() == 'mail'){echo 'selected';} ?>>Mail</option>
+            <option value="gsa" <?php if($project-> get_submission_instructions() == 'gsa'){echo 'selected';} ?>>GSA</option>
+            <option value="fedbid" <?php if($project-> get_submission_instructions() == 'fedbid'){echo 'selected';} ?>>FedBid</option>
+            <option value="seaport" <?php if($project-> get_submission_instructions() == 'seaport'){echo 'selected';} ?>>SeaPort</option>
+            <option value="others" <?php if($project-> get_submission_instructions() == 'others'){echo 'selected';} ?>>Others</option>
           </select>
         </div>
       </div>
@@ -200,10 +207,10 @@ if($project-> get_type() == 'services_and_equipment'){
           </tbody>
         </table>
         <br>
-        <table class="table table-bordered table-hover">
+        <table id="items_table" class="table table-bordered table-hover">
           <thead>
             <tr>
-              <th class="quantity">#</th>
+              <th id="numeration">#</th>
               <th>DESCRIPTION</th>
               <th class="quantity">QTY</th>
               <th>UNIT PRICE</th>
@@ -244,14 +251,16 @@ if($project-> get_type() == 'services_and_equipment'){
             ?>
             <tr>
               <td></td>
-              <td colspan="3"><?php echo nl2br($rfq_quote-> obtener_shipping()); ?></td>
+              <td><?php echo nl2br($rfq_quote-> obtener_shipping()); ?></td>
+              <td></td>
+              <td></td>
               <td>$ <?php echo number_format($rfq_quote-> obtener_shipping_cost(), 2); ?></td>
             </tr>
             <tr>
               <td></td>
-              <td></td>
-              <td></td>
               <td>TOTAL:</td>
+              <td></td>
+              <td></td>
               <td>$ <?php echo number_format($rfq_quote-> obtener_total_price(), 2); ?></td>
             </tr>
           </tbody>
@@ -272,14 +281,14 @@ if($project-> get_type() == 'services_and_equipment'){
   </div>
   <div class="card-body">
     <?php
-    if($project-> get_way() == 'vehicle'){
-      $vehicle = '1';
+    if($project-> get_submission_instructions() == 'gsa'){
+      $gsa = '1';
     }else{
-      $vehicle = '0';
+      $gsa = '0';
     }
     Connection::open_connection();
     $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
-    list($total_staff, $staff_exists) = StaffRepository::print_all_staff($service-> get_id(), $vehicle);
+    list($total_staff, $staff_exists) = StaffRepository::print_all_staff($service-> get_id(), $gsa);
     Connection::close_connection();
     if(!$staff_exists){
       ?><h3 class="text-center text-warning"><i class="fa fa-exclamation-triangle"></i> Not yet filled out</h3><?php
@@ -309,6 +318,7 @@ if($project-> get_type() == 'services_and_equipment'){
     if($project-> get_type() == 'services_and_equipment'){
       $total_equipment = number_format($rfq_quote-> obtener_total_price(), 2);
       $total_service = $total_staff + $total_costs;
+      $total = $rfq_quote-> obtener_total_price() + $total_service;
       ?>
       <div class="row">
         <div class="col-2">
@@ -317,10 +327,12 @@ if($project-> get_type() == 'services_and_equipment'){
         <div class="col-4">
           <h3 class="text-info">Services:</h3>
           <h3 class="text-info">Equipment:</h3>
+          <h3 class="text-info">Total:</h3>
         </div>
         <div class="col-4">
-          <h3 class="text-center text-info">$ <?php echo $total_equipment; ?></h3>
-          <h3 class="text-center text-info">$ <?php echo number_format($total_service, 2); ?></h3>
+          <h3 class="text-info">$ <?php echo number_format($total_service, 2); ?></h3>
+          <h3 class="text-info">$ <?php echo $total_equipment; ?></h3>
+          <h3 class="text-info">$ <?php echo number_format($total, 2); ?></h3>
         </div>
         <div class="col-2">
 
@@ -363,10 +375,8 @@ if($project-> get_type() == 'services_and_equipment'){
 <div class="card-footer footer">
   <a class="btn btn-primary" id="go_back" href="<?php echo PROFILE; ?>"><i class="fa fa-reply"></i></a>
   <button type="submit" class="btn btn-success" name="save_info_project_and_services"><i class="fa fa-check"></i> Save</button>
-  <span class="float-right">
-    <a class="btn btn-info" href="<?php echo FLOWCHART . $id_project; ?>"><i class="fa fa-book"></i> Flowchart</a>
-    <a class="btn btn-info" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
-    <a class="btn btn-info" href="<?php echo ADD_COST . $id_project; ?>"><i class="fa fa-plus"></i> Add costs</a>
-  </span>
+  <a class="btn btn-info" href="<?php echo FLOWCHART . $id_project; ?>"><i class="fa fa-book"></i> Flowchart</a>
+  <a class="btn btn-info" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
+  <a class="btn btn-info" href="<?php echo ADD_COST . $id_project; ?>"><i class="fa fa-plus"></i> Add costs</a>
 </div>
 </div>
