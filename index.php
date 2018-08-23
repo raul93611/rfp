@@ -86,6 +86,10 @@ if($parts_route[0] == 'rfp'){
           $current_manager = 'disable_user';
           $chosen_route = 'views/profile.php';
           break;
+        case 'calendar_new_projects':
+          $current_manager = 'calendar_new_projects';
+          $chosen_route = 'views/profile.php';
+          break;
         case 'calendar_projects':
           $current_manager = 'calendar_projects';
           $chosen_route = 'views/profile.php';
@@ -93,6 +97,7 @@ if($parts_route[0] == 'rfp'){
         case 'calendar_my_projects':
           $current_manager = 'calendar_my_projects';
           $chosen_route = 'views/profile.php';
+          break;
         default:
           break;
       }

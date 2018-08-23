@@ -56,6 +56,19 @@
                   <?php
                 }
                 ?>
+
+                <li class="nav-item has-treeview menu-open">
+                    <a href="<?php echo CALENDAR_NEW_PROJECTS; ?>" class="nav-link
+                    <?php
+                    if ($current_manager == 'calendar_projects' || $current_manager == 'calendar_my_projects' || $current_manager == 'calendar_new_projects') {
+                        echo 'active';
+                    }
+                    ?>
+                       ">
+                        <i class="fa fa-calendar nav-icon"></i>
+                        <p>Calendar</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

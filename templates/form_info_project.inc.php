@@ -185,6 +185,6 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
   </div>
 </div>
 <div class="card-footer footer">
-  <a class="btn btn-primary" id="go_back" href="<?php echo PROFILE; ?>"><i class="fa fa-reply"></i></a>
+  <a class="btn btn-primary" id="go_back" href="<?php echo CALENDAR_NEW_PROJECTS; ?>"><i class="fa fa-reply"></i></a>
   <button type="submit" class="btn btn-success" name="save_changes_project"><i class="fa fa-check"></i> Save</button>
 </div>

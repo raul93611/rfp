@@ -396,7 +396,7 @@ if($project-> get_type() == 'services_and_equipment'){
   </div>
 </div>
 <div class="card-footer footer">
-  <a class="btn btn-primary" id="go_back" href="<?php echo PROFILE; ?>"><i class="fa fa-reply"></i></a>
+  <a class="btn btn-primary" id="go_back" href="<?php echo CALENDAR_PROJECTS; ?>"><i class="fa fa-reply"></i></a>
   <button type="submit" class="btn btn-success" name="save_info_project_and_services"><i class="fa fa-check"></i> Save</button>
   <a class="btn btn-info" href="<?php echo FLOWCHART . $id_project; ?>"><i class="fa fa-book"></i> Flowchart</a>
   <a class="btn btn-info" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>

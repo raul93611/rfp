@@ -186,6 +186,12 @@ class ProjectRepository{
     }
   }
 
+  public static function print_comments_projects(){
+    Connection::open_connection();
+    
+    Connection::close_connection();
+  }
+
   public static function delete_project($connection, $id_project){
     if(isset($connection)){
       try{

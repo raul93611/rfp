@@ -47,13 +47,18 @@ CREATE TABLE projects(
 CREATE TABLE comments(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_project INT NOT NULL,
+  id_user INT NOT NULL,
   comment_date DATETIME,
   comment TEXT CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_project)
     REFERENCES projects(id)
     ON UPDATE CASCADE
-    ON DELETE RESTRICT
+    ON DELETE RESTRICT,
+  FOREIGN KEY(id_user)
+    REFERENCES users(id)
+      ON UPDATE CASCADE
+      ON DELETE RESTRICT
 );
 
 CREATE TABLE services(

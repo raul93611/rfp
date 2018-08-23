@@ -12,6 +12,9 @@ define('SERVER', 'http://192.168.1.80/rfp/');
 define('ERROR', SERVER . 'error');
 define('PROFILE', SERVER . 'profile/');
 define('LOG_OUT', SERVER . 'log_out');
+define('CALENDAR_NEW_PROJECTS', PROFILE . 'calendar_new_projects');
+define('CALENDAR_MY_PROJECTS', PROFILE . 'calendar_my_projects');
+define('CALENDAR_PROJECTS', PROFILE . 'calendar_projects');
 
 /**************OPTIONS ADMIN****************************************************/
 define('SIGN_IN', PROFILE . 'sign_in');

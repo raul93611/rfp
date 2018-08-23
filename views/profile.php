@@ -18,6 +18,9 @@ switch ($current_manager) {
   case '':
     include_once 'templates/dashboard.inc.php';
     break;
+  case 'calendar_new_projects':
+    include_once 'templates/dashboard.inc.php';
+    break;
   case 'calendar_projects':
     include_once 'templates/dashboard.inc.php';
     break;

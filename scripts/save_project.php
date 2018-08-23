@@ -26,6 +26,6 @@ if(isset($_POST['save_project'])){
       }
   }
 
-  Redirection::redirect1(PROFILE);
+  Redirection::redirect1(CALENDAR_NEW_PROJECTS);
 }
 ?>
