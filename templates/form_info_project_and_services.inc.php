@@ -130,7 +130,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
       <div class="col">
         <div class="form-group">
           <label for="start_date">Start date:</label>
-          <input class="form-control" type="text" id="start_date" readonly name="start_date" required value="<?php echo $start_date; ?>">
+          <input class="form-control" type="text" id="start_date" disabled name="start_date" required value="<?php echo $start_date; ?>">
         </div>
       </div>
       <div class="col">
@@ -391,7 +391,7 @@ if($project-> get_type() == 'services_and_equipment'){
   </div>
   <div class="card-body">
     <div class="form-group">
-      <textarea class="form-control" name="story_comments" rows="5"></textarea>
+      <textarea class="form-control" name="story_comments" id="story_comments" rows="5"></textarea>
     </div>
   </div>
 </div>

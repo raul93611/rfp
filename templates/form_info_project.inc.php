@@ -8,10 +8,13 @@ if($project-> get_start_date() != '0000-00-00'){
   $start_date = '';
 }
 
+$hoy = getdate();
+$fecha_default = $hoy['mon'] . '/' . $hoy['mday'] . '/' . $hoy['year'] . $hoy['hours'] . ':' . $hoy['minutes'];
+
 if($project-> get_end_date() != '0000-00-00 00:00:00'){
   $end_date = ProjectRepository::mysql_datetime_to_english_format($project-> get_end_date());
 }else{
-  $end_date = '';
+  $end_date = $fecha_default;
 }
 ?>
 <input type="hidden" name="id_project" id="id_project" value="<?php echo $id_project; ?>">
@@ -119,7 +122,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
       <div class="col">
         <div class="form-group">
           <label for="start_date">Start date:</label>
-          <input class="form-control" type="text" id="start_date" readonly name="start_date" value="<?php echo $start_date; ?>">
+          <input class="form-control" type="text" id="start_date" disabled name="start_date" value="<?php echo $start_date; ?>">
         </div>
       </div>
       <div class="col">
