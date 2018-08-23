@@ -32,7 +32,7 @@ if(isset($_POST['save_info_project_and_services'])){
       break;
   }
   $end_date = ProjectRepository::english_format_to_mysql_datetime($_POST['end_date']);
-  ProjectRepository::change_main_information_project(Connection::get_connection(), $_POST['code'], $_POST['project_name'], $end_date, $_POST['priority'], $priority_color, $_POST['type'], $_POST['submission_instructions'], $_POST['description'], $id_project);
+  ProjectRepository::change_main_information_project(Connection::get_connection(), $_POST['code'], $_POST['project_name'], $_POST['business_type'], $end_date, $_POST['priority'], $priority_color, $_POST['submission_instructions'], $_POST['type'], $_POST['subject'], $_POST['description'], $id_project);
   Connection::close_connection();
 
 

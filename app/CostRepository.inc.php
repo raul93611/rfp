@@ -59,7 +59,7 @@ class CostRepository{
     <tr>
       <td><?php echo $cost-> get_description(); ?></td>
       <td>$ <?php echo $cost-> get_amount(); ?></td>
-      <td><?php echo '<a href="' . EDIT_COST . $cost-> get_id() . '" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Edit</a>'; ?></td>
+      <td><?php echo '<a href="' . EDIT_COST . $cost-> get_id() . '" class="btn btn-block btn-sm btn-warning"><i class="fa fa-edit"></i> Edit</a>'; ?></td>
     </tr>
     <?php
   }

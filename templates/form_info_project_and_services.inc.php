@@ -115,6 +115,16 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
           <input class="form-control" type="text" id="project_name" name="project_name" placeholder="Project name ..." autofocus required value="<?php echo $project-> get_project_name(); ?>">
         </div>
       </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="business_type">Business type:</label>
+          <select class="form-control" name="business_type" id="business_type">
+            <option value="federal" <?php if($project-> get_business_type() == 'federal'){echo 'selected';} ?>>Federal</option>
+            <option value="state" <?php if($project-> get_business_type() == 'state'){echo 'selected';} ?>>State</option>
+            <option value="commercial" <?php if($project-> get_business_type() == 'commercial'){echo 'selected';} ?>>Commercial</option>
+          </select>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col">
@@ -129,6 +139,8 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
           <input class="form-control" type="text" id="end_date" name="end_date" required value="<?php echo $end_date; ?>">
         </div>
       </div>
+    </div>
+    <div class="row">
       <div class="col">
         <div class="form-group">
           <label for="priority">Priority:</label>
@@ -137,6 +149,19 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
             <option value="hubzone" <?php if($project-> get_priority() == 'hubzone'){echo 'selected';} ?>>HUBZone</option>
             <option value="small_business" <?php if($project-> get_priority() == 'small_business'){echo 'selected';} ?>>Small Business</option>
             <option value="full_and_open" <?php if($project-> get_priority() == 'full_and_open'){echo 'selected';} ?>>Full and Open</option>
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="submission_instructions">Submission instructions:</label>
+          <select class="form-control" name="submission_instructions" id="submission_instructions">
+            <option value="email" <?php if($project-> get_submission_instructions() == 'email'){echo 'selected';} ?>>E-mail</option>
+            <option value="mail" <?php if($project-> get_submission_instructions() == 'mail'){echo 'selected';} ?>>Mail</option>
+            <option value="gsa" <?php if($project-> get_submission_instructions() == 'gsa'){echo 'selected';} ?>>GSA</option>
+            <option value="fedbid" <?php if($project-> get_submission_instructions() == 'fedbid'){echo 'selected';} ?>>FedBid</option>
+            <option value="seaport" <?php if($project-> get_submission_instructions() == 'seaport'){echo 'selected';} ?>>SeaPort</option>
+            <option value="others" <?php if($project-> get_submission_instructions() == 'others'){echo 'selected';} ?>>Others</option>
           </select>
         </div>
       </div>
@@ -151,14 +176,12 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
       </div>
       <div class="col">
         <div class="form-group">
-          <label for="submission_instructions">Submission instructions:</label>
-          <select class="form-control" name="submission_instructions" id="submission_instructions">
-            <option value="email" <?php if($project-> get_submission_instructions() == 'email'){echo 'selected';} ?>>E-mail</option>
-            <option value="mail" <?php if($project-> get_submission_instructions() == 'mail'){echo 'selected';} ?>>Mail</option>
-            <option value="gsa" <?php if($project-> get_submission_instructions() == 'gsa'){echo 'selected';} ?>>GSA</option>
-            <option value="fedbid" <?php if($project-> get_submission_instructions() == 'fedbid'){echo 'selected';} ?>>FedBid</option>
-            <option value="seaport" <?php if($project-> get_submission_instructions() == 'seaport'){echo 'selected';} ?>>SeaPort</option>
-            <option value="others" <?php if($project-> get_submission_instructions() == 'others'){echo 'selected';} ?>>Others</option>
+          <label for="subject">Subject:</label>
+          <select class="form-control" name="subject" id="subject">
+            <option value="av" <?php if($project-> get_subject() == 'av'){echo 'selected';} ?>>AV</option>
+            <option value="it" <?php if($project-> get_subject() == 'it'){echo 'selected';} ?>>IT</option>
+            <option value="logistics" <?php if($project-> get_subject() == 'logistics'){echo 'selected';} ?>>Logistics</option>
+            <option value="sources_sought" <?php if($project-> get_subject() == 'sources_sought'){echo 'selected';} ?>>Sources sought</option>
           </select>
         </div>
       </div>
@@ -317,7 +340,7 @@ if($project-> get_type() == 'services_and_equipment'){
     <?php
     if($project-> get_type() == 'services_and_equipment'){
       $total_equipment = number_format($rfq_quote-> obtener_total_price(), 2);
-      $total_service = $total_staff + $total_costs;
+      $total_service = $total_staff + ($total_costs*1.05);
       $total = $rfq_quote-> obtener_total_price() + $total_service;
       ?>
       <div class="row">
@@ -340,7 +363,7 @@ if($project-> get_type() == 'services_and_equipment'){
       </div>
       <?php
     }else{
-      $total_service = $total_staff + $total_costs;
+      $total_service = $total_staff + $total_costs*1.05;
       ?>
       <div class="row">
         <div class="col-2">

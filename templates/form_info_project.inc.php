@@ -104,6 +104,16 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
           <input class="form-control" type="text" id="project_name" name="project_name" placeholder="Project name ..." value="<?php echo $project-> get_project_name(); ?>">
         </div>
       </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="business_type">Business type:</label>
+          <select class="form-control" name="business_type" id="business_type">
+            <option value="federal" <?php if($project-> get_business_type() == 'federal'){echo 'selected';} ?>>Federal</option>
+            <option value="state" <?php if($project-> get_business_type() == 'state'){echo 'selected';} ?>>State</option>
+            <option value="commercial" <?php if($project-> get_business_type() == 'commercial'){echo 'selected';} ?>>Commercial</option>
+          </select>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col">

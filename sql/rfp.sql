@@ -36,6 +36,7 @@ CREATE TABLE projects(
   subject VARCHAR(255) NOT NULL,
   result VARCHAR(255) NOT NULL,
   proposed_price DECIMAL(20,2),
+  business_type VARCHAR(255) NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_user)
     REFERENCES users(id)

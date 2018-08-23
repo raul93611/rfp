@@ -3,7 +3,7 @@ class ProjectRepository{
   public static function insert_project($connection, $project){
     if(isset($connection)){
       try{
-        $sql = 'INSERT INTO projects (id_user, start_date, code, link, project_name, end_date, priority, description, submission_instructions, type, flowchart_comments, flowchart, designated_user, reviewed_project, priority_color, create_part_comments, subject, result, proposed_price) VALUES(:id_user, NOW(), :code, :link, :project_name, :end_date, :priority, :description, :submission_instructions, :type, :flowchart_comments, :flowchart, :designated_user, :reviewed_project, :priority_color, :create_part_comments, :subject, :result, :proposed_price)';
+        $sql = 'INSERT INTO projects (id_user, start_date, code, link, project_name, end_date, priority, description, submission_instructions, type, flowchart_comments, flowchart, designated_user, reviewed_project, priority_color, create_part_comments, subject, result, proposed_price, business_type) VALUES(:id_user, NOW(), :code, :link, :project_name, :end_date, :priority, :description, :submission_instructions, :type, :flowchart_comments, :flowchart, :designated_user, :reviewed_project, :priority_color, :create_part_comments, :subject, :result, :proposed_price, :business_type)';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $project-> get_id_user(), PDO::PARAM_STR);
         $sentence-> bindParam(':code', $project-> get_code(), PDO::PARAM_STR);
@@ -23,6 +23,7 @@ class ProjectRepository{
         $sentence-> bindParam(':subject', $project-> get_subject(), PDO::PARAM_STR);
         $sentence-> bindParam(':result', $project-> get_result(), PDO::PARAM_STR);
         $sentence-> bindParam(':proposed_price', $project-> get_proposed_price(), PDO::PARAM_STR);
+        $sentence-> bindParam(':business_type', $project-> get_business_type(), PDO::PARAM_STR);
         $result = $sentence-> execute();
         $id = $connection-> lastInsertId();
       }catch(PDOException $ex){
@@ -90,18 +91,20 @@ class ProjectRepository{
     return $result;
   }
 
-  public static function change_main_information_project($connection, $code, $project_name, $end_date, $priority, $priority_color, $type, $submission_instructions, $description, $id_project){
+  public static function change_main_information_project($connection, $code, $project_name, $business_type, $end_date, $priority, $priority_color, $submission_instructions, $type, $subject, $description, $id_project){
     if(isset($connection)){
       try{
-        $sql = 'UPDATE projects SET code = :code, project_name = :project_name, end_date = :end_date, priority = :priority, priority_color = :priority_color, type = :type, submission_instructions = :submission_instructions, description = :description WHERE id = :id_project';
+        $sql = 'UPDATE projects SET code = :code, project_name = :project_name, business_type = :business_type, end_date = :end_date, priority = :priority, priority_color = :priority_color, submission_instructions = :submission_instructions, type = :type, subject = :subject, description = :description WHERE id = :id_project';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':code', $code, PDO::PARAM_STR);
         $sentence-> bindParam(':project_name', $project_name, PDO::PARAM_STR);
+        $sentence-> bindParam(':business_type', $business_type, PDO::PARAM_STR);
         $sentence-> bindParam(':end_date', $end_date, PDO::PARAM_STR);
         $sentence-> bindParam(':priority', $priority, PDO::PARAM_STR);
         $sentence-> bindParam(':priority_color', $priority_color, PDO::PARAM_STR);
-        $sentence-> bindParam(':type', $type, PDO::PARAM_STR);
         $sentence-> bindParam(':submission_instructions', $submission_instructions, PDO::PARAM_STR);
+        $sentence-> bindParam(':type', $type, PDO::PARAM_STR);
+        $sentence-> bindParam(':subject', $subject, PDO::PARAM_STR);
         $sentence-> bindParam(':description', $description, PDO::PARAM_STR);
         $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
         $sentence-> execute();
@@ -111,10 +114,10 @@ class ProjectRepository{
     }
   }
 
-  public static function fill_out_project($connection, $id_project, $code, $project_name, $start_date, $end_date, $priority, $description, $submission_instructions, $type, $priority_color, $subject){
+  public static function fill_out_project($connection, $id_project, $code, $project_name, $start_date, $end_date, $priority, $description, $submission_instructions, $type, $priority_color, $subject, $business_type){
     if(isset($connection)){
       try{
-        $sql = 'UPDATE projects SET code = :code, project_name = :project_name, start_date = :start_date, end_date = :end_date, priority = :priority, description = :description, submission_instructions = :submission_instructions, type = :type, priority_color = :priority_color, subject = :subject WHERE id = :id_project';
+        $sql = 'UPDATE projects SET code = :code, project_name = :project_name, start_date = :start_date, end_date = :end_date, priority = :priority, description = :description, submission_instructions = :submission_instructions, type = :type, priority_color = :priority_color, subject = :subject, business_type = :business_type WHERE id = :id_project';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':code', $code, PDO::PARAM_STR);
         $sentence-> bindParam(':project_name', $project_name, PDO::PARAM_STR);
@@ -126,6 +129,7 @@ class ProjectRepository{
         $sentence-> bindParam(':type', $type, PDO::PARAM_STR);
         $sentence-> bindParam(':priority_color', $priority_color, PDO::PARAM_STR);
         $sentence-> bindParam(':subject', $subject, PDO::PARAM_STR);
+        $sentence-> bindParam(':business_type', $business_type, PDO::PARAM_STR);
         $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
         $result = $sentence-> execute();
       }catch(PDOException $ex){
@@ -158,7 +162,7 @@ class ProjectRepository{
         $sentence-> execute();
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         if(!empty($result)){
-          $project = new Project($result['id'], $result['id_user'], $result['start_date'], $result['code'], $result['link'], $result['project_name'], $result['end_date'], $result['priority'], $result['description'], $result['submission_instructions'], $result['type'], $result['flowchart_comments'], $result['flowchart'], $result['designated_user'], $result['reviewed_project'], $result['priority_color'], $result['create_part_comments'], $result['subject'], $result['result'], $result['proposed_price']);
+          $project = new Project($result['id'], $result['id_user'], $result['start_date'], $result['code'], $result['link'], $result['project_name'], $result['end_date'], $result['priority'], $result['description'], $result['submission_instructions'], $result['type'], $result['flowchart_comments'], $result['flowchart'], $result['designated_user'], $result['reviewed_project'], $result['priority_color'], $result['create_part_comments'], $result['subject'], $result['result'], $result['proposed_price'], $result['business_type']);
         }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
