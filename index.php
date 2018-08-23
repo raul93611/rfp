@@ -42,6 +42,9 @@ include_once 'app/StaffRepository.inc.php';
 include_once 'app/Cost.inc.php';
 include_once 'app/CostRepository.inc.php';
 
+include_once 'app/Comment.inc.php';
+include_once 'app/CommentRepository.inc.php';
+
 $url_components = parse_url($_SERVER['REQUEST_URI']);
 $route = $url_components['path'];
 

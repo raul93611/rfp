@@ -114,14 +114,13 @@ class ProjectRepository{
     }
   }
 
-  public static function fill_out_project($connection, $id_project, $code, $project_name, $start_date, $end_date, $priority, $description, $submission_instructions, $type, $priority_color, $subject, $business_type){
+  public static function fill_out_project($connection, $id_project, $code, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $priority_color, $subject, $business_type){
     if(isset($connection)){
       try{
-        $sql = 'UPDATE projects SET code = :code, project_name = :project_name, start_date = :start_date, end_date = :end_date, priority = :priority, description = :description, submission_instructions = :submission_instructions, type = :type, priority_color = :priority_color, subject = :subject, business_type = :business_type WHERE id = :id_project';
+        $sql = 'UPDATE projects SET code = :code, project_name = :project_name, end_date = :end_date, priority = :priority, description = :description, submission_instructions = :submission_instructions, type = :type, priority_color = :priority_color, subject = :subject, business_type = :business_type WHERE id = :id_project';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':code', $code, PDO::PARAM_STR);
         $sentence-> bindParam(':project_name', $project_name, PDO::PARAM_STR);
-        $sentence-> bindParam(':start_date', $start_date, PDO::PARAM_STR);
         $sentence-> bindParam(':end_date', $end_date, PDO::PARAM_STR);
         $sentence-> bindParam(':priority', $priority, PDO::PARAM_STR);
         $sentence-> bindParam(':description', $description, PDO::PARAM_STR);

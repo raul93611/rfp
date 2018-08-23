@@ -34,7 +34,7 @@ if(isset($_POST['save_info_project_and_services'])){
   $end_date = ProjectRepository::english_format_to_mysql_datetime($_POST['end_date']);
   ProjectRepository::change_main_information_project(Connection::get_connection(), $_POST['code'], $_POST['project_name'], $_POST['business_type'], $end_date, $_POST['priority'], $priority_color, $_POST['submission_instructions'], $_POST['type'], $_POST['subject'], $_POST['description'], $id_project);
   if(!empty($_POST['story_comments'])){
-    $comment = new Comment('', $id_project, htmlspecialchars($_POST['story_comments']));
+    $comment = new Comment('', $id_project, '', htmlspecialchars($_POST['story_comments']));
     CommentRepository::insert_comment(Connection::get_connection(), $comment);
   }
   Connection::close_connection();

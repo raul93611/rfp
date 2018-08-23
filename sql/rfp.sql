@@ -47,6 +47,7 @@ CREATE TABLE projects(
 CREATE TABLE comments(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_project INT NOT NULL,
+  comment_date DATETIME,
   comment TEXT CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_project)

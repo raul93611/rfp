@@ -9,7 +9,7 @@ if($project-> get_start_date() != '0000-00-00'){
 }
 
 $hoy = getdate();
-$fecha_default = $hoy['mon'] . '/' . $hoy['mday'] . '/' . $hoy['year'] . $hoy['hours'] . ':' . $hoy['minutes'];
+$fecha_default = $hoy['mon'] . '/' . $hoy['mday'] . '/' . $hoy['year'];
 
 if($project-> get_end_date() != '0000-00-00 00:00:00'){
   $end_date = ProjectRepository::mysql_datetime_to_english_format($project-> get_end_date());
