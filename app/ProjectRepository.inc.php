@@ -263,6 +263,47 @@ class ProjectRepository{
     }
   }
 
+  public static function set_submitted_state($connection, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE projects SET submitted = 1, submitted_date = NOW() WHERE id = :id_project';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
+
+  public static function set_award_state($connection, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE projects SET award = 1, award_date = NOW() WHERE id = :id_project';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
+
+  public static function set_result_proposed_price($connection, $result, $proposed_price, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE projects SET result = :result, proposed_price = :proposed_price WHERE id = :id_project';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':result', $result, PDO::PARAM_STR);
+        $sentence-> bindParam(':proposed_price', $proposed_price, PDO::PARAM_STR);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
+
   public static function delete_project($connection, $id_project){
     if(isset($connection)){
       try{

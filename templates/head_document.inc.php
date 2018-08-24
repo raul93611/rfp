@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="<?php echo DIST; ?>css/adminlte.min.css">
         <link rel="stylesheet" href="<?php echo PLUGINS; ?>fullcalendar/fullcalendar.css">
         <link rel="stylesheet" href="<?php echo PLUGINS; ?>datatables/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="<?php echo PLUGINS; ?>iCheck/all.css">
         <link rel="stylesheet" href="<?php echo CSS; ?>styles.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     </head>

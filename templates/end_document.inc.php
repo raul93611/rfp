@@ -128,6 +128,7 @@
 <script src="<?php echo PLUGINS; ?>bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script src="<?php echo PLUGINS; ?>slimScroll/jquery.slimscroll.min.js"></script>
 <script src="<?php echo PLUGINS; ?>fullcalendar/fullcalendar.js"></script>
+<script src="<?php echo PLUGINS; ?>iCheck/icheck.js"></script>
 <script src="<?php echo JS; ?>js_sistema.js"></script>
 <script src="<?php echo DIST; ?>js/pages/dashboard3.js"></script>
 </body>

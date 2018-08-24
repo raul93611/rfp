@@ -38,9 +38,21 @@ if(isset($_POST['save_info_project_and_services'])){
     $comment = new Comment('', $id_project, $_SESSION['id_user'], '', htmlspecialchars($_POST['story_comments']));
     CommentRepository::insert_comment(Connection::get_connection(), $comment);
   }
+
+  if($project-> get_submitted()){
+    ProjectRepository::set_result_proposed_price(Connection::get_connection(), $_POST['result'], $_POST['proposed_price'], $id_project);
+  }
+
+  if(!$project-> get_submitted()){
+    if(isset($_POST['submitted']) && $_POST['submitted'] == 'yes'){
+      ProjectRepository::set_submitted_state(Connection::get_connection(), $id_project);
+    }
+  }else if(!$project-> get_award()){
+    if(isset($_POST['award']) && $_POST['award'] == 'yes'){
+      ProjectRepository::set_award_state(Connection::get_connection(), $id_project);
+    }
+  }
   Connection::close_connection();
-
-
   /*
   foreach ($users as $user) {
     $to = $user-> obtener_email();

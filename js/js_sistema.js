@@ -1,44 +1,24 @@
-//'use strict'
-/*****************************************************************************************************************
-SEARCH USERS
-******************************************************************************************************************/
-function search_users() {
-    var input, filter, table, tr, td, i, select;
-    select = document.getElementById("option");
-    var tipo = select.options[select.selectedIndex].value;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("users_table");
-    tr = table.getElementsByTagName("tr");
-
-    for (i = 0; i < tr.length; i++) {
-        switch (tipo) {
-            case 'First names':
-                td = tr[i].getElementsByTagName("td")[0];
-                break;
-            case 'Last names':
-                td = tr[i].getElementsByTagName("td")[1];
-                break;
-        }
-
-        if (td) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-}
-/******************************************************************************************************************
-END SEARCH USERS
-*******************************************************************************************************************/
-
-
 /********************************************************************************************************************
 STARTJQUERY CODE
 **********************************************************************************************************************/
 $(document).ready(function(){
+  /***************************************HIDE/SHOW PROPOSED PRICE**************************************************/
+  if($('#proposed_price').length != 0){
+    var proposed_price = $('#proposed_price');
+    var result = $('#result');
+    proposed_price.hide();
+    result.change(function(){
+      if(result.val() != 'none'){
+        proposed_price.fadeIn();
+      }else{
+        proposed_price.fadeOut();
+      }
+    });
+  }
+  /*************************************BETTER CHECBOX SUBMITTED AWARD*********************************************/
+  $('input[type="checkbox"].minimal').iCheck({
+    checkboxClass: 'icheckbox_minimal-blue'
+  });
 /***************************************DATATABLES JQUERY**********************************************************/
   $('#staff_table').DataTable({
     paging: false,
