@@ -37,6 +37,10 @@ CREATE TABLE projects(
   result VARCHAR(255) NOT NULL,
   proposed_price DECIMAL(20,2),
   business_type VARCHAR(255) NOT NULL,
+  submitted TINYINT NOT NULL,
+  award TINYINT NOT NULL,
+  submitted_date DATE,
+  award_date DATE,
   PRIMARY KEY(id),
   FOREIGN KEY(id_user)
     REFERENCES users(id)

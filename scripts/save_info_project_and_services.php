@@ -60,6 +60,6 @@ if(isset($_POST['save_info_project_and_services'])){
 
   */
 
-  //Redirection::redirect1(INFO_PROJECT_AND_SERVICES . $id_project);
+  Redirection::redirect1(INFO_PROJECT_AND_SERVICES . $id_project);
 }
 ?>

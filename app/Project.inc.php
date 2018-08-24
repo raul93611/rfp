@@ -21,8 +21,12 @@ class Project{
   private $result;
   private $proposed_price;
   private $business_type;
+  private $submitted;
+  private $award;
+  private $submitted_date;
+  private $award_date;
 
-  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $create_part_comments, $subject, $result, $proposed_price, $business_type){
+  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $create_part_comments, $subject, $result, $proposed_price, $business_type, $submitted, $award, $submitted_date, $award_date){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> start_date = $start_date;
@@ -44,6 +48,10 @@ class Project{
     $this-> result = $result;
     $this-> proposed_price = $proposed_price;
     $this-> business_type = $business_type;
+    $this-> submitted = $submitted;
+    $this-> award = $award;
+    $this-> submitted_date = $submitted_date;
+    $this-> award_date = $award_date;
   }
 
   public function get_id(){
@@ -128,6 +136,22 @@ class Project{
 
   public function get_business_type(){
     return $this-> business_type;
+  }
+
+  public function get_submitted(){
+    return $this-> submitted;
+  }
+
+  public function get_award(){
+    return $this-> award;
+  }
+
+  public function get_submitted_date(){
+    return $this-> submitted_date;
+  }
+
+  public function get_award_date(){
+    return $this-> award_date;
   }
 }
 ?>

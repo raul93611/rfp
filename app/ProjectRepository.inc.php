@@ -3,7 +3,7 @@ class ProjectRepository{
   public static function insert_project($connection, $project){
     if(isset($connection)){
       try{
-        $sql = 'INSERT INTO projects (id_user, start_date, code, link, project_name, end_date, priority, description, submission_instructions, type, flowchart_comments, flowchart, designated_user, reviewed_project, priority_color, create_part_comments, subject, result, proposed_price, business_type) VALUES(:id_user, NOW(), :code, :link, :project_name, :end_date, :priority, :description, :submission_instructions, :type, :flowchart_comments, :flowchart, :designated_user, :reviewed_project, :priority_color, :create_part_comments, :subject, :result, :proposed_price, :business_type)';
+        $sql = 'INSERT INTO projects (id_user, start_date, code, link, project_name, end_date, priority, description, submission_instructions, type, flowchart_comments, flowchart, designated_user, reviewed_project, priority_color, create_part_comments, subject, result, proposed_price, business_type, submitted, award, submitted_date, award_date) VALUES(:id_user, NOW(), :code, :link, :project_name, :end_date, :priority, :description, :submission_instructions, :type, :flowchart_comments, :flowchart, :designated_user, :reviewed_project, :priority_color, :create_part_comments, :subject, :result, :proposed_price, :business_type, :submitted, :award, :submitted_date, :award_date)';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $project-> get_id_user(), PDO::PARAM_STR);
         $sentence-> bindParam(':code', $project-> get_code(), PDO::PARAM_STR);
@@ -24,6 +24,10 @@ class ProjectRepository{
         $sentence-> bindParam(':result', $project-> get_result(), PDO::PARAM_STR);
         $sentence-> bindParam(':proposed_price', $project-> get_proposed_price(), PDO::PARAM_STR);
         $sentence-> bindParam(':business_type', $project-> get_business_type(), PDO::PARAM_STR);
+        $sentence-> bindParam(':submitted', $project-> get_submitted(), PDO::PARAM_STR);
+        $sentence-> bindParam(':award', $project-> get_award(), PDO::PARAM_STR);
+        $sentence-> bindParam(':submitted_date', $project-> get_submitted_date(), PDO::PARAM_STR);
+        $sentence-> bindParam(':award_date', $project-> get_award_date(), PDO::PARAM_STR);
         $result = $sentence-> execute();
         $id = $connection-> lastInsertId();
       }catch(PDOException $ex){
@@ -161,7 +165,7 @@ class ProjectRepository{
         $sentence-> execute();
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         if(!empty($result)){
-          $project = new Project($result['id'], $result['id_user'], $result['start_date'], $result['code'], $result['link'], $result['project_name'], $result['end_date'], $result['priority'], $result['description'], $result['submission_instructions'], $result['type'], $result['flowchart_comments'], $result['flowchart'], $result['designated_user'], $result['reviewed_project'], $result['priority_color'], $result['create_part_comments'], $result['subject'], $result['result'], $result['proposed_price'], $result['business_type']);
+          $project = new Project($result['id'], $result['id_user'], $result['start_date'], $result['code'], $result['link'], $result['project_name'], $result['end_date'], $result['priority'], $result['description'], $result['submission_instructions'], $result['type'], $result['flowchart_comments'], $result['flowchart'], $result['designated_user'], $result['reviewed_project'], $result['priority_color'], $result['create_part_comments'], $result['subject'], $result['result'], $result['proposed_price'], $result['business_type'], $result['submitted'], $result['award'], $result['submitted_date'], $result['award_date']);
         }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -186,10 +190,77 @@ class ProjectRepository{
     }
   }
 
+  public static function get_all_projects($connection){
+    $projects = [];
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT * FROM projects WHERE submitted = 0 ORDER BY end_date DESC LIMIT 10';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> execute();
+        $result = $sentence-> fetchAll();
+        if(count($result)){
+          foreach ($result as $row) {
+            $projects[] = new Project($row['id'], $row['id_user'], $row['start_date'], $row['code'], $row['link'], $row['project_name'], $row['end_date'], $row['priority'], $row['description'], $row['submission_instructions'], $row['type'], $row['flowchart_comments'], $row['flowchart'], $row['designated_user'], $row['reviewed_project'], $row['priority_color'], $row['create_part_comments'], $row['subject'], $row['result'], $row['proposed_price'], $row['business_type'], $row['submitted'], $row['award'], $row['submitted_date'], $row['award_date']);
+          }
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $projects;
+  }
+
   public static function print_comments_projects(){
     Connection::open_connection();
-    
+    $projects = self::get_all_projects(Connection::get_connection());
     Connection::close_connection();
+    if(count($projects)){
+      foreach ($projects as $project) {
+        ?>
+        <ul class="timeline">
+          <li>
+            <i class="fa fa-bookmark"></i>
+            <div class="timeline-item">
+              <h3 class="timeline-header no-border">Project: <a href="<?php echo INFO_PROJECT_AND_SERVICES . $project-> get_id(); ?>"><?php echo $project-> get_project_name(); ?></a></h3>
+            </div>
+          </li>
+          <?php
+          Connection::open_connection();
+          $comments = CommentRepository::get_all_comments_by_id_project(Connection::get_connection(), $project-> get_id());
+          Connection::close_connection();
+          foreach ($comments as $comment) {
+            ?>
+            <li>
+              <i class="fa fa-user"></i>
+              <div class="timeline-item">
+                <span class="time"><i class="fa fa-clock-o"></i> <?php echo $comment-> get_comment_date(); ?></span>
+                <h3 class="timeline-header">
+                  <span class="text-primary">
+                  <?php
+                  Connection::open_connection();
+                  $user = UserRepository::get_user_by_id(Connection::get_connection(), $comment-> get_id_user());
+                  Connection::close_connection();
+                  echo $user-> get_username();
+                  ?>
+                  </span>
+                   said</h3>
+                <div class="timeline-body">
+                  <?php echo nl2br($comment-> get_comment()); ?>
+                </div>
+              </div>
+            </li>
+
+            <?php
+          }
+          ?>
+          <li>
+            <i class="fa fa-clock-o"></i>
+          </li>
+          </ul>
+          <br>
+          <?php
+      }
+    }
   }
 
   public static function delete_project($connection, $id_project){

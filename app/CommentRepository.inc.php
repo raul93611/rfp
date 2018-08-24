@@ -14,5 +14,26 @@ class CommentRepository{
       }
     }
   }
+
+  public static function get_all_comments_by_id_project($connection, $id_project){
+    $comments = [];
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT * FROM comments WHERE id_project = :id_project ORDER BY comment_date DESC';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+        $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
+        if(count($result)){
+          foreach ($result as $row) {
+            $comments[] = new Comment($row['id'], $row['id_project'], $row['id_user'], $row['comment_date'], $row['comment']);
+          }
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $comments;
+  }
 }
 ?>
