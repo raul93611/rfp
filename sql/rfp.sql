@@ -77,6 +77,20 @@ CREATE TABLE services(
     ON DELETE RESTRICT
 );
 
+CREATE TABLE years(
+  id INT NOT NULL AUTO_INCREMENT UNIQUE,
+  id_service INT NOT NULL,
+  description TEXT CHARACTER SET utf8 NOT NULL,
+  quantity INT NOT NULL,
+  amount DECIMAL(20,2),
+  year INT NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(id_service)
+    REFERENCES services(id)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
+);
+
 CREATE TABLE costs(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_service INT NOT NULL,

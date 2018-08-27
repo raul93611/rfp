@@ -8,7 +8,7 @@ if(isset($_POST['save_changes_project'])){
     Connection::open_connection();
     ProjectRepository::change_designated_user(Connection::get_connection(), $_POST['designated_user'], $_POST['id_project']);
     Connection::close_connection();
-    Redirection::redirect1(PROFILE);
+    Redirection::redirect(CALENDAR_NEW_PROJECTS);
   }
   $end_date = ProjectRepository::english_format_to_mysql_datetime($_POST['end_date']);
 

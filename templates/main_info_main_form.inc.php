@@ -1,69 +1,3 @@
-<?php
-Connection::open_connection();
-$project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
-Connection::close_connection();
-if($project-> get_start_date() != '0000-00-00'){
-  $start_date = ProjectRepository::mysql_date_to_english_format($project-> get_start_date());
-}else{
-  $start_date = '';
-}
-
-$hoy = getdate();
-$fecha_default = $hoy['mon'] . '/' . $hoy['mday'] . '/' . $hoy['year'];
-
-if($project-> get_end_date() != '0000-00-00 00:00:00'){
-  $end_date = ProjectRepository::mysql_datetime_to_english_format($project-> get_end_date());
-}else{
-  $end_date = $fecha_default;
-}
-?>
-<input type="hidden" name="id_project" id="id_project" value="<?php echo $id_project; ?>">
-<div class="card card-primary">
-  <div class="card-header">
-      <h3 class="card-title"><i class="fa fa-plus"></i> Links and documents</h3>
-  </div>
-  <div class="card-body">
-    <div class="form-group">
-      <label>Link:</label><br>
-      <span>
-        <?php if($project-> get_link() != ''){
-        ?>
-        <a href="<?php echo $project-> get_link(); ?>" target="_blank"><?php echo $project-> get_link(); ?></a>
-        <?php
-        }else{
-          ?>
-          <h3 class="text-center text-danger"><i class="fa fa-times"></i> No link!</h3>
-          <?php
-        }
-        ?>
-      </span>
-    </div>
-    <div class="form-group">
-      <label>Documents:</label>
-      <?php
-      $directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
-      if (is_dir($directory)) {
-          $manager = opendir($directory);
-          echo '<div class="list-group">';
-          $folder = @scandir($directory);
-          if(count($folder) <= 2){
-            echo '<h3 class="text-center text-danger"><i class="fa fa-times"></i> No files!</h3>';
-          }
-          while (($file = readdir($manager)) !== false) {
-              $complete_directory = $directory . "/" . $file;
-              if ($file != "." && $file != "..") {
-                  $file_url = str_replace(' ', '%20', $file);
-                  $file_url = str_replace('#', '%23', $file_url);
-                  echo '<li class="list-group-item"><a download href="' . DOCS . $id_project . '/' . $file_url . '">' . $file . '</a><a href="' . DELETE_DOCUMENT . $id_project . '/' . $file_url . '" class="close"><span aria-hidden="true">&times;</span></a></li>';
-              }
-          }
-          closedir($manager);
-          echo "</div>";
-      }
-      ?>
-    </div>
-  </div>
-</div>
 <div class="card card-primary">
   <div class="card-header">
     <h3 class="card-title"><i class="fa fa-plus"></i> Main information</h3>
@@ -81,7 +15,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
           if (count($users)) {
             ?>
             <label for="designated_user">Designated user:</label>
-            <select id="designated_user" class="form-control" name="designated_user">
+            <select id="designated_user" disabled class="form-control" name="designated_user">
             <?php
             foreach ($users as $user) {
               ?>
@@ -104,7 +38,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
       <div class="col">
         <div class="form-group">
           <label for="project_name">Name:</label>
-          <input class="form-control" type="text" id="project_name" name="project_name" placeholder="Project name ..." value="<?php echo $project-> get_project_name(); ?>">
+          <input class="form-control" type="text" id="project_name" name="project_name" placeholder="Project name ..." autofocus required value="<?php echo $project-> get_project_name(); ?>">
         </div>
       </div>
       <div class="col">
@@ -122,19 +56,19 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
       <div class="col">
         <div class="form-group">
           <label for="start_date">Start date:</label>
-          <input class="form-control" type="text" id="start_date" readonly name="start_date" value="<?php echo $start_date; ?>">
+          <input class="form-control" type="text" id="start_date" disabled name="start_date" required value="<?php echo $start_date; ?>">
         </div>
       </div>
       <div class="col">
         <div class="form-group">
           <label for="end_date">End date:</label>
-          <input class="form-control" type="text" id="end_date" name="end_date" value="<?php echo $end_date; ?>">
+          <input class="form-control" type="text" id="end_date" name="end_date" required value="<?php echo $end_date; ?>">
         </div>
       </div>
       <div class="col">
         <div class="form-group">
           <label for="quantity_years">Years:</label>
-          <input type="number" name="quantity_years"  min="1" class="form-control" id="quantity_years" value="<?php echo $project-> get_quantity_years(); ?>">
+          <input type="number" name="quantity_years" class="form-control" id="quantity_years" value="<?php echo $project-> get_quantity_years(); ?>">
         </div>
       </div>
     </div>
@@ -189,8 +123,4 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
       <textarea class="form-control" name="description" id="description" rows="10"><?php echo $project-> get_description(); ?></textarea>
     </div>
   </div>
-</div>
-<div class="card-footer footer">
-  <a class="btn btn-primary" id="go_back" href="<?php echo CALENDAR_NEW_PROJECTS; ?>"><i class="fa fa-reply"></i></a>
-  <button type="submit" class="btn btn-success" name="save_changes_project"><i class="fa fa-check"></i> Save</button>
 </div>
