@@ -122,13 +122,19 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
       <div class="col">
         <div class="form-group">
           <label for="start_date">Start date:</label>
-          <input class="form-control" type="text" id="start_date" disabled name="start_date" value="<?php echo $start_date; ?>">
+          <input class="form-control" type="text" id="start_date" readonly name="start_date" value="<?php echo $start_date; ?>">
         </div>
       </div>
       <div class="col">
         <div class="form-group">
           <label for="end_date">End date:</label>
           <input class="form-control" type="text" id="end_date" name="end_date" value="<?php echo $end_date; ?>">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="quantity_years">Years:</label>
+          <input type="number" name="quantity_years" class="form-control" id="quantity_years" value="<?php echo $project-> get_quantity_years(); ?>">
         </div>
       </div>
     </div>

@@ -1,8 +1,4 @@
 <?php
-Connection::open_connection();
-$project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
-Connection::close_connection();
-
 if($project-> get_type() == 'services_and_equipment'){
   Conexion::abrir_conexion();
   $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $id_project);
@@ -137,6 +133,12 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
         <div class="form-group">
           <label for="end_date">End date:</label>
           <input class="form-control" type="text" id="end_date" name="end_date" required value="<?php echo $end_date; ?>">
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="quantity_years">Years:</label>
+          <input type="number" name="quantity_years" class="form-control" id="quantity_years" value="<?php echo $project-> get_quantity_years(); ?>">
         </div>
       </div>
     </div>
@@ -338,24 +340,72 @@ if($project-> get_type() == 'services_and_equipment'){
   </div>
   <div class="card-body">
     <?php
+    $quantity_years = $project-> get_quantity_years();
     if($project-> get_type() == 'services_and_equipment'){
       $total_equipment = number_format($rfq_quote-> obtener_total_price(), 2);
-      $total_service = $total_staff + ($total_costs*1.05);
-      $total = $rfq_quote-> obtener_total_price() + $total_service;
+      $base_year = $total_staff + ($total_costs*1.05);
       ?>
       <div class="row">
         <div class="col-2">
 
         </div>
-        <div class="col-4">
-          <h3 class="text-info">Services:</h3>
-          <h3 class="text-info">Equipment:</h3>
-          <h3 class="text-info">Total:</h3>
+        <div class="col-3">
+          <?php
+          for ($i = 1; $i <= $quantity_years ; $i++) {
+            if($i == 1){
+              ?><h3 class="text-info">Services:</h3><?php
+            }else{
+              ?><h3 class="text-info"></h3><?php
+            }
+          }
+          ?>
+
         </div>
-        <div class="col-4">
+        <div class="col-3">
+          <?php
+          $total_service = 0;
+          for ($i = 1; $i <= $quantity_years; $i++) {
+            if($i == 1){
+              ?><h3 class="text-info">$ <?php echo number_format($base_year, 2); ?></h3><?php
+            }else{
+              $base_year *= 1.03;
+              ?><h3 class="text-info">$ <?php echo number_format($base_year, 2); ?></h3><?php
+            }
+
+            $total_service += $base_year;
+          }
+          ?>
+
+        </div>
+        <div class="col-2">
+          <?php
+          for ($i = 1; $i <= $quantity_years; $i++) {
+            if($i == 1){
+              ?><h3 class="text-info"><small>(Year <?php echo $i; ?>)</small></h3><?php
+            }else{
+              ?><h3 class="text-info"><small>(Year <?php echo $i; ?>)</small></h3><?php
+            }
+          }
+          ?>
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-3">
+          <h3 class="text-info">Total:</h3>
+          <h3 class="text-info">Equipment:</h3>
+        </div>
+        <div class="col-3">
           <h3 class="text-info">$ <?php echo number_format($total_service, 2); ?></h3>
           <h3 class="text-info">$ <?php echo $total_equipment; ?></h3>
-          <h3 class="text-info">$ <?php echo number_format($total, 2); ?></h3>
+        </div>
+        <div class="col-2">
+
         </div>
         <div class="col-2">
 
@@ -363,17 +413,66 @@ if($project-> get_type() == 'services_and_equipment'){
       </div>
       <?php
     }else{
-      $total_service = $total_staff + $total_costs*1.05;
+      $base_year = $total_staff + $total_costs*1.05;
       ?>
       <div class="row">
         <div class="col-2">
 
         </div>
-        <div class="col-4">
-          <h3 class="text-info">Services:</h3>
+        <div class="col-3">
+          <?php
+          for ($i = 1; $i <= $quantity_years ; $i++) {
+            if($i == 1){
+              ?><h3 class="text-info">Services:</h3><?php
+            }else{
+              ?><h3 class="text-info"></h3><?php
+            }
+          }
+          ?>
         </div>
-        <div class="col-4">
-          <h3 class="text-center text-info">$ <?php echo number_format($total_service, 2); ?></h3>
+        <div class="col-3">
+          <?php
+          $total_service = 0;
+          for ($i = 1; $i <= $quantity_years; $i++) {
+            if($i == 1){
+              ?><h3 class="text-info">$ <?php echo number_format($base_year, 2); ?></h3><?php
+            }else{
+              $base_year *= 1.03;
+              ?><h3 class="text-info">$ <?php echo number_format($base_year, 2); ?></h3><?php
+            }
+
+            $total_service += $base_year;
+          }
+          ?>
+
+        </div>
+        <div class="col-2">
+          <?php
+          for ($i = 1; $i <= $quantity_years; $i++) {
+            if($i == 1){
+              ?><h3 class="text-info"><small>(Year <?php echo $i; ?>)</small></h3><?php
+            }else{
+              ?><h3 class="text-info"><small>(Year <?php echo $i; ?>)</small></h3><?php
+            }
+          }
+          ?>
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-3">
+          <h3 class="text-info">Total:</h3>
+        </div>
+        <div class="col-3">
+          <h3 class="text-info">$ <?php echo number_format($total_service, 2); ?></h3>
+        </div>
+        <div class="col-2">
+
         </div>
         <div class="col-2">
 
@@ -406,7 +505,7 @@ if($project-> get_type() == 'services_and_equipment'){
     ?>
   </div>
 </div>
-<input type="hidden" name="total_service" value="<?php echo $total_service; ?>">
+<input type="hidden" name="total_service" value="<?php echo $dtotal_service; ?>">
 <?php
 if($project-> get_submitted()){
   ?>
@@ -450,5 +549,6 @@ if($project-> get_submitted()){
   <a class="btn btn-info" href="<?php echo FLOWCHART . $id_project; ?>"><i class="fa fa-book"></i> Flowchart</a>
   <a class="btn btn-info" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
   <a class="btn btn-info" href="<?php echo ADD_COST . $id_project; ?>"><i class="fa fa-plus"></i> Add costs</a>
+  <a class="btn btn-info" href="<?php echo MAKE_PROPOSAL . $id_project; ?>"><i class="fa fa-cogs"></i> Make proposal</a>
 </div>
 </div>

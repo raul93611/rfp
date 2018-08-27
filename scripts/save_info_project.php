@@ -69,7 +69,7 @@ if(isset($_POST['save_changes_project'])){
     Connection::close_connection();
   }
   Connection::open_connection();
-  ProjectRepository::fill_out_project(Connection::get_connection(), $_POST['id_project'], $_POST['code'], $_POST['project_name'], $end_date, $_POST['priority'], htmlspecialchars($_POST['description']), $_POST['submission_instructions'], $_POST['type'], $priority_color, $_POST['subject'], $_POST['business_type']);
+  ProjectRepository::fill_out_project(Connection::get_connection(), $_POST['id_project'], $_POST['code'], $_POST['project_name'], $end_date, $_POST['priority'], htmlspecialchars($_POST['description']), $_POST['submission_instructions'], $_POST['type'], $priority_color, $_POST['subject'], $_POST['business_type'], $_POST['quantity_years']);
   Connection::close_connection();
   Redirection::redirect1(FLOWCHART . $id_project);
 }

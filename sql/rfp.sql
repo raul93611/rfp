@@ -41,6 +41,7 @@ CREATE TABLE projects(
   award TINYINT NOT NULL,
   submitted_date DATE,
   award_date DATE,
+  quantity_years INT NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_user)
     REFERENCES users(id)

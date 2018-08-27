@@ -174,6 +174,11 @@ if($parts_route[0] == 'rfp'){
           $current_manager = 'edit_cost';
           $chosen_route = 'views/profile.php';
           break;
+        case 'make_proposal':
+          $id_project = $parts_route[3];
+          $current_manager = 'make_proposal';
+          $chosen_route = 'views/profile.php';
+          break;
         default:
           break;
       }

@@ -12,6 +12,7 @@ define('SERVER', 'http://192.168.1.80/rfp/');
 define('ERROR', SERVER . 'error');
 define('PROFILE', SERVER . 'profile/');
 define('LOG_OUT', SERVER . 'log_out');
+/**************************CALENDARS*******************************************/
 define('CALENDAR_NEW_PROJECTS', PROFILE . 'calendar_new_projects');
 define('CALENDAR_MY_PROJECTS', PROFILE . 'calendar_my_projects');
 define('CALENDAR_PROJECTS', PROFILE . 'calendar_projects');
@@ -44,6 +45,8 @@ define('SAVE_COST', SERVER . 'save_cost/');
 define('EDIT_COST', PROFILE . 'edit_cost/');
 define('SAVE_EDIT_COST', SERVER . 'save_edit_cost/');
 /********************************************************************************/
+/*********************************PROPOSAL***************************************/
+define('MAKE_PROPOSAL', PROFILE . 'make_proposal/');
 /*****************************SEND ERROR QUOTE EMAIL****************************/
 define('SEND_ERROR_QUOTE_EMAIL', SERVER . 'send_error_quote_email');
 /*******************************************************************************/
