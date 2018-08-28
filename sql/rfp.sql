@@ -42,6 +42,9 @@ CREATE TABLE projects(
   submitted_date DATE,
   award_date DATE,
   quantity_years INT NOT NULL,
+  proposal_description TEXT CHARACTER SET utf8 NOT NULL,
+  proposal_quantity TEXT CHARACTER SET utf8 NOT NULL,
+  proposal_amount TEXT CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_user)
     REFERENCES users(id)
@@ -73,20 +76,6 @@ CREATE TABLE services(
   PRIMARY KEY(id),
   FOREIGN KEY(id_project)
     REFERENCES projects(id)
-    ON UPDATE CASCADE
-    ON DELETE RESTRICT
-);
-
-CREATE TABLE years(
-  id INT NOT NULL AUTO_INCREMENT UNIQUE,
-  id_service INT NOT NULL,
-  description TEXT CHARACTER SET utf8 NOT NULL,
-  quantity INT NOT NULL,
-  amount DECIMAL(20,2),
-  year INT NOT NULL,
-  PRIMARY KEY(id),
-  FOREIGN KEY(id_service)
-    REFERENCES services(id)
     ON UPDATE CASCADE
     ON DELETE RESTRICT
 );

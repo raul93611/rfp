@@ -3,7 +3,7 @@ class ProjectRepository{
   public static function insert_project($connection, $project){
     if(isset($connection)){
       try{
-        $sql = 'INSERT INTO projects (id_user, start_date, code, link, project_name, end_date, priority, description, submission_instructions, type, flowchart_comments, flowchart, designated_user, reviewed_project, priority_color, create_part_comments, subject, result, proposed_price, business_type, submitted, award, submitted_date, award_date, quantity_years) VALUES(:id_user, NOW(), :code, :link, :project_name, :end_date, :priority, :description, :submission_instructions, :type, :flowchart_comments, :flowchart, :designated_user, :reviewed_project, :priority_color, :create_part_comments, :subject, :result, :proposed_price, :business_type, :submitted, :award, :submitted_date, :award_date, :quantity_years)';
+        $sql = 'INSERT INTO projects (id_user, start_date, code, link, project_name, end_date, priority, description, submission_instructions, type, flowchart_comments, flowchart, designated_user, reviewed_project, priority_color, create_part_comments, subject, result, proposed_price, business_type, submitted, award, submitted_date, award_date, quantity_years, proposal_description, proposal_quantity, proposal_amount) VALUES(:id_user, NOW(), :code, :link, :project_name, :end_date, :priority, :description, :submission_instructions, :type, :flowchart_comments, :flowchart, :designated_user, :reviewed_project, :priority_color, :create_part_comments, :subject, :result, :proposed_price, :business_type, :submitted, :award, :submitted_date, :award_date, :quantity_years, :proposal_description, :proposal_quantity, :proposal_amount)';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $project-> get_id_user(), PDO::PARAM_STR);
         $sentence-> bindParam(':code', $project-> get_code(), PDO::PARAM_STR);
@@ -29,6 +29,9 @@ class ProjectRepository{
         $sentence-> bindParam(':submitted_date', $project-> get_submitted_date(), PDO::PARAM_STR);
         $sentence-> bindParam(':award_date', $project-> get_award_date(), PDO::PARAM_STR);
         $sentence-> bindParam(':quantity_years', $project-> get_quantity_years(), PDO::PARAM_STR);
+        $sentence-> bindParam(':proposal_description', $project-> get_proposal_description(), PDO::PARAM_STR);
+        $sentence-> bindParam(':proposal_quantity', $project-> get_proposal_quantity(), PDO::PARAM_STR);
+        $sentence-> bindParam(':proposal_amount', $project-> get_proposal_amount(), PDO::PARAM_STR);
         $result = $sentence-> execute();
         $id = $connection-> lastInsertId();
       }catch(PDOException $ex){
@@ -168,7 +171,7 @@ class ProjectRepository{
         $sentence-> execute();
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         if(!empty($result)){
-          $project = new Project($result['id'], $result['id_user'], $result['start_date'], $result['code'], $result['link'], $result['project_name'], $result['end_date'], $result['priority'], $result['description'], $result['submission_instructions'], $result['type'], $result['flowchart_comments'], $result['flowchart'], $result['designated_user'], $result['reviewed_project'], $result['priority_color'], $result['create_part_comments'], $result['subject'], $result['result'], $result['proposed_price'], $result['business_type'], $result['submitted'], $result['award'], $result['submitted_date'], $result['award_date'], $result['quantity_years']);
+          $project = new Project($result['id'], $result['id_user'], $result['start_date'], $result['code'], $result['link'], $result['project_name'], $result['end_date'], $result['priority'], $result['description'], $result['submission_instructions'], $result['type'], $result['flowchart_comments'], $result['flowchart'], $result['designated_user'], $result['reviewed_project'], $result['priority_color'], $result['create_part_comments'], $result['subject'], $result['result'], $result['proposed_price'], $result['business_type'], $result['submitted'], $result['award'], $result['submitted_date'], $result['award_date'], $result['quantity_years'], $result['proposal_description'], $result['proposal_quantity'], $result['proposal_amount']);
         }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -197,13 +200,13 @@ class ProjectRepository{
     $projects = [];
     if(isset($connection)){
       try{
-        $sql = 'SELECT * FROM projects WHERE submitted = 0 ORDER BY end_date DESC LIMIT 10';
+        $sql = 'SELECT * FROM projects WHERE submitted = 0  AND reviewed_project = 1 ORDER BY end_date';
         $sentence = $connection-> prepare($sql);
         $sentence-> execute();
         $result = $sentence-> fetchAll();
         if(count($result)){
           foreach ($result as $row) {
-            $projects[] = new Project($row['id'], $row['id_user'], $row['start_date'], $row['code'], $row['link'], $row['project_name'], $row['end_date'], $row['priority'], $row['description'], $row['submission_instructions'], $row['type'], $row['flowchart_comments'], $row['flowchart'], $row['designated_user'], $row['reviewed_project'], $row['priority_color'], $row['create_part_comments'], $row['subject'], $row['result'], $row['proposed_price'], $row['business_type'], $row['submitted'], $row['award'], $row['submitted_date'], $row['award_date'], $row['quantity_years']);
+            $projects[] = new Project($row['id'], $row['id_user'], $row['start_date'], $row['code'], $row['link'], $row['project_name'], $row['end_date'], $row['priority'], $row['description'], $row['submission_instructions'], $row['type'], $row['flowchart_comments'], $row['flowchart'], $row['designated_user'], $row['reviewed_project'], $row['priority_color'], $row['create_part_comments'], $row['subject'], $row['result'], $row['proposed_price'], $row['business_type'], $row['submitted'], $row['award'], $row['submitted_date'], $row['award_date'], $row['quantity_years'], $row['proposal_description'], $row['proposal_quantity'], $row['proposal_amount']);
           }
         }
       }catch(PDOException $ex){
@@ -266,6 +269,20 @@ class ProjectRepository{
     }
   }
 
+  public static function set_proposal_amount($connection, $proposal_amount, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE projects SET proposal_amount = :proposal_amount WHERE id = :id_project';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':proposal_amount', $proposal_amount, PDO::PARAM_STR);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
+
   public static function set_submitted_state($connection, $id_project){
     if(isset($connection)){
       try{
@@ -299,6 +316,22 @@ class ProjectRepository{
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':result', $result, PDO::PARAM_STR);
         $sentence-> bindParam(':proposed_price', $proposed_price, PDO::PARAM_STR);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
+
+  public static function set_proposal_data($connection, $proposal_description, $proposal_quantity, $proposal_amount, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE projects SET proposal_description = :proposal_description, proposal_quantity = :proposal_quantity, proposal_amount = :proposal_amount WHERE id = :id_project';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':proposal_description', $proposal_description, PDO::PARAM_STR);
+        $sentence-> bindParam(':proposal_quantity', $proposal_quantity, PDO::PARAM_STR);
+        $sentence-> bindParam(':proposal_amount', $proposal_amount, PDO::PARAM_STR);
         $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
         $sentence-> execute();
       }catch(PDOException $ex){

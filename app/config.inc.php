@@ -47,6 +47,8 @@ define('SAVE_EDIT_COST', SERVER . 'save_edit_cost/');
 /********************************************************************************/
 /*********************************PROPOSAL***************************************/
 define('MAKE_PROPOSAL', PROFILE . 'make_proposal/');
+define('SAVE_PROPOSAL_DATA', SERVER . 'save_proposal_data/');
+define('GENERATE_PROPOSAL', SERVER . 'generate_proposal/');
 /*****************************SEND ERROR QUOTE EMAIL****************************/
 define('SEND_ERROR_QUOTE_EMAIL', SERVER . 'send_error_quote_email');
 /*******************************************************************************/

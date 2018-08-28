@@ -76,56 +76,74 @@ if($parts_route[0] == 'rfp'){
           break;
     }
   }else if(count($parts_route) == 3){
-    if($parts_route[1] == 'profile'){
-      switch ($parts_route[2]) {
-        case 'sign_in':
-          $current_manager = 'sign_in';
-          $chosen_route = 'views/profile.php';
-          break;
-        case 'disable_user':
-          $current_manager = 'disable_user';
-          $chosen_route = 'views/profile.php';
-          break;
-        case 'calendar_new_projects':
-          $current_manager = 'calendar_new_projects';
-          $chosen_route = 'views/profile.php';
-          break;
-        case 'calendar_projects':
-          $current_manager = 'calendar_projects';
-          $chosen_route = 'views/profile.php';
-          break;
-        case 'calendar_my_projects':
-          $current_manager = 'calendar_my_projects';
-          $chosen_route = 'views/profile.php';
-          break;
-        default:
-          break;
+    switch($parts_route[1]){
+      case 'profile':
+        switch ($parts_route[2]) {
+          case 'sign_in':
+            $current_manager = 'sign_in';
+            $chosen_route = 'views/profile.php';
+            break;
+          case 'disable_user':
+            $current_manager = 'disable_user';
+            $chosen_route = 'views/profile.php';
+            break;
+          case 'calendar_new_projects':
+            $current_manager = 'calendar_new_projects';
+            $chosen_route = 'views/profile.php';
+            break;
+          case 'calendar_projects':
+            $current_manager = 'calendar_projects';
+            $chosen_route = 'views/profile.php';
+            break;
+          case 'calendar_my_projects':
+            $current_manager = 'calendar_my_projects';
+            $chosen_route = 'views/profile.php';
+            break;
+          default:
+            break;
+        }
+        break;
+      case 'save_info_project':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/save_info_project.php';
+        break;
+      case 'save_flowchart':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/save_flowchart.php';
+        break;
+      case 'delete_project':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/delete_project.php';
+        break;
+      case 'save_info_project_and_services':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/save_info_project_and_services.php';
+        break;
+      case 'save_staff':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/save_staff.php';
+        break;
+      case 'save_edit_single_staff':
+        $id_staff = $parts_route[2];
+        $chosen_route = 'scripts/save_edit_single_staff.php';
+        break;
+      case 'save_cost':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/save_cost.php';
+        break;
+      case 'save_edit_cost':
+        $id_cost = $parts_route[2];
+        $chosen_route = 'scripts/save_edit_cost.php';
+        break;
+      case 'save_proposal_data':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/save_proposal_data.php';
+        break;
+      case 'generate_proposal':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/generate_proposal.php';
+        break;
       }
-    }else if($parts_route[1] == 'save_info_project'){
-      $id_project = $parts_route[2];
-      $chosen_route = 'scripts/save_info_project.php';
-    }else if($parts_route[1] == 'save_flowchart'){
-      $id_project = $parts_route[2];
-      $chosen_route = 'scripts/save_flowchart.php';
-    }else if($parts_route[1] == 'delete_project'){
-      $id_project = $parts_route[2];
-      $chosen_route = 'scripts/delete_project.php';
-    }else if($parts_route[1] == 'save_info_project_and_services'){
-      $id_project = $parts_route[2];
-      $chosen_route = 'scripts/save_info_project_and_services.php';
-    }else if($parts_route[1] == 'save_staff'){
-      $id_project = $parts_route[2];
-      $chosen_route = 'scripts/save_staff.php';
-    }else if($parts_route[1] == 'save_edit_single_staff'){
-      $id_staff = $parts_route[2];
-      $chosen_route = 'scripts/save_edit_single_staff.php';
-    }else if($parts_route[1] == 'save_cost'){
-      $id_project = $parts_route[2];
-      $chosen_route = 'scripts/save_cost.php';
-    }else if($parts_route[1] == 'save_edit_cost'){
-      $id_cost = $parts_route[2];
-      $chosen_route = 'scripts/save_edit_cost.php';
-    }
   }else if(count($parts_route) == 4){
     if($parts_route[1] == 'profile'){
       switch ($parts_route[2]) {

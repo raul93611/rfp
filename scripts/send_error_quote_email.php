@@ -25,6 +25,6 @@ if(isset($_POST['send_error_quote_email'])){
   ';
   mail($to, $subject, $message, $headers);
   */
-  Redirection::redirect1(INFO_PROJECT_AND_SERVICES . $_POST['id_project']);
+  Redirection::redirect(INFO_PROJECT_AND_SERVICES . $_POST['id_project']);
 }
 ?>

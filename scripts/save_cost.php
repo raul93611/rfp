@@ -6,6 +6,6 @@ if(isset($_POST['save_cost'])){
   $cost = new Cost('', $service-> get_id(), $_POST['description'], $_POST['amount']);
   CostRepository::insert_cost(Connection::get_connection(), $cost);
   Connection::close_connection();
-  Redirection::redirect1(INFO_PROJECT_AND_SERVICES . $id_project);
+  Redirection::redirect(INFO_PROJECT_AND_SERVICES . $id_project);
 }
 ?>

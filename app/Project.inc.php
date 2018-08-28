@@ -26,8 +26,11 @@ class Project{
   private $submitted_date;
   private $award_date;
   private $quantity_years;
+  private $proposal_description;
+  private $proposal_quantity;
+  private $proposal_amount;
 
-  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $create_part_comments, $subject, $result, $proposed_price, $business_type, $submitted, $award, $submitted_date, $award_date, $quantity_years){
+  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $create_part_comments, $subject, $result, $proposed_price, $business_type, $submitted, $award, $submitted_date, $award_date, $quantity_years, $proposal_description, $proposal_quantity, $proposal_amount){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> start_date = $start_date;
@@ -54,6 +57,9 @@ class Project{
     $this-> submitted_date = $submitted_date;
     $this-> award_date = $award_date;
     $this-> quantity_years = $quantity_years;
+    $this-> proposal_description = $proposal_description;
+    $this-> proposal_quantity = $proposal_quantity;
+    $this-> proposal_amount = $proposal_amount;
   }
 
   public function get_id(){
@@ -158,6 +164,18 @@ class Project{
 
   public function get_quantity_years(){
     return $this-> quantity_years;
+  }
+
+  public function get_proposal_description(){
+    return $this-> proposal_description;
+  }
+
+  public function get_proposal_quantity(){
+    return $this-> proposal_quantity;
+  }
+
+  public function get_proposal_amount(){
+    return $this-> proposal_amount;
   }
 }
 ?>

@@ -15,6 +15,7 @@ if(isset($_POST['save_info_project_and_services'])){
   $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
   $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
   ServiceRepository::set_total_service(Connection::get_connection(), $_POST['total_service'], $service-> get_id());
+  ProjectRepository::set_proposal_amount(Connection::get_connection(), $_POST['total_by_year'], $id_project);
   $users = UserRepository::get_all_users(Connection::get_connection());
   switch ($_POST['priority']) {
     case '8a':
@@ -53,6 +54,13 @@ if(isset($_POST['save_info_project_and_services'])){
     }
   }
   Connection::close_connection();
+  Conexion::abrir_conexion();
+  $quote_rfq_exists = RepositorioRfpConnection::quote_rfq_exists(Conexion::obtener_conexion(), $id_project);
+  if($quote_rfq_exists){
+    $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $id_project);
+    RepositorioRfq::actualizar_end_date(Conexion::obtener_conexion(), $_POST['end_date'], $rfp_connection-> obtener_id_rfq());
+  }
+  Conexion::cerrar_conexion();
   /*
   foreach ($users as $user) {
     $to = $user-> obtener_email();
@@ -72,6 +80,6 @@ if(isset($_POST['save_info_project_and_services'])){
 
   */
 
-  Redirection::redirect1(INFO_PROJECT_AND_SERVICES . $id_project);
+  Redirection::redirect(INFO_PROJECT_AND_SERVICES . $id_project);
 }
 ?>

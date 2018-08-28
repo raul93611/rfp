@@ -26,6 +26,7 @@ include_once 'templates/items_main_form.inc.php';
 include_once 'templates/staff_and_costs_main_form.inc.php';
 include_once 'templates/total_main_form.inc.php';
 ?>
+<input type="hidden" name="total_by_year" value="<?php echo $total_by_year; ?>">
 <input type="hidden" name="total_service" value="<?php echo $total_service; ?>">
 <?php
 include_once 'templates/options_when_submitted_main_form.inc.php';

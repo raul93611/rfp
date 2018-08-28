@@ -1,7 +1,12 @@
 <?php
 Connection::open_connection();
 $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
-$service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
+$proposal_description = $project-> get_proposal_description();
+$proposal_quantity = $project-> get_proposal_quantity();
+$proposal_amount = $project-> get_proposal_amount();
+$proposal_description = explode('|', $proposal_description);
+$proposal_quantity = explode('|', $proposal_quantity);
+$proposal_amount = explode('|', $proposal_amount);
 Connection::close_connection();
 ?>
 <div class="content-wrapper">

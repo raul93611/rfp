@@ -9,8 +9,10 @@ if(isset($_POST['save_project'])){
   }
   $designated_user_index = array_rand($array_id_users);
   $designated_user = $array_id_users[$designated_user_index];
-  $project = new Project('', $_SESSION['id_user'], '', '', $_POST['link'], '', '', '', '', '', '', '', 0, $designated_user, 0, '', htmlspecialchars($_POST['create_part_comments']), '', '', 0, '', 0, 0, '', '', 1);
+  $project = new Project('', $_SESSION['id_user'], '', '', $_POST['link'], '', '', '', '', '', '', '', 0, $designated_user, 0, '', htmlspecialchars($_POST['create_part_comments']), '', '', 0, '', 0, 0, '', '', 1,'', '', '');
   $id_project = ProjectRepository::insert_project(Connection::get_connection(), $project);
+  $service = New Service('', $id_project, 0);
+  ServiceRepository::insert_service(Connection::get_connection(), $service);
   Connection::close_connection();
 
   $directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
@@ -25,7 +27,6 @@ if(isset($_POST['save_project'])){
           move_uploaded_file($tmp_path, $new_path);
       }
   }
-
-  Redirection::redirect1(CALENDAR_NEW_PROJECTS);
+  Redirection::redirect(CALENDAR_NEW_PROJECTS);
 }
 ?>
