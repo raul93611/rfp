@@ -83,10 +83,6 @@ if($parts_route[0] == 'rfp'){
             $current_manager = 'sign_in';
             $chosen_route = 'views/profile.php';
             break;
-          case 'disable_user':
-            $current_manager = 'disable_user';
-            $chosen_route = 'views/profile.php';
-            break;
           case 'calendar_new_projects':
             $current_manager = 'calendar_new_projects';
             $chosen_route = 'views/profile.php';
@@ -102,6 +98,14 @@ if($parts_route[0] == 'rfp'){
           default:
             break;
         }
+        break;
+      case 'enable_user':
+        $id_user = $parts_route[2];
+        $chosen_route = 'scripts/enable_user.inc.php';
+        break;
+      case 'disable_user':
+        $id_user = $parts_route[2];
+        $chosen_route = 'scripts/disable_user.inc.php';
         break;
       case 'save_info_project':
         $id_project = $parts_route[2];
@@ -147,16 +151,6 @@ if($parts_route[0] == 'rfp'){
   }else if(count($parts_route) == 4){
     if($parts_route[1] == 'profile'){
       switch ($parts_route[2]) {
-        case 'disable_user':
-          $id_user = $parts_route[3];
-          $current_manager = 'disable_user';
-          $chosen_route = 'views/profile.php';
-          break;
-        case 'enable_user':
-          $id_user = $parts_route[3];
-          $current_manager = 'enable_user';
-          $chosen_route = 'views/profile.php';
-          break;
         case 'info_project':
           $id_project = $parts_route[3];
           $current_manager = 'info_project';

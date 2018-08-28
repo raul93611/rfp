@@ -1,6 +1,6 @@
 <?php
 if(!SessionControl::session_started()) {
-    Redirection::redirect1(SERVER);
+    Redirection::redirect(SERVER);
 }
 
 $title = 'Profile';

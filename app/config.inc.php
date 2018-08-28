@@ -20,8 +20,8 @@ define('CALENDAR_PROJECTS', PROFILE . 'calendar_projects');
 /**************OPTIONS ADMIN****************************************************/
 define('SIGN_IN', PROFILE . 'sign_in');
 define('DELETE_USER', PROFILE . 'delete_user');
-define('DISABLE_USER', PROFILE . 'disable_user/');
-define('ENABLE_USER', PROFILE . 'enable_user/');
+define('DISABLE_USER', SERVER . 'disable_user/');
+define('ENABLE_USER', SERVER . 'enable_user/');
 /*******************************************************************************/
 
 /********************OPTIONS PROJECTS*******************************************/

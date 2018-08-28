@@ -1,6 +1,6 @@
 <?php
 if (SessionControl::session_started()) {
-    Redirection::redirect1(PROFILE);
+    Redirection::redirect(PROFILE);
 }
 
 include_once 'templates/validation_login.inc.php';
