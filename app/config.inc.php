@@ -23,7 +23,8 @@ define('DELETE_USER', PROFILE . 'delete_user');
 define('DISABLE_USER', SERVER . 'disable_user/');
 define('ENABLE_USER', SERVER . 'enable_user/');
 /*******************************************************************************/
-
+/****************************SEARCH*********************************************/
+define('SEARCH', PROFILE . 'search');
 /********************OPTIONS PROJECTS*******************************************/
 define('SAVE_PROJECT', SERVER . 'save_project');
 define('INFO_PROJECT', PROFILE . 'info_project/');

@@ -56,7 +56,6 @@
                   <?php
                 }
                 ?>
-
                 <li class="nav-item has-treeview menu-open">
                     <a href="<?php echo CALENDAR_NEW_PROJECTS; ?>" class="nav-link
                     <?php
@@ -67,6 +66,18 @@
                        ">
                         <i class="fa fa-calendar nav-icon"></i>
                         <p>Calendar</p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview menu-open">
+                    <a href="<?php echo SEARCH; ?>" class="nav-link
+                    <?php
+                    if ($current_manager == 'search') {
+                        echo 'active';
+                    }
+                    ?>
+                       ">
+                        <i class="fa fa-search nav-icon"></i>
+                        <p>Search</p>
                     </a>
                 </li>
             </ul>

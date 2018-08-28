@@ -141,7 +141,7 @@ class Project{
   }
 
   public function get_result(){
-    return $this-> subject;
+    return $this-> result;
   }
 
   public function get_proposed_price(){

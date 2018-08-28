@@ -60,6 +60,9 @@ switch ($current_manager) {
   case 'make_proposal';
     include_once 'templates/make_proposal.inc.php';
     break;
+  case 'search':
+    include_once 'templates/search.inc.php';
+    break;
 }
 include_once 'templates/end_document.inc.php';
 ?>

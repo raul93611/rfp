@@ -221,6 +221,28 @@ class ProjectRepository{
     return $projects;
   }
 
+  public static function get_search_results($connection, $search_term){
+    $projects = [];
+    $search_term = '%' . $search_term . '%';
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT * FROM projects WHERE id LIKE :search_term OR project_name LIKE :search_term OR description LIKE :search_term OR proposal_description LIKE :search_term OR address LIKE :search_term OR ship_to LIKE :search_term';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':search_term', $search_term, PDO::PARAM_STR);
+        $sentence-> execute();
+        $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
+        if(count($result)){
+          foreach ($result as $row) {
+            $projects[] = new Project($row['id'], $row['id_user'], $row['start_date'], $row['code'], $row['link'], $row['project_name'], $row['end_date'], $row['priority'], $row['description'], $row['submission_instructions'], $row['type'], $row['flowchart_comments'], $row['flowchart'], $row['designated_user'], $row['reviewed_project'], $row['priority_color'], $row['create_part_comments'], $row['subject'], $row['result'], $row['proposed_price'], $row['business_type'], $row['submitted'], $row['award'], $row['submitted_date'], $row['award_date'], $row['quantity_years'], $row['proposal_description'], $row['proposal_quantity'], $row['proposal_amount'], $result['expiration_date'], $result['address'], $result['ship_to']);
+          }
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $projects;
+  }
+
   public static function print_comments_projects(){
     Connection::open_connection();
     $projects = self::get_all_projects(Connection::get_connection());
@@ -272,6 +294,59 @@ class ProjectRepository{
           <?php
       }
     }
+  }
+
+  public static function print_search_result($project) {
+      if (!isset($project)) {
+          return;
+      }
+      $submitted_date = self::mysql_date_to_english_format($project-> get_submitted_date());
+      $award_date = self::mysql_date_to_english_format($project-> get_award_date());
+      ?>
+      <tr>
+          <td>
+              <a href="<?php echo INFO_PROJECT_AND_SERVICES .$project-> get_id(); ?>" class="btn-block">
+                  <?php echo $project-> get_code(); ?>
+              </a>
+          </td>
+          <td>
+              <?php
+              Connection::open_connection();
+              $user = UserRepository::get_user_by_id(Connection::get_connection(), $project-> get_designated_user());
+              Connection::close_connection();
+              echo $user-> get_username();
+              ?>
+          </td>
+          <td><?php echo $submitted_date; ?></td>
+          <td><?php echo $award_date; ?></td>
+          <td><?php echo $project-> get_result(); ?></td>
+          <td><?php echo $project-> get_id(); ?></td>
+      </tr>
+      <?php
+  }
+
+  public static function print_search_results($projects){
+    ?>
+    <table id="search_table" class="table table-bordered table-responsive-md">
+        <thead>
+            <tr>
+              <th>CODE</th>
+              <th>DEDIGNATED USER</th>
+              <th>SUBMITTED DATE</th>
+              <th>AWARD DATE</th>
+              <th>RESULT</th>
+              <th>PROPOSAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($projects as $project) {
+                self::print_search_result($project);
+            }
+            ?>
+        </tbody>
+    </table>
+    <?php
   }
 
   public static function set_proposal_amount($connection, $proposal_amount, $id_project){

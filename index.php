@@ -95,6 +95,10 @@ if($parts_route[0] == 'rfp'){
             $current_manager = 'calendar_my_projects';
             $chosen_route = 'views/profile.php';
             break;
+          case 'search':
+            $current_manager = 'search';
+            $chosen_route = 'views/profile.php';
+            break;
           default:
             break;
         }
