@@ -6,7 +6,7 @@ if($project-> get_type() == 'services_and_equipment'){
   $items = RepositorioItem::obtener_items_por_id_rfq(Conexion::obtener_conexion(), $id_rfq);
   Conexion::cerrar_conexion();
   ?>
-  <div class="card card-primary">
+  <div class="card card-primary" id="items">
     <div class="card-header">
       <h3 class="card-title"><i class="fa fa-plus"></i> Equipment</h3>
     </div>

@@ -1,4 +1,4 @@
-<div class="card card-primary">
+<div class="card card-primary" id="staff">
   <div class="card-header">
     <h3 class="card-title"><i class="fa fa-plus"></i> Staff</h3>
   </div>
@@ -19,7 +19,7 @@
     ?>
   </div>
 </div>
-<div class="card card-primary">
+<div class="card card-primary" id="costs">
   <div class="card-header">
     <h3 class="card-title"><i class="fa fa-plus"></i> Costs</h3>
   </div>

@@ -32,13 +32,13 @@
       <div class="col">
         <div class="form-group">
           <label for="code">Code:</label>
-          <input type="text" name="code" id="code" class="form-control" value="<?php echo $project-> get_code(); ?>" placeholder="Code ..." autofocus>
+          <input type="text" name="code" id="code" class="form-control" value="<?php echo $project-> get_code(); ?>" placeholder="Code ...">
         </div>
       </div>
       <div class="col">
         <div class="form-group">
           <label for="project_name">Name:</label>
-          <input class="form-control" type="text" id="project_name" name="project_name" placeholder="Project name ..." autofocus required value="<?php echo $project-> get_project_name(); ?>">
+          <input class="form-control" type="text" id="project_name" name="project_name" placeholder="Project name ..."required value="<?php echo $project-> get_project_name(); ?>">
         </div>
       </div>
       <div class="col">
