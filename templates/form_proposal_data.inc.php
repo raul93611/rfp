@@ -24,7 +24,7 @@
         <div class="col-3">
           <div class="form-group">
             <label for="total_service_cost">Service cost ($):</label>
-            <input type="number" step=".01" name="proposal_amount<?php echo $i; ?>" class="form-control" value="<?php $number = number_format($proposal_amount[$i-1], 2, '.', '');echo $number; ?>">
+            <input type="number" step=".01" disabled name="proposal_amount<?php echo $i; ?>" class="form-control" value="<?php $number = number_format($proposal_amount[$i-1], 2, '.', '');echo $number; ?>">
           </div>
         </div>
       </div>

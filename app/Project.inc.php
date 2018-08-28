@@ -29,8 +29,11 @@ class Project{
   private $proposal_description;
   private $proposal_quantity;
   private $proposal_amount;
+  private $expiration_date;
+  private $address;
+  private $ship_to;
 
-  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $create_part_comments, $subject, $result, $proposed_price, $business_type, $submitted, $award, $submitted_date, $award_date, $quantity_years, $proposal_description, $proposal_quantity, $proposal_amount){
+  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $create_part_comments, $subject, $result, $proposed_price, $business_type, $submitted, $award, $submitted_date, $award_date, $quantity_years, $proposal_description, $proposal_quantity, $proposal_amount, $expiration_date, $address, $ship_to){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> start_date = $start_date;
@@ -60,6 +63,9 @@ class Project{
     $this-> proposal_description = $proposal_description;
     $this-> proposal_quantity = $proposal_quantity;
     $this-> proposal_amount = $proposal_amount;
+    $this-> expiration_date = $expiration_date;
+    $this-> address = $address;
+    $this-> ship_to = $ship_to;
   }
 
   public function get_id(){
@@ -176,6 +182,18 @@ class Project{
 
   public function get_proposal_amount(){
     return $this-> proposal_amount;
+  }
+
+  public function get_expiration_date(){
+    return $this-> expiration_date;
+  }
+
+  public function get_address(){
+    return $this-> address;
+  }
+
+  public function get_ship_to(){
+    return $this-> ship_to;
   }
 }
 ?>

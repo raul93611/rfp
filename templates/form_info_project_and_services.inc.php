@@ -17,6 +17,10 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
 }else{
   $end_date = '';
 }
+
+if($project-> get_submitted()){
+  $expiration_date = ProjectRepository::mysql_date_to_english_format($project-> get_expiration_date());
+}
 ?>
 <input type="hidden" name="id_project" id="id_project" value="<?php echo $id_project; ?>">
 <?php
@@ -47,6 +51,10 @@ include_once 'templates/options_when_submitted_main_form.inc.php';
   <a class="btn btn-info" href="<?php echo FLOWCHART . $id_project; ?>"><i class="fa fa-book"></i> Flowchart</a>
   <a class="btn btn-info" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
   <a class="btn btn-info" href="<?php echo ADD_COST . $id_project; ?>"><i class="fa fa-plus"></i> Add costs</a>
-  <a class="btn btn-info" href="<?php echo MAKE_PROPOSAL . $id_project; ?>"><i class="fa fa-cogs"></i> Make proposal</a>
+  <?php
+  if($project-> get_submitted()){
+    ?><a class="btn btn-info" href="<?php echo MAKE_PROPOSAL . $id_project; ?>"><i class="fa fa-cogs"></i> Make proposal</a><?php
+  }
+  ?>
 </div>
 </div>

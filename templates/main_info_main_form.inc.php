@@ -71,6 +71,18 @@
           <input type="number" name="quantity_years" class="form-control" id="quantity_years" value="<?php echo $project-> get_quantity_years(); ?>">
         </div>
       </div>
+      <?php
+      if($project-> get_submitted()){
+        ?>
+        <div class="col">
+          <div class="form-group">
+            <label for="expiration_date">Expiration date:</label>
+            <input class="form-control" type="text" id="expiration_date" name="expiration_date" value="<?php echo $expiration_date; ?>">
+          </div>
+        </div>
+        <?php
+      }
+      ?>
     </div>
     <div class="row">
       <div class="col">
@@ -118,9 +130,23 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <textarea class="form-control" name="address" id="address" rows="5"><?php echo $project-> get_address(); ?></textarea>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="ship_to">Ship to:</label>
+          <textarea class="form-control" name="ship_to" id="ship_to" rows="5"><?php echo $project-> get_ship_to(); ?></textarea>
+        </div>
+      </div>
+    </div>
     <div class="form-group">
       <label for="description">Description:</label>
-      <textarea class="form-control" name="description" id="description" rows="10"><?php echo $project-> get_description(); ?></textarea>
+      <textarea class="form-control" name="description" id="description" rows="5"><?php echo $project-> get_description(); ?></textarea>
     </div>
   </div>
 </div>

@@ -34,14 +34,15 @@ if(isset($_POST['save_info_project_and_services'])){
       break;
   }
   $end_date = ProjectRepository::english_format_to_mysql_datetime($_POST['end_date']);
-  ProjectRepository::change_main_information_project(Connection::get_connection(), $_POST['code'], $_POST['project_name'], $_POST['business_type'], $end_date, $_POST['quantity_years'], $_POST['priority'], $priority_color, $_POST['submission_instructions'], $_POST['type'], $_POST['subject'], $_POST['description'], $id_project);
+  ProjectRepository::change_main_information_project(Connection::get_connection(), $_POST['code'], $_POST['project_name'], $_POST['business_type'], $end_date, $_POST['quantity_years'], $_POST['priority'], $priority_color, $_POST['submission_instructions'], $_POST['type'], $_POST['subject'], $_POST['address'], $_POST['ship_to'], $_POST['description'], $id_project);
   if(!empty($_POST['story_comments'])){
     $comment = new Comment('', $id_project, $_SESSION['id_user'], '', htmlspecialchars($_POST['story_comments']));
     CommentRepository::insert_comment(Connection::get_connection(), $comment);
   }
 
   if($project-> get_submitted()){
-    ProjectRepository::set_result_proposed_price(Connection::get_connection(), $_POST['result'], $_POST['proposed_price'], $id_project);
+    $expiration_date = ProjectRepository::english_format_to_mysql_date($_POST['expiration_date']);
+    ProjectRepository::set_result_proposed_price_and_expiration_date(Connection::get_connection(), $_POST['result'], $_POST['proposed_price'], $expiration_date, $id_project);
   }
 
   if(!$project-> get_submitted()){

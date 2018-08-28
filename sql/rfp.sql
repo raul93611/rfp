@@ -45,6 +45,9 @@ CREATE TABLE projects(
   proposal_description TEXT CHARACTER SET utf8 NOT NULL,
   proposal_quantity TEXT CHARACTER SET utf8 NOT NULL,
   proposal_amount TEXT CHARACTER SET utf8 NOT NULL,
+  expiration_date DATE,
+  address TEXT CHARACTER SET utf8 NOT NULL,
+  ship_to TEXT CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_user)
     REFERENCES users(id)
