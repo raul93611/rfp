@@ -34,6 +34,10 @@ $(document).ready(function(){
     paging: false,
     ordering: false
   });
+
+  $('#search_table').DataTable({
+    'order': [[2, 'desc']]
+  });
 /*********************************************************************************************************************/
 
   /************************************REPORT ERROR BUTTON*********************************************************/
@@ -389,6 +393,128 @@ $('#form_info_project').submit(function(){
   }
 });
 /**********************************************************************************************************************/
+/*************************************************REPORTS**************************************************************/
+if($('#submitted_chart').length != 0){
+  var submitted_chart_box = $('#submitted_chart');
+  var submitted_chart = new Chart(submitted_chart_box, {
+    type: 'bar',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      datasets:
+      [{
+        label: '# of submitted projects',
+        data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
+        backgroundColor: 'rgba(66, 134, 244, 0.3)',
+        borderColor: 'rgba(66, 134, 244, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      },
+      animation:{
+          easing: 'easeInOutCubic',
+          duration: 2500
+      }
+    }
+  });
+}
+
+if($('#award_chart').length != 0){
+  var award_chart_box = $('#award_chart');
+  var award_chart = new Chart(award_chart_box, {
+    type: 'bar',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      datasets:
+      [{
+        label: '# of award projects',
+        data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
+        backgroundColor: 'rgba(66, 134, 244, 0.3)',
+        borderColor: 'rgba(66, 134, 244, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      },
+      animation:{
+          easing: 'easeInOutCubic',
+          duration: 2500
+      }
+    }
+  });
+}
+
+if($('#submitted_pie_chart').length != 0){
+  var submitted_pie_chart_box = $('#submitted_pie_chart');
+  var submitted_pie_chart = new Chart(submitted_pie_chart_box, {
+    type: 'pie',
+    data:
+    {
+      labels: ["8(a)", "Full Open", "HUBZone", "Small Business"],
+      datasets:
+      [{
+        label: "Population (millions)",
+        backgroundColor: ["#ff2e00", "#edcf0e", "#0cd63f", "#0c8bd6"],
+        data: [12,4,5,5]
+      }]
+    },
+    options:
+    {
+      maintainAspectRatio: false,
+      title: {
+          display: false,
+          text: 'Predicted world population (millions) in 2050'
+      },
+      cutoutPercentage: 0,
+      animation:{
+          easing: 'easeInOutCubic',
+          duration: 2500
+      }
+    }
+  });
+}
+
+if($('#result_pie_chart').length != 0){
+  var result_pie_chart_box = $('#result_pie_chart');
+  var result_pie_chart = new Chart(result_pie_chart_box, {
+    type: 'pie',
+    data:
+    {
+      labels: ["Cancelled", "Disqualified", "Loss", "Re-posted"],
+      datasets:
+      [{
+        label: "Population (millions)",
+        backgroundColor: ["#3afcfc", "#2009f2", "#ef17cf", "#f44256"],
+        data: [12,4,5,5]
+      }]
+    },
+    options:
+    {
+      maintainAspectRatio: false,
+      title: {
+          display: false,
+          text: 'Predicted world population (millions) in 2050'
+      },
+      cutoutPercentage: 0,
+      animation:{
+          easing: 'easeInOutCubic',
+          duration: 2500
+      }
+    }
+  });
+}
 /***********************************************************************************************************************
 END JQUERY CODE
 ***********************************************************************************************************************/

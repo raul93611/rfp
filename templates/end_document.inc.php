@@ -103,7 +103,6 @@
 <script src="<?php echo PLUGINS; ?>jquery/jquery.min.js"></script>
 <script src="<?php echo PLUGINS; ?>bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo PLUGINS; ?>chart.js/Chart.min.js"></script>
-<script src="<?php echo PLUGINS; ?>fastclick/fastclick.js"></script>
 <script src="<?php echo DIST; ?>js/adminlte.js"></script>
 <script src="<?php echo DIST; ?>js/demo.js"></script>
 <script src="<?php echo PLUGINS; ?>jQueryUI/jquery-ui.min.js"></script>
@@ -111,7 +110,6 @@
     $.widget.bridge('uibutton', $.ui.button)
 </script>
 <script src="<?php echo JS; ?>raphael-min.js"></script>
-<script src="<?php echo PLUGINS; ?>morris/morris.min.js"></script>
 <script src="<?php echo PLUGINS; ?>sparkline/jquery.sparkline.min.js"></script>
 <script src="<?php echo PLUGINS; ?>jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="<?php echo PLUGINS; ?>jvectormap/jquery-jvectormap-world-mill-en.js"></script>

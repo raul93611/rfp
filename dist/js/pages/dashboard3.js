@@ -369,7 +369,7 @@ $(function () {
       new Chart(document.getElementById("pie-chart"), {
           type: 'pie',
           data: {
-              labels: ["No Bid", "Manufacturer in the Bid", "Expired due date", "Supplier did not provide a quote", "Others"],
+              labels: ["No Bid", "Full Open", "HUBZone", "Small Business"],
               datasets: [{
                       label: "Population (millions)",
                       backgroundColor: ["#ff2e00", "#edcf0e", "#0cd63f", "#0c8bd6", "#dc0fe0"],

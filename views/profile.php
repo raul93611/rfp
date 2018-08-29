@@ -63,6 +63,9 @@ switch ($current_manager) {
   case 'search':
     include_once 'templates/search.inc.php';
     break;
+  case 'reports':
+    include_once 'templates/reports.inc.php';
+    break;
 }
 include_once 'templates/end_document.inc.php';
 ?>

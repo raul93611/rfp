@@ -53,6 +53,8 @@ define('GENERATE_PROPOSAL', SERVER . 'generate_proposal/');
 /*****************************SEND ERROR QUOTE EMAIL****************************/
 define('SEND_ERROR_QUOTE_EMAIL', SERVER . 'send_error_quote_email');
 /*******************************************************************************/
+/*********************************REPORTS***************************************/
+define('REPORTS', PROFILE . 'reports');
 /*****************************EXTRA ROUTES**************************************/
 define('CSS', SERVER . 'css/');
 define('JS', SERVER . 'js/');

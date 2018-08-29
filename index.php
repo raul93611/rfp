@@ -99,6 +99,10 @@ if($parts_route[0] == 'rfp'){
             $current_manager = 'search';
             $chosen_route = 'views/profile.php';
             break;
+          case 'reports':
+            $current_manager = 'reports';
+            $chosen_route = 'views/profile.php';
+            break;
           default:
             break;
         }
