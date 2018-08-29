@@ -80,6 +80,18 @@
                         <p>Search</p>
                     </a>
                 </li>
+                <li class="nav-item has-treeview menu-open">
+                    <a href="<?php echo REPORTS; ?>" class="nav-link
+                    <?php
+                    if ($current_manager == 'reports') {
+                        echo 'active';
+                    }
+                    ?>
+                       ">
+                        <i class="fa fa-chart-pie nav-icon"></i>
+                        <p>Reports</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
