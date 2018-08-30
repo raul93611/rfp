@@ -394,6 +394,32 @@ $('#form_info_project').submit(function(){
 });
 /**********************************************************************************************************************/
 /*************************************************REPORTS**************************************************************/
+if($('#data_reports').length != 0){
+  var submitted_projects_by_month = $('#submitted_projects_by_month').val();
+  var award_projects_by_month = $('#award_projects_by_month').val();
+  var award_by_amount_projects_by_month = $('#award_by_amount_projects_by_month').val();
+  var ocho_a = $('#ocho_a').val();
+  var full_and_open = $('#full_and_open').val();
+  var hubzone = $('#hubzone').val();
+  var small_business = $('#small_business').val();
+  var cancelled = $('#cancelled').val();
+  var disqualified = $('#disqualified').val();
+  var loss = $('#loss').val();
+  var re_posted = $('#re_posted').val();
+
+  submitted_projects_by_month = jQuery.parseJSON(submitted_projects_by_month);
+  award_projects_by_month = jQuery.parseJSON(award_projects_by_month);
+  award_by_amount_projects_by_month = jQuery.parseJSON(award_by_amount_projects_by_month);
+  ocho_a = jQuery.parseJSON(ocho_a);
+  full_and_open = jQuery.parseJSON(full_and_open);
+  hubzone = jQuery.parseJSON(hubzone);
+  small_business = jQuery.parseJSON(small_business);
+  cancelled = jQuery.parseJSON(cancelled);
+  disqualified = jQuery.parseJSON(disqualified);
+  loss = jQuery.parseJSON(loss);
+  re_posted = jQuery.parseJSON(re_posted);
+}
+
 var ticksStyle = {
     fontColor: '#495057',
     fontStyle: 'bold'

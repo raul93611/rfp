@@ -1,3 +1,23 @@
+<?php
+Connection::open_connection();
+list($submitted_projects_by_month, $award_projects_by_month, $award_by_amount_projects_by_month) = ProjectRepository::submitted_award_award_by_amount_projects_by_month(Connection::get_connection());
+list($ocho_a, $full_and_open, $hubzone, $small_business) = ProjectRepository::submitted_projects_by_priority(Connection::get_connection());
+list($cancelled, $disqualified, $loss, $re_posted) = ProjectRepository::submitted_projects_by_result(Connection::get_connection());
+Connection::close_connection();
+?>
+<div id="data_reports">
+  <input type="hidden" id="submitted_projects_by_month" name="submitted_projects_by_month" <?php echo "value='" . json_encode($submitted_projects_by_month) . "'"; ?>>
+  <input type="hidden" id="award_projects_by_month" name="award_projects_by_month" <?php echo "value='" . json_encode($award_projects_by_month) . "'"; ?>>
+  <input type="hidden" id="award_by_amount_projects_by_month" name="award_by_amount_projects_by_month" <?php echo "value='" . json_encode($award_by_amount_projects_by_month) . "'"; ?>>
+  <input type="hidden" id="ocho_a" name="ocho_a" <?php echo "value='" . json_encode($ocho_a) . "'"; ?>>
+  <input type="hidden" id="full_and_open" name="full_and_open" <?php echo "value='" . json_encode($full_and_open) . "'"; ?>>
+  <input type="hidden" id="hubzone" name="hubzone" <?php echo "value='" . json_encode($hubzone) . "'"; ?>>
+  <input type="hidden" id="small_business" name="small_business" <?php echo "value='" . json_encode($small_business) . "'"; ?>>
+  <input type="hidden" id="cancelled" name="cancelled" <?php echo "value='" . json_encode($cancelled) . "'"; ?>>
+  <input type="hidden" id="disqualified" name="disqualified" <?php echo "value='" . json_encode($disqualified) . "'"; ?>>
+  <input type="hidden" id="loss" name="loss" <?php echo "value='" . json_encode($loss) . "'"; ?>>
+  <input type="hidden" id="re_posted" name="re_posted" <?php echo "value='" . json_encode($re_posted) . "'"; ?>>
+</div>
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">

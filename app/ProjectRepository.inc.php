@@ -252,17 +252,20 @@ class ProjectRepository{
       try{
         for ($i = 1; $i <= 12 ; $i++) {
           $sql = 'SELECT COUNT(*) as submitted_projects_by_month FROM projects WHERE submitted = 1 AND MONTH(submitted_date) =' . $i . ' AND YEAR(submitted_date) = YEAR(CURDATE())';
-          $sql1 = 'SELECT COUNT(*) as award_projects_by_month FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(submitted_date) =' . $i . ' AND YEAR(submitted_date) = YEAR(CURDATE())';
-          $sql2 = '';
+          $sql1 = 'SELECT COUNT(*) as award_projects_by_month FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(CURDATE())';
+          $sql2 = 'SELECT SUM(total) as total FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(CURDATE())';
 
           $sentence = $connection-> prepare($sql);
           $sentence1 = $connection-> prepare($sql1);
+          $sentence2 = $connection-> prepare($sql2);
 
           $sentence-> execute();
           $sentence1-> execute();
+          $sentence2-> execute();
 
           $result = $sentence-> fetch(PDO::FETCH_ASSOC);
           $result1 = $sentence1-> fetch(PDO::FETCH_ASSOC);
+          $result2 = $sentence2-> fetch(PDO::FETCH_ASSOC);
 
           if(!empty($result)){
             $submitted_projects_by_month[$i - 1] = $result['submitted_projects_by_month'];
@@ -275,15 +278,117 @@ class ProjectRepository{
           }else{
             $award_projects_by_month[$i - 1] = 0;
           }
+
+          if(!is_null($result2['total'])){
+            $award_by_amount_projects_by_month[$i - 1] = $result2['monto'];
+          }else{
+            $award_by_amount_projects_by_month[$i - 1] = 0;
+          }
         }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
       }
     }
-    return array($submitted_projects_by_month, $award_projects_by_month);
+    return array($submitted_projects_by_month, $award_projects_by_month, $award_by_amount_projects_by_month);
   }
 
+  public static function submitted_projects_by_priority($connection){
+    $ocho_a = 0;
+    $full_and_open = 0;
+    $hubzone = 0;
+    $small_business = 0;
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT COUNT(*) AS ocho_a FROM projects WHERE submitted = 1 AND priority = "8a" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql1 = 'SELECT COUNT(*) AS full_and_open FROM projects WHERE submitted = 1 AND priority = "full_and_open" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql2 = 'SELECT COUNT(*) AS hubzone FROM projects WHERE submitted = 1 AND priority = "hubzone" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql3 = 'SELECT COUNT(*) AS small_business FROM projects WHERE submitted = 1 AND priority = "small_business" AND YEAR(submitted_date) = YEAR(CURDATE())';
 
+        $sentence = $connection-> prepare($sql);
+        $sentence1 = $connection-> prepare($sql1);
+        $sentence2 = $connection-> prepare($sql2);
+        $sentence3 = $connection-> prepare($sql3);
+
+        $sentence-> execute();
+        $sentence1-> execute();
+        $sentence2-> execute();
+        $sentence3-> execute();
+
+        $result = $sentence-> fetch(PDO::FETCH_ASSOC);
+        $result1 = $sentence1-> fetch(PDO::FETCH_ASSOC);
+        $result2 = $sentence2-> fetch(PDO::FETCH_ASSOC);
+        $result3 = $sentence3-> fetch(PDO::FETCH_ASSOC);
+
+        if(!empty($result)){
+          $ocho_a = $result['ocho_a'];
+        }
+
+        if(!empty($result1)){
+          $full_and_open = $result1['full_and_open'];
+        }
+
+        if(!empty($result2)){
+          $hubzone = $result2['hubzone'];
+        }
+
+        if(!empty($result3)){
+          $small_business = $result3['small_business'];
+        }
+       }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+      return array($ocho_a, $full_and_open, $hubzone, $small_business);
+    }
+  }
+
+  public static function submitted_projects_by_result($connection){
+    $cancelled = 0;
+    $disqualified = 0;
+    $loss = 0;
+    $re_posted = 0;
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT COUNT(*) AS cancelled FROM projects WHERE submitted = 1 AND result = "cancelled" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql1 = 'SELECT COUNT(*) AS disqualified FROM projects WHERE submitted = 1 AND result = "disqualified" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql2 = 'SELECT COUNT(*) AS loss FROM projects WHERE submitted = 1 AND result = "loss" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql3 = 'SELECT COUNT(*) AS re_posted FROM projects WHERE submitted = 1 AND result = "re_posted" AND YEAR(submitted_date) = YEAR(CURDATE())';
+
+        $sentence = $connection-> prepare($sql);
+        $sentence1 = $connection-> prepare($sql1);
+        $sentence2 = $connection-> prepare($sql2);
+        $sentence3 = $connection-> prepare($sql3);
+
+        $sentence-> execute();
+        $sentence1-> execute();
+        $sentence2-> execute();
+        $sentence3-> execute();
+
+        $result = $sentence-> fetch(PDO::FETCH_ASSOC);
+        $result1 = $sentence1-> fetch(PDO::FETCH_ASSOC);
+        $result2 = $sentence2-> fetch(PDO::FETCH_ASSOC);
+        $result3 = $sentence3-> fetch(PDO::FETCH_ASSOC);
+
+        if(!empty($result)){
+          $cancelled = $result['cancelled'];
+        }
+
+        if(!empty($result1)){
+          $disqualified = $result1['disqualified'];
+        }
+
+        if(!empty($result2)){
+          $loss = $result2['loss'];
+        }
+
+        if(!empty($result3)){
+          $re_posted = $result3['re_posted'];
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return array($cancelled, $disqualified, $loss, $re_posted);
+  }
 
   public static function print_comments_projects(){
     Connection::open_connection();
