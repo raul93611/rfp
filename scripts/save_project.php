@@ -9,10 +9,14 @@ if(isset($_POST['save_project'])){
   }
   $designated_user_index = array_rand($array_id_users);
   $designated_user = $array_id_users[$designated_user_index];
-  $project = new Project('', $_SESSION['id_user'], '', '', $_POST['link'], '', '', '', '', '', '', '', 0, $designated_user, 0, '', htmlspecialchars($_POST['create_part_comments']), '', '', 0, '', 0, 0, '', '', 1,'', '', '', '', '', '', 0);
+  $project = new Project('', $_SESSION['id_user'], '', '', $_POST['link'], '', '', '', '', '', '', '', 0, $designated_user, 0, '', '', '', 0, '', 0, 0, '', '', 1,'', '', '', '', '', '', 0);
   $id_project = ProjectRepository::insert_project(Connection::get_connection(), $project);
   $service = New Service('', $id_project, 0, 0);
   ServiceRepository::insert_service(Connection::get_connection(), $service);
+  if(!empty($_POST['create_part_comments'])){
+    $comment = new Comment('', $id_project, $_SESSION['id_user'], '', htmlspecialchars($_POST['create_part_comments']));
+    CommentRepository::insert_comment(Connection::get_connection(), $comment);
+  }
   Connection::close_connection();
 
   $directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;

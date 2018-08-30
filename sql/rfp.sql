@@ -32,7 +32,6 @@ CREATE TABLE projects(
   designated_user TINYINT NOT NULL,
   reviewed_project TINYINT NOT NULL,
   priority_color VARCHAR(255) NOT NULL,
-  create_part_comments TEXT CHARACTER SET utf8 NOT NULL,
   subject VARCHAR(255) NOT NULL,
   result VARCHAR(255) NOT NULL,
   proposed_price DECIMAL(20,2),

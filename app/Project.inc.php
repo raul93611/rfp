@@ -16,7 +16,6 @@ class Project{
   private $designated_user;
   private $reviewed_project;
   private $priority_color;
-  private $create_part_comments;
   private $subject;
   private $result;
   private $proposed_price;
@@ -34,7 +33,7 @@ class Project{
   private $ship_to;
   private $total;
 
-  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $create_part_comments, $subject, $result, $proposed_price, $business_type, $submitted, $award, $submitted_date, $award_date, $quantity_years, $proposal_description, $proposal_quantity, $proposal_amount, $expiration_date, $address, $ship_to, $total){
+  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $subject, $result, $proposed_price, $business_type, $submitted, $award, $submitted_date, $award_date, $quantity_years, $proposal_description, $proposal_quantity, $proposal_amount, $expiration_date, $address, $ship_to, $total){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> start_date = $start_date;
@@ -51,7 +50,6 @@ class Project{
     $this-> designated_user = $designated_user;
     $this-> reviewed_project = $reviewed_project;
     $this-> priority_color = $priority_color;
-    $this-> create_part_comments = $create_part_comments;
     $this-> subject = $subject;
     $this-> result = $result;
     $this-> proposed_price = $proposed_price;
@@ -132,10 +130,6 @@ class Project{
 
   public function get_priority_color(){
     return $this-> priority_color;
-  }
-
-  public function get_create_part_comments(){
-    return $this-> create_part_comments;
   }
 
   public function get_subject(){
