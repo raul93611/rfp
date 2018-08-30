@@ -243,6 +243,46 @@ class ProjectRepository{
     return $projects;
   }
 
+  public static function submitted_award_award_by_amount_projects_by_month($connection){
+    $submitted_projects_by_month = [];
+    $award_projects_by_month = [];
+    $award_by_amount_projects_by_month = [];
+    if(isset($connection)){
+      try{
+        for ($i = 1; $i <= 12 ; $i++) {
+          $sql = 'SELECT COUNT(*) as submitted_projects_by_month FROM projects WHERE submitted = 1 AND MONTH(submitted_date) =' . $i . ' AND YEAR(submitted_date) = YEAR(CURDATE())';
+          $sql1 = 'SELECT COUNT(*) as award_projects_by_month FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(submitted_date) =' . $i . ' AND YEAR(submitted_date) = YEAR(CURDATE())';
+
+          $sentence = $connection-> prepare($sql);
+          $sentence1 = $connection-> prepare($sql1);
+
+          $sentence-> execute();
+          $sentence1-> execute();
+
+          $result = $sentence-> fetch(PDO::FETCH_ASSOC);
+          $result1 = $sentence1-> fetch(PDO::FETCH_ASSOC);
+
+          if(!empty($result)){
+            $submitted_projects_by_month[$i - 1] = $result['submitted_projects_by_month'];
+          }else{
+            $submitted_projects_by_month[$i - 1] = 0;
+          }
+
+          if(!empty($result1)){
+            $award_projects_by_month[$i - 1] = $result1['award_projects_by_month'];
+          }else{
+            $award_projects_by_month[$i - 1] = 0;
+          }
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return array($submitted_projects_by_month, $award_projects_by_month);
+  }
+
+
+
   public static function print_comments_projects(){
     Connection::open_connection();
     $projects = self::get_all_projects(Connection::get_connection());

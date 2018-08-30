@@ -45,6 +45,21 @@
                 </div>
               </div>
             </div>
+            <div class="card card-primary">
+              <div class="card-header no-border">
+                  <h3 class="card-title"><i class="far fa-chart-bar"></i> Award (by amount)</h3>
+              </div>
+              <div class="card-body">
+                <div class="position-relative mb-4">
+                  <canvas id="award_by_amount_chart" height="100"></canvas>
+                </div>
+                <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    Current year
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="row">

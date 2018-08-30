@@ -58,7 +58,6 @@
     </div>
     <?php
     if($project-> get_type() == 'services_and_equipment'){
-      $total_equipment = number_format($rfq_quote-> obtener_total_price(), 2);
       ?>
       <div class="row">
         <div class="col-2">
@@ -70,7 +69,7 @@
         </div>
         <div class="col-3">
           <h3 class="text-info">$ <?php echo number_format($total_service, 2); ?></h3>
-          <h3 class="text-info">$ <?php echo $total_equipment; ?></h3>
+          <h3 class="text-info">$ <?php echo number_format($rfq_quote-> obtener_total_price(), 2); ?></h3>
         </div>
         <div class="col-2">
 

@@ -2,8 +2,14 @@
 if($project-> get_type() == 'services_and_equipment'){
   Conexion::abrir_conexion();
   $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $id_project);
-  Conexion::cerrar_conexion();
   $id_rfq = $rfp_connection-> obtener_id_rfq();
+  $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id(Conexion::obtener_conexion(), $id_rfq);
+  $designated_user_rfq_quote = RepositorioUsuario::obtener_usuario_por_id(Conexion::obtener_conexion(), $rfq_quote-> obtener_usuario_designado());
+  $items = RepositorioItem::obtener_items_por_id_rfq(Conexion::obtener_conexion(), $id_rfq);
+  Conexion::cerrar_conexion();
+  $total_equipment = $rfq_quote-> obtener_total_price();
+}else{
+  $total_equipment = 0;
 }
 
 if($project-> get_start_date() != '0000-00-00'){
@@ -32,6 +38,7 @@ include_once 'templates/total_main_form.inc.php';
 ?>
 <input type="hidden" name="total_by_year" value="<?php echo $total_by_year; ?>">
 <input type="hidden" name="total_service" value="<?php echo $total_service; ?>">
+<input type="hidden" name="total_equipment" value="<?php echo $total_equipment; ?>">
 <?php
 include_once 'templates/options_when_submitted_main_form.inc.php';
 ?>

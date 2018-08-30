@@ -1,10 +1,5 @@
 <?php
 if($project-> get_type() == 'services_and_equipment'){
-  Conexion::abrir_conexion();
-  $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id(Conexion::obtener_conexion(), $id_rfq);
-  $designated_user_rfq_quote = RepositorioUsuario::obtener_usuario_por_id(Conexion::obtener_conexion(), $rfq_quote-> obtener_usuario_designado());
-  $items = RepositorioItem::obtener_items_por_id_rfq(Conexion::obtener_conexion(), $id_rfq);
-  Conexion::cerrar_conexion();
   ?>
   <div class="card card-primary" id="items">
     <div class="card-header">

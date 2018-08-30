@@ -394,6 +394,11 @@ $('#form_info_project').submit(function(){
 });
 /**********************************************************************************************************************/
 /*************************************************REPORTS**************************************************************/
+var ticksStyle = {
+    fontColor: '#495057',
+    fontStyle: 'bold'
+};
+
 if($('#submitted_chart').length != 0){
   var submitted_chart_box = $('#submitted_chart');
   var submitted_chart = new Chart(submitted_chart_box, {
@@ -412,9 +417,16 @@ if($('#submitted_chart').length != 0){
     options: {
       scales: {
         yAxes: [{
-          ticks: {
-            beginAtZero:true
-          }
+          ticks: $.extend({
+            beginAtZero:true,
+            callback: function (value, index, values) {
+                if (value >= 1000) {
+                    value /= 1000;
+                    value += 'k';
+                }
+                return value;
+            }
+          },ticksStyle)
         }]
       },
       animation:{
@@ -435,17 +447,64 @@ if($('#award_chart').length != 0){
       [{
         label: '# of award projects',
         data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
-        backgroundColor: 'rgba(66, 134, 244, 0.3)',
-        borderColor: 'rgba(66, 134, 244, 1)',
+        backgroundColor: 'rgba(226, 190, 29, 0.3)',
+        borderColor: 'rgba(226, 190, 29, 1)',
         borderWidth: 1
       }]
     },
     options: {
       scales: {
         yAxes: [{
-          ticks: {
-            beginAtZero:true
-          }
+          ticks: $.extend({
+            beginAtZero:true,
+            callback: function (value, index, values) {
+                if (value >= 1000) {
+                    value /= 1000;
+                    value += 'k';
+                }
+                return value;
+            }
+          },ticksStyle)
+        }]
+      },
+      animation:{
+          easing: 'easeInOutCubic',
+          duration: 2500
+      }
+    }
+  });
+}
+
+
+
+if($('#award_by_amount_chart').length != 0){
+  var award_by_amount_chart_box = $('#award_by_amount_chart');
+  var award_by_amount_chart = new Chart(award_by_amount_chart_box, {
+    type: 'bar',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      datasets:
+      [{
+        label: '# of award projects',
+        data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
+        backgroundColor: 'rgba(178, 219, 15, 0.3)',
+        borderColor: 'rgba(178, 219, 15, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: $.extend({
+            beginAtZero:true,
+            callback: function (value, index, values) {
+                if (value >= 1000) {
+                    value /= 1000;
+                    value += 'k';
+                }
+                return '$'+value;
+            }
+          },ticksStyle)
         }]
       },
       animation:{

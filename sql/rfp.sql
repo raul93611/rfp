@@ -75,7 +75,8 @@ CREATE TABLE comments(
 CREATE TABLE services(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_project INT NOT NULL,
-  total DECIMAL(20,2),
+  total_service DECIMAL(20,2),
+  total_equipment DECIMAL(20,2),
   PRIMARY KEY(id),
   FOREIGN KEY(id_project)
     REFERENCES projects(id)

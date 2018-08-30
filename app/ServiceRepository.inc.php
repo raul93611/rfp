@@ -3,10 +3,11 @@ class ServiceRepository{
   public static function insert_service($connection, $service){
     if(isset($connection)){
       try{
-        $sql = 'INSERT INTO services(id_project, total) VALUES(:id_project, :total)';
+        $sql = 'INSERT INTO services(id_project, total_service, total_equipment) VALUES(:id_project, :total_service, :total_equipment)';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_project', $service-> get_id_project(), PDO::PARAM_STR);
-        $sentence-> bindParam(':total', $service-> get_total(), PDO::PARAM_STR);
+        $sentence-> bindParam(':total_service', $service-> get_total_service(), PDO::PARAM_STR);
+        $sentence-> bindParam(':total_equipment', $service-> get_total_equipment(), PDO::PARAM_STR);
         $sentence-> execute();
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -24,7 +25,7 @@ class ServiceRepository{
         $sentence-> execute();
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         if(!empty($result)){
-          $service = new Service($result['id'], $result['id_project'], $result['total']);
+          $service = new Service($result['id'], $result['id_project'], $result['total_service'], $result['total_equipment']);
         }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -43,7 +44,7 @@ class ServiceRepository{
         $sentence-> execute();
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         if(!empty($result)){
-          $service = new Service($result['id'], $result['id_project'], $result['total']);
+          $service = new Service($result['id'], $result['id_project'], $result['total_service'], $result['total_equipment']);
         }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -52,12 +53,13 @@ class ServiceRepository{
     return $service;
   }
 
-  public static function set_total_service($connection, $total_service, $id_service){
+  public static function set_total_service_total_equipment($connection, $total_service, $total_equipment, $id_service){
     if(isset($connection)){
       try{
-        $sql = 'UPDATE services SET total = :total_service WHERE id = :id_service';
+        $sql = 'UPDATE services SET total_service = :total_service, total_equipment = :total_equipment WHERE id = :id_service';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':total_service', $total_service, PDO::PARAM_STR);
+        $sentence-> bindParam(':total_equipment', $total_equipment, PDO::PARAM_STR);
         $sentence-> bindParam(':id_service', $id_service, PDO::PARAM_STR);
         $sentence-> execute();
       }catch(PDOException $ex){
