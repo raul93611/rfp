@@ -413,7 +413,7 @@ class ProjectRepository{
             <li>
               <i class="fa fa-user"></i>
               <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> <?php echo $comment-> get_comment_date(); ?></span>
+                <span class="time"><i class="far fa-clock"></i> <?php echo $comment-> get_comment_date(); ?></span>
                 <h3 class="timeline-header">
                   <span class="text-primary">
                   <?php
@@ -434,7 +434,7 @@ class ProjectRepository{
           }
           ?>
           <li>
-            <i class="fa fa-clock-o"></i>
+            <i class="fa fa-infinity"></i>
           </li>
           </ul>
           <br>
