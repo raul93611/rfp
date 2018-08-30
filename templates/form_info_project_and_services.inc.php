@@ -35,10 +35,12 @@ include_once 'templates/main_info_main_form.inc.php';
 include_once 'templates/items_main_form.inc.php';
 include_once 'templates/staff_and_costs_main_form.inc.php';
 include_once 'templates/total_main_form.inc.php';
+$total = $total_service + $total_equipment;
 ?>
 <input type="hidden" name="total_by_year" value="<?php echo $total_by_year; ?>">
 <input type="hidden" name="total_service" value="<?php echo $total_service; ?>">
 <input type="hidden" name="total_equipment" value="<?php echo $total_equipment; ?>">
+<input type="hidden" name="total" value="<?php echo $total; ?>">
 <?php
 include_once 'templates/options_when_submitted_main_form.inc.php';
 ?>

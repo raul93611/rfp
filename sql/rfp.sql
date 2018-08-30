@@ -48,6 +48,7 @@ CREATE TABLE projects(
   expiration_date DATE,
   address TEXT CHARACTER SET utf8 NOT NULL,
   ship_to TEXT CHARACTER SET utf8 NOT NULL,
+  total DECIMAL(20,2),
   PRIMARY KEY(id),
   FOREIGN KEY(id_user)
     REFERENCES users(id)
