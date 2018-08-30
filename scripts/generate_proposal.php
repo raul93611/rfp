@@ -73,7 +73,7 @@ try{
         }
 
         .total_ancho{
-          width: 130px;
+          width: 135px;
         }
 
         .letra_chiquita{
