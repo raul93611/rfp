@@ -26,8 +26,11 @@ if(isset($_POST['save_changes_project'])){
     case 'small_business':
       $priority_color = '#0cd63f';
       break;
-    case 'full_and_open';
+    case 'full_and_open':
       $priority_color = '#f441be';
+      break;
+    case 'sources_sought':
+      $priority_color = '#137024';
       break;
     default:
       break;

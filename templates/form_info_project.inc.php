@@ -147,6 +147,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
             <option value="hubzone" <?php if($project-> get_priority() == 'hubzone'){echo 'selected';} ?>>HUBZone</option>
             <option value="small_business" <?php if($project-> get_priority() == 'small_business'){echo 'selected';} ?>>Small Business</option>
             <option value="full_and_open" <?php if($project-> get_priority() == 'full_and_open'){echo 'selected';} ?>>Full and Open</option>
+            <option value="sources_sought" <?php if($project-> get_priority() == 'sources_sought'){echo 'selected';} ?>>Sources sought</option>
           </select>
         </div>
       </div>

@@ -297,27 +297,32 @@ class ProjectRepository{
     $full_and_open = 0;
     $hubzone = 0;
     $small_business = 0;
+    $sources_sought = 0;
     if(isset($connection)){
       try{
         $sql = 'SELECT COUNT(*) AS ocho_a FROM projects WHERE submitted = 1 AND priority = "8a" AND YEAR(submitted_date) = YEAR(CURDATE())';
         $sql1 = 'SELECT COUNT(*) AS full_and_open FROM projects WHERE submitted = 1 AND priority = "full_and_open" AND YEAR(submitted_date) = YEAR(CURDATE())';
         $sql2 = 'SELECT COUNT(*) AS hubzone FROM projects WHERE submitted = 1 AND priority = "hubzone" AND YEAR(submitted_date) = YEAR(CURDATE())';
         $sql3 = 'SELECT COUNT(*) AS small_business FROM projects WHERE submitted = 1 AND priority = "small_business" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql4 = 'SELECT COUNT(*) AS sources_sought FROM projects WHERE submitted = 1 AND priority = "sources_sought" AND YEAR(submitted_date) = YEAR(CURDATE())';
 
         $sentence = $connection-> prepare($sql);
         $sentence1 = $connection-> prepare($sql1);
         $sentence2 = $connection-> prepare($sql2);
         $sentence3 = $connection-> prepare($sql3);
+        $sentence4 = $connection-> prepare($sql4);
 
         $sentence-> execute();
         $sentence1-> execute();
         $sentence2-> execute();
         $sentence3-> execute();
+        $sentence4-> execute();
 
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         $result1 = $sentence1-> fetch(PDO::FETCH_ASSOC);
         $result2 = $sentence2-> fetch(PDO::FETCH_ASSOC);
         $result3 = $sentence3-> fetch(PDO::FETCH_ASSOC);
+        $result4 = $sentence4-> fetch(PDO::FETCH_ASSOC);
 
         if(!empty($result)){
           $ocho_a = $result['ocho_a'];
@@ -334,10 +339,14 @@ class ProjectRepository{
         if(!empty($result3)){
           $small_business = $result3['small_business'];
         }
+
+        if(!empty($result4)){
+          $sources_sought = $result4['sources_sought'];
+        }
        }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
       }
-      return array($ocho_a, $full_and_open, $hubzone, $small_business);
+      return array($ocho_a, $full_and_open, $hubzone, $small_business, $sources_sought);
     }
   }
 

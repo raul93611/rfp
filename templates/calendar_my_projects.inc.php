@@ -36,7 +36,8 @@ $all_my_dates = array_merge($end_dates, $new_dates);
                   <i class="fa fa-square" style="color:#f75a6a;"></i> 8(a)<br>
                   <i class="fa fa-square" style="color:#f8d200;"></i> HUBZone<br>
                   <i class="fa fa-square" style="color:#0cd63f;"></i> Small business<br>
-                  <i class="fa fa-square" style="color:#f441be;"></i> Full and Open<br><br>
+                  <i class="fa fa-square" style="color:#f441be;"></i> Full and Open<br>
+                  <i class="fa fa-square" style="color:#137024;"></i> Sources sought<br><br>
                   <i class="fa fa-square" style="color:#7041f4;"></i> New projects<br>
                   <i class="fa fa-square" style="color:black:"></i> No Bid
                 </p>

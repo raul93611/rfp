@@ -1,7 +1,7 @@
 <?php
 Connection::open_connection();
 list($submitted_projects_by_month, $award_projects_by_month, $award_by_amount_projects_by_month) = ProjectRepository::submitted_award_award_by_amount_projects_by_month(Connection::get_connection());
-list($ocho_a, $full_and_open, $hubzone, $small_business) = ProjectRepository::submitted_projects_by_priority(Connection::get_connection());
+list($ocho_a, $full_and_open, $hubzone, $small_business, $sources_sought) = ProjectRepository::submitted_projects_by_priority(Connection::get_connection());
 list($cancelled, $disqualified, $loss, $re_posted) = ProjectRepository::submitted_projects_by_result(Connection::get_connection());
 Connection::close_connection();
 ?>
@@ -13,6 +13,7 @@ Connection::close_connection();
   <input type="hidden" id="full_and_open" name="full_and_open" <?php echo "value='" . json_encode($full_and_open) . "'"; ?>>
   <input type="hidden" id="hubzone" name="hubzone" <?php echo "value='" . json_encode($hubzone) . "'"; ?>>
   <input type="hidden" id="small_business" name="small_business" <?php echo "value='" . json_encode($small_business) . "'"; ?>>
+  <input type="hidden" id="sources_sought" name="sources_sought" <?php echo "value='" . json_encode($sources_sought) . "'"; ?>>
   <input type="hidden" id="cancelled" name="cancelled" <?php echo "value='" . json_encode($cancelled) . "'"; ?>>
   <input type="hidden" id="disqualified" name="disqualified" <?php echo "value='" . json_encode($disqualified) . "'"; ?>>
   <input type="hidden" id="loss" name="loss" <?php echo "value='" . json_encode($loss) . "'"; ?>>

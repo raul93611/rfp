@@ -402,6 +402,7 @@ if($('#data_reports').length != 0){
   var full_and_open = $('#full_and_open').val();
   var hubzone = $('#hubzone').val();
   var small_business = $('#small_business').val();
+  var sources_sought = $('#sources_sought').val();
   var cancelled = $('#cancelled').val();
   var disqualified = $('#disqualified').val();
   var loss = $('#loss').val();
@@ -414,6 +415,7 @@ if($('#data_reports').length != 0){
   full_and_open = jQuery.parseJSON(full_and_open);
   hubzone = jQuery.parseJSON(hubzone);
   small_business = jQuery.parseJSON(small_business);
+  sources_sought = jQuery.parseJSON(sources_sought);
   cancelled = jQuery.parseJSON(cancelled);
   disqualified = jQuery.parseJSON(disqualified);
   loss = jQuery.parseJSON(loss);
@@ -547,12 +549,12 @@ if($('#submitted_pie_chart').length != 0){
     type: 'pie',
     data:
     {
-      labels: ["8(a)", "Full Open", "HUBZone", "Small Business"],
+      labels: ['8(a)', 'Full Open', 'HUBZone', 'Small Business', 'Sources sought'],
       datasets:
       [{
         label: "Population (millions)",
-        backgroundColor: ["#ff2e00", "#edcf0e", "#0cd63f", "#0c8bd6"],
-        data: [12,4,5,5]
+        backgroundColor: ['#f75a6a', '#f441be', '#f8d200', '#0cd63f', '#137024'],
+        data: [12,4,5,5,3]
       }]
     },
     options:
