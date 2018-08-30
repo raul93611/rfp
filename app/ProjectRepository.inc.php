@@ -253,7 +253,7 @@ class ProjectRepository{
         for ($i = 1; $i <= 12 ; $i++) {
           $sql = 'SELECT COUNT(*) as submitted_projects_by_month FROM projects WHERE submitted = 1 AND MONTH(submitted_date) =' . $i . ' AND YEAR(submitted_date) = YEAR(CURDATE())';
           $sql1 = 'SELECT COUNT(*) as award_projects_by_month FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(CURDATE())';
-          $sql2 = 'SELECT SUM(total) as total FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(CURDATE())';
+          $sql2 = 'SELECT SUM(total) as award_by_amount_projects_by_month FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(CURDATE())';
 
           $sentence = $connection-> prepare($sql);
           $sentence1 = $connection-> prepare($sql1);
@@ -280,7 +280,7 @@ class ProjectRepository{
           }
 
           if(!is_null($result2['total'])){
-            $award_by_amount_projects_by_month[$i - 1] = $result2['monto'];
+            $award_by_amount_projects_by_month[$i - 1] = $result2['award_by_amount_projects_by_month'];
           }else{
             $award_by_amount_projects_by_month[$i - 1] = 0;
           }
@@ -290,6 +290,54 @@ class ProjectRepository{
       }
     }
     return array($submitted_projects_by_month, $award_projects_by_month, $award_by_amount_projects_by_month);
+  }
+
+  public static function submitted_award_award_by_amount_projects_by_month_last_year($connection){
+    $submitted_projects_by_month_last_year = [];
+    $award_projects_by_month_last_year = [];
+    $award_by_amount_projects_by_month_last_year = [];
+    if(isset($connection)){
+      try{
+        for ($i = 1; $i <= 12 ; $i++) {
+          $sql = 'SELECT COUNT(*) as submitted_projects_by_month_last_year FROM projects WHERE submitted = 1 AND MONTH(submitted_date) =' . $i . ' AND YEAR(submitted_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 YEAR))';
+          $sql1 = 'SELECT COUNT(*) as award_projects_by_month_last_year FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 YEAR))';
+          $sql2 = 'SELECT SUM(total) as award_by_amount_projects_by_month_last_year FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 YEAR))';
+
+          $sentence = $connection-> prepare($sql);
+          $sentence1 = $connection-> prepare($sql1);
+          $sentence2 = $connection-> prepare($sql2);
+
+          $sentence-> execute();
+          $sentence1-> execute();
+          $sentence2-> execute();
+
+          $result = $sentence-> fetch(PDO::FETCH_ASSOC);
+          $result1 = $sentence1-> fetch(PDO::FETCH_ASSOC);
+          $result2 = $sentence2-> fetch(PDO::FETCH_ASSOC);
+
+          if(!empty($result)){
+            $submitted_projects_by_month_last_year[$i - 1] = $result['submitted_projects_by_month_last_year'];
+          }else{
+            $submitted_projects_by_month_last_year[$i - 1] = 0;
+          }
+
+          if(!empty($result1)){
+            $award_projects_by_month_last_year[$i - 1] = $result1['award_projects_by_month_last_year'];
+          }else{
+            $award_projects_by_month_last_year[$i - 1] = 0;
+          }
+
+          if(!is_null($result2['total'])){
+            $award_by_amount_projects_by_month_last_year[$i - 1] = $result2['award_by_amount_projects_by_month_last_year'];
+          }else{
+            $award_by_amount_projects_by_month_last_year[$i - 1] = 0;
+          }
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return array($submitted_projects_by_month_last_year, $award_projects_by_month_last_year, $award_by_amount_projects_by_month_last_year);
   }
 
   public static function submitted_projects_by_priority($connection){
@@ -355,27 +403,32 @@ class ProjectRepository{
     $disqualified = 0;
     $loss = 0;
     $re_posted = 0;
+    $to_be_determined = 0;
     if(isset($connection)){
       try{
         $sql = 'SELECT COUNT(*) AS cancelled FROM projects WHERE submitted = 1 AND result = "cancelled" AND YEAR(submitted_date) = YEAR(CURDATE())';
         $sql1 = 'SELECT COUNT(*) AS disqualified FROM projects WHERE submitted = 1 AND result = "disqualified" AND YEAR(submitted_date) = YEAR(CURDATE())';
         $sql2 = 'SELECT COUNT(*) AS loss FROM projects WHERE submitted = 1 AND result = "loss" AND YEAR(submitted_date) = YEAR(CURDATE())';
         $sql3 = 'SELECT COUNT(*) AS re_posted FROM projects WHERE submitted = 1 AND result = "re_posted" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql4 = 'SELECT COUNT(*) AS to_be_determined FROM projects WHERE submitted = 1 AND result = "to_be_determined" AND YEAR(submitted_date) = YEAR(CURDATE())';
 
         $sentence = $connection-> prepare($sql);
         $sentence1 = $connection-> prepare($sql1);
         $sentence2 = $connection-> prepare($sql2);
         $sentence3 = $connection-> prepare($sql3);
+        $sentence4 = $connection-> prepare($sql4);
 
         $sentence-> execute();
         $sentence1-> execute();
         $sentence2-> execute();
         $sentence3-> execute();
+        $sentence4-> execute();
 
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         $result1 = $sentence1-> fetch(PDO::FETCH_ASSOC);
         $result2 = $sentence2-> fetch(PDO::FETCH_ASSOC);
         $result3 = $sentence3-> fetch(PDO::FETCH_ASSOC);
+        $result4 = $sentence4-> fetch(PDO::FETCH_ASSOC);
 
         if(!empty($result)){
           $cancelled = $result['cancelled'];
@@ -392,11 +445,15 @@ class ProjectRepository{
         if(!empty($result3)){
           $re_posted = $result3['re_posted'];
         }
+
+        if(!empty($result4)){
+          $to_be_determined = $result4['to_be_determined'];
+        }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
       }
     }
-    return array($cancelled, $disqualified, $loss, $re_posted);
+    return array($cancelled, $disqualified, $loss, $re_posted, $to_be_determined);
   }
 
   public static function print_comments_projects(){

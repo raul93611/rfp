@@ -2,7 +2,8 @@
 Connection::open_connection();
 list($submitted_projects_by_month, $award_projects_by_month, $award_by_amount_projects_by_month) = ProjectRepository::submitted_award_award_by_amount_projects_by_month(Connection::get_connection());
 list($ocho_a, $full_and_open, $hubzone, $small_business, $sources_sought) = ProjectRepository::submitted_projects_by_priority(Connection::get_connection());
-list($cancelled, $disqualified, $loss, $re_posted) = ProjectRepository::submitted_projects_by_result(Connection::get_connection());
+list($cancelled, $disqualified, $loss, $re_posted, $to_be_determined) = ProjectRepository::submitted_projects_by_result(Connection::get_connection());
+list($submitted_projects_by_month_last_year, $award_projects_by_month_last_year, $award_by_amount_projects_by_month_last_year) = ProjectRepository::submitted_award_award_by_amount_projects_by_month_last_year(Connection::get_connection());
 Connection::close_connection();
 ?>
 <div id="data_reports">
@@ -18,6 +19,10 @@ Connection::close_connection();
   <input type="hidden" id="disqualified" name="disqualified" <?php echo "value='" . json_encode($disqualified) . "'"; ?>>
   <input type="hidden" id="loss" name="loss" <?php echo "value='" . json_encode($loss) . "'"; ?>>
   <input type="hidden" id="re_posted" name="re_posted" <?php echo "value='" . json_encode($re_posted) . "'"; ?>>
+  <input type="hidden" id="to_be_determined" name="to_be_determined" <?php echo "value='" . json_encode($to_be_determined) . "'"; ?>>
+  <input type="hidden" id="submitted_projects_by_month_last_year" name="submitted_projects_by_month_last_year" <?php echo "value='" . json_encode($submitted_projects_by_month_last_year) . "'"; ?>>
+  <input type="hidden" id="award_projects_by_month_last_year" name="award_projects_by_month_last_year" <?php echo "value='" . json_encode($award_projects_by_month_last_year) . "'"; ?>>
+  <input type="hidden" id="award_by_amount_projects_by_month_last_year" name="award_by_amount_projects_by_month_last_year" <?php echo "value='" . json_encode($award_by_amount_projects_by_month_last_year) . "'"; ?>>
 </div>
 <div class="content-wrapper">
     <div class="content-header">

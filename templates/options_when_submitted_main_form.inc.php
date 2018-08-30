@@ -14,6 +14,7 @@ if($project-> get_submitted()){
           <option value="disqualified" <?php if($project-> get_result() == 'disqualified'){echo 'selected';} ?>>Disqualified</option>
           <option value="loss" <?php if($project-> get_result() == 'loss'){echo 'selected';} ?>>Loss</option>
           <option value="re_posted" <?php if($project-> get_result() == 're_posted'){echo 'selected';} ?>>Re-posted</option>
+          <option value="to_be_determined" <?php if($project-> get_result() == 'to_be_determined'){echo 'selected';} ?>>To be determined</option>
         </select>
       </div>
       <div class="form-group" id="proposed_price">

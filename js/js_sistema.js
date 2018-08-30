@@ -407,6 +407,10 @@ if($('#data_reports').length != 0){
   var disqualified = $('#disqualified').val();
   var loss = $('#loss').val();
   var re_posted = $('#re_posted').val();
+  var to_be_determined = $('#to_be_determined').val();
+  var submitted_projects_by_month_last_year = $('#submitted_projects_by_month_last_year').val();
+  var award_projects_by_month_last_year = $('#award_projects_by_month_last_year').val();
+  var award_by_amount_projects_by_month_last_year = $('#award_by_amount_projects_by_month_last_year').val();
 
   submitted_projects_by_month = jQuery.parseJSON(submitted_projects_by_month);
   award_projects_by_month = jQuery.parseJSON(award_projects_by_month);
@@ -420,6 +424,10 @@ if($('#data_reports').length != 0){
   disqualified = jQuery.parseJSON(disqualified);
   loss = jQuery.parseJSON(loss);
   re_posted = jQuery.parseJSON(re_posted);
+  to_be_determined = jQuery.parseJSON(to_be_determined);
+  submitted_projects_by_month_last_year = jQuery.parseJSON(submitted_projects_by_month_last_year);
+  award_projects_by_month_last_year = jQuery.parseJSON(award_projects_by_month_last_year);
+  award_by_amount_projects_by_month_last_year = jQuery.parseJSON(award_by_amount_projects_by_month_last_year);
 }
 
 var ticksStyle = {
@@ -434,13 +442,22 @@ if($('#submitted_chart').length != 0){
     data: {
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       datasets:
-      [{
-        label: '# of submitted projects',
-        data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
-        backgroundColor: 'rgba(66, 134, 244, 0.3)',
-        borderColor: 'rgba(66, 134, 244, 1)',
-        borderWidth: 1
-      }]
+      [
+        {
+          label: '# of submitted projects last year',
+          data: [1, 9, 5, 3, 2, 6, 2, 4, 7, 2, 9, 9],
+          backgroundColor: 'rgba(0, 0, 2, 0.3)',
+          borderColor: 'rgba(0, 0, 2, 1)',
+          borderWidth: 1
+        },
+        {
+          label: '# of submitted projects',
+          data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
+          backgroundColor: 'rgba(66, 134, 244, 0.3)',
+          borderColor: 'rgba(66, 134, 244, 1)',
+          borderWidth: 1
+        }
+      ]
     },
     options: {
       scales: {
@@ -472,13 +489,22 @@ if($('#award_chart').length != 0){
     data: {
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       datasets:
-      [{
-        label: '# of award projects',
-        data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
-        backgroundColor: 'rgba(226, 190, 29, 0.3)',
-        borderColor: 'rgba(226, 190, 29, 1)',
-        borderWidth: 1
-      }]
+      [
+        {
+          label: '# of award projects last year',
+          data: [1, 9, 5, 3, 2, 6, 2, 4, 7, 2, 9, 9],
+          backgroundColor: 'rgba(0, 0, 2, 0.3)',
+          borderColor: 'rgba(0, 0, 2, 1)',
+          borderWidth: 1
+        },
+        {
+          label: '# of award projects',
+          data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
+          backgroundColor: 'rgba(226, 190, 29, 0.3)',
+          borderColor: 'rgba(226, 190, 29, 1)',
+          borderWidth: 1
+        }
+      ]
     },
     options: {
       scales: {
@@ -512,13 +538,22 @@ if($('#award_by_amount_chart').length != 0){
     data: {
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       datasets:
-      [{
-        label: '# of award projects',
-        data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
-        backgroundColor: 'rgba(178, 219, 15, 0.3)',
-        borderColor: 'rgba(178, 219, 15, 1)',
-        borderWidth: 1
-      }]
+        [
+          {
+            label: 'amount award projects last year',
+            data: [1, 9, 5, 3, 2, 6, 2, 4, 7, 2, 9, 9],
+            backgroundColor: 'rgba(0, 0, 2, 0.3)',
+            borderColor: 'rgba(0, 0, 2, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'amount award projects',
+            data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
+            backgroundColor: ' rgba(178, 219, 15, 0.3)',
+            borderColor: 'rgba(178, 219, 15, 1)',
+            borderWidth: 1
+          }
+        ]
     },
     options: {
       scales: {
@@ -579,12 +614,12 @@ if($('#result_pie_chart').length != 0){
     type: 'pie',
     data:
     {
-      labels: ["Cancelled", "Disqualified", "Loss", "Re-posted"],
+      labels: ['Cancelled', 'Disqualified', 'Loss', 'Re-posted', 'To be determined'],
       datasets:
       [{
         label: "Population (millions)",
-        backgroundColor: ["#3afcfc", "#2009f2", "#ef17cf", "#f44256"],
-        data: [12,4,5,5]
+        backgroundColor: ['#3afcfc', '#2009f2', '#ef17cf', '#f44256', '#f4dc04'],
+        data: [12,4,5,5,10]
       }]
     },
     options:
