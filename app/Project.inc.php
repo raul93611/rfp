@@ -11,7 +11,6 @@ class Project{
   private $description;
   private $submission_instructions;
   private $type;
-  private $flowchart_comments;
   private $flowchart;
   private $designated_user;
   private $reviewed_project;
@@ -33,7 +32,7 @@ class Project{
   private $ship_to;
   private $total;
 
-  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart_comments, $flowchart, $designated_user, $reviewed_project, $priority_color, $subject, $result, $proposed_price, $business_type, $submitted, $award, $submitted_date, $award_date, $quantity_years, $proposal_description, $proposal_quantity, $proposal_amount, $expiration_date, $address, $ship_to, $total){
+  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart, $designated_user, $reviewed_project, $priority_color, $subject, $result, $proposed_price, $business_type, $submitted, $award, $submitted_date, $award_date, $quantity_years, $proposal_description, $proposal_quantity, $proposal_amount, $expiration_date, $address, $ship_to, $total){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> start_date = $start_date;
@@ -45,7 +44,6 @@ class Project{
     $this-> description = $description;
     $this-> submission_instructions = $submission_instructions;
     $this-> type = $type;
-    $this-> flowchart_comments = $flowchart_comments;
     $this-> flowchart = $flowchart;
     $this-> designated_user = $designated_user;
     $this-> reviewed_project = $reviewed_project;
@@ -110,10 +108,6 @@ class Project{
 
   public function get_type(){
     return $this-> type;
-  }
-
-  public function get_flowchart_comments(){
-    return $this-> flowchart_comments;
   }
 
   public function get_flowchart(){

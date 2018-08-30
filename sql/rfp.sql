@@ -27,7 +27,6 @@ CREATE TABLE projects(
   description TEXT CHARACTER SET utf8 NOT NULL,
   submission_instructions VARCHAR(255) NOT NULL,
   type VARCHAR(255) NOT NULL,
-  flowchart_comments TEXT CHARACTER SET utf8 NOT NULL,
   flowchart TINYINT NOT NULL,
   designated_user TINYINT NOT NULL,
   reviewed_project TINYINT NOT NULL,

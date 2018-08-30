@@ -9,7 +9,11 @@ if(!$_POST['flowchart_result']){
   $priority_color = $project-> get_priority_color();
 }
 Connection::open_connection();
-ProjectRepository::save_flowchart_and_flowchart_comments(Connection::get_connection(), $_POST['flowchart_result'], htmlspecialchars($_POST['project_comments']), $priority_color, $_POST['id_project']);
+ProjectRepository::save_flowchart(Connection::get_connection(), $_POST['flowchart_result'], $priority_color, $_POST['id_project']);
+if(!empty($_POST['project_comments'])){
+  $comment = new Comment('', $_POST['id_project'], $_SESSION['id_user'], '', htmlspecialchars($_POST['project_comments']));
+  CommentRepository::insert_comment(Connection::get_connection(), $comment);
+}
 Connection::close_connection();
 Redirection::redirect(PROFILE . 'calendar_projects');
 ?>
