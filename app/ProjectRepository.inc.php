@@ -338,6 +338,37 @@ class ProjectRepository{
     return array($submitted_projects_by_month_last_year, $award_projects_by_month_last_year, $award_by_amount_projects_by_month_last_year);
   }
 
+  public static function follow_up_and_no_follow_up($connection){
+    $follow_up = 0;
+    $no_follow_up = 0;
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT COUNT(*) AS follow_up FROM projects WHERE submitted = 1 AND follow_up = 1 AND award = 0 AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql1 = 'SELECT COUNT(*) AS no_follow_up FROM projects WHERE submitted = 1 AND follow_up = 0 AND award = 0 AND YEAR(submitted_date) = YEAR(CURDATE())';
+
+        $sentence = $connection-> prepare($sql);
+        $sentence1 = $connection-> prepare($sql1);
+
+        $sentence-> execute();
+        $sentence1-> execute();
+
+        $result = $sentence-> fetch(PDO::FETCH_ASSOC);
+        $result1 = $sentence1-> fetch(PDO::FETCH_ASSOC);
+
+        if(!empty($result)){
+          $follow_up = $result['follow_up'];
+        }
+
+        if(!empty($result1)){
+          $no_follow_up = $result1['no_follow_up'];
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return array($follow_up, $no_follow_up);
+  }
+
   public static function submitted_projects_by_priority($connection){
     $ocho_a = 0;
     $full_and_open = 0;

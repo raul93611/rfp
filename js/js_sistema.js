@@ -663,6 +663,36 @@ if($('#result_pie_chart').length != 0){
     }
   });
 }
+
+if($('#follow_up_chart').length != 0){
+  var follow_up_chart_box = $('#follow_up_chart');
+  var follow_up_chart = new Chart(follow_up_chart_box, {
+    type: 'pie',
+    data:
+    {
+      labels: ['Follow up', 'Not follow up'],
+      datasets:
+      [{
+        label: "Population (millions)",
+        backgroundColor: ['#00db5f', '#6a27b2'],
+        data: [12,4]
+      }]
+    },
+    options:
+    {
+      maintainAspectRatio: false,
+      title: {
+          display: false,
+          text: 'Predicted world population (millions) in 2050'
+      },
+      cutoutPercentage: 0,
+      animation:{
+          easing: 'easeInOutCubic',
+          duration: 2500
+      }
+    }
+  });
+}
 /***********************************************************************************************************************
 END JQUERY CODE
 ***********************************************************************************************************************/

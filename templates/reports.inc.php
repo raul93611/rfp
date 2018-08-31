@@ -4,6 +4,7 @@ list($submitted_projects_by_month, $award_projects_by_month, $award_by_amount_pr
 list($ocho_a, $full_and_open, $hubzone, $small_business, $sources_sought) = ProjectRepository::submitted_projects_by_priority(Connection::get_connection());
 list($cancelled, $disqualified, $loss, $re_posted, $to_be_determined) = ProjectRepository::submitted_projects_by_result(Connection::get_connection());
 list($submitted_projects_by_month_last_year, $award_projects_by_month_last_year, $award_by_amount_projects_by_month_last_year) = ProjectRepository::submitted_award_award_by_amount_projects_by_month_last_year(Connection::get_connection());
+list($follow_up, $no_follow_up) = ProjectRepository::follow_up_and_no_follow_up(Connection::get_connection());
 Connection::close_connection();
 ?>
 <div id="data_reports">
@@ -23,6 +24,8 @@ Connection::close_connection();
   <input type="hidden" id="submitted_projects_by_month_last_year" name="submitted_projects_by_month_last_year" <?php echo "value='" . json_encode($submitted_projects_by_month_last_year) . "'"; ?>>
   <input type="hidden" id="award_projects_by_month_last_year" name="award_projects_by_month_last_year" <?php echo "value='" . json_encode($award_projects_by_month_last_year) . "'"; ?>>
   <input type="hidden" id="award_by_amount_projects_by_month_last_year" name="award_by_amount_projects_by_month_last_year" <?php echo "value='" . json_encode($award_by_amount_projects_by_month_last_year) . "'"; ?>>
+  <input type="hidden" id="follow_up" name="follow_up" <?php echo "value='" . json_encode($follow_up) . "'"; ?>>
+  <input type="hidden" id="no_follow_up" name="no_follow_up" <?php echo "value='" . json_encode($no_follow_up) . "'"; ?>>
 </div>
 <div class="content-wrapper">
     <div class="content-header">
@@ -49,11 +52,6 @@ Connection::close_connection();
                 <div class="position-relative mb-4">
                   <canvas id="submitted_chart" height="100"></canvas>
                 </div>
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    Current year
-                  </span>
-                </div>
               </div>
             </div>
             <div class="card card-primary">
@@ -64,11 +62,6 @@ Connection::close_connection();
                 <div class="position-relative mb-4">
                   <canvas id="award_chart" height="100"></canvas>
                 </div>
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    Current year
-                  </span>
-                </div>
               </div>
             </div>
             <div class="card card-primary">
@@ -78,11 +71,6 @@ Connection::close_connection();
               <div class="card-body">
                 <div class="position-relative mb-4">
                   <canvas id="award_by_amount_chart" height="100"></canvas>
-                </div>
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    Current year
-                  </span>
                 </div>
               </div>
             </div>
@@ -98,11 +86,6 @@ Connection::close_connection();
                 <div class="position-relative mb-4">
                   <canvas id="submitted_pie_chart" height="400"></canvas>
                 </div>
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    Current year
-                  </span>
-                </div>
               </div>
             </div>
           </div>
@@ -115,13 +98,28 @@ Connection::close_connection();
                 <div class="position-relative mb-4">
                   <canvas id="result_pie_chart" height="400"></canvas>
                 </div>
-                <div class="d-flex flex-row justify-content-end">
-                  <span class="mr-2">
-                    Current year
-                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+
+          </div>
+          <div class="col-6">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fa fa-chart-pie"></i> Follow up</h3>
+              </div>
+              <div class="card-body">
+                <div class="position-relative mb-4">
+                  <canvas id="follow_up_chart" height="400"></canvas>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="col-3">
+
           </div>
         </div>
       </div>
