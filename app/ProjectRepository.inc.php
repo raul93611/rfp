@@ -472,11 +472,12 @@ class ProjectRepository{
           $comments = CommentRepository::get_all_comments_by_id_project(Connection::get_connection(), $project-> get_id());
           Connection::close_connection();
           foreach ($comments as $comment) {
+            $comment_date = self::mysql_datetime_to_english_format($comment-> get_comment_date());
             ?>
             <li>
               <i class="fa fa-user"></i>
               <div class="timeline-item">
-                <span class="time"><i class="far fa-clock"></i> <?php echo $comment-> get_comment_date(); ?></span>
+                <span class="time"><i class="far fa-clock"></i> <?php echo $comment_date; ?></span>
                 <h3 class="timeline-header">
                   <span class="text-primary">
                   <?php
