@@ -461,7 +461,7 @@ class ProjectRepository{
       foreach ($projects as $project) {
         ?>
         <ul class="timeline">
-          <li>
+          <li class="clickable_title">
             <i class="fa fa-bookmark"></i>
             <div class="timeline-item">
               <h3 class="timeline-header">Project: <a href="<?php echo INFO_PROJECT_AND_SERVICES . $project-> get_id(); ?>"><?php echo $project-> get_project_name(); ?></a></h3>
@@ -471,10 +471,11 @@ class ProjectRepository{
           Connection::open_connection();
           $comments = CommentRepository::get_all_comments_by_id_project(Connection::get_connection(), $project-> get_id());
           Connection::close_connection();
+          ?><?php
           foreach ($comments as $comment) {
             $comment_date = self::mysql_datetime_to_english_format($comment-> get_comment_date());
             ?>
-            <li>
+            <li class="body_comments">
               <i class="fa fa-user"></i>
               <div class="timeline-item">
                 <span class="time"><i class="far fa-clock"></i> <?php echo $comment_date; ?></span>
@@ -493,7 +494,6 @@ class ProjectRepository{
                 </div>
               </div>
             </li>
-
             <?php
           }
           ?>

@@ -15,6 +15,14 @@ $(document).ready(function(){
       }
     });
   }
+  /***************************************COLLAPSIBLE LINETIME******************************************************/
+  var timelines = $('.timeline');
+  timelines.each(function(i){
+    var timeline = $(this);
+    $(this).find('.clickable_title').click(function(){
+      timeline.find('.body_comments').toggle('slideUp');
+    });
+  });
   /*************************************BETTER CHECKBOX SUBMITTED AWARD*********************************************/
   $('input[type="checkbox"].minimal').iCheck({
     checkboxClass: 'icheckbox_minimal-blue'
