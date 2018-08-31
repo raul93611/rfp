@@ -15,7 +15,7 @@ $(document).ready(function(){
       }
     });
   }
-  /*************************************BETTER CHECBOX SUBMITTED AWARD*********************************************/
+  /*************************************BETTER CHECKBOX SUBMITTED AWARD*********************************************/
   $('input[type="checkbox"].minimal').iCheck({
     checkboxClass: 'icheckbox_minimal-blue'
   });
@@ -392,6 +392,24 @@ $('#form_info_project').submit(function(){
     }
   }
 });
+/*************************************ALERT TO AVOID SAVE*********************************************************/
+if($('#form_info_project_and_services').length != 0){
+  var address = $('#address');
+  if(address.val() == ''){
+    address.addClass('is-invalid');
+  }
+  address.focus(function(){
+    $(this).removeClass('is-invalid');
+  });
+
+  var ship_to = $('#ship_to');
+  if(ship_to.val() == ''){
+    ship_to.addClass('is-invalid');
+  }
+  ship_to.focus(function(){
+    $(this).removeClass('is-invalid');
+  });
+}
 /**********************************************************************************************************************/
 /*************************************************REPORTS**************************************************************/
 if($('#data_reports').length != 0){
