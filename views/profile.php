@@ -66,6 +66,9 @@ switch ($current_manager) {
   case 'reports':
     include_once 'templates/reports.inc.php';
     break;
+  case 'edit_user':
+    include_once 'templates/edit_user.inc.php';
+    break;
 }
 include_once 'templates/end_document.inc.php';
 ?>

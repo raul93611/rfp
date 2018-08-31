@@ -155,6 +155,10 @@ if($parts_route[0] == 'rfp'){
         $id_project = $parts_route[2];
         $chosen_route = 'scripts/generate_proposal.php';
         break;
+      case 'save_edit_user':
+        $id_user = $parts_route[2];
+        $chosen_route = 'scripts/save_edit_user.php';
+        break;
       }
   }else if(count($parts_route) == 4){
     if($parts_route[1] == 'profile'){
@@ -197,6 +201,11 @@ if($parts_route[0] == 'rfp'){
         case 'make_proposal':
           $id_project = $parts_route[3];
           $current_manager = 'make_proposal';
+          $chosen_route = 'views/profile.php';
+          break;
+        case 'edit_user':
+          $id_user = $parts_route[3];
+          $current_manager = 'edit_user';
           $chosen_route = 'views/profile.php';
           break;
         default:

@@ -22,6 +22,8 @@ define('SIGN_IN', PROFILE . 'sign_in');
 define('DELETE_USER', PROFILE . 'delete_user');
 define('DISABLE_USER', SERVER . 'disable_user/');
 define('ENABLE_USER', SERVER . 'enable_user/');
+define('EDIT_USER', PROFILE . 'edit_user/');
+define('SAVE_EDIT_USER', SERVER . 'save_edit_user/');
 /*******************************************************************************/
 /****************************SEARCH*********************************************/
 define('SEARCH', PROFILE . 'search');

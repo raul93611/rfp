@@ -206,11 +206,13 @@ class UserRepository{
           <td>
             <?php
             if($user-> get_status()){
-              echo '<a href="' . DISABLE_USER . $user-> get_id() . '" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Disable</a>';
+              echo '<a href="' . DISABLE_USER . $user-> get_id() . '" class="btn btn-block btn-sm btn-danger"><i class="fa fa-ban"></i> Disable</a>';
             }else{
-              echo '<a href="' . ENABLE_USER . $user-> get_id() . '" class="btn btn-sm btn-success"><i class="fa fa-check"></i> Enable</a>';
+              echo '<a href="' . ENABLE_USER . $user-> get_id() . '" class="btn btn-block btn-sm btn-success"><i class="fa fa-check"></i> Enable</a>';
             }
             ?>
+            <br>
+            <a class="btn btn-sm btn-block btn-info" href="<?php echo EDIT_USER . $user-> get_id(); ?>"><i class="fa fa-edit"></i> Edit</a>
           </td>
       </tr>
       <?php
@@ -287,6 +289,36 @@ class UserRepository{
       }
     }
     return $edited_user;
+  }
+
+  public static function edit_user($connection, $password, $username, $names, $last_names, $level, $email, $id_user) {
+    if (isset($connection)) {
+      try {
+        if(empty($password)){
+          $sql = "UPDATE users SET username = :username, names = :names, last_names = :last_names, level = :level, email = :email WHERE id = :id_user";
+          $sentence = $connection-> prepare($sql);
+          $sentence-> bindParam(':username', $username, PDO::PARAM_STR);
+          $sentence-> bindParam(':names', $names, PDO::PARAM_STR);
+          $sentence-> bindParam(':last_names', $last_names, PDO::PARAM_STR);
+          $sentence-> bindParam(':level', $level, PDO::PARAM_STR);
+          $sentence-> bindParam(':email', $email, PDO::PARAM_STR);
+          $sentence-> bindParam(':id_user', $id_user, PDO::PARAM_STR);
+        }else{
+          $sql = "UPDATE users SET password = :password, username = :username, names = :names, last_names = :last_names, level = :level, email = :email WHERE id = :id_user";
+          $sentence = $connection-> prepare($sql);
+          $sentence-> bindParam(':password', $password, PDO::PARAM_STR);
+          $sentence-> bindParam(':username', $username, PDO::PARAM_STR);
+          $sentence-> bindParam(':names', $names, PDO::PARAM_STR);
+          $sentence-> bindParam(':last_names', $last_names, PDO::PARAM_STR);
+          $sentence-> bindParam(':level', $level, PDO::PARAM_STR);
+          $sentence-> bindParam(':email', $email, PDO::PARAM_STR);
+          $sentence-> bindParam(':id_user', $id_user, PDO::PARAM_STR);
+        }
+        $sentence-> execute();
+      } catch (PDOException $ex) {
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
   }
 }
 ?>
