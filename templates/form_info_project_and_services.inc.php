@@ -50,7 +50,7 @@ include_once 'templates/options_when_submitted_main_form.inc.php';
   </div>
   <div class="card-body">
     <div class="form-group">
-      <textarea class="form-control" name="story_comments" id="story_comments" rows="5"></textarea>
+      <textarea class="form-control form-control-sm" name="story_comments" id="story_comments" rows="5"></textarea>
     </div>
   </div>
 </div>

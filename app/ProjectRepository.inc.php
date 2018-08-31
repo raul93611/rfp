@@ -3,7 +3,7 @@ class ProjectRepository{
   public static function insert_project($connection, $project){
     if(isset($connection)){
       try{
-        $sql = 'INSERT INTO projects (id_user, start_date, code, link, project_name, end_date, priority, description, submission_instructions, type, flowchart, designated_user, reviewed_project, priority_color, subject, result, proposed_price, business_type, submitted, award, submitted_date, award_date, quantity_years, proposal_description, proposal_quantity, proposal_amount, expiration_date, address, ship_to, total) VALUES(:id_user, NOW(), :code, :link, :project_name, :end_date, :priority, :description, :submission_instructions, :type, :flowchart, :designated_user, :reviewed_project, :priority_color, :subject, :result, :proposed_price, :business_type, :submitted, :award, :submitted_date, :award_date, :quantity_years, :proposal_description, :proposal_quantity, :proposal_amount, :expiration_date, :address, :ship_to, :total)';
+        $sql = 'INSERT INTO projects (id_user, start_date, code, link, project_name, end_date, priority, description, submission_instructions, type, flowchart, designated_user, reviewed_project, priority_color, subject, result, proposed_price, business_type, submitted, follow_up, award, submitted_date, award_date, quantity_years, proposal_description, proposal_quantity, proposal_amount, expiration_date, address, ship_to, total) VALUES(:id_user, NOW(), :code, :link, :project_name, :end_date, :priority, :description, :submission_instructions, :type, :flowchart, :designated_user, :reviewed_project, :priority_color, :subject, :result, :proposed_price, :business_type, :submitted, :follow_up, :award, :submitted_date, :award_date, :quantity_years, :proposal_description, :proposal_quantity, :proposal_amount, :expiration_date, :address, :ship_to, :total)';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $project-> get_id_user(), PDO::PARAM_STR);
         $sentence-> bindParam(':code', $project-> get_code(), PDO::PARAM_STR);
@@ -23,6 +23,7 @@ class ProjectRepository{
         $sentence-> bindParam(':proposed_price', $project-> get_proposed_price(), PDO::PARAM_STR);
         $sentence-> bindParam(':business_type', $project-> get_business_type(), PDO::PARAM_STR);
         $sentence-> bindParam(':submitted', $project-> get_submitted(), PDO::PARAM_STR);
+        $sentence-> bindParam(':follow_up', $project-> get_follow_up(), PDO::PARAM_STR);
         $sentence-> bindParam(':award', $project-> get_award(), PDO::PARAM_STR);
         $sentence-> bindParam(':submitted_date', $project-> get_submitted_date(), PDO::PARAM_STR);
         $sentence-> bindParam(':award_date', $project-> get_award_date(), PDO::PARAM_STR);
@@ -175,7 +176,7 @@ class ProjectRepository{
         $sentence-> execute();
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         if(!empty($result)){
-          $project = new Project($result['id'], $result['id_user'], $result['start_date'], $result['code'], $result['link'], $result['project_name'], $result['end_date'], $result['priority'], $result['description'], $result['submission_instructions'], $result['type'], $result['flowchart'], $result['designated_user'], $result['reviewed_project'], $result['priority_color'], $result['subject'], $result['result'], $result['proposed_price'], $result['business_type'], $result['submitted'], $result['award'], $result['submitted_date'], $result['award_date'], $result['quantity_years'], $result['proposal_description'], $result['proposal_quantity'], $result['proposal_amount'], $result['expiration_date'], $result['address'], $result['ship_to'],$result['total']);
+          $project = new Project($result['id'], $result['id_user'], $result['start_date'], $result['code'], $result['link'], $result['project_name'], $result['end_date'], $result['priority'], $result['description'], $result['submission_instructions'], $result['type'], $result['flowchart'], $result['designated_user'], $result['reviewed_project'], $result['priority_color'], $result['subject'], $result['result'], $result['proposed_price'], $result['business_type'], $result['submitted'], $result['follow_up'], $result['award'], $result['submitted_date'], $result['award_date'], $result['quantity_years'], $result['proposal_description'], $result['proposal_quantity'], $result['proposal_amount'], $result['expiration_date'], $result['address'], $result['ship_to'],$result['total']);
         }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -209,7 +210,7 @@ class ProjectRepository{
         $result = $sentence-> fetchAll();
         if(count($result)){
           foreach ($result as $row) {
-            $projects[] = new Project($row['id'], $row['id_user'], $row['start_date'], $row['code'], $row['link'], $row['project_name'], $row['end_date'], $row['priority'], $row['description'], $row['submission_instructions'], $row['type'], $row['flowchart'], $row['designated_user'], $row['reviewed_project'], $row['priority_color'], $row['subject'], $row['result'], $row['proposed_price'], $row['business_type'], $row['submitted'], $row['award'], $row['submitted_date'], $row['award_date'], $row['quantity_years'], $row['proposal_description'], $row['proposal_quantity'], $row['proposal_amount'], $result['expiration_date'], $result['address'], $result['ship_to'], $result['total']);
+            $projects[] = new Project($row['id'], $row['id_user'], $row['start_date'], $row['code'], $row['link'], $row['project_name'], $row['end_date'], $row['priority'], $row['description'], $row['submission_instructions'], $row['type'], $row['flowchart'], $row['designated_user'], $row['reviewed_project'], $row['priority_color'], $row['subject'], $row['result'], $row['proposed_price'], $row['business_type'], $row['submitted'], $row['follow_up'], $row['award'], $row['submitted_date'], $row['award_date'], $row['quantity_years'], $row['proposal_description'], $row['proposal_quantity'], $row['proposal_amount'], $result['expiration_date'], $result['address'], $result['ship_to'], $result['total']);
           }
         }
       }catch(PDOException $ex){
@@ -231,7 +232,7 @@ class ProjectRepository{
         $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
         if(count($result)){
           foreach ($result as $row) {
-            $projects[] = new Project($row['id'], $row['id_user'], $row['start_date'], $row['code'], $row['link'], $row['project_name'], $row['end_date'], $row['priority'], $row['description'], $row['submission_instructions'], $row['type'], $row['flowchart'], $row['designated_user'], $row['reviewed_project'], $row['priority_color'], $row['subject'], $row['result'], $row['proposed_price'], $row['business_type'], $row['submitted'], $row['award'], $row['submitted_date'], $row['award_date'], $row['quantity_years'], $row['proposal_description'], $row['proposal_quantity'], $row['proposal_amount'], $result['expiration_date'], $result['address'], $result['ship_to'], $result['total']);
+            $projects[] = new Project($row['id'], $row['id_user'], $row['start_date'], $row['code'], $row['link'], $row['project_name'], $row['end_date'], $row['priority'], $row['description'], $row['submission_instructions'], $row['type'], $row['flowchart'], $row['designated_user'], $row['reviewed_project'], $row['priority_color'], $row['subject'], $row['result'], $row['proposed_price'], $row['business_type'], $row['submitted'], $row['follow_up'], $row['award'], $row['submitted_date'], $row['award_date'], $row['quantity_years'], $row['proposal_description'], $row['proposal_quantity'], $row['proposal_amount'], $result['expiration_date'], $result['address'], $result['ship_to'], $result['total']);
           }
         }
       }catch(PDOException $ex){
@@ -591,6 +592,19 @@ class ProjectRepository{
     if(isset($connection)){
       try{
         $sql = 'UPDATE projects SET award = 1, award_date = NOW() WHERE id = :id_project';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
+
+  public static function set_follow_up_state($connection, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE projects SET follow_up = 1 WHERE id = :id_project';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
         $sentence-> execute();

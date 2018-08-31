@@ -103,12 +103,21 @@
     ?>
     <hr>
     <?php
-    if($project-> get_submitted() && !$project-> get_award()){
+    if($project-> get_submitted() && $project-> get_follow_up() && !$project-> get_award()){
       ?>
       <div class="form-group">
         <label>
           <input type="checkbox" class="minimal" name="award" value="yes" id="award" <?php if($project-> get_award()){echo 'checked';} ?>>
           <span style="font-size: 20px;" class="text-primary">Award</span>
+        </label>
+      </div>
+      <?php
+    }else if($project-> get_submitted() && !$project-> get_follow_up() && !$project-> get_award()){
+      ?>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" class="minimal" name="follow_up" value="yes" id="follow_up" <?php if($project-> get_follow_up()){echo 'checked';} ?>>
+          <span style="font-size: 20px;" class="text-primary">Follow up</span>
         </label>
       </div>
       <?php

@@ -36,6 +36,7 @@ CREATE TABLE projects(
   proposed_price DECIMAL(20,2),
   business_type VARCHAR(255) NOT NULL,
   submitted TINYINT NOT NULL,
+  follow_up TINYINT NOT NULL,
   award TINYINT NOT NULL,
   submitted_date DATE,
   award_date DATE,

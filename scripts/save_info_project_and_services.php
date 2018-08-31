@@ -53,6 +53,10 @@ if(isset($_POST['save_info_project_and_services'])){
     if(isset($_POST['submitted']) && $_POST['submitted'] == 'yes'){
       ProjectRepository::set_submitted_state(Connection::get_connection(), $id_project);
     }
+  }elseif(!$project-> get_follow_up()){
+    if(isset($_POST['follow_up']) && $_POST['follow_up'] == 'yes'){
+      ProjectRepository::set_follow_up_state(Connection::get_connection(), $id_project);
+    }
   }else if(!$project-> get_award()){
     if(isset($_POST['award']) && $_POST['award'] == 'yes'){
       ProjectRepository::set_award_state(Connection::get_connection(), $id_project);

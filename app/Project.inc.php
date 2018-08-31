@@ -20,6 +20,7 @@ class Project{
   private $proposed_price;
   private $business_type;
   private $submitted;
+  private $follow_up;
   private $award;
   private $submitted_date;
   private $award_date;
@@ -32,7 +33,7 @@ class Project{
   private $ship_to;
   private $total;
 
-  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart, $designated_user, $reviewed_project, $priority_color, $subject, $result, $proposed_price, $business_type, $submitted, $award, $submitted_date, $award_date, $quantity_years, $proposal_description, $proposal_quantity, $proposal_amount, $expiration_date, $address, $ship_to, $total){
+  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart, $designated_user, $reviewed_project, $priority_color, $subject, $result, $proposed_price, $business_type, $submitted, $follow_up, $award, $submitted_date, $award_date, $quantity_years, $proposal_description, $proposal_quantity, $proposal_amount, $expiration_date, $address, $ship_to, $total){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> start_date = $start_date;
@@ -53,6 +54,7 @@ class Project{
     $this-> proposed_price = $proposed_price;
     $this-> business_type = $business_type;
     $this-> submitted = $submitted;
+    $this-> follow_up = $follow_up;
     $this-> award = $award;
     $this-> submitted_date = $submitted_date;
     $this-> award_date = $award_date;
@@ -144,6 +146,10 @@ class Project{
 
   public function get_submitted(){
     return $this-> submitted;
+  }
+
+  public function get_follow_up(){
+    return $this-> follow_up;
   }
 
   public function get_award(){
