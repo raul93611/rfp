@@ -464,7 +464,7 @@ class ProjectRepository{
           <li>
             <i class="fa fa-bookmark"></i>
             <div class="timeline-item">
-              <h3 class="timeline-header no-border">Project: <a href="<?php echo INFO_PROJECT_AND_SERVICES . $project-> get_id(); ?>"><?php echo $project-> get_project_name(); ?></a></h3>
+              <h3 class="timeline-header">Project: <a href="<?php echo INFO_PROJECT_AND_SERVICES . $project-> get_id(); ?>"><?php echo $project-> get_project_name(); ?></a></h3>
             </div>
           </li>
           <?php
