@@ -57,8 +57,11 @@ switch ($current_manager) {
   case 'edit_cost':
     include_once 'templates/edit_cost.inc.php';
     break;
-  case 'make_proposal';
-    include_once 'templates/make_proposal.inc.php';
+  case 'make_proposal1';
+    include_once 'templates/make_proposal1.inc.php';
+    break;
+  case 'make_proposal2':
+    include_once 'templates/make_proposal2.inc.php';
     break;
   case 'search':
     include_once 'templates/search.inc.php';

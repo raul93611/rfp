@@ -147,9 +147,13 @@ if($parts_route[0] == 'rfp'){
         $id_cost = $parts_route[2];
         $chosen_route = 'scripts/save_edit_cost.php';
         break;
-      case 'save_proposal_data':
+      case 'save_proposal_data1':
         $id_project = $parts_route[2];
-        $chosen_route = 'scripts/save_proposal_data.php';
+        $chosen_route = 'scripts/save_proposal_data1.php';
+        break;
+      case 'save_proposal_data2':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/save_proposal_data2.php';
         break;
       case 'generate_proposal':
         $id_project = $parts_route[2];
@@ -198,9 +202,14 @@ if($parts_route[0] == 'rfp'){
           $current_manager = 'edit_cost';
           $chosen_route = 'views/profile.php';
           break;
-        case 'make_proposal':
+        case 'make_proposal1':
           $id_project = $parts_route[3];
-          $current_manager = 'make_proposal';
+          $current_manager = 'make_proposal1';
+          $chosen_route = 'views/profile.php';
+          break;
+        case 'make_proposal2':
+          $id_project = $parts_route[3];
+          $current_manager = 'make_proposal2';
           $chosen_route = 'views/profile.php';
           break;
         case 'edit_user':

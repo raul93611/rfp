@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_POST['save_info_project_and_services']) || isset($_POST['make_proposal'])){
+if(isset($_POST['save_info_project_and_services']) || isset($_POST['make_proposal1']) || isset($_POST['make_proposal2'])){
   $directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
   $documents = array_filter($_FILES['documents']['name']);
   $total = count($documents);
@@ -104,8 +104,10 @@ if(isset($_POST['save_info_project_and_services']) || isset($_POST['make_proposa
   */
   if(isset($_POST['save_info_project_and_services'])){
     Redirection::redirect(INFO_PROJECT_AND_SERVICES . $id_project);
-  }else if(isset($_POST['make_proposal'])){
-    Redirection::redirect(MAKE_PROPOSAL . $id_project);
+  }else if(isset($_POST['make_proposal1'])){
+    Redirection::redirect(MAKE_PROPOSAL1 . $id_project);
+  }else if(isset($_POST['make_proposal2'])){
+    Redirection::redirect(MAKE_PROPOSAL2 . $id_project);
   }
 }
 ?>

@@ -70,7 +70,10 @@ include_once 'templates/options_when_submitted_main_form.inc.php';
     <?php
   }
   if($project-> get_submitted()){
-    ?><button type="submit" class="btn btn-success" name="make_proposal"><i class="fa fa-cogs"></i> Make proposal</button><?php
+    ?>
+    <button type="submit" class="btn btn-success" name="make_proposal1"><i class="fa fa-cogs"></i> Proposal 1</button>
+    <button type="submit" class="btn btn-success" name="make_proposal2"><i class="fa fa-cogs"></i> Proposal 2</button>
+    <?php
   }
   ?>
 </div>

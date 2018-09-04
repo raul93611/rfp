@@ -42,6 +42,12 @@ $('#file_input_info_create').change(function(e){
         proposed_price.fadeOut();
       }
     });
+    
+    if(result.val() != 'none'){
+      proposed_price.fadeIn();
+    }else{
+      proposed_price.fadeOut();
+    }
   }
   /***************************************COLLAPSIBLE LINETIME******************************************************/
   var timelines = $('.timeline');

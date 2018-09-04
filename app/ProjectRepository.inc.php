@@ -595,7 +595,7 @@ class ProjectRepository{
   public static function set_proposal_amount($connection, $proposal_amount, $id_project){
     if(isset($connection)){
       try{
-        $sql = 'UPDATE projects SET proposal_amount = :proposal_amount WHERE id = :id_project';
+        $sql = 'UPDATE projects SET proposal_description = "", proposal_quantity = "", proposal_amount = :proposal_amount WHERE id = :id_project';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':proposal_amount', $proposal_amount, PDO::PARAM_STR);
         $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
@@ -661,13 +661,14 @@ class ProjectRepository{
     }
   }
 
-  public static function set_proposal_data($connection, $proposal_description, $proposal_quantity, $id_project){
+  public static function set_proposal_data($connection, $proposal_description, $proposal_quantity, $proposal_amount, $id_project){
     if(isset($connection)){
       try{
-        $sql = 'UPDATE projects SET proposal_description = :proposal_description, proposal_quantity = :proposal_quantity WHERE id = :id_project';
+        $sql = 'UPDATE projects SET proposal_description = :proposal_description, proposal_quantity = :proposal_quantity, proposal_amount = :proposal_amount WHERE id = :id_project';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':proposal_description', $proposal_description, PDO::PARAM_STR);
         $sentence-> bindParam(':proposal_quantity', $proposal_quantity, PDO::PARAM_STR);
+        $sentence-> bindParam(':proposal_amount', $proposal_amount, PDO::PARAM_STR);
         $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
         $sentence-> execute();
       }catch(PDOException $ex){

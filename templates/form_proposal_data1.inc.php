@@ -12,19 +12,19 @@
         <div class="col-7">
           <div class="from-group">
             <label for="proposal_description">Description (Year <?php echo $i; ?>):</label>
-            <textarea name="proposal_description<?php echo $i; ?>" rows="5" class="form-control"><?php echo $proposal_description[$i - 1]; ?></textarea>
+            <textarea name="proposal_description<?php echo $i; ?>" rows="5" class="form-control form-control-sm"><?php echo $proposal_description[$i - 1]; ?></textarea>
           </div>
         </div>
         <div class="col-2">
           <div class="form-group">
             <label for="proposal_quantity">Quantity:</label>
-            <input type="number" name="proposal_quantity<?php echo $i; ?>" class="form-control" value="<?php echo $proposal_quantity[$i - 1]; ?>">
+            <input type="number" name="proposal_quantity<?php echo $i; ?>" class="form-control form-control-sm" value="<?php echo $proposal_quantity[$i - 1]; ?>">
           </div>
         </div>
         <div class="col-3">
           <div class="form-group">
             <label for="total_service_cost">Service cost ($):</label>
-            <input type="number" step=".01" disabled name="proposal_amount<?php echo $i; ?>" class="form-control" value="<?php $number = number_format($proposal_amount[$i-1], 2, '.', '');echo $number; ?>">
+            <input type="number" step=".01" disabled name="proposal_amount<?php echo $i; ?>" class="form-control form-control-sm" value="<?php $number = number_format($proposal_amount[$i-1], 2, '.', '');echo $number; ?>">
           </div>
         </div>
       </div>

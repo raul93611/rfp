@@ -49,8 +49,10 @@ define('EDIT_COST', PROFILE . 'edit_cost/');
 define('SAVE_EDIT_COST', SERVER . 'save_edit_cost/');
 /********************************************************************************/
 /*********************************PROPOSAL***************************************/
-define('MAKE_PROPOSAL', PROFILE . 'make_proposal/');
-define('SAVE_PROPOSAL_DATA', SERVER . 'save_proposal_data/');
+define('MAKE_PROPOSAL1', PROFILE . 'make_proposal1/');
+define('MAKE_PROPOSAL2', PROFILE . 'make_proposal2/');
+define('SAVE_PROPOSAL_DATA1', SERVER . 'save_proposal_data1/');
+define('SAVE_PROPOSAL_DATA2', SERVER . 'save_proposal_data2/');
 define('GENERATE_PROPOSAL', SERVER . 'generate_proposal/');
 /*****************************SEND ERROR QUOTE EMAIL****************************/
 define('SEND_ERROR_QUOTE_EMAIL', SERVER . 'send_error_quote_email');
