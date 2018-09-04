@@ -25,10 +25,11 @@ if(isset($_POST['save_project'])){
   $total = count($documents);
   for ($i = 0; $i < $total; $i++) {
       $tmp_path = $_FILES['documents']['tmp_name'][$i];
-
+      $file = $_FILES['documents']['name'][$i];
       if ($tmp_path != '') {
-          $new_path = $directory . '/' . $_FILES['documents']['name'][$i];
-          move_uploaded_file($tmp_path, $new_path);
+        $file = preg_replace('/[^a-z0-9-_\-\.]/i','_',$file);
+        $new_path = $directory . '/' . $file;
+        move_uploaded_file($tmp_path, $new_path);
       }
   }
   Redirection::redirect(CALENDAR_NEW_PROJECTS);

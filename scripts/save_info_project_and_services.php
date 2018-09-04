@@ -6,9 +6,23 @@ if(isset($_POST['save_info_project_and_services'])){
   $total = count($documents);
   for ($i = 0; $i < $total; $i++) {
       $tmp_path = $_FILES['documents']['tmp_name'][$i];
+      $file = $_FILES['documents']['name'][$i];
+      $file = preg_replace('/[^a-z0-9-_\-\.]/i','_',$file);
+      $file = explode('.', $file);
+      $file_name = $file[0];
+      $file_ext = $file[1];
       if ($tmp_path != '') {
-          $new_path = $directory . '/' . $_FILES['documents']['name'][$i];
-          move_uploaded_file($tmp_path, $new_path);
+        if(file_exists($directory . '/' . $file_name . '.' . $file_ext)){
+          $a = 1;
+          while (@file_exists($directory . '/' . $file_name . '_v' . $a . '.' . $file_ext)) {
+            $a++;
+          }
+          $file = $file_name . '_v' . $a . '.' . $file_ext;
+        }else{
+          $file = $file_name . '.' . $file_ext;
+        }
+        $new_path = $directory . '/' . $file;
+        move_uploaded_file($tmp_path, $new_path);
       }
   }
   Connection::open_connection();
