@@ -204,7 +204,7 @@ class ProjectRepository{
     $projects = [];
     if(isset($connection)){
       try{
-        $sql = 'SELECT * FROM projects WHERE submitted = 0 ORDER BY end_date';
+        $sql = 'SELECT * FROM projects WHERE submitted = 0 AND reviewed_project = 1 ORDER BY end_date';
         $sentence = $connection-> prepare($sql);
         $sentence-> execute();
         $result = $sentence-> fetchAll();
