@@ -27,15 +27,18 @@
         <form id="form_new_project" method="post" enctype="multipart/form-data" action="<?php echo SAVE_PROJECT; ?>">
           <div class="form-group">
             <label for="link">Link:</label>
-            <input type="text" id="link" name="link" placeholder="Link ..." class="form-control" autofocus required>
+            <input type="text" id="link" name="link" placeholder="Link ..." class="form-control form-control-sm" autofocus required>
           </div>
           <div class="form-group">
             <label for="create_part_comments">Comments:</label>
-            <textarea class="form-control" name="create_part_comments" rows="5" id="create_part_comments"></textarea>
+            <textarea class="form-control form-control-sm" name="create_part_comments" rows="5" id="create_part_comments"></textarea>
           </div>
           <div class="form-group">
-            <label for="documents">Documents:</label><br>
-            <input type="file" id="documents" name="documents[]" class="btn btn-block btn-secondary" multiple>
+            <label for="documents">Upload documents:</label><br>
+            <div class="custom-file">
+              <input type="file" name="documents[]" multiple class="custom-file-input" id="file_input_info_create">
+              <label id="label_file_create" class="custom-file-label" for="file_input_info_create">Choose file</label>
+            </div>
           </div>
         </form>
       </div>

@@ -18,7 +18,7 @@ if(isset($_POST['save_project'])){
     CommentRepository::insert_comment(Connection::get_connection(), $comment);
   }
   Connection::close_connection();
-
+  
   $directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
   mkdir($directory, 0777);
   $documents = array_filter($_FILES['documents']['name']);

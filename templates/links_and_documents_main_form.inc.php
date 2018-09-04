@@ -43,7 +43,10 @@
     </div>
     <div class="form-group">
       <label for="documents">Upload documents:</label><br>
-      <input type="file" id="documents" name="documents[]" class="btn btn-block btn-secondary" multiple>
+      <div class="custom-file">
+        <input type="file" name="documents[]" multiple class="custom-file-input" id="file_input_info">
+        <label id="label_file" class="custom-file-label" for="file_input_info">Choose file</label>
+      </div>
     </div>
   </div>
 </div>
