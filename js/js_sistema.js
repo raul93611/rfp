@@ -2,6 +2,18 @@
 STARTJQUERY CODE
 **********************************************************************************************************************/
 $(document).ready(function(){
+  /****************************************DON'T LET CODE EMPTY******************************************************/
+  if($('#form_info_project_and_services').length != 0){
+    var form_info_project_and_services = $('#form_info_project_and_services');
+    form_info_project_and_services.submit(function(){
+      var code_field = $('#code').val();
+      if(code_field == ''){
+        $('#form_uncompleted_body').html('<h4 class="text-center text-danger">"Code" must be fill out.</h4>');
+        $('#form_uncompleted').modal();
+        return false;
+      }
+    });
+  }
   /***************************************HIDE/SHOW PROPOSED PRICE**************************************************/
   if($('#proposed_price').length != 0){
     var proposed_price = $('#proposed_price');

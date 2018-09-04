@@ -16,7 +16,7 @@
             ?>
             <label class="col-sm-2 col-form-label col-form-label-sm" for="designated_user">Designated user:</label>
             <div class="col-sm-10">
-              <select id="designated_user" disabled class="custom-select custom-select-sm" name="designated_user">
+              <select id="designated_user" disabled class="form-control form-control-sm" name="designated_user">
               <?php
               foreach ($users as $user) {
                 ?>

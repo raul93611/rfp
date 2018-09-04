@@ -70,7 +70,7 @@ include_once 'templates/options_when_submitted_main_form.inc.php';
     <?php
   }
   if($project-> get_submitted()){
-    ?><a class="btn btn-info" href="<?php echo MAKE_PROPOSAL . $id_project; ?>"><i class="fa fa-cogs"></i> Make proposal</a><?php
+    ?><button type="submit" class="btn btn-success" name="make_proposal"><i class="fa fa-cogs"></i> Make proposal</button><?php
   }
   ?>
 </div>

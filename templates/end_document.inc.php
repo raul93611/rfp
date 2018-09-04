@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="form_uncompleted_body">
         <h4 class="text-center text-danger">Must be fill out</h4>
       </div>
     </div>
