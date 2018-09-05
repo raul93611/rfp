@@ -184,7 +184,7 @@
     <div class="col-12">
       <div class="form-group">
         <label>Comments:</label>
-        <textarea class="form-control" name="project_comments" rows="10" autofocus required></textarea>
+        <textarea class="form-control form-control-sm" name="project_comments" rows="5" autofocus required></textarea>
       </div>
     </div>
   </div>

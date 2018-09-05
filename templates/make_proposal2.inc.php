@@ -4,7 +4,7 @@ $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $i
 $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
 $staff = StaffRepository::get_all_staff_by_id_service(Connection::get_connection(), $service-> get_id());
 $costs = CostRepository::get_all_costs_by_id_service(Connection::get_connection(), $service-> get_id());
-$proposal_description = explode('|', $project-> get_proposal_description());
+$proposal_description2 = explode('|', $project-> get_proposal_description2());
 $total_costs = 0;
 foreach ($costs as $cost) {
   $total_costs += $cost-> get_amount();

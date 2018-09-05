@@ -17,7 +17,7 @@
         <div class="col-7">
           <div class="from-group">
             <label for="proposal_description">Description (<?php echo $single_staff-> get_name(); ?>):</label>
-            <textarea name="proposal_description<?php echo $i; ?>" rows="5" class="form-control form-control-sm"><?php echo $proposal_description[$i - 1]; ?></textarea>
+            <textarea name="proposal_description<?php echo $i; ?>" rows="5" class="form-control form-control-sm"><?php echo $proposal_description2[$i - 1]; ?></textarea>
           </div>
         </div>
         <div class="col-2">

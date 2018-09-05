@@ -29,7 +29,6 @@ if(isset($_POST['save_info_project_and_services']) || isset($_POST['make_proposa
   $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
   $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
   ServiceRepository::set_total_service_total_equipment(Connection::get_connection(), $_POST['total_service'], $_POST['total_equipment'], $service-> get_id());
-  ProjectRepository::set_proposal_amount(Connection::get_connection(), $_POST['total_by_year'], $id_project);
   ProjectRepository::set_total(Connection::get_connection(), $_POST['total'], $id_project);
   $users = UserRepository::get_all_users(Connection::get_connection());
   switch ($_POST['priority']) {
@@ -105,6 +104,9 @@ if(isset($_POST['save_info_project_and_services']) || isset($_POST['make_proposa
   if(isset($_POST['save_info_project_and_services'])){
     Redirection::redirect(INFO_PROJECT_AND_SERVICES . $id_project);
   }else if(isset($_POST['make_proposal1'])){
+    Connection::open_connection();
+    ProjectRepository::set_proposal_amount1(Connection::get_connection(), $_POST['total_by_year'], $id_project);
+    Connection::close_connection();
     Redirection::redirect(MAKE_PROPOSAL1 . $id_project);
   }else if(isset($_POST['make_proposal2'])){
     Redirection::redirect(MAKE_PROPOSAL2 . $id_project);

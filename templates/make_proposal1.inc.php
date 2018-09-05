@@ -1,12 +1,12 @@
 <?php
 Connection::open_connection();
 $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
-$proposal_description = $project-> get_proposal_description();
-$proposal_quantity = $project-> get_proposal_quantity();
-$proposal_amount = $project-> get_proposal_amount();
-$proposal_description = explode('|', $proposal_description);
-$proposal_quantity = explode('|', $proposal_quantity);
-$proposal_amount = explode('|', $proposal_amount);
+$proposal_description1 = $project-> get_proposal_description1();
+$proposal_quantity1 = $project-> get_proposal_quantity1();
+$proposal_amount1 = $project-> get_proposal_amount1();
+$proposal_description1 = explode('|', $proposal_description1);
+$proposal_quantity1 = explode('|', $proposal_quantity1);
+$proposal_amount1 = explode('|', $proposal_amount1);
 Connection::close_connection();
 ?>
 <div class="content-wrapper">
