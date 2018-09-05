@@ -45,6 +45,9 @@ include_once 'app/CostRepository.inc.php';
 include_once 'app/Comment.inc.php';
 include_once 'app/CommentRepository.inc.php';
 
+include_once 'app/Task.inc.php';
+include_once 'app/TaskRepository.inc.php';
+
 $url_components = parse_url($_SERVER['REQUEST_URI']);
 $route = $url_components['path'];
 
@@ -70,6 +73,9 @@ if($parts_route[0] == 'rfp'){
           break;
         case 'save_project':
           $chosen_route = 'scripts/save_project.php';
+          break;
+        case 'save_task':
+          $chosen_route = 'scripts/save_task.php';
           break;
         case 'send_error_quote_email':
           $chosen_route = 'scripts/send_error_quote_email.php';

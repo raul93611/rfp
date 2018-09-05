@@ -228,7 +228,7 @@ class ProjectRepository{
     $search_term = '%' . $search_term . '%';
     if(isset($connection)){
       try{
-        $sql = 'SELECT * FROM projects WHERE id LIKE :search_term OR project_name LIKE :search_term OR description LIKE :search_term OR proposal_description LIKE :search_term OR address LIKE :search_term OR ship_to LIKE :search_term';
+        $sql = 'SELECT * FROM projects WHERE id LIKE :search_term OR project_name LIKE :search_term OR description LIKE :search_term OR proposal_description1 LIKE :search_term OR proposal_description2 LIKE :search_term OR address LIKE :search_term OR ship_to LIKE :search_term';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':search_term', $search_term, PDO::PARAM_STR);
         $sentence-> execute();

@@ -48,6 +48,8 @@ define('SAVE_COST', SERVER . 'save_cost/');
 define('EDIT_COST', PROFILE . 'edit_cost/');
 define('SAVE_EDIT_COST', SERVER . 'save_edit_cost/');
 /********************************************************************************/
+/**********************************SAVE TASK*************************************/
+define('SAVE_TASK', SERVER . 'save_task');
 /*********************************PROPOSAL***************************************/
 define('MAKE_PROPOSAL1', PROFILE . 'make_proposal1/');
 define('MAKE_PROPOSAL2', PROFILE . 'make_proposal2/');

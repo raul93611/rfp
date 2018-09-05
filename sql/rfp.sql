@@ -71,8 +71,26 @@ CREATE TABLE comments(
     ON DELETE RESTRICT,
   FOREIGN KEY(id_user)
     REFERENCES users(id)
-      ON UPDATE CASCADE
-      ON DELETE RESTRICT
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
+);
+
+CREATE TABLE tasks(
+  id INT NOT NULL AUTO_INCREMENT UNIQUE,
+  id_project INT NOT NULL,
+  id_user INT NOT NULL,
+  designated_user INT NOT NULL,
+  end_date DATE,
+  description TEXT CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(id_project)
+    REFERENCES projects(id)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT,
+  FOREIGN KEY(id_user)
+    REFERENCES users(id)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
 );
 
 CREATE TABLE services(

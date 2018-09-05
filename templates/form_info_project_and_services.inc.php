@@ -69,6 +69,9 @@ include_once 'templates/options_when_submitted_main_form.inc.php';
     <a class="btn btn-info" href="<?php echo ADD_COST . $id_project; ?>"><i class="fa fa-plus"></i> Add costs</a>
     <?php
   }
+  ?>
+  <button type="button" class="btn btn-primary" id="add_task"><i class="fas fa-tasks"></i> Add task</button>
+  <?php
   if($project-> get_submitted()){
     ?>
     <button type="submit" class="btn btn-success" name="make_proposal1"><i class="fa fa-cogs"></i> Proposal 1</button>

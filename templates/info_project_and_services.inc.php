@@ -36,3 +36,56 @@ Connection::close_connection();
         </div>
     </section>
 </div>
+<!--*****************************************MODAL TASK**********************************************************************-->
+<div class="modal fade" id="form_add_task" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="form_task" method="post" action="<?php echo SAVE_TASK; ?>">
+          <div class="form-group">
+            <?php
+            Connection::open_connection();
+            $users = UserRepository::get_users_3_4(Connection::get_connection());
+            Connection::close_connection();
+            ?>
+            <?php
+            if (count($users)) {
+              ?>
+              <label for="designated_user">Designated user:</label>
+                <select id="designated_user_task" class="form-control form-control-sm" name="designated_user_task">
+                <?php
+                foreach ($users as $user) {
+                  ?>
+                  <option value="<?php echo $user-> get_id(); ?>"><?php echo $user-> get_username(); ?></option>
+                  <?php
+                  }
+                  ?>
+                </select>
+              <?php
+            }
+            ?>
+          </div>
+          <div class="form-group">
+            <label for="end_date_task">End date:</label>
+            <input type="text" name="end_date_task" id="end_date_task" class="form-control form-control-sm">
+          </div>
+          <div class="form-group">
+            <label for="task_description">Description:</label>
+            <textarea name="task_description" id="task_description" rows="5" class="form-control form-control-sm"></textarea>
+          </div>
+          <input type="hidden" name="id_project" value="<?php echo $id_project; ?>">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" name="save_task" form="form_task" class="btn btn-success"><i class="fa fa-check"></i> Send</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban"></i> Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

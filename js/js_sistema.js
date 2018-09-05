@@ -2,22 +2,26 @@
 STARTJQUERY CODE
 **********************************************************************************************************************/
 $(document).ready(function(){
+  /**************************************ADD TASK BUTTON*****************************************************************/
+  $('#add_task').click(function(){
+    $('#form_add_task').modal();
+  });
   /*************************************FILE INPUT MAIN FORM********************************************************************/
-$('#file_input_info').change(function(e){
-  var fileName = [];
-  for (var i = 0; i < e.target.files.length; i++) {
-    fileName.push(e.target.files[i].name);
-  }
-  $('#label_file').html(fileName.join(', '));
-});
-/***************************************FILE INPUT CREATE FORM*****************************************************************/
-$('#file_input_info_create').change(function(e){
-  var fileName_create = [];
-  for (var i = 0; i < e.target.files.length; i++) {
-    fileName_create.push(e.target.files[i].name);
-  }
-  $('#label_file_create').html(fileName_create.join(', '));
-});
+  $('#file_input_info').change(function(e){
+    var fileName = [];
+    for (var i = 0; i < e.target.files.length; i++) {
+      fileName.push(e.target.files[i].name);
+    }
+    $('#label_file').html(fileName.join(', '));
+  });
+  /***************************************FILE INPUT CREATE FORM*****************************************************************/
+  $('#file_input_info_create').change(function(e){
+    var fileName_create = [];
+    for (var i = 0; i < e.target.files.length; i++) {
+      fileName_create.push(e.target.files[i].name);
+    }
+    $('#label_file_create').html(fileName_create.join(', '));
+  });
   /****************************************DON'T LET CODE EMPTY******************************************************/
   if($('#form_info_project_and_services').length != 0){
     var form_info_project_and_services = $('#form_info_project_and_services');
@@ -111,6 +115,7 @@ $('#file_input_info_create').change(function(e){
       alias: "mm/dd/yyyy"
   });
   $('#expiration_date').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'});
+  $('#end_date_task').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'});
   /******************************************************************************************************************
   FLOWCHART
   ********************************************************************************************************************/
