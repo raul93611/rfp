@@ -430,6 +430,56 @@ class ProjectRepository{
     }
   }
 
+  public static function submitted_projects_by_subject($connection){
+    $av = 0;
+    $it = 0;
+    $logistics = 0;
+    $sources_sought = 0;
+
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT COUNT(*) AS av FROM projects WHERE submitted = 1 AND subject = "av" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql1 = 'SELECT COUNT(*) AS it FROM projects WHERE submitted = 1 AND subject = "it" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql2 = 'SELECT COUNT(*) AS logistics FROM projects WHERE submitted = 1 AND subject = "logistics" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql3 = 'SELECT COUNT(*) AS sources_sought FROM projects WHERE submitted = 1 AND subject = "sources_sought" AND YEAR(submitted_date) = YEAR(CURDATE())';
+
+        $sentence = $connection-> prepare($sql);
+        $sentence1 = $connection-> prepare($sql1);
+        $sentence2 = $connection-> prepare($sql2);
+        $sentence3 = $connection-> prepare($sql3);
+
+        $sentence-> execute();
+        $sentence1-> execute();
+        $sentence2-> execute();
+        $sentence3-> execute();
+
+        $result = $sentence-> fetch(PDO::FETCH_ASSOC);
+        $result1 = $sentence1-> fetch(PDO::FETCH_ASSOC);
+        $result2 = $sentence2-> fetch(PDO::FETCH_ASSOC);
+        $result3 = $sentence3-> fetch(PDO::FETCH_ASSOC);
+
+        if(!empty($result)){
+          $av = $result['av'];
+        }
+
+        if(!empty($result1)){
+          $it = $result['it'];
+        }
+
+        if(!empty($result2)){
+          $logistics = $result2['logistics'];
+        }
+
+        if(!empty($result3)){
+          $sources_sought = $result3['sources_sought'];
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return array($av, $it, $logistics, $sources_sought);
+  }
+
   public static function submitted_projects_by_result($connection){
     $cancelled = 0;
     $disqualified = 0;

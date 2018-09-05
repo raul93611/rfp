@@ -42,7 +42,7 @@ $('#file_input_info_create').change(function(e){
         proposed_price.fadeOut();
       }
     });
-    
+
     if(result.val() != 'none'){
       proposed_price.fadeIn();
     }else{
@@ -471,6 +471,12 @@ if($('#data_reports').length != 0){
   var submitted_projects_by_month_last_year = $('#submitted_projects_by_month_last_year').val();
   var award_projects_by_month_last_year = $('#award_projects_by_month_last_year').val();
   var award_by_amount_projects_by_month_last_year = $('#award_by_amount_projects_by_month_last_year').val();
+  var follow_up = $('#follow_up').val();
+  var no_follow_up = $('#no_follow_up').val();
+  var av = $('#av').val();
+  var it = $('#it').val();
+  var logistics = $('#logistics').val();
+  var sources_sought_subject = $('#sources_sought_subject').val();
 
   submitted_projects_by_month = jQuery.parseJSON(submitted_projects_by_month);
   award_projects_by_month = jQuery.parseJSON(award_projects_by_month);
@@ -488,6 +494,12 @@ if($('#data_reports').length != 0){
   submitted_projects_by_month_last_year = jQuery.parseJSON(submitted_projects_by_month_last_year);
   award_projects_by_month_last_year = jQuery.parseJSON(award_projects_by_month_last_year);
   award_by_amount_projects_by_month_last_year = jQuery.parseJSON(award_by_amount_projects_by_month_last_year);
+  follow_up = jQuery.parseJSON(follow_up);
+  no_follow_up = jQuery.parseJSON(no_follow_up);
+  av = jQuery.parseJSON(av);
+  it = jQuery.parseJSON(it);
+  logistics = jQuery.parseJSON(logistics);
+  sources_sought_subject = jQuery.parseJSON(sources_sought_subject);
 }
 
 var ticksStyle = {
@@ -710,6 +722,36 @@ if($('#follow_up_chart').length != 0){
         label: "Population (millions)",
         backgroundColor: ['#00db5f', '#6a27b2'],
         data: [12,4]
+      }]
+    },
+    options:
+    {
+      maintainAspectRatio: false,
+      title: {
+          display: false,
+          text: 'Predicted world population (millions) in 2050'
+      },
+      cutoutPercentage: 0,
+      animation:{
+          easing: 'easeInOutCubic',
+          duration: 2500
+      }
+    }
+  });
+}
+
+if($('#subject_chart').length != 0){
+  var subject_chart_box = $('#subject_chart');
+  var subject_chart = new Chart(subject_chart_box, {
+    type: 'pie',
+    data:
+    {
+      labels: ['AV', 'IT', 'Logistics', 'Sources sought'],
+      datasets:
+      [{
+        label: "Population (millions)",
+        backgroundColor: ['#9cd7e2', '#f7c767', '#af0101', '#edf767'],
+        data: [12,4,1,3]
       }]
     },
     options:

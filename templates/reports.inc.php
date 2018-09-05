@@ -5,6 +5,7 @@ list($ocho_a, $full_and_open, $hubzone, $small_business, $sources_sought) = Proj
 list($cancelled, $disqualified, $loss, $re_posted, $to_be_determined) = ProjectRepository::submitted_projects_by_result(Connection::get_connection());
 list($submitted_projects_by_month_last_year, $award_projects_by_month_last_year, $award_by_amount_projects_by_month_last_year) = ProjectRepository::submitted_award_award_by_amount_projects_by_month_last_year(Connection::get_connection());
 list($follow_up, $no_follow_up) = ProjectRepository::follow_up_and_no_follow_up(Connection::get_connection());
+list($av, $it, $logistics, $sources_sought_subject) = ProjectRepository::submitted_projects_by_subject(Connection::get_connection());
 Connection::close_connection();
 ?>
 <div id="data_reports">
@@ -26,6 +27,10 @@ Connection::close_connection();
   <input type="hidden" id="award_by_amount_projects_by_month_last_year" name="award_by_amount_projects_by_month_last_year" <?php echo "value='" . json_encode($award_by_amount_projects_by_month_last_year) . "'"; ?>>
   <input type="hidden" id="follow_up" name="follow_up" <?php echo "value='" . json_encode($follow_up) . "'"; ?>>
   <input type="hidden" id="no_follow_up" name="no_follow_up" <?php echo "value='" . json_encode($no_follow_up) . "'"; ?>>
+  <input type="hidden" id="av" name="av" <?php echo "value='" . json_encode($av) . "'"; ?>>
+  <input type="hidden" id="it" name="it" <?php echo "value='" . json_encode($it) . "'"; ?>>
+  <input type="hidden" id="logistics" name="logistics" <?php echo "value='" . json_encode($logistics) . "'"; ?>>
+  <input type="hidden" id="sources_sought_subject" name="sources_sought_subject" <?php echo "value='" . json_encode($sources_sought_subject) . "'"; ?>>
 </div>
 <div class="content-wrapper">
     <div class="content-header">
@@ -103,9 +108,6 @@ Connection::close_connection();
           </div>
         </div>
         <div class="row">
-          <div class="col-3">
-
-          </div>
           <div class="col-6">
             <div class="card card-primary">
               <div class="card-header">
@@ -118,8 +120,17 @@ Connection::close_connection();
               </div>
             </div>
           </div>
-          <div class="col-3">
-
+          <div class="col-6">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title"><i class="fa fa-chart-pie"></i> Subject</h3>
+              </div>
+              <div class="card-body">
+                <div class="position-relative mb-4">
+                  <canvas id="subject_chart" height="400"></canvas>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
