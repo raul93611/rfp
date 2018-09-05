@@ -35,6 +35,6 @@
   <div class="card-footer footer">
     <a class="btn btn-primary" id="go_back" href="<?php echo INFO_PROJECT_AND_SERVICES . $id_project; ?>"><i class="fa fa-reply"></i></a>
     <button type="submit" class="btn btn-success" name="save_proposal_data1"><i class="fa fa-check"></i> Save</button>
-    <a  class="btn btn-info" target="_blank" href="<?php echo GENERATE_PROPOSAL . $id_project; ?>"><i class="fa fa-book"></i> Generate proposal</a>
+    <a  class="btn btn-info" target="_blank" href="<?php echo GENERATE_PROPOSAL1 . $id_project; ?>"><i class="fa fa-book"></i> Generate proposal</a>
   </div>
 </div>

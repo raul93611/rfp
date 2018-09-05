@@ -4,6 +4,7 @@ include_once 'vendor/autoload.php';
 Connection::open_connection();
 $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
 $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
+$staff = StaffRepository::get_all_staff_by_id_service(Connection::get_connection(), $id_project);
 $user = UserRepository::get_user_by_id(Connection::get_connection(), $project-> get_designated_user());
 Connection::close_connection();
 if($project-> get_type() == 'services_and_equipment'){
@@ -15,9 +16,9 @@ if($project-> get_type() == 'services_and_equipment'){
 }
 
 $quantity_years = $project-> get_quantity_years();
-$proposal_description = explode('|', $project-> get_proposal_description());
-$proposal_quantity = explode('|', $project-> get_proposal_quantity());
-$proposal_amount = explode('|', $project-> get_proposal_amount());
+$proposal_description2 = explode('|', $project-> get_proposal_description2());
+$proposal_quantity2 = explode('|', $project-> get_proposal_quantity2());
+$proposal_amount2 = explode('|', $project-> get_proposal_amount2());
 $submitted_date = ProjectRepository::mysql_date_to_english_format($project-> get_submitted_date());
 $expiration_date = ProjectRepository::mysql_date_to_english_format($project-> get_expiration_date());
 try{
@@ -193,14 +194,14 @@ try{
       $a++;
     }
   }
-  for ($i = 1; $i <= $quantity_years; $i++) {
+  for ($i = 1; $i <= count($staff); $i++) {
     $html .= '
     <tr>
       <td>' . $a . '</td>
-      <td>' . nl2br($proposal_description[$i - 1]) . '</td>
-      <td style="text-align:right;">' . $proposal_quantity[$i - 1] . '</td>
-      <td style="text-align:right;">$ ' . number_format($proposal_amount[$i - 1], 2) . '</td>
-      <td style="text-align:right;">$ ' . number_format($proposal_amount[$i - 1], 2) . '</td>
+      <td>' . nl2br($proposal_description2[$i - 1]) . '</td>
+      <td style="text-align:right;">' . $proposal_quantity2[$i - 1] . '</td>
+      <td style="text-align:right;">$ ' . number_format($proposal_amount2[$i - 1], 2) . '</td>
+      <td style="text-align:right;">$ ' . number_format($proposal_amount2[$i - 1], 2) . '</td>
     </tr>
     ';
     $a++;

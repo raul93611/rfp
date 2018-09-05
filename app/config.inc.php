@@ -53,7 +53,8 @@ define('MAKE_PROPOSAL1', PROFILE . 'make_proposal1/');
 define('MAKE_PROPOSAL2', PROFILE . 'make_proposal2/');
 define('SAVE_PROPOSAL_DATA1', SERVER . 'save_proposal_data1/');
 define('SAVE_PROPOSAL_DATA2', SERVER . 'save_proposal_data2/');
-define('GENERATE_PROPOSAL', SERVER . 'generate_proposal/');
+define('GENERATE_PROPOSAL1', SERVER . 'generate_proposal1/');
+define('GENERATE_PROPOSAL2', SERVER . 'generate_proposal2/');
 /*****************************SEND ERROR QUOTE EMAIL****************************/
 define('SEND_ERROR_QUOTE_EMAIL', SERVER . 'send_error_quote_email');
 /*******************************************************************************/
