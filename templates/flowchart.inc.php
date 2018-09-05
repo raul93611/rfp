@@ -17,7 +17,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title"><i class="fa fa-pencil"></i> Flowchart</h3>
+                            <h3 class="card-title"><i class="fab fa-hubspot"></i> Flowchart</h3>
                         </div>
                         <form role="form" method="post" action="<?php echo SAVE_FLOWCHART . $id_project; ?>">
                             <?php

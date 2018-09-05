@@ -1,6 +1,6 @@
 <div class="card card-primary">
   <div class="card-header">
-    <h3 class="card-title"><i class="fa fa-plus"></i> Total:</h3>
+    <h3 class="card-title"><i class="fas fa-tag"></i> Total:</h3>
   </div>
   <div class="card-body">
     <?php

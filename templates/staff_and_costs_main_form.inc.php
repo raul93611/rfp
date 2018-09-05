@@ -1,6 +1,6 @@
 <div class="card card-primary" id="staff">
   <div class="card-header">
-    <h3 class="card-title"><i class="fa fa-plus"></i> Staff</h3>
+    <h3 class="card-title"><i class="fas fa-user-tie"></i> Staff</h3>
   </div>
   <div class="card-body">
     <?php
@@ -21,7 +21,7 @@
 </div>
 <div class="card card-primary" id="costs">
   <div class="card-header">
-    <h3 class="card-title"><i class="fa fa-plus"></i> Costs</h3>
+    <h3 class="card-title"><i class="fas fa-money-bill-wave"></i> Costs</h3>
   </div>
   <div class="card-body">
     <?php

@@ -1,6 +1,6 @@
 <div class="card card-primary">
   <div class="card-header">
-    <h3 class="card-title"><i class="fa fa-plus"></i> Main information</h3>
+    <h3 class="card-title"><i class="fas fa-list-alt"></i> Main information</h3>
   </div>
   <div class="card-body">
     <div class="row">

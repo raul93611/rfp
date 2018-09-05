@@ -48,7 +48,7 @@ if($level != 5){
 ?>
 <div class="card card-primary">
   <div class="card-header">
-    <h3 class="card-title"><i class="fa fa-plus"></i> Comments</h3>
+    <h3 class="card-title"><i class="fab fa-rocketchat"></i> Comments</h3>
   </div>
   <div class="card-body">
     <div class="form-group">

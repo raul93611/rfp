@@ -26,7 +26,7 @@ if(isset($_POST['search'])){
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Projects</h3>
+                            <h3 class="card-title"><i class="fas fa-search"></i> Search form</h3>
                         </div>
                         <div class="card-body">
                           <div class="row">
@@ -49,7 +49,7 @@ if(isset($_POST['search'])){
                     </div>
                     <div class="card card-primary">
                       <div class="card-header">
-                          <h3 class="card-title">Projects</h3>
+                          <h3 class="card-title"><i class="fas fa-search"></i> Projects</h3>
                       </div>
                       <div class="card-body">
                         <?php
