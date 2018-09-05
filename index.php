@@ -101,6 +101,10 @@ if($parts_route[0] == 'rfp'){
             $current_manager = 'calendar_my_projects';
             $chosen_route = 'views/profile.php';
             break;
+          case 'calendar_my_tasks':
+            $current_manager = 'calendar_my_tasks';
+            $chosen_route = 'views/profile.php';
+            break;
           case 'search':
             $current_manager = 'search';
             $chosen_route = 'views/profile.php';
@@ -172,6 +176,10 @@ if($parts_route[0] == 'rfp'){
       case 'save_edit_user':
         $id_user = $parts_route[2];
         $chosen_route = 'scripts/save_edit_user.php';
+        break;
+      case 'completed_task':
+        $id_task = $parts_route[2];
+        $chosen_route = 'scripts/completed_task.php';
         break;
       }
   }else if(count($parts_route) == 4){

@@ -350,7 +350,6 @@ $(document).ready(function(){
       }],
       eventClick: function(calEvent, jsEvent, view){
         if(calEvent.reviewed_project == '0'){
-          console.log(calEvent.reviewed_project);
           new_link_delete_project = link_delete_project + calEvent.id;
           new_link_fill_out = link_fill_out + calEvent.id;
           $('#fill_out').attr('href', new_link_fill_out);
@@ -363,6 +362,39 @@ $(document).ready(function(){
         }
       }
     });
+  }
+
+  if($('#calendar_my_tasks').length != 0){
+    var all_my_tasks = $('#all_my_tasks').val();
+    all_my_tasks = jQuery.parseJSON(all_my_tasks);
+
+    var link_project = $('#go_to_project').attr('href');
+    var link_completed_task = $('#completed_task').attr('href');
+    $('#calendar_my_tasks').fullCalendar(
+      {
+        themeSystem: 'bootstrap4',
+        header:{
+          left: 'today,prev,next',
+          center: 'title',
+          right: 'month,listWeek'
+        },
+        eventSources:[
+          {
+            events: all_my_tasks,
+            color: '#996d00',
+            textColor: 'white'
+          }
+        ],
+        eventClick: function(calEvent, jsEvent, view){
+          new_link_project = link_project + calEvent.id_project;
+          new_link_completed_task = link_completed_task + calEvent.id;
+          $('#go_to_project').attr('href', new_link_project);
+          $('#completed_task').attr('href', new_link_completed_task);
+          $('#task_message').html(calEvent.description);
+          $('#task_info').modal();
+        }
+      }
+    );
   }
   /***************************************************************************************************************************
   END CALENDAR CODE

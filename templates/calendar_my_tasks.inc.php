@@ -1,20 +1,20 @@
 <?php
 Connection::open_connection();
-$projects = ProjectRepository::get_all_unreviewed_projects(Connection::get_connection());
+$all_my_tasks = TaskRepository::get_all_tasks_my_tasks(Connection::get_connection(), $_SESSION['id_user']);
 Connection::close_connection();
 ?>
-<input type="hidden" id="all_new_dates" value='<?php echo json_encode($projects); ?>'>
+<input type="hidden" id="all_my_tasks" value='<?php echo json_encode($all_my_tasks); ?>'>
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">New projects</h1>
+                    <h1 class="m-0 text-dark">My tasks</h1>
                 </div>
                 <div class="col-sm-6">
                   <div class="btn-group" role="group">
                     <a class="btn btn-<?php if($current_manager == 'calendar_new_projects'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo CALENDAR_NEW_PROJECTS; ?>">New projects</a>
-                    <a class="btn btn-<?php if($current_manager == 'calendar_project'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo CALENDAR_PROJECTS; ?>">All projects</a>
+                    <a class="btn btn-<?php if($current_manager == 'calendar_projects'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo CALENDAR_PROJECTS; ?>">All projects</a>
                     <a class="btn btn-<?php if($current_manager == 'calendar_my_projects'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo CALENDAR_MY_PROJECTS; ?>">My projects</a>
                     <a class="btn btn-<?php if($current_manager == 'calendar_my_tasks'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo CALENDAR_MY_TASKS; ?>">My tasks</a>
                   </div>
@@ -46,7 +46,7 @@ Connection::close_connection();
           <div class="col-10">
             <div class="card">
               <div class="card-body">
-                <div id="calendar_new_projects"></div>
+                <div id="calendar_my_tasks"></div>
               </div>
             </div>
           </div>

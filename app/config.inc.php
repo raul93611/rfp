@@ -16,7 +16,7 @@ define('LOG_OUT', SERVER . 'log_out');
 define('CALENDAR_NEW_PROJECTS', PROFILE . 'calendar_new_projects');
 define('CALENDAR_MY_PROJECTS', PROFILE . 'calendar_my_projects');
 define('CALENDAR_PROJECTS', PROFILE . 'calendar_projects');
-
+define('CALENDAR_MY_TASKS', PROFILE . 'calendar_my_tasks');
 /**************OPTIONS ADMIN****************************************************/
 define('SIGN_IN', PROFILE . 'sign_in');
 define('DELETE_USER', PROFILE . 'delete_user');
@@ -50,6 +50,7 @@ define('SAVE_EDIT_COST', SERVER . 'save_edit_cost/');
 /********************************************************************************/
 /**********************************SAVE TASK*************************************/
 define('SAVE_TASK', SERVER . 'save_task');
+define('COMPLETED_TASK', SERVER . 'completed_task/');
 /*********************************PROPOSAL***************************************/
 define('MAKE_PROPOSAL1', PROFILE . 'make_proposal1/');
 define('MAKE_PROPOSAL2', PROFILE . 'make_proposal2/');

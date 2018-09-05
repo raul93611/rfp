@@ -9,5 +9,7 @@ if($level == 1){
   include_once 'templates/calendar_projects.inc.php';
 }else if($current_manager == 'calendar_my_projects'){
   include_once 'templates/calendar_my_projects.inc.php';
+}else if($current_manager == 'calendar_my_tasks'){
+  include_once 'templates/calendar_my_tasks.inc.php';
 }
 ?>

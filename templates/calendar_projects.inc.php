@@ -16,6 +16,7 @@ Connection::close_connection();
                     <a class="btn btn-<?php if($current_manager == 'calendar_new_projects'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo CALENDAR_NEW_PROJECTS; ?>">New projects</a>
                     <a class="btn btn-<?php if($current_manager == 'calendar_projects'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo CALENDAR_PROJECTS; ?>">All projects</a>
                     <a class="btn btn-<?php if($current_manager == 'calendar_my_projects'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo CALENDAR_MY_PROJECTS; ?>">My projects</a>
+                    <a class="btn btn-<?php if($current_manager == 'calendar_my_tasks'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo CALENDAR_MY_TASKS; ?>">My tasks</a>
                   </div>
                 </div>
             </div>

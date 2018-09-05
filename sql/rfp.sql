@@ -82,6 +82,7 @@ CREATE TABLE tasks(
   designated_user INT NOT NULL,
   end_date DATE,
   description TEXT CHARACTER SET utf8 NOT NULL,
+  completed TINYINT NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_project)
     REFERENCES projects(id)
