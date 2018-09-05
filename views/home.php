@@ -14,7 +14,7 @@ include_once 'templates/validation_login.inc.php';
 
         <title>Home</title>
 
-        <link rel="stylesheet" href="<?php echo PLUGINS; ?>/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="<?php echo PLUGINS; ?>/font-awesome/css/all.min.css">
         <link rel="stylesheet" href="<?php echo DIST; ?>css/adminlte.min.css">
         <link rel="stylesheet" href="<?php echo CSS; ?>styles.css">
         <link rel="stylesheet" href="<?php echo PLUGINS; ?>iCheck/square/blue.css">
