@@ -11,6 +11,9 @@ if(isset($_POST['sign_in'])){
         case 'common_user':
             $level_user = 4;
             break;
+        case 'technician':
+            $level_user = 5;
+            break;
     }
     $status = 0;
     $validator = new UserSignInValidator($_POST['username'], $_POST['password1'], $_POST['password2'], $_POST['names'], $_POST['last_names'], $_POST['email'], Connection::get_connection());

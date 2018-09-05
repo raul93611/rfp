@@ -173,7 +173,7 @@ class UserRepository{
 
       if (isset($connection)) {
           try {
-              $sql = "SELECT * FROM users WHERE level > 2";
+              $sql = "SELECT * FROM users WHERE level = 3 OR level = 4";
 
               $sentence = $connection->prepare($sql);
 

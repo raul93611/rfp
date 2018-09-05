@@ -31,18 +31,20 @@ if($project-> get_submitted()){
 <input type="hidden" name="id_project" id="id_project" value="<?php echo $id_project; ?>">
 <?php
 include_once 'templates/links_and_documents_main_form.inc.php';
-include_once 'templates/main_info_main_form.inc.php';
-include_once 'templates/items_main_form.inc.php';
-include_once 'templates/staff_and_costs_main_form.inc.php';
-include_once 'templates/total_main_form.inc.php';
-$total = $total_service + $total_equipment;
-?>
-<input type="hidden" name="total_by_year" value="<?php echo $total_by_year; ?>">
-<input type="hidden" name="total_service" value="<?php echo $total_service; ?>">
-<input type="hidden" name="total_equipment" value="<?php echo $total_equipment; ?>">
-<input type="hidden" name="total" value="<?php echo $total; ?>">
-<?php
-include_once 'templates/options_when_submitted_main_form.inc.php';
+if($level != 5){
+  include_once 'templates/main_info_main_form.inc.php';
+  include_once 'templates/items_main_form.inc.php';
+  include_once 'templates/staff_and_costs_main_form.inc.php';
+  include_once 'templates/total_main_form.inc.php';
+  $total = $total_service + $total_equipment;
+  ?>
+  <input type="hidden" name="total_by_year" value="<?php echo $total_by_year; ?>">
+  <input type="hidden" name="total_service" value="<?php echo $total_service; ?>">
+  <input type="hidden" name="total_equipment" value="<?php echo $total_equipment; ?>">
+  <input type="hidden" name="total" value="<?php echo $total; ?>">
+  <?php
+  include_once 'templates/options_when_submitted_main_form.inc.php';
+}
 ?>
 <div class="card card-primary">
   <div class="card-header">
@@ -60,23 +62,25 @@ include_once 'templates/options_when_submitted_main_form.inc.php';
   if($project-> get_flowchart()){
     ?><button type="submit" class="btn btn-success" name="save_info_project_and_services"><i class="fa fa-check"></i> Save</button><?php
   }
-  ?>
-  <a class="btn btn-info" href="<?php echo FLOWCHART . $id_project; ?>"><i class="fa fa-book"></i> Flowchart</a>
-  <?php
-  if($project-> get_flowchart()){
+  if($level != 5){
     ?>
-    <a class="btn btn-info" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
-    <a class="btn btn-info" href="<?php echo ADD_COST . $id_project; ?>"><i class="fa fa-plus"></i> Add costs</a>
+    <a class="btn btn-info" href="<?php echo FLOWCHART . $id_project; ?>"><i class="fa fa-book"></i> Flowchart</a>
     <?php
-  }
-  ?>
-  <button type="button" class="btn btn-primary" id="add_task"><i class="fas fa-tasks"></i> Add task</button>
-  <?php
-  if($project-> get_submitted()){
+    if($project-> get_flowchart()){
+      ?>
+      <a class="btn btn-info" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
+      <a class="btn btn-info" href="<?php echo ADD_COST . $id_project; ?>"><i class="fa fa-plus"></i> Add costs</a>
+      <?php
+    }
     ?>
-    <button type="submit" class="btn btn-success" name="make_proposal1"><i class="fa fa-cogs"></i> Proposal 1</button>
-    <button type="submit" class="btn btn-success" name="make_proposal2"><i class="fa fa-cogs"></i> Proposal 2</button>
+    <button type="button" class="btn btn-primary" id="add_task"><i class="fas fa-tasks"></i> Add task</button>
     <?php
+    if($project-> get_submitted()){
+      ?>
+      <button type="submit" class="btn btn-success" name="make_proposal1"><i class="fa fa-cogs"></i> Proposal 1</button>
+      <button type="submit" class="btn btn-success" name="make_proposal2"><i class="fa fa-cogs"></i> Proposal 2</button>
+      <?php
+    }
   }
   ?>
 </div>

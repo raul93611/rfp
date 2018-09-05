@@ -34,6 +34,7 @@
             <option value="boss">Boss</option>
             <option value="head_of_area">Head of area</option>
             <option value="common_user">Common user</option>
+            <option value="technician">Technician</option>
         </select>
     </div>
 </div>
