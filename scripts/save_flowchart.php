@@ -1,11 +1,19 @@
 <?php
 session_start();
 Connection::open_connection();
-$project = ProjectRepository::get_project_by_id(Connection::get_connection(),$_POST['id_project']);
+$project = ProjectRepository::get_project_by_id(Connection::get_connection(), $_POST['id_project']);
 Connection::close_connection();
 if(!$_POST['flowchart_result']){
   $priority_color = 'black';
+  Conexion::abrir_conexion();
+  $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $_POST['id_project']);
+  RepositorioRfq::establecer_no_bid(Conexion::obtener_conexion(), $rfp_connection-> obtener_id_rfq());
+  Conexion::cerrar_conexion();
 }else{
+  Conexion::abrir_conexion();
+  $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $_POST['id_project']);
+  RepositorioRfq::establecer_no_comments(Conexion::obtener_conexion(), $rfp_connection-> obtener_id_rfq());
+  Conexion::cerrar_conexion();
   $priority = $project-> get_priority();
   switch ($priority) {
     case '8a':
