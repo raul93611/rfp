@@ -107,7 +107,7 @@ try{
               <th>EXPIRATION DATE</th>
             </tr>
             <tr>
-              <td style="text-align:center;">' . $project-> get_id() . '</td>
+              <td style="text-align:center;">RFP' . $project-> get_id() . '</td>
               <td style="text-align:center;">' . $submitted_date . '</td>
               <td style="text-align:center;">' . $expiration_date . '</td>
             </tr>
