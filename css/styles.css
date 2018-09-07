@@ -339,7 +339,7 @@ END USERS TABLE STYLES
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
 }
-/*****************************************************STORY COMMENTS*************************************************************/
-.clickable_title{
+/*****************************************************STORY COMMENTS AND FULLCALENDAR CONTENT*************************************************************/
+.clickable_title, .fc-content{
   cursor: pointer;
 }
