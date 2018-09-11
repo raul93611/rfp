@@ -225,7 +225,7 @@ class UserRepository{
 
       if (count($users)) {
           ?>
-          <table class="table table-bordered table-hover">
+          <table id="users_table" class="table table-bordered table-hover">
               <thead>
                   <tr>
                       <th>ID</th>
@@ -235,7 +235,7 @@ class UserRepository{
                       <th id="disable_user">OPTIONS</th>
                   </tr>
               </thead>
-              <tbody id="users_table">
+              <tbody>
                   <?php
                   foreach ($users as $user) {
                       self::print_user($user);
