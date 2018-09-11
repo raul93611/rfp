@@ -9,6 +9,7 @@ if(isset($_POST['save_project'])){
   }
   $designated_user_index = array_rand($array_id_users);
   $designated_user = $array_id_users[$designated_user_index];
+  $user = UserRepository::get_user_by_id(Connection::get_connection(), $designated_user);
   $project = new Project('', $_SESSION['id_user'], '', '', $_POST['link'], '', '', '', '', '', '', 0, $designated_user, 0, '', '', '', 0, '', 0, 0, 0, '', '', 1,'', '', '', '', '', '', '', '', '', 0);
   $id_project = ProjectRepository::insert_project(Connection::get_connection(), $project);
   $service = New Service('', $id_project, 0, 0);
@@ -18,6 +19,20 @@ if(isset($_POST['save_project'])){
     CommentRepository::insert_comment(Connection::get_connection(), $comment);
   }
   Connection::close_connection();
+  $to = $user-> get_email();
+  $subject = "Sistema RFP";
+  $headers = "MIME-Version: 1.0\r\n";
+  $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+  $message = '
+  <html>
+  <body>
+  <h1>New project</h1>
+  <a href="' . $_POST['link'] . '">' . $_POST['link'] . '</a>
+  <p>' . nl2br($_POST['create_part_comments']) . '</p>
+  </body>
+  </html>
+  ';
+  mail($to, $subject, $message, $headers);
 
   $directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
   mkdir($directory, 0777);

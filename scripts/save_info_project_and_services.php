@@ -87,7 +87,7 @@ if($user-> get_level() != 5){
       RepositorioRfq::actualizar_end_date(Conexion::obtener_conexion(), $_POST['end_date'], $rfp_connection-> obtener_id_rfq());
     }
     Conexion::cerrar_conexion();
-    /*
+
     foreach ($users as $user) {
       $to = $user-> obtener_email();
       $subject = "Sistema RFP";
@@ -104,7 +104,6 @@ if($user-> get_level() != 5){
       mail($to, $subject, $message, $headers);
     }
 
-    */
     if(isset($_POST['save_info_project_and_services'])){
       Redirection::redirect(INFO_PROJECT_AND_SERVICES . $id_project);
     }else if(isset($_POST['make_proposal1'])){
@@ -143,7 +142,7 @@ if($user-> get_level() != 5){
         move_uploaded_file($tmp_path, $new_path);
       }
   }
-  /*
+
   foreach ($users as $user) {
     $to = $user-> obtener_email();
     $subject = "Sistema RFP";
@@ -159,7 +158,7 @@ if($user-> get_level() != 5){
     ';
     mail($to, $subject, $message, $headers);
   }
-  */
+  
   if(!empty($_POST['story_comments'])){
     $comment = new Comment('', $id_project, $_SESSION['id_user'], '', htmlspecialchars($_POST['story_comments']));
     CommentRepository::insert_comment(Connection::get_connection(), $comment);

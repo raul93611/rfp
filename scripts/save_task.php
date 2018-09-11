@@ -7,8 +7,8 @@ if(isset($_POST['save_task'])){
   $user = UserRepository::get_user_by_id(Connection::get_connection(), $_POST['designated_user_task']);
   TaskRepository::insert_task(Connection::get_connection(), $task);
   Connection::close_connection();
-  /*
-  $to = $user-> obtener_email();
+
+  $to = $user-> get_email();
   $subject = "Sistema RFP";
   $headers = "MIME-Version: 1.0\r\n";
   $headers .= "Content-type: text/html; charset=UTF-8\r\n";
@@ -21,7 +21,7 @@ if(isset($_POST['save_task'])){
   </html>
   ';
   mail($to, $subject, $message, $headers);
-  */
+
   Redirection::redirect(INFO_PROJECT_AND_SERVICES . $_POST['id_project']);
 }
 ?>

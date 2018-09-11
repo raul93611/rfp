@@ -10,7 +10,7 @@ if(isset($_POST['send_error_quote_email'])){
   $designated_user_rfq_quote = RepositorioUsuario::obtener_usuario_por_id(Conexion::obtener_conexion(), $rfq_quote-> obtener_usuario_designado());
   RepositorioRfq::quitar_completado(Conexion::obtener_conexion(), $rfp_connection-> obtener_id_rfq());
   Conexion::cerrar_conexion();
-  /*
+
   $to = $designated_user_rfq_quote-> obtener_email();
   $subject = "Sistema RFP";
   $headers = "MIME-Version: 1.0\r\n";
@@ -24,7 +24,7 @@ if(isset($_POST['send_error_quote_email'])){
   </html>
   ';
   mail($to, $subject, $message, $headers);
-  */
+  
   Redirection::redirect(INFO_PROJECT_AND_SERVICES . $_POST['id_project'] . '#items');
 }
 ?>
