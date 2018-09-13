@@ -40,7 +40,7 @@ $all_my_dates = array_merge($end_dates, $new_dates);
                   <i class="fa fa-square" style="color:#be90e3;"></i> Full and Open<br>
                   <i class="fa fa-square" style="color:#448aff;"></i> Sources sought<br><br>
                   <i class="fa fa-square" style="color:#3fd5ae;"></i> New projects<br>
-                  <i class="fa fa-square" style="color:#c7d0d3:"></i> No Bid
+                  <i class="fa fa-square" style="color:#c7d0d3;"></i> No Bid
                 </p>
               </div>
             </div>
