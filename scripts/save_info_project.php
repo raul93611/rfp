@@ -14,19 +14,19 @@ if(isset($_POST['save_changes_project'])){
 
   switch ($_POST['priority']) {
     case '8a':
-      $priority_color = '#f75a6a';
+      $priority_color = '#FF5253';
       break;
     case 'hubzone':
-      $priority_color = '#f8d200';
+      $priority_color = '#FFD73F';
       break;
     case 'small_business':
-      $priority_color = '#0cd63f';
+      $priority_color = '#18D2F0';
       break;
     case 'full_and_open':
-      $priority_color = '#f441be';
+      $priority_color = '#BE90E3';
       break;
     case 'sources_sought':
-      $priority_color = '#137024';
+      $priority_color = '#448AFF';
       break;
     default:
       break;

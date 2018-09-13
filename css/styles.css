@@ -75,8 +75,8 @@ START BUTTON STYLES
 ************************************************************************************************************************************************/
 .btn-primary {
   color: #ffffff;
-  background-color: #13A8F0 !important;
-  border-color: #13A8F0 !important;
+  background-color: #32a4dd !important;
+  border-color: #32a4dd !important;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 }
 
@@ -270,7 +270,7 @@ END FIXED CARD FOOTER STYLES
 
 /******************************************************START PRIMARY INDICATOR STYLES*********************************************************************/
 .text-primary {
-  color: #13A8F0 !important;
+  color: #32a4dd !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -286,7 +286,7 @@ table{
 }
 
 .list-group-item:hover{
-    background-color: #F0E714;
+    background-color: #f4f6f9;
 }
 
 #items_table .description{
@@ -342,4 +342,9 @@ END USERS TABLE STYLES
 /*****************************************************STORY COMMENTS AND FULLCALENDAR CONTENT*************************************************************/
 .clickable_title, .fc-content{
   cursor: pointer;
+}
+/**************************************************************************************************/
+.fc-today{
+  background-color: #E5F3FA !important;
+  color: #39485A !important;
 }

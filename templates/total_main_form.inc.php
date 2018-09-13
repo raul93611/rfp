@@ -17,9 +17,9 @@
         <?php
         for ($i = 1; $i <= $quantity_years ; $i++) {
           if($i == 1){
-            ?><h3 class="text-info">Services:</h3><?php
+            ?><h3 class="text-primary">Services:</h3><?php
           }else{
-            ?><h3 class="text-info"></h3><?php
+            ?><h3 class="text-primary"></h3><?php
           }
         }
         ?>
@@ -29,10 +29,10 @@
         <?php
         for ($i = 1; $i <= $quantity_years; $i++) {
           if($i == 1){
-            ?><h3 class="text-info">$ <?php echo number_format($base_year, 2); ?></h3><?php
+            ?><h3 class="text-primary">$ <?php echo number_format($base_year, 2); ?></h3><?php
           }else{
             $base_year *= 1.03;
-            ?><h3 class="text-info">$ <?php echo number_format($base_year, 2); ?></h3><?php
+            ?><h3 class="text-primary">$ <?php echo number_format($base_year, 2); ?></h3><?php
           }
           $total_by_year[] = $base_year;
           $total_service += $base_year;
@@ -45,9 +45,9 @@
         <?php
         for ($i = 1; $i <= $quantity_years; $i++) {
           if($i == 1){
-            ?><h3 class="text-info"><small>(Year <?php echo $i; ?>)</small></h3><?php
+            ?><h3 class="text-primary"><small>(Year <?php echo $i; ?>)</small></h3><?php
           }else{
-            ?><h3 class="text-info"><small>(Year <?php echo $i; ?>)</small></h3><?php
+            ?><h3 class="text-primary"><small>(Year <?php echo $i; ?>)</small></h3><?php
           }
         }
         ?>
@@ -64,12 +64,12 @@
 
         </div>
         <div class="col-3">
-          <h3 class="text-info">Total:</h3>
-          <h3 class="text-info">Equipment:</h3>
+          <h3 class="text-primary">Total:</h3>
+          <h3 class="text-primary">Equipment:</h3>
         </div>
         <div class="col-3">
-          <h3 class="text-info">$ <?php echo number_format($total_service, 2); ?></h3>
-          <h3 class="text-info">$ <?php echo number_format($rfq_quote-> obtener_total_price(), 2); ?></h3>
+          <h3 class="text-primary">$ <?php echo number_format($total_service, 2); ?></h3>
+          <h3 class="text-primary">$ <?php echo number_format($rfq_quote-> obtener_total_price(), 2); ?></h3>
         </div>
         <div class="col-2">
 
@@ -86,10 +86,10 @@
 
         </div>
         <div class="col-3">
-          <h3 class="text-info">Total:</h3>
+          <h3 class="text-primary">Total:</h3>
         </div>
         <div class="col-3">
-          <h3 class="text-info">$ <?php echo number_format($total_service, 2); ?></h3>
+          <h3 class="text-primary">$ <?php echo number_format($total_service, 2); ?></h3>
         </div>
         <div class="col-2">
 

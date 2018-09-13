@@ -64,12 +64,12 @@ if($level != 5){
   }
   if($level != 5){
     ?>
-    <a class="btn btn-info" href="<?php echo FLOWCHART . $id_project; ?>"><i class="fa fa-book"></i> Flowchart</a>
+    <a class="btn  btn-info add_item_charter" href="<?php echo FLOWCHART . $id_project; ?>"><i class="fa fa-book"></i> Flowchart</a>
     <?php
     if($project-> get_flowchart()){
       ?>
-      <a class="btn btn-info" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
-      <a class="btn btn-info" href="<?php echo ADD_COST . $id_project; ?>"><i class="fa fa-plus"></i> Add costs</a>
+      <a class="btn  btn-info add_item_charter" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
+      <a class="btn btn-primary" href="<?php echo ADD_COST . $id_project; ?>"><i class="fa fa-plus"></i> Add costs</a>
       <?php
     }
     ?>

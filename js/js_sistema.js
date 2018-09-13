@@ -293,7 +293,7 @@ $(document).ready(function(){
       },
       eventSources:[{
         events: all_end_dates,
-        color: '#7041f4',
+        color: '#3FD5AE',
         textColor: 'white'
       }],
       eventClick:function(calEvent, jsEvent, view){
@@ -317,7 +317,7 @@ $(document).ready(function(){
       },
       eventSources:[{
         events: all_new_dates,
-        color: '#7041f4',
+        color: '#3FD5AE',
         textColor: 'white'
       }],
       eventClick:function(calEvent, jsEvent, view){
@@ -347,7 +347,7 @@ $(document).ready(function(){
       },
       eventSources:[{
         events: all_my_dates,
-        color: '#7041f4',
+        color: '#3FD5AE',
         textColor: 'white'
       }],
       eventClick: function(calEvent, jsEvent, view){

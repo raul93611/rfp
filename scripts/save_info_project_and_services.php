@@ -37,19 +37,19 @@ if($user-> get_level() != 5){
     $users = UserRepository::get_all_users(Connection::get_connection());
     switch ($_POST['priority']) {
       case '8a':
-        $priority_color = '#f75a6a';
+        $priority_color = '#FF5253';
         break;
       case 'hubzone':
-        $priority_color = '#f8d200';
+        $priority_color = '#FFD73F';
         break;
       case 'small_business':
-        $priority_color = '#0cd63f';
+        $priority_color = '#18D2F0';
         break;
       case 'full_and_open':
-        $priority_color = '#f441be';
+        $priority_color = '#BE90E3';
         break;
       case 'sources_sought':
-        $priority_color = '#137024';
+        $priority_color = '#448AFF';
         break;
       default:
         break;
@@ -158,7 +158,7 @@ if($user-> get_level() != 5){
     ';
     mail($to, $subject, $message, $headers);
   }
-  
+
   if(!empty($_POST['story_comments'])){
     $comment = new Comment('', $id_project, $_SESSION['id_user'], '', htmlspecialchars($_POST['story_comments']));
     CommentRepository::insert_comment(Connection::get_connection(), $comment);
