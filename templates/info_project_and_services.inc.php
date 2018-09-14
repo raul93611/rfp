@@ -8,7 +8,7 @@ Connection::close_connection();
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-10">
-                    <h1>Projects</h1>
+                    <h1>Projects: <small>RFP<?php echo $project-> get_id(); ?></small></h1>
                 </div>
                 <div class="col-sm-2">
                   <?php
