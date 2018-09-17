@@ -109,15 +109,19 @@ $(document).ready(function(){
   INPUT MASK IN DATES
   *********************************************************************************************************************/
   $('#start_date').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'});
-  $('#end_date').inputmask("datetime", {
-      mask: "2/1/y h:s",
-      placeholder: "mm/dd/yyyy hh:mm",
-      leapday: "02/29/",
-      separator: "/",
-      alias: "mm/dd/yyyy"
+  
+  $('#end_date').daterangepicker({
+    timePicker: true,
+    singleDatePicker: true,
+    timePicker24Hour: true,
+    locale: {
+      format: 'MM/DD/YYYY HH:mm'
+    }
   });
-  $('#expiration_date').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'});
-  $('#end_date_task').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'});
+
+  $('#end_date_task, #expiration_date').daterangepicker({
+    singleDatePicker: true
+  });
   /******************************************************************************************************************
   FLOWCHART
   ********************************************************************************************************************/

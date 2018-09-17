@@ -89,7 +89,7 @@ if($user-> get_level() != 5){
     Conexion::cerrar_conexion();
 
     foreach ($users as $user) {
-      $to = $user-> obtener_email();
+      $to = $user-> get_email();
       $subject = "Sistema RFP";
       $headers = "MIME-Version: 1.0\r\n";
       $headers .= "Content-type: text/html; charset=UTF-8\r\n";

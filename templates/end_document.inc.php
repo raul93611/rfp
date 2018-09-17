@@ -1,4 +1,4 @@
-<div class="modal modal-danger fade" id="form_uncompleted">
+<div class="modal fade" id="form_uncompleted" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -90,7 +90,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="<?php echo INFO_PROJECT; ?>" id="fill_out" class="btn btn-success"><i class="fa fa-pencil"></i> Review</a>
+        <a href="<?php echo INFO_PROJECT; ?>" id="fill_out" class="btn btn-success"><i class="fas fa-book-reader"></i> Review</a>
         <a href="<?php echo DELETE_PROJECT; ?>" id="delete_project" class="btn btn-danger"><i class="fa fa-times"></i> Delete</a>
       </div>
     </div>

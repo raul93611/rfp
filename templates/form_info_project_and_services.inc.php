@@ -25,7 +25,11 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
 }
 
 if($project-> get_submitted()){
-  $expiration_date = ProjectRepository::mysql_date_to_english_format($project-> get_expiration_date());
+  if($project-> get_expiration_date() != '0000-00-00'){
+    $expiration_date = ProjectRepository::mysql_date_to_english_format($project-> get_expiration_date());
+  }else{
+    $expiration_date = '';
+  }
 }
 ?>
 <input type="hidden" name="id_project" id="id_project" value="<?php echo $id_project; ?>">
