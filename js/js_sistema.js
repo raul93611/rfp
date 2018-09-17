@@ -33,6 +33,17 @@ $(document).ready(function(){
         return false;
       }
     });
+
+    $('#submitted').change(function(){
+      console.log('fdsf');
+      form_info_project_and_services.submit(function(){
+        if($('#address').val() == '' || $('#ship_to').val() == '' || $('#project_name').val() == '' || $('#no_staff').length != 0 || $('#no_costs').length != 0){
+          $('#form_uncompleted_body').html('<h4 class="text-center text-danger">All fields must be fill out.</h4>');
+          $('#form_uncompleted').modal();
+          return false;
+        }
+      });
+    });
   }
   /***************************************HIDE/SHOW PROPOSED PRICE**************************************************/
   if($('#proposed_price').length != 0){
@@ -60,10 +71,6 @@ $(document).ready(function(){
     $(this).find('.clickable_title').click(function(){
       timeline.find('.body_comments').toggle('slideUp');
     });
-  });
-  /*************************************BETTER CHECKBOX SUBMITTED AWARD*********************************************/
-  $('input[type="checkbox"].minimal').iCheck({
-    checkboxClass: 'icheckbox_minimal-blue'
   });
 /***************************************DATATABLES JQUERY**********************************************************/
   $('#staff_table').DataTable({
@@ -109,7 +116,7 @@ $(document).ready(function(){
   INPUT MASK IN DATES
   *********************************************************************************************************************/
   $('#start_date').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'});
-  
+
   $('#end_date').daterangepicker({
     timePicker: true,
     singleDatePicker: true,

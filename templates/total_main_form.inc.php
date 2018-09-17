@@ -107,7 +107,7 @@
       ?>
       <div class="form-group">
         <label>
-          <input type="checkbox" class="minimal" name="award" value="yes" id="award" <?php if($project-> get_award()){echo 'checked';} ?>>
+          <input type="checkbox" name="award" value="yes" id="award" <?php if($project-> get_award()){echo 'checked';} ?>>
           <span style="font-size: 20px;" class="text-primary">Award</span>
         </label>
       </div>
@@ -116,7 +116,7 @@
       ?>
       <div class="form-group">
         <label>
-          <input type="checkbox" class="minimal" name="follow_up" value="yes" id="follow_up" <?php if($project-> get_follow_up()){echo 'checked';} ?>>
+          <input type="checkbox" name="follow_up" value="yes" id="follow_up" <?php if($project-> get_follow_up()){echo 'checked';} ?>>
           <span style="font-size: 20px;" class="text-primary">Follow up</span>
         </label>
       </div>
@@ -125,7 +125,7 @@
       ?>
       <div class="form-group">
         <label>
-          <input type="checkbox" class="minimal" name="submitted" value="yes" id="submitted" <?php if($project-> get_submitted()){echo 'checked';} ?>>
+          <input type="checkbox" name="submitted" value="yes" id="submitted" <?php if($project-> get_submitted()){echo 'checked';} ?>>
           <span style="font-size: 20px;" class="text-primary">Submitted</span>
         </label>
       </div>

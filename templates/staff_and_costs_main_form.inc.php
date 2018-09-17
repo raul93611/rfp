@@ -14,7 +14,7 @@
     list($total_staff, $staff_exists) = StaffRepository::print_all_staff($service-> get_id(), $gsa);
     Connection::close_connection();
     if(!$staff_exists){
-      ?><h3 class="text-center text-default"><i class="fa fa-exclamation-triangle"></i> Not yet filled out</h3><?php
+      ?><h3 id="no_staff" class="text-center text-default"><i class="fa fa-exclamation-triangle"></i> Not yet filled out</h3><?php
     }
     ?>
   </div>
@@ -27,7 +27,7 @@
     <?php
     list($total_costs, $costs_exists) = CostRepository::print_costs($service-> get_id());
     if(!$costs_exists){
-      ?><h3 class="text-center text-default"><i class="fa fa-exclamation-triangle"></i> Not yet filled out</h3><?php
+      ?><h3 id="no_costs" class="text-center text-default"><i class="fa fa-exclamation-triangle"></i> Not yet filled out</h3><?php
     }
     ?>
   </div>
