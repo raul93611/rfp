@@ -51,7 +51,7 @@ Connection::close_connection();
           <div class="form-group">
             <?php
             Connection::open_connection();
-            $users = UserRepository::get_all_users(Connection::get_connection());
+            $users = UserRepository::get_all_users_enabled(Connection::get_connection());
             Connection::close_connection();
             ?>
             <?php

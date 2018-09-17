@@ -34,7 +34,7 @@ if($user-> get_level() != 5){
     $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
     ServiceRepository::set_total_service_total_equipment(Connection::get_connection(), $_POST['total_service'], $_POST['total_equipment'], $service-> get_id());
     ProjectRepository::set_total(Connection::get_connection(), $_POST['total'], $id_project);
-    $users = UserRepository::get_all_users(Connection::get_connection());
+    $users = UserRepository::get_all_users_enabled(Connection::get_connection());
     switch ($_POST['priority']) {
       case '8a':
         $priority_color = '#FF5253';
