@@ -13,9 +13,9 @@ Connection::close_connection();
                 <div class="col-sm-2">
                   <?php
                   if($project-> get_award()){
-                    ?><h1 class="text-success"><i class="fa fa-check"></i> Award</h1><?php
+                    ?><h1 class="text-success float-right"><i class="fa fa-check"></i> Award</h1><?php
                   }else if($project-> get_submitted()){
-                    ?><h1 class="text-success"><i class="fa fa-check"></i> Submitted</h1><?php
+                    ?><h1 class="text-success float-right"><i class="fa fa-check"></i> Submitted</h1><?php
                   }
                   ?>
                 </div>
