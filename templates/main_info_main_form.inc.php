@@ -110,10 +110,7 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label col-form-label-sm" for="type">Type:</label>
           <div class="col-sm-10">
-            <select class="form-control form-control-sm" name="type" id="type">
-              <option value="services" <?php if($project-> get_type() == 'services'){echo 'selected';} ?>>Services</option>
-              <option value="services_and_equipment" <?php if($project-> get_type() == 'services_and_equipment'){echo 'selected';} ?>>Services and equipment</option>
-            </select>
+            <input class="form-control form-control-sm" name="type" id="type" readonly value="<?php if($project-> get_type() == 'services_and_equipment'){echo 'Services and equipment';}else{echo 'Services';} ?>">
           </div>
         </div>
         <div class="form-group row">

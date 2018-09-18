@@ -80,13 +80,15 @@ if($user-> get_level() != 5){
       }
     }
     Connection::close_connection();
-    Conexion::abrir_conexion();
-    $quote_rfq_exists = RepositorioRfpConnection::quote_rfq_exists(Conexion::obtener_conexion(), $id_project);
-    if($quote_rfq_exists){
-      $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $id_project);
-      RepositorioRfq::actualizar_end_date(Conexion::obtener_conexion(), $_POST['end_date'], $rfp_connection-> obtener_id_rfq());
+    if($project-> get_type() == 'services_and_equipment'){
+      Conexion::abrir_conexion();
+      $quote_rfq_exists = RepositorioRfpConnection::quote_rfq_exists(Conexion::obtener_conexion(), $id_project);
+      if($quote_rfq_exists){
+        $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $id_project);
+        RepositorioRfq::actualizar_end_date(Conexion::obtener_conexion(), $_POST['end_date'], $rfp_connection-> obtener_id_rfq());
+      }
+      Conexion::cerrar_conexion();
     }
-    Conexion::cerrar_conexion();
 
     foreach ($users as $user) {
       $to = $user-> get_email();

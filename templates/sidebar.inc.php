@@ -45,7 +45,7 @@
                 <?php
                 }
 
-                if($level <= 2){
+                if($level <= 3){
                   ?>
                   <li class="nav-item has-treeview menu-open">
                       <a href="#" class="nav-link" id="new_project">
