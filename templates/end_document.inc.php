@@ -106,6 +106,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <input type="hidden" id="task_author" value="">
         <div class="form-group">
           <label>Description:</label>
           <textarea id="task_message" class="form-control form-control-sm" disabled rows="10"></textarea>

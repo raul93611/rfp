@@ -20,7 +20,7 @@ class TaskRepository{
   public static function get_all_tasks_my_tasks($connection, $id_user){
     if(isset($connection)){
       try{
-        $sql = 'SELECT id, id_project, description, end_date as start FROM tasks WHERE designated_user = :id_user AND completed = 0';
+        $sql = 'SELECT id, id_project, id_user, description, end_date as start FROM tasks WHERE designated_user = :id_user AND completed = 0';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $id_user, PDO::PARAM_STR);
         $sentence-> execute();
@@ -43,6 +43,25 @@ class TaskRepository{
         print 'ERROR:' . $ex->getMessage() . '<br>';
       }
     }
+  }
+
+  public static function get_task_by_id($connection, $id_task){
+    $task = null;
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT * FROM tasks WHERE id = :id_task';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_task', $id_task, PDO::PARAM_STR);
+        $sentence-> execute();
+        $result = $sentence-> fetch(PDO::FETCH_ASSOC);
+        if(!empty($result)){
+          $task = new Task($result['id'], $result['id_project'], $result['id_user'], $result['designated_user'], $result['end_date'], $result['description'], $result['completed']);
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $task;
   }
 }
 ?>
