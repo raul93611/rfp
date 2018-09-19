@@ -105,10 +105,10 @@ class ProjectRepository{
     return $result;
   }
 
-  public static function change_main_information_project($connection, $code, $project_name, $business_type, $end_date, $quantity_years, $priority, $priority_color, $submission_instructions, $type, $subject, $address, $ship_to, $description, $id_project){
+  public static function change_main_information_project($connection, $code, $project_name, $business_type, $end_date, $quantity_years, $priority, $priority_color, $submission_instructions, $subject, $address, $ship_to, $description, $id_project){
     if(isset($connection)){
       try{
-        $sql = 'UPDATE projects SET code = :code, project_name = :project_name, business_type = :business_type, end_date = :end_date, quantity_years = :quantity_years, priority = :priority, priority_color = :priority_color, submission_instructions = :submission_instructions, type = :type, subject = :subject, address = :address, ship_to = :ship_to, description = :description WHERE id = :id_project';
+        $sql = 'UPDATE projects SET code = :code, project_name = :project_name, business_type = :business_type, end_date = :end_date, quantity_years = :quantity_years, priority = :priority, priority_color = :priority_color, submission_instructions = :submission_instructions, subject = :subject, address = :address, ship_to = :ship_to, description = :description WHERE id = :id_project';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':code', $code, PDO::PARAM_STR);
         $sentence-> bindParam(':project_name', $project_name, PDO::PARAM_STR);
@@ -118,7 +118,6 @@ class ProjectRepository{
         $sentence-> bindParam(':priority', $priority, PDO::PARAM_STR);
         $sentence-> bindParam(':priority_color', $priority_color, PDO::PARAM_STR);
         $sentence-> bindParam(':submission_instructions', $submission_instructions, PDO::PARAM_STR);
-        $sentence-> bindParam(':type', $type, PDO::PARAM_STR);
         $sentence-> bindParam(':subject', $subject, PDO::PARAM_STR);
         $sentence-> bindParam(':address', $address, PDO::PARAM_STR);
         $sentence-> bindParam(':ship_to', $ship_to, PDO::PARAM_STR);

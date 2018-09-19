@@ -7,15 +7,15 @@ if(!$_POST['flowchart_result']){
   $priority_color = '#C7D0D3';
   if($project-> get_type() == 'services_and_equipment'){
     Conexion::abrir_conexion();
-    $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $_POST['id_project']);
-    RepositorioRfq::establecer_no_bid(Conexion::obtener_conexion(), $rfp_connection-> obtener_id_rfq());
+    $rfp_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $_POST['id_project']);
+    RepositorioRfq::establecer_no_bid(Conexion::obtener_conexion(), $rfp_quote-> obtener_id());
     Conexion::cerrar_conexion();
   }
 }else{
   if($project-> get_type() == 'services_and_equipment'){
     Conexion::abrir_conexion();
-    $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $_POST['id_project']);
-    RepositorioRfq::establecer_no_comments(Conexion::obtener_conexion(), $rfp_connection-> obtener_id_rfq());
+    $rfp_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $_POST['id_project']);
+    RepositorioRfq::establecer_no_comments(Conexion::obtener_conexion(), $rfp_quote-> obtener_id());
     Conexion::cerrar_conexion();
   }
   $priority = $project-> get_priority();

@@ -1,11 +1,9 @@
 <?php
 if($project-> get_type() == 'services_and_equipment'){
   Conexion::abrir_conexion();
-  $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $id_project);
-  $id_rfq = $rfp_connection-> obtener_id_rfq();
-  $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id(Conexion::obtener_conexion(), $id_rfq);
+  $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $id_project);
   $designated_user_rfq_quote = RepositorioUsuario::obtener_usuario_por_id(Conexion::obtener_conexion(), $rfq_quote-> obtener_usuario_designado());
-  $items = RepositorioItem::obtener_items_por_id_rfq(Conexion::obtener_conexion(), $id_rfq);
+  $items = RepositorioItem::obtener_items_por_id_rfq(Conexion::obtener_conexion(), $rfq_quote-> obtener_id());
   Conexion::cerrar_conexion();
   $total_equipment = $rfq_quote-> obtener_total_price();
 }else{

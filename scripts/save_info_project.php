@@ -39,12 +39,10 @@ if(isset($_POST['save_changes_project'])){
     }
     $designated_user_index = array_rand($id_rfq_users);
     $designated_user = $id_rfq_users[$designated_user_index];
-    $quote_rfq_exists = RepositorioRfpConnection::quote_rfq_exists(Conexion::obtener_conexion(), $_POST['id_project']);
+    $quote_rfq_exists = RepositorioRfq::quote_rfq_exists(Conexion::obtener_conexion(), $_POST['id_project']);
     if(!$quote_rfq_exists){
-      $quote_rfq = New Rfq('', $designated_user, $designated_user, '', '(Detail the code ...)', '', $_POST['start_date'], $_POST['end_date'], 0, 0, 0, 0, '', 0, '', '', '', '', '', '', '', '', 0, 0, '', '', 0);
+      $quote_rfq = New Rfq('', $designated_user, $designated_user, '', '(Detail the code ...)', '', $_POST['start_date'], $_POST['end_date'], 0, 0, 0, 0, '', 0, '', '', '', '', '', '', '', '', 0, 0, '', '', 0, $id_project);
       list($cotizacion_insertada, $id_rfq) = RepositorioRfq::insertar_cotizacion(Conexion::obtener_conexion(), $quote_rfq);
-      $rfp_connection = New RfpConnection('', $id_rfq, $_POST['id_project']);
-      RepositorioRfpConnection::insertar_rfp_connection(Conexion::obtener_conexion(), $rfp_connection);
       $rfq_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfq/documentos/' . $id_rfq;
       $rfp_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
       mkdir($rfq_directory, 0777);

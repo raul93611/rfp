@@ -55,7 +55,7 @@ if($user-> get_level() != 5){
         break;
     }
     $end_date = ProjectRepository::english_format_to_mysql_datetime($_POST['end_date']);
-    ProjectRepository::change_main_information_project(Connection::get_connection(), $_POST['code'], $_POST['project_name'], $_POST['business_type'], $end_date, $_POST['quantity_years'], $_POST['priority'], $priority_color, $_POST['submission_instructions'], $_POST['type'], $_POST['subject'], $_POST['address'], $_POST['ship_to'], $_POST['description'], $id_project);
+    ProjectRepository::change_main_information_project(Connection::get_connection(), $_POST['code'], $_POST['project_name'], $_POST['business_type'], $end_date, $_POST['quantity_years'], $_POST['priority'], $priority_color, $_POST['submission_instructions'], $_POST['subject'], $_POST['address'], $_POST['ship_to'], $_POST['description'], $id_project);
     if(!empty($_POST['story_comments'])){
       $comment = new Comment('', $id_project, $_SESSION['id_user'], '', htmlspecialchars($_POST['story_comments']));
       CommentRepository::insert_comment(Connection::get_connection(), $comment);
@@ -82,10 +82,10 @@ if($user-> get_level() != 5){
     Connection::close_connection();
     if($project-> get_type() == 'services_and_equipment'){
       Conexion::abrir_conexion();
-      $quote_rfq_exists = RepositorioRfpConnection::quote_rfq_exists(Conexion::obtener_conexion(), $id_project);
+      $quote_rfq_exists = RepositorioRfq::quote_rfq_exists(Conexion::obtener_conexion(), $id_project);
       if($quote_rfq_exists){
-        $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $id_project);
-        RepositorioRfq::actualizar_end_date(Conexion::obtener_conexion(), $_POST['end_date'], $rfp_connection-> obtener_id_rfq());
+        $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $id_project);
+        RepositorioRfq::actualizar_end_date(Conexion::obtener_conexion(), $_POST['end_date'], $rfq_quote-> obtener_id());
       }
       Conexion::cerrar_conexion();
     }

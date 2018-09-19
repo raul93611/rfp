@@ -62,7 +62,7 @@
         <form id="form_error_quote_email" method="post" action="<?php echo SEND_ERROR_QUOTE_EMAIL; ?>">
           <div class="form-group">
             <label for="comments_error_quote_email">Comments:</label>
-            <textarea class="form-control" name="comments_error_quote_email" rows="5" id="comments_error_quote_email"></textarea>
+            <textarea class="form-control form-control-sm" name="comments_error_quote_email" rows="5" id="comments_error_quote_email"></textarea>
           </div>
           <input type="hidden" name="id_project" value="<?php echo $id_project; ?>">
         </form>

@@ -8,9 +8,8 @@ $user = UserRepository::get_user_by_id(Connection::get_connection(), $project-> 
 Connection::close_connection();
 if($project-> get_type() == 'services_and_equipment'){
   Conexion::abrir_conexion();
-  $rfp_connection = RepositorioRfpConnection::obtener_rfp_connection_por_id_project(Conexion::obtener_conexion(), $id_project);
-  $cotizacion = RepositorioRfq::obtener_cotizacion_por_id(Conexion::obtener_conexion(), $rfp_connection-> obtener_id_rfq());
-  $items = RepositorioItem::obtener_items_por_id_rfq(Conexion::obtener_conexion(), $rfp_connection-> obtener_id_rfq());
+  $cotizacion = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $id_project);
+  $items = RepositorioItem::obtener_items_por_id_rfq(Conexion::obtener_conexion(), $cotizacion-> obtener_id());
   Conexion::cerrar_conexion();
 }
 
@@ -27,7 +26,7 @@ try{
   $fontData = $defaultFontConfig['fontdata'];
   $mpdf = new \Mpdf\Mpdf(['format' => 'Letter', 'margin_footer' => '8',
   'fontDir' => array_merge($fontDirs, [
-          SERVIDOR . '/vendor/mpdf/mpdf/ttfonts',
+          SERVER . '/vendor/mpdf/mpdf/ttfonts',
       ]),
       'fontdata' => $fontData + [
           'roboto' => [
