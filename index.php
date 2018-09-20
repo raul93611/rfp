@@ -27,9 +27,6 @@ include_once '../rfq/app/RepositorioProvider.inc.php';
 include_once '../rfq/app/Subitem.inc.php';
 include_once '../rfq/app/RepositorioSubitem.inc.php';
 
-include_once '../rfq/app/RfpConnection.inc.php';
-include_once '../rfq/app/RepositorioRfpConnection.inc.php';
-
 include_once 'app/Project.inc.php';
 include_once 'app/ProjectRepository.inc.php';
 
