@@ -115,8 +115,6 @@ $(document).ready(function(){
   /*******************************************************************************************************************
   DATE RANGE PICKER IN DATES
   *********************************************************************************************************************/
-  $('#start_date').inputmask('mm/dd/yyyy', {'placeholder': 'mm/dd/yyyy'});
-
   $('#end_date').daterangepicker({
     timePicker: true,
     singleDatePicker: true,
