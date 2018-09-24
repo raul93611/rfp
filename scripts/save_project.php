@@ -29,6 +29,7 @@ if(isset($_POST['save_project'])){
   <h1>New project</h1>
   <a href="' . $_POST['link'] . '">' . $_POST['link'] . '</a>
   <p>' . nl2br($_POST['create_part_comments']) . '</p>
+  <p>Review the project: <a href="http://www.elogicportal.com/rfp/profile/calendar_new_projects">Elogic portal</a></p>
   </body>
   </html>
   ';
