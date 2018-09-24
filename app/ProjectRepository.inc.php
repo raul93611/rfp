@@ -224,7 +224,7 @@ class ProjectRepository{
 
   public static function get_search_results($connection, $search_term){
     $projects = [];
-    $search_term = '%' . $search_term . '%';
+    $search_term = '%' . trim($search_term) . '%';
     if(isset($connection)){
       try{
         $sql = 'SELECT * FROM projects WHERE id LIKE :search_term OR project_name LIKE :search_term OR description LIKE :search_term OR proposal_description1 LIKE :search_term OR proposal_description2 LIKE :search_term OR address LIKE :search_term OR ship_to LIKE :search_term';
