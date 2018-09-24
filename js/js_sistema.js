@@ -566,15 +566,15 @@ if($('#submitted_chart').length != 0){
         {
           label: '# of submitted projects last year',
           data: [1, 9, 5, 3, 2, 6, 2, 4, 7, 2, 9, 9],
-          backgroundColor: 'rgba(0, 0, 2, 0.3)',
-          borderColor: 'rgba(0, 0, 2, 1)',
+          backgroundColor: '#c2d9fc',
+          borderColor: '#c2d9fc',
           borderWidth: 1
         },
         {
           label: '# of submitted projects',
           data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
-          backgroundColor: 'rgba(66, 134, 244, 0.3)',
-          borderColor: 'rgba(66, 134, 244, 1)',
+          backgroundColor: '#66a0f7',
+          borderColor: '#66a0f7',
           borderWidth: 1
         }
       ]
@@ -613,15 +613,15 @@ if($('#award_chart').length != 0){
         {
           label: '# of award projects last year',
           data: [1, 9, 5, 3, 2, 6, 2, 4, 7, 2, 9, 9],
-          backgroundColor: 'rgba(0, 0, 2, 0.3)',
-          borderColor: 'rgba(0, 0, 2, 1)',
+          backgroundColor: '#bfebfc',
+          borderColor: '#bfebfc',
           borderWidth: 1
         },
         {
           label: '# of award projects',
           data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
-          backgroundColor: 'rgba(226, 190, 29, 0.3)',
-          borderColor: 'rgba(226, 190, 29, 1)',
+          backgroundColor: '#5fccf7',
+          borderColor: '#5fccf7',
           borderWidth: 1
         }
       ]
@@ -662,15 +662,15 @@ if($('#award_by_amount_chart').length != 0){
           {
             label: 'amount award projects last year',
             data: [1, 9, 5, 3, 2, 6, 2, 4, 7, 2, 9, 9],
-            backgroundColor: 'rgba(0, 0, 2, 0.3)',
-            borderColor: 'rgba(0, 0, 2, 1)',
+            backgroundColor: '#baf0e6',
+            borderColor: '#baf0e6',
             borderWidth: 1
           },
           {
             label: 'amount award projects',
             data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
-            backgroundColor: ' rgba(178, 219, 15, 0.3)',
-            borderColor: 'rgba(178, 219, 15, 1)',
+            backgroundColor: '#53dac0',
+            borderColor: '#53dac0',
             borderWidth: 1
           }
         ]
@@ -708,7 +708,7 @@ if($('#submitted_pie_chart').length != 0){
       datasets:
       [{
         label: "Population (millions)",
-        backgroundColor: ['#f75a6a', '#f441be', '#f8d200', '#0cd63f', '#137024'],
+        backgroundColor: ['#0070e0', '#04a5f0', '#67cdf4', '#aeecf9', '#d6f5fc'],
         data: [12,4,5,5,3]
       }]
     },
@@ -738,7 +738,7 @@ if($('#result_pie_chart').length != 0){
       datasets:
       [{
         label: "Population (millions)",
-        backgroundColor: ['#3afcfc', '#2009f2', '#ef17cf', '#f44256', '#f4dc04'],
+        backgroundColor: ['#7fc605', '#a9e84f', '#cdf396', '#e5fbc8', '#f5fde9'],
         data: [12,4,5,5,10]
       }]
     },
@@ -768,7 +768,7 @@ if($('#follow_up_chart').length != 0){
       datasets:
       [{
         label: "Population (millions)",
-        backgroundColor: ['#00db5f', '#6a27b2'],
+        backgroundColor: ['#fae800', '#fcf9a8'],
         data: [12,4]
       }]
     },
@@ -798,7 +798,7 @@ if($('#subject_chart').length != 0){
       datasets:
       [{
         label: "Population (millions)",
-        backgroundColor: ['#9cd7e2', '#f7c767', '#af0101', '#edf767'],
+        backgroundColor: ['#8830ef', '#ad50f6', '#d589f6', '#efc0f9'],
         data: [12,4,1,3]
       }]
     },
