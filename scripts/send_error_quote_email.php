@@ -17,7 +17,7 @@ if(isset($_POST['send_error_quote_email'])){
   $message = '
   <html>
   <body>
-  <h1>RFP Quote Proposal: ' . $rfq_quote-> obtener_id() . '</h1>
+  <h1>Proposal: ' . $rfq_quote-> obtener_id() . '</h1>
   <p>' . $_POST['comments_error_quote_email'] . '</p>
   </body>
   </html>
