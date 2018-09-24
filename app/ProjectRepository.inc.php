@@ -615,7 +615,7 @@ class ProjectRepository{
           <td><?php echo $submitted_date; ?></td>
           <td><?php echo $award_date; ?></td>
           <td><?php echo $project-> get_result(); ?></td>
-          <td><?php echo $project-> get_id(); ?></td>
+          <td>RFP<?php echo $project-> get_id(); ?></td>
       </tr>
       <?php
   }
