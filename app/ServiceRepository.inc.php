@@ -67,5 +67,18 @@ class ServiceRepository{
       }
     }
   }
+
+  public static function delete_service($connection, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'DELETE FROM services WHERE id_project = :id_project';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
 }
 ?>
