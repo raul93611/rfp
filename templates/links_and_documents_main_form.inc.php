@@ -33,7 +33,7 @@
               $complete_directory = $directory . "/" . $file;
               if ($file != "." && $file != "..") {
                   $file_url = str_replace(' ', '%20', $file);
-                  echo '<li class="list-group-item"><a download href="' . DOCS . $id_project . '/' . $file_url . '">' . $file . '</a><a href="' . DELETE_DOCUMENT . $id_project . '/' . $file . '" class="close"><span aria-hidden="true">&times;</span></a></li>';
+                  echo '<li class="list-group-item"><a download href="' . DOCS . $id_project . '/' . $file_url . '">' . $file . '</a><a href="' . DELETE_DOCUMENT . $id_project . '/' . $file . '" class="delete_document_button close"><span aria-hidden="true">&times;</span></a></li>';
               }
           }
           closedir($manager);

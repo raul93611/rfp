@@ -2,6 +2,20 @@
 STARTJQUERY CODE
 **********************************************************************************************************************/
 $(document).ready(function(){
+/***********************************VARIABLES INICIALES PARA EL BORRADO*********************/
+  var link_to_delete;
+  var alert_delete_system = $('#alert_delete_system');
+  var continue_button = $('#continue_button');
+  function habilitar_continue_button(boton){
+    alert_delete_system.modal();
+    link_to_delete = boton.attr('href');
+    continue_button.attr('href', link_to_delete);
+  }
+  /******************************ALERT EN BOTONES PARA BORRAR DOCUMENTOS********************/
+  $('.delete_document_button').click(function(){
+    habilitar_continue_button($(this));
+    return false;
+  });
   /**************************************ADD TASK BUTTON*****************************************************************/
   $('#add_task').click(function(){
     $('#form_add_task').modal();
@@ -337,6 +351,11 @@ $(document).ready(function(){
         $('#link_project').html(calEvent.title);
         $('#link_project').attr('href', calEvent.title);
         $('#view_project').modal();
+        $('#delete_project').click(function(){
+          $('#view_project').modal('hide');
+          habilitar_continue_button($(this));
+          return false;
+        });
       }
     });
   }
