@@ -253,7 +253,7 @@ class ProjectRepository{
         for ($i = 1; $i <= 12 ; $i++) {
           $sql = 'SELECT COUNT(*) as submitted_projects_by_month FROM projects WHERE submitted = 1 AND MONTH(submitted_date) =' . $i . ' AND YEAR(submitted_date) = YEAR(CURDATE())';
           $sql1 = 'SELECT COUNT(*) as award_projects_by_month FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(CURDATE())';
-          $sql2 = 'SELECT SUM(total) as award_by_amount_projects_by_month FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(CURDATE())';
+          $sql2 = 'SELECT SUM(total_service) as award_by_amount_projects_by_month FROM services INNER JOIN projects ON services.id_project = projects.id WHERE projects.submitted = 1 AND projects.award = 1 AND MONTH(projects.award_date) =' . $i . ' AND YEAR(projects.award_date) = YEAR(CURDATE())';
 
           $sentence = $connection-> prepare($sql);
           $sentence1 = $connection-> prepare($sql1);
@@ -279,7 +279,7 @@ class ProjectRepository{
             $award_projects_by_month[$i - 1] = 0;
           }
 
-          if(!is_null($result2['total'])){
+          if(!is_null($result2['award_by_amount_projects_by_month'])){
             $award_by_amount_projects_by_month[$i - 1] = $result2['award_by_amount_projects_by_month'];
           }else{
             $award_by_amount_projects_by_month[$i - 1] = 0;

@@ -584,14 +584,14 @@ if($('#submitted_chart').length != 0){
       [
         {
           label: '# of submitted projects last year',
-          data: [1, 9, 5, 3, 2, 6, 2, 4, 7, 2, 9, 9],
+          data: submitted_projects_by_month_last_year,
           backgroundColor: '#c2d9fc',
           borderColor: '#c2d9fc',
           borderWidth: 1
         },
         {
           label: '# of submitted projects',
-          data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
+          data: submitted_projects_by_month,
           backgroundColor: '#66a0f7',
           borderColor: '#66a0f7',
           borderWidth: 1
@@ -631,14 +631,14 @@ if($('#award_chart').length != 0){
       [
         {
           label: '# of award projects last year',
-          data: [1, 9, 5, 3, 2, 6, 2, 4, 7, 2, 9, 9],
+          data: award_projects_by_month_last_year,
           backgroundColor: '#bfebfc',
           borderColor: '#bfebfc',
           borderWidth: 1
         },
         {
           label: '# of award projects',
-          data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
+          data: award_projects_by_month,
           backgroundColor: '#5fccf7',
           borderColor: '#5fccf7',
           borderWidth: 1
@@ -680,14 +680,14 @@ if($('#award_by_amount_chart').length != 0){
         [
           {
             label: 'amount award projects last year',
-            data: [1, 9, 5, 3, 2, 6, 2, 4, 7, 2, 9, 9],
+            data: award_by_amount_projects_by_month_last_year,
             backgroundColor: '#baf0e6',
             borderColor: '#baf0e6',
             borderWidth: 1
           },
           {
             label: 'amount award projects',
-            data: [12, 19, 3, 5, 2, 3, 5, 7, 3, 4, 6, 1],
+            data: award_by_amount_projects_by_month,
             backgroundColor: '#53dac0',
             borderColor: '#53dac0',
             borderWidth: 1
@@ -712,6 +712,13 @@ if($('#award_by_amount_chart').length != 0){
       animation:{
           easing: 'easeInOutCubic',
           duration: 2500
+      },
+      tooltips:{
+        callbacks: {
+          label: function(tooltipItem, data) {
+              return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          },
+        }
       }
     }
   });
@@ -728,7 +735,7 @@ if($('#submitted_pie_chart').length != 0){
       [{
         label: "Population (millions)",
         backgroundColor: ['#0070e0', '#04a5f0', '#67cdf4', '#aeecf9', '#d6f5fc'],
-        data: [12,4,5,5,3]
+        data: [ocho_a, full_and_open, hubzone, small_business, sources_sought]
       }]
     },
     options:
@@ -758,7 +765,7 @@ if($('#result_pie_chart').length != 0){
       [{
         label: "Population (millions)",
         backgroundColor: ['#7fc605', '#a9e84f', '#cdf396', '#e5fbc8', '#f5fde9'],
-        data: [12,4,5,5,10]
+        data: [cancelled, disqualified, loss, re_posted, to_be_determined]
       }]
     },
     options:
@@ -788,7 +795,7 @@ if($('#follow_up_chart').length != 0){
       [{
         label: "Population (millions)",
         backgroundColor: ['#fae800', '#fcf9a8'],
-        data: [12,4]
+        data: [follow_up, no_follow_up]
       }]
     },
     options:
@@ -818,7 +825,7 @@ if($('#subject_chart').length != 0){
       [{
         label: "Population (millions)",
         backgroundColor: ['#8830ef', '#ad50f6', '#d589f6', '#efc0f9'],
-        data: [12,4,1,3]
+        data: [av , it, logistics, sources_sought_subject]
       }]
     },
     options:
