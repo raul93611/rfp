@@ -79,6 +79,7 @@ if($user-> get_level() != 5){
         ProjectRepository::set_award_state(Connection::get_connection(), $id_project);
       }
     }
+    $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
     Connection::close_connection();
     if($project-> get_type() == 'services_and_equipment'){
       Conexion::abrir_conexion();
@@ -86,6 +87,12 @@ if($user-> get_level() != 5){
       if($quote_rfq_exists){
         $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $id_project);
         RepositorioRfq::actualizar_end_date(Conexion::obtener_conexion(), $_POST['end_date'], $rfq_quote-> obtener_id());
+        if($project-> get_submitted()){
+          RepositorioRfq::actualizar_fecha_y_submitted(Conexion::obtener_conexion(), $rfq_quote-> obtener_id());
+        }
+        if($project-> get_award()){
+          RepositorioRfq::actualizar_fecha_y_award(Conexion::obtener_conexion(), $rfq_quote-> obtener_id());
+        }
       }
       Conexion::cerrar_conexion();
     }

@@ -7,7 +7,7 @@ if(isset($_POST['send_error_quote_email'])){
   Conexion::abrir_conexion();
   $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $_POST['id_project']);
   $designated_user_rfq_quote = RepositorioUsuario::obtener_usuario_por_id(Conexion::obtener_conexion(), $rfq_quote-> obtener_usuario_designado());
-  RepositorioRfq::quitar_completado(Conexion::obtener_conexion(), $rfq_quote-> obtener_id());
+  RepositorioRfq::quitar_checks(Conexion::obtener_conexion(), $rfq_quote-> obtener_id());
   Conexion::cerrar_conexion();
 
   $to = $designated_user_rfq_quote-> obtener_email();
