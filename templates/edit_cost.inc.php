@@ -17,7 +17,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title"><i class="fa fa-pencil"></i> Enter data</h3>
+                            <h3 class="card-title"><i class="fas fa-highlighter"></i> Enter data</h3>
                         </div>
                         <form role="form" method="post" action="<?php echo SAVE_EDIT_COST . $id_cost; ?>">
                             <?php
