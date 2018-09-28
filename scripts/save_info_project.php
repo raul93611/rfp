@@ -43,6 +43,10 @@ if(isset($_POST['save_changes_project'])){
     if(!$quote_rfq_exists){
       $quote_rfq = New Rfq('', $designated_user, $designated_user, '', '(Detail the code ...)', '', $_POST['start_date'], $_POST['end_date'], 0, 0, 0, 0, '', 0, '', '', '', '', '', '', '', '', 0, 0, '', '', 0, $id_project);
       list($cotizacion_insertada, $id_rfq) = RepositorioRfq::insertar_cotizacion(Conexion::obtener_conexion(), $quote_rfq);
+      if($cotizacion_insertada){
+        $cuestionario = new Cuestionario('', $id_rfq, '', '', '', '', '', '', '', '', '');
+        RepositorioCuestionario::insertar_cuestionario(Conexion::obtener_conexion(), $cuestionario);
+      }
       $rfq_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfq/documentos/' . $id_rfq;
       $rfp_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
       mkdir($rfq_directory, 0777);
