@@ -63,5 +63,39 @@ class TaskRepository{
     }
     return $task;
   }
+
+  public static function get_all_tasks_by_id_project($connection, $id_project){
+    $tasks = [];
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT * FROM tasks WHERE id_project = :id_project';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+        $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
+        if(count($result)){
+          foreach ($result as $row) {
+            $tasks[] = new Task($row['id'], $row['id_project'], $row['id_user'], $row['designated_user'], $row['end_date'], $row['description'], $row['completed']);
+          }
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $tasks;
+  }
+
+  public static function delete_all_tasks($connection, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'DELETE FROM tasks WHERE id_project = :id_project';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
 }
 ?>

@@ -120,5 +120,18 @@ class CostRepository{
     }
     return $cost;
   }
+
+  public static function delete_all_costs($connection, $id_service){
+    if(isset($connection)){
+      try{
+        $sql = 'DELETE FROM costs WHERE id_service = :id_service';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_service', $id_service, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
 }
 ?>

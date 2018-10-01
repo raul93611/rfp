@@ -153,5 +153,18 @@ class StaffRepository{
     }
     return $staff;
   }
+
+  public static function delete_all_staff($connection, $id_service){
+    if(isset($connection)){
+      try{
+        $sql = 'DELETE FROM staff WHERE id_service = :id_service';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_service', $id_service, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
 }
 ?>
