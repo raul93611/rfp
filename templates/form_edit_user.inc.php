@@ -30,6 +30,7 @@ if($level != 1){
         <option value="boss" <?php if($user-> get_level() == 2){echo 'selected';} ?>>Boss</option>
         <option value="head_of_area" <?php if($user-> get_level() == 3){echo 'selected';} ?>>Head of area</option>
         <option value="common_user" <?php if($user-> get_level() == 4){echo 'selected';} ?>>Common user</option>
+        <option value="technician" <?php if($user-> get_level() == 5){echo 'selected';} ?>>Technician</option>
       </select>
     </div>
     <div class="form-group">

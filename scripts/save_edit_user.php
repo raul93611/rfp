@@ -10,6 +10,9 @@ if(isset($_POST['edit_user'])){
     case 'common_user':
       $new_level = 4;
       break;
+    case 'technician':
+      $new_level = 5;
+      break;
     default:
       break;
   }
