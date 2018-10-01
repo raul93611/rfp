@@ -20,7 +20,7 @@ if(isset($_POST['save_project'])){
   }
   Connection::close_connection();
   $to = $user-> get_email();
-  $subject = "Sistema RFP";
+  $subject = "System RFP";
   $headers = "MIME-Version: 1.0\r\n";
   $headers .= "Content-type: text/html; charset=UTF-8\r\n";
   $message = '

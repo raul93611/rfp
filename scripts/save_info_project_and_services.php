@@ -99,7 +99,7 @@ if($user-> get_level() != 5){
 
     foreach ($users as $user) {
       $to = $user-> get_email();
-      $subject = "Sistema RFP";
+      $subject = "System RFP";
       $headers = "MIME-Version: 1.0\r\n";
       $headers .= "Content-type: text/html; charset=UTF-8\r\n";
       $message = '

@@ -11,7 +11,7 @@ if(isset($_POST['save_task'])){
   Connection::close_connection();
 
   $to = $designated_user-> get_email();
-  $subject = "Sistema RFP";
+  $subject = "System RFP";
   $headers = "MIME-Version: 1.0\r\n";
   $headers .= "Content-type: text/html; charset=UTF-8\r\n";
   $message = '
