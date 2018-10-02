@@ -16,6 +16,11 @@ $(document).ready(function(){
     habilitar_continue_button($(this));
     return false;
   });
+  /*******************************ALERT DELETE COMPLETE PROJECT BUTTON********************************/
+  $('.delete_complete_project_button').click(function(){
+    habilitar_continue_button($(this));
+    return false;
+  });
   /**************************************ADD TASK BUTTON*****************************************************************/
   $('#add_task').click(function(){
     $('#form_add_task').modal();

@@ -11,7 +11,7 @@ Connection::close_connection();
                     <h1>Project: <small><?php echo $project-> get_id(); ?></small></h1>
                 </div>
                 <div class="col-sm-5">
-                  <a href="<?php echo DELETE_PROJECT . $project-> get_id(); ?>" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                  <a href="<?php echo DELETE_PROJECT . $project-> get_id(); ?>" class="delete_complete_project_button btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                 </div>
                 <div class="col-sm-2">
                   <?php
