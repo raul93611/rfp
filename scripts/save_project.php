@@ -23,6 +23,7 @@ if(isset($_POST['save_project'])){
   $subject = "System RFP";
   $headers = "MIME-Version: 1.0\r\n";
   $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+  $headers .= "From: E-logic <elogic@e-logic.us>\r\n";
   $message = '
   <html>
   <body>
