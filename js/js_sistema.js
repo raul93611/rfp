@@ -112,6 +112,18 @@ $(document).ready(function(){
   });
 
   $('#users_table').DataTable();
+
+  $('#submitted_projects_table').DataTable({
+    'order': [[2, 'desc']]
+  });
+
+  $('#award_projects_table').DataTable({
+    'order': [[2, 'desc']]
+  });
+
+  $('#follow_up_projects_table').DataTable({
+    'order': [[2, 'desc']]
+  });
 /*********************************************************************************************************************/
 
   /************************************REPORT ERROR BUTTON*********************************************************/

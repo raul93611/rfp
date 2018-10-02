@@ -75,6 +75,15 @@ switch ($current_manager) {
   case 'edit_user':
     include_once 'templates/edit_user.inc.php';
     break;
+  case 'submitted_projects':
+    include_once 'templates/submitted_projects.inc.php';
+    break;
+  case 'award_projects':
+    include_once 'templates/award_projects.inc.php';
+    break;
+  case 'follow_up_projects':
+    include_once 'templates/follow_up_projects.inc.php';
+    break;
 }
 include_once 'templates/end_document.inc.php';
 ?>

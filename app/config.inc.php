@@ -37,6 +37,9 @@ define('FLOWCHART', PROFILE . 'flowchart/');
 define('SAVE_FLOWCHART', SERVER . 'save_flowchart/');
 define('DELETE_DOCUMENT', SERVER . 'delete_document/');
 define('INFO_PROJECT_AND_SERVICES', PROFILE . 'info_project_and_services/');
+define('SUBMITTED_PROJECTS', PROFILE . 'submitted_projects');
+define('AWARD_PROJECTS', PROFILE . 'award_projects');
+define('FOLLOW_UP_PROJECTS', PROFILE . 'follow_up_projects');
 /*******************************************************************************/
 /********************************SERVICES OPTIONS*******************************/
 define('ADD_STAFF', PROFILE . 'add_staff/');

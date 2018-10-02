@@ -772,6 +772,240 @@ class ProjectRepository{
     }
   }
 
+  public static function get_all_submitted_projects($connection){
+    $submitted_projects = [];
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT * FROM projects WHERE submitted = 1 AND award = 0 AND follow_up = 0 ORDER BY id DESC';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> execute();
+        $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
+        if(count($result)){
+          foreach ($result as $row) {
+            $submitted_projects[] = new Project($row['id'], $row['id_user'], $row['start_date'], $row['code'], $row['link'], $row['project_name'], $row['end_date'], $row['priority'], $row['description'], $row['submission_instructions'], $row['type'], $row['flowchart'], $row['designated_user'], $row['reviewed_project'], $row['priority_color'], $row['subject'], $row['result'], $row['proposed_price'], $row['business_type'], $row['submitted'], $row['follow_up'], $row['award'], $row['submitted_date'], $row['award_date'], $row['quantity_years'], $row['proposal_description1'], $row['proposal_quantity1'], $row['proposal_amount1'], $row['proposal_description2'], $row['proposal_quantity2'], $row['proposal_amount2'], $result['expiration_date'], $result['address'], $result['ship_to'], $result['total']);
+          }
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $submitted_projects;
+  }
+
+  public static function print_submitted_project($submitted_project){
+    if (!isset($submitted_project)) {
+      return;
+    }
+    Connection::open_connection();
+    $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $submitted_project-> get_id());
+    Connection::close_connection();
+    $submitted_date = self::mysql_date_to_english_format($submitted_project-> get_submitted_date());
+    ?>
+    <tr>
+      <td>
+        <a href="<?php echo INFO_PROJECT_AND_SERVICES . $submitted_project-> get_id(); ?>" class="btn-block">
+          <?php echo $submitted_project-> get_code(); ?>
+        </a>
+      </td>
+      <td>
+        <?php
+        Connection::open_connection();
+        $user = UserRepository::get_user_by_id(Connection::get_connection(), $submitted_project-> get_designated_user());
+        Connection::close_connection();
+        echo $user-> get_username();
+        ?>
+      </td>
+      <td><?php echo $submitted_date; ?></td>
+      <td>$ <?php echo number_format($service-> get_total_service(), 2); ?></td>
+      <td><?php echo $submitted_project-> get_result(); ?></td>
+      <td><?php echo $submitted_project-> get_id(); ?></td>
+    </tr>
+    <?php
+  }
+
+  public static function print_submitted_projects(){
+    Connection::open_connection();
+    $submitted_projects = self::get_all_submitted_projects(Connection::get_connection());
+    Connection::close_connection();
+    ?>
+    <table id="submitted_projects_table" class="table table-bordered table-responsive-md">
+      <thead>
+        <tr>
+          <th>CODE</th>
+          <th>DEDIGNATED USER</th>
+          <th>SUBMITTED DATE</th>
+          <th>AMOUNT</th>
+          <th>RESULT</th>
+          <th>PROPOSAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($submitted_projects as $submitted_project) {
+          self::print_submitted_project($submitted_project);
+        }
+        ?>
+      </tbody>
+    </table>
+    <?php
+  }
+
+  public static function get_all_follow_up_projects($connection){
+    $follow_up_projects = [];
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT * FROM projects WHERE submitted = 1 AND award = 0 AND follow_up = 1 ORDER BY id DESC';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> execute();
+        $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
+        if(count($result)){
+          foreach ($result as $row) {
+            $follow_up_projects[] = new Project($row['id'], $row['id_user'], $row['start_date'], $row['code'], $row['link'], $row['project_name'], $row['end_date'], $row['priority'], $row['description'], $row['submission_instructions'], $row['type'], $row['flowchart'], $row['designated_user'], $row['reviewed_project'], $row['priority_color'], $row['subject'], $row['result'], $row['proposed_price'], $row['business_type'], $row['submitted'], $row['follow_up'], $row['award'], $row['submitted_date'], $row['award_date'], $row['quantity_years'], $row['proposal_description1'], $row['proposal_quantity1'], $row['proposal_amount1'], $row['proposal_description2'], $row['proposal_quantity2'], $row['proposal_amount2'], $result['expiration_date'], $result['address'], $result['ship_to'], $result['total']);
+          }
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $follow_up_projects;
+  }
+
+  public static function print_follow_up_project($follow_up_project){
+    if (!isset($follow_up_project)) {
+      return;
+    }
+    Connection::open_connection();
+    $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $follow_up_project-> get_id());
+    Connection::close_connection();
+    $submitted_date = self::mysql_date_to_english_format($follow_up_project-> get_submitted_date());
+    ?>
+    <tr>
+      <td>
+        <a href="<?php echo INFO_PROJECT_AND_SERVICES . $follow_up_project-> get_id(); ?>" class="btn-block">
+          <?php echo $follow_up_project-> get_code(); ?>
+        </a>
+      </td>
+      <td>
+        <?php
+        Connection::open_connection();
+        $user = UserRepository::get_user_by_id(Connection::get_connection(), $follow_up_project-> get_designated_user());
+        Connection::close_connection();
+        echo $user-> get_username();
+        ?>
+      </td>
+      <td><?php echo $submitted_date; ?></td>
+      <td>$ <?php echo number_format($service-> get_total_service(), 2); ?></td>
+      <td><?php echo $follow_up_project-> get_result(); ?></td>
+      <td><?php echo $follow_up_project-> get_id(); ?></td>
+    </tr>
+    <?php
+  }
+
+  public static function print_follow_up_projects(){
+    Connection::open_connection();
+    $follow_up_projects = self::get_all_follow_up_projects(Connection::get_connection());
+    Connection::close_connection();
+    ?>
+    <table id="follow_up_projects_table" class="table table-bordered table-responsive-md">
+      <thead>
+        <tr>
+          <th>CODE</th>
+          <th>DEDIGNATED USER</th>
+          <th>SUBMITTED DATE</th>
+          <th>AMOUNT</th>
+          <th>RESULT</th>
+          <th>PROPOSAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($follow_up_projects as $follow_up_project) {
+          self::print_follow_up_project($follow_up_project);
+        }
+        ?>
+      </tbody>
+    </table>
+    <?php
+  }
+
+  public static function get_all_award_projects($connection){
+    $award_projects = [];
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT * FROM projects WHERE award = 1 AND submitted = 1 AND follow_up = 1 ORDER BY id DESC';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> execute();
+        $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
+        if(count($result)){
+          foreach ($result as $row) {
+            $award_projects[] = new Project($row['id'], $row['id_user'], $row['start_date'], $row['code'], $row['link'], $row['project_name'], $row['end_date'], $row['priority'], $row['description'], $row['submission_instructions'], $row['type'], $row['flowchart'], $row['designated_user'], $row['reviewed_project'], $row['priority_color'], $row['subject'], $row['result'], $row['proposed_price'], $row['business_type'], $row['submitted'], $row['follow_up'], $row['award'], $row['submitted_date'], $row['award_date'], $row['quantity_years'], $row['proposal_description1'], $row['proposal_quantity1'], $row['proposal_amount1'], $row['proposal_description2'], $row['proposal_quantity2'], $row['proposal_amount2'], $result['expiration_date'], $result['address'], $result['ship_to'], $result['total']);
+          }
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $award_projects;
+  }
+
+  public static function print_award_project($award_project){
+    if (!isset($award_project)) {
+      return;
+    }
+    Connection::open_connection();
+    $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $award_project-> get_id());
+    Connection::close_connection();
+    $award_date = self::mysql_date_to_english_format($award_project-> get_award_date());
+    ?>
+    <tr>
+      <td>
+        <a href="<?php echo INFO_PROJECT_AND_SERVICES . $award_project-> get_id(); ?>" class="btn-block">
+          <?php echo $award_project-> get_code(); ?>
+        </a>
+      </td>
+      <td>
+        <?php
+        Connection::open_connection();
+        $user = UserRepository::get_user_by_id(Connection::get_connection(), $award_project-> get_designated_user());
+        Connection::close_connection();
+        echo $user-> get_username();
+        ?>
+      </td>
+      <td><?php echo $award_date; ?></td>
+      <td>$ <?php echo number_format($service-> get_total_service(), 2); ?></td>
+      <td><?php echo $award_project-> get_result(); ?></td>
+      <td><?php echo $award_project-> get_id(); ?></td>
+    </tr>
+    <?php
+  }
+
+  public static function print_award_projects(){
+    Connection::open_connection();
+    $award_projects = self::get_all_award_projects(Connection::get_connection());
+    Connection::close_connection();
+    ?>
+    <table id="award_projects_table" class="table table-bordered table-responsive-md">
+      <thead>
+        <tr>
+          <th>CODE</th>
+          <th>DEDIGNATED USER</th>
+          <th>AWARD DATE</th>
+          <th>AMOUNT</th>
+          <th>RESULT</th>
+          <th>PROPOSAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($award_projects as $award_project) {
+          self::print_award_project($award_project);
+        }
+        ?>
+      </tbody>
+    </table>
+    <?php
+  }
+
   public static function mysql_date_to_english_format($mysql_date){
     $parts_mysql_date = explode('-', $mysql_date);
     $english_format = $parts_mysql_date[1] . '/' . $parts_mysql_date[2] . '/' . $parts_mysql_date[0];

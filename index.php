@@ -113,6 +113,18 @@ if($parts_route[0] == 'rfp'){
             $current_manager = 'reports';
             $chosen_route = 'views/profile.php';
             break;
+          case 'submitted_projects':
+            $current_manager = 'submitted_projects';
+            $chosen_route = 'views/profile.php';
+            break;
+          case 'award_projects':
+            $current_manager = 'award_projects';
+            $chosen_route = 'views/profile.php';
+            break;
+          case 'follow_up_projects':
+            $current_manager = 'follow_up_projects';
+            $chosen_route = 'views/profile.php';
+            break;
           default:
             break;
         }

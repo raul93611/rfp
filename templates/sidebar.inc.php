@@ -80,6 +80,62 @@
                         <p>Search</p>
                     </a>
                 </li>
+                <li class="nav-item has-treeview
+                <?php
+                if($current_manager == 'submitted_projects' || $current_manager == 'award_projects' || $current_manager == 'follow_up_projects'){
+                  echo 'menu-open';
+                }
+                ?>
+                ">
+                  <a href="#" class="nav-link
+                    <?php
+                    if($current_manager == 'submitted_projects' || $current_manager == 'award_projects' || $current_manager == 'follow_up_projects'){
+                      echo 'active';
+                    }
+                    ?>
+                    ">
+                    <i class="nav-icon fas fa-tags"></i>
+                    <p>
+                      Projects
+                      <i class="right fa fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                      <a href="<?php echo SUBMITTED_PROJECTS; ?>" class="nav-link
+                        <?php
+                        if($current_manager == 'submitted_projects'){
+                          echo 'active';
+                        }
+                        ?>
+                        ">
+                        <p>Submitted</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="<?php echo FOLLOW_UP_PROJECTS; ?>" class="nav-link
+                        <?php
+                        if($current_manager == 'follow_up_projects'){
+                          echo 'active';
+                        }
+                        ?>
+                        ">
+                        <p>Follow up</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="<?php echo AWARD_PROJECTS; ?>" class="nav-link
+                        <?php
+                        if($current_manager == 'award_projects'){
+                          echo 'active';
+                        }
+                        ?>
+                        ">
+                        <p>Award</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
                 <li class="nav-item has-treeview menu-open">
                     <a href="<?php echo REPORTS; ?>" class="nav-link
                     <?php
