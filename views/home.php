@@ -17,6 +17,7 @@ include_once 'templates/validation_login.inc.php';
     <link rel="stylesheet" href="<?php echo PLUGINS; ?>iCheck/square/blue.css">
     <link rel="Shortcut Icon" href="<?php echo IMG; ?>eP_favicon.png" type="image/x-icon" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" id="fondo" href="css/fondo1.css">
     <style>
       body{
         font-family: 'Roboto', sans-serif;
@@ -79,5 +80,17 @@ include_once 'templates/validation_login.inc.php';
     <script src="<?php echo PLUGINS; ?>jquery/jquery.min.js"></script>
     <script src="<?php echo PLUGINS; ?>bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?php echo PLUGINS; ?>iCheck/icheck.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var a = 1;
+        var intervalo = setInterval(function(){
+          $('#fondo').attr('href', 'css/fondo' + a + '.css');
+          if(a == 3){
+            a = 0;
+          }
+          a++;
+        },2000);
+      });
+    </script>
   </body>
 </html>
