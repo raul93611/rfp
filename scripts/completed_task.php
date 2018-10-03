@@ -8,7 +8,7 @@ TaskRepository::set_completed_task(Connection::get_connection(), $id_task);
 Connection::close_connection();
 
 $to = $author_user-> get_email();
-$subject = "Sistema RFP";
+$subject = "RFP system";
 $headers = "MIME-Version: 1.0\r\n";
 $headers .= "Content-type: text/html; charset=UTF-8\r\n";
 $headers .= "From: E-logic <elogic@e-logic.us>\r\n";

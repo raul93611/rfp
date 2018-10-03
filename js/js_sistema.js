@@ -608,15 +608,15 @@ if($('#submitted_chart').length != 0){
         {
           label: '# of submitted projects last year',
           data: submitted_projects_by_month_last_year,
-          backgroundColor: '#c2d9fc',
-          borderColor: '#c2d9fc',
+          backgroundColor: '#ccf0fd',
+          borderColor: '#ccf0fd',
           borderWidth: 1
         },
         {
           label: '# of submitted projects',
           data: submitted_projects_by_month,
-          backgroundColor: '#66a0f7',
-          borderColor: '#66a0f7',
+          backgroundColor: '#7fd6f9',
+          borderColor: '#7fd6f9',
           borderWidth: 1
         }
       ]
@@ -655,15 +655,15 @@ if($('#award_chart').length != 0){
         {
           label: '# of award projects last year',
           data: award_projects_by_month_last_year,
-          backgroundColor: '#bfebfc',
-          borderColor: '#bfebfc',
+          backgroundColor: '#ccf0fd',
+          borderColor: '#ccf0fd',
           borderWidth: 1
         },
         {
           label: '# of award projects',
           data: award_projects_by_month,
-          backgroundColor: '#5fccf7',
-          borderColor: '#5fccf7',
+          backgroundColor: '#7fd6f9',
+          borderColor: '#7fd6f9',
           borderWidth: 1
         }
       ]
@@ -704,15 +704,15 @@ if($('#award_by_amount_chart').length != 0){
           {
             label: 'amount award projects last year',
             data: award_by_amount_projects_by_month_last_year,
-            backgroundColor: '#baf0e6',
-            borderColor: '#baf0e6',
+            backgroundColor: '#ccf0fd',
+            borderColor: '#ccf0fd',
             borderWidth: 1
           },
           {
             label: 'amount award projects',
             data: award_by_amount_projects_by_month,
-            backgroundColor: '#53dac0',
-            borderColor: '#53dac0',
+            backgroundColor: '#7fd6f9',
+            borderColor: '#7fd6f9',
             borderWidth: 1
           }
         ]
@@ -757,7 +757,7 @@ if($('#submitted_pie_chart').length != 0){
       datasets:
       [{
         label: "Population (millions)",
-        backgroundColor: ['#0070e0', '#04a5f0', '#67cdf4', '#aeecf9', '#d6f5fc'],
+        backgroundColor: ['#76b4ff', '#90c7ff', '#acd5ff', '#c7e3ff', '#e3f1ff'],
         data: [ocho_a, full_and_open, hubzone, small_business, sources_sought]
       }]
     },
@@ -787,7 +787,7 @@ if($('#result_pie_chart').length != 0){
       datasets:
       [{
         label: "Population (millions)",
-        backgroundColor: ['#7fc605', '#a9e84f', '#cdf396', '#e5fbc8', '#f5fde9'],
+        backgroundColor: ['#76b4ff', '#90c7ff', '#acd5ff', '#c7e3ff', '#e3f1ff'],
         data: [cancelled, disqualified, loss, re_posted, to_be_determined]
       }]
     },
@@ -817,7 +817,7 @@ if($('#follow_up_chart').length != 0){
       datasets:
       [{
         label: "Population (millions)",
-        backgroundColor: ['#fae800', '#fcf9a8'],
+        backgroundColor: ['#76b4ff', '#90c7ff'],
         data: [follow_up, no_follow_up]
       }]
     },
@@ -847,7 +847,7 @@ if($('#subject_chart').length != 0){
       datasets:
       [{
         label: "Population (millions)",
-        backgroundColor: ['#8830ef', '#ad50f6', '#d589f6', '#efc0f9'],
+        backgroundColor: ['#76b4ff', '#90c7ff', '#acd5ff', '#c7e3ff'],
         data: [av , it, logistics, sources_sought_subject]
       }]
     },
