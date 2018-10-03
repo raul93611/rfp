@@ -127,7 +127,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
         <div class="form-group row">
           <label class="col-sm-2 col-form-label col-form-label-sm" for="end_date">End date:</label>
           <div class="col-sm-10">
-            <input class="form-control form-control-sm" type="text" id="end_date" name="end_date" value="<?php #echo $end_date; ?>">
+            <input class="form-control form-control-sm" type="text" id="end_date" name="end_date" value="<?php echo $end_date; ?>">
           </div>
         </div>
         <div class="form-group row">
