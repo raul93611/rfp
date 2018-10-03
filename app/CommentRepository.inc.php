@@ -48,5 +48,53 @@ class CommentRepository{
       }
     }
   }
+
+  public static function print_comments($id_project){
+    Connection::open_connection();
+    $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
+    $comments = self::get_all_comments_by_id_project(Connection::get_connection(), $id_project);
+    Connection::close_connection();
+    if(count($comments)){
+      ?>
+      <ul class="timeline">
+        <li class="clickable_title">
+          <i class="fa fa-bookmark"></i>
+          <div class="timeline-item">
+            <h3 class="timeline-header">Project: <?php echo $project-> get_project_name(); ?></h3>
+          </div>
+        </li>
+        <?php
+        foreach ($comments as $comment) {
+          $comment_date = ProjectRepository::mysql_datetime_to_english_format($comment-> get_comment_date());
+          ?>
+          <li class="body_comments">
+            <i class="fa fa-user"></i>
+            <div class="timeline-item">
+              <span class="time"><i class="far fa-clock"></i> <?php echo $comment_date; ?></span>
+              <h3 class="timeline-header">
+                <span class="text-primary">
+                <?php
+                Connection::open_connection();
+                $user = UserRepository::get_user_by_id(Connection::get_connection(), $comment-> get_id_user());
+                Connection::close_connection();
+                echo $user-> get_username();
+                ?>
+                </span>
+                 said</h3>
+              <div class="timeline-body">
+                <?php echo nl2br($comment-> get_comment()); ?>
+              </div>
+            </div>
+          </li>
+          <?php
+        }
+        ?>
+        <li>
+          <i class="fa fa-infinity"></i>
+        </li>
+        </ul>
+      <?php
+    }
+  }
 }
 ?>
