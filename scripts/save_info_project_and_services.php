@@ -1,7 +1,14 @@
 <?php
 session_start();
 Connection::open_connection();
+$project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
 $user = UserRepository::get_user_by_id(Connection::get_connection(), $_SESSION['id_user']);
+$members = [];
+$id_members = explode('|', $project-> get_members());
+foreach ($id_members as $id_member) {
+  $members[] = UserRepository::get_user_by_id(Connection::get_connection(), $id_member);
+}
+$users = UserRepository::get_all_users_enabled(Connection::get_connection());
 Connection::close_connection();
 if($user-> get_level() != 5){
   if(isset($_POST['save_info_project_and_services']) || isset($_POST['make_proposal1']) || isset($_POST['make_proposal2'])){
@@ -30,11 +37,12 @@ if($user-> get_level() != 5){
         }
     }
     Connection::open_connection();
+    $members = implode('|', $_POST['members']);
+    ProjectRepository::set_members(Connection::get_connection(), $members, $id_project);
     $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
     $service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
     ServiceRepository::set_total_service_total_equipment(Connection::get_connection(), $_POST['total_service'], $_POST['total_equipment'], $service-> get_id());
     ProjectRepository::set_total(Connection::get_connection(), $_POST['total'], $id_project);
-    $users = UserRepository::get_all_users_enabled(Connection::get_connection());
     switch ($_POST['priority']) {
       case '8a':
         $priority_color = '#FF5253';
@@ -98,7 +106,28 @@ if($user-> get_level() != 5){
     }
     if($_POST['story_comments'] != ''){
       foreach ($users as $user) {
-        $to = $user-> get_email();
+        if($user-> get_level() == 2){
+          $to = $user-> get_email();
+          $subject = $project-> get_project_name();
+          $headers = "MIME-Version: 1.0\r\n";
+          $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+          $headers .= "From:" .  $_SESSION['username']  . "E-logic <elogic@e-logic.us>\r\n";
+          $message = '
+          <html>
+          <body>
+          <h3>Project details:</h3>
+          <h5>Project:</h5>
+          <p><a href="' . INFO_PROJECT_AND_SERVICES . $project-> get_id() . '">' . $project-> get_project_name() . '</a></p>
+          <h5>Comment:</h5>
+          <p>' . nl2br($_POST['story_comments']) . '</p>
+          </body>
+          </html>
+          ';
+          mail($to, $subject, $message, $headers);
+        }
+      }
+      foreach ($members as $member) {
+        $to = $member-> get_email();
         $subject = $project-> get_project_name();
         $headers = "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=UTF-8\r\n";
@@ -158,7 +187,28 @@ if($user-> get_level() != 5){
   }
   if($_POST['story_comments'] != ''){
     foreach ($users as $user) {
-      $to = $user-> get_email();
+      if($user-> get_level() == 2){
+        $to = $user-> get_email();
+        $subject = $project-> get_project_name();
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+        $headers .= "From:" .  $_SESSION['username']  . "E-logic <elogic@e-logic.us>\r\n";
+        $message = '
+        <html>
+        <body>
+        <h3>Project details:</h3>
+        <h5>Project:</h5>
+        <p><a href="' . INFO_PROJECT_AND_SERVICES . $project-> get_id() . '">' . $project-> get_project_name() . '</a></p>
+        <h5>Comment:</h5>
+        <p>' . nl2br($_POST['story_comments']) . '</p>
+        </body>
+        </html>
+        ';
+        mail($to, $subject, $message, $headers);
+      }
+    }
+    foreach ($members as $member) {
+      $to = $member-> get_email();
       $subject = $project-> get_project_name();
       $headers = "MIME-Version: 1.0\r\n";
       $headers .= "Content-type: text/html; charset=UTF-8\r\n";

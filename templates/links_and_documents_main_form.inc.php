@@ -3,7 +3,38 @@
     <h3 class="card-title"><i class="fas fa-link"></i> Links and documents</h3>
   </div>
   <div class="card-body">
+    <label>Members:</label><br>
+    <?php
+    Connection::open_connection();
+    $users = UserRepository::get_all_users_enabled(Connection::get_connection());
+    Connection::close_connection();
+    foreach ($users as $user) {
+      if($user-> get_level() != 2){
+        ?>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" name="members[]" value="<?php echo $user-> get_id(); ?>" id="<?php echo $user-> get_id(); ?>"
+          <?php
+          $members = explode('|', $project-> get_members());
+          if(count($members)){
+            foreach ($members as $member) {
+              if($member == $user-> get_id()){
+                echo 'checked';
+              }
+            }
+          }
+          if($level == 5){
+            echo ' disabled';
+          }
+          ?>
+          >
+          <label class="form-check-label" for="<?php echo $user-> get_id(); ?>"><?php echo $user-> get_username(); ?></label>
+        </div>
+        <?php
+      }
+    }
+    ?>
     <div class="form-group">
+      <br>
       <label>Link:</label><br>
       <span>
         <?php if($project-> get_link() != ''){

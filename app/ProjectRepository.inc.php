@@ -106,6 +106,20 @@ class ProjectRepository{
     return $result;
   }
 
+  public static function set_members($connection, $members, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE projects SET members = :members WHERE id = :id_project';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':members', $members, PDO::PARAM_STR);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
+
   public static function change_main_information_project($connection, $code, $project_name, $business_type, $end_date, $quantity_years, $priority, $priority_color, $submission_instructions, $subject, $address, $ship_to, $description, $id_project){
     if(isset($connection)){
       try{
