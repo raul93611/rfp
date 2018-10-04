@@ -96,22 +96,23 @@ if($user-> get_level() != 5){
       }
       Conexion::cerrar_conexion();
     }
-
-    foreach ($users as $user) {
-      $to = $user-> get_email();
-      $subject = "RFP system";
-      $headers = "MIME-Version: 1.0\r\n";
-      $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-      $headers .= "From: E-logic <elogic@e-logic.us>\r\n";
-      $message = '
-      <html>
-      <body>
-      <h1>' . $project-> get_project_name() .'</h1>
-      <p>' . $_POST['story_comments'] . '</p>
-      </body>
-      </html>
-      ';
-      mail($to, $subject, $message, $headers);
+    if($_POST['story_comments'] != ''){
+      foreach ($users as $user) {
+        $to = $user-> get_email();
+        $subject = "RFP system";
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+        $headers .= "From: E-logic <elogic@e-logic.us>\r\n";
+        $message = '
+        <html>
+        <body>
+        <h1>' . $project-> get_project_name() .'</h1>
+        <p>' . $_POST['story_comments'] . '</p>
+        </body>
+        </html>
+        ';
+        mail($to, $subject, $message, $headers);
+      }
     }
 
     if(isset($_POST['save_info_project_and_services'])){
@@ -152,21 +153,22 @@ if($user-> get_level() != 5){
         move_uploaded_file($tmp_path, $new_path);
       }
   }
-
-  foreach ($users as $user) {
-    $to = $user-> obtener_email();
-    $subject = "RFP system";
-    $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-    $message = '
-    <html>
-    <body>
-    <h1>' . $project-> get_project_name() .'</h1>
-    <p>' . $_POST['story_comments'] . '</p>
-    </body>
-    </html>
-    ';
-    mail($to, $subject, $message, $headers);
+  if($_POST['story_comments'] != ''){
+    foreach ($users as $user) {
+      $to = $user-> obtener_email();
+      $subject = "RFP system";
+      $headers = "MIME-Version: 1.0\r\n";
+      $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+      $message = '
+      <html>
+      <body>
+      <h1>' . $project-> get_project_name() .'</h1>
+      <p>' . $_POST['story_comments'] . '</p>
+      </body>
+      </html>
+      ';
+      mail($to, $subject, $message, $headers);
+    }
   }
 
   if(!empty($_POST['story_comments'])){

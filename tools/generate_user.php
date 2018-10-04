@@ -1,10 +1,5 @@
 <?php
 Connection::open_connection();
-$connection = Connection::get_connection();
-$sql = 'UPDATE projects SET id = 50000 WHERE id = 1';
-$sentence = $connection-> prepare($sql);
-$sentence-> execute();
-/*
 $username = 'raul93611';
 $password = password_hash('elogic93611', PASSWORD_DEFAULT);
 $names = 'leonardo';
@@ -44,6 +39,5 @@ $email = 'pablo@ramirez';
 $activo = 1;
 $user = new User('', $username, $password, $names, $last_names, $level, $email, $activo);
 UserRepository::insert_user(Connection::get_connection(), $user);
-*/
 Connection::close_connection();
 ?>
