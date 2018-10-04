@@ -23,14 +23,14 @@ if(isset($_POST['save_project'])){
   $subject = "RFP system";
   $headers = "MIME-Version: 1.0\r\n";
   $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-  $headers .= "From: E-logic <elogic@e-logic.us>\r\n";
+  $headers .= "From: " . $_SESSION['username'] . " E-logic <elogic@e-logic.us>\r\n";
   $message = '
   <html>
   <body>
-  <h1>New project</h1>
-  <a href="' . $_POST['link'] . '">' . $_POST['link'] . '</a>
+  <h3>New project:</h3>
   <p>' . nl2br($_POST['create_part_comments']) . '</p>
-  <p>Review the project: <a href="http://www.elogicportal.com/rfp/profile/calendar_new_projects">Elogic portal</a></p>
+  <h3>Link:</h3>
+  <p><a href="http://www.elogicportal.com/rfp/profile/calendar_new_projects">E-logic portal</a></p>
   </body>
   </html>
   ';

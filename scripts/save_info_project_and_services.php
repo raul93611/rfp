@@ -99,15 +99,18 @@ if($user-> get_level() != 5){
     if($_POST['story_comments'] != ''){
       foreach ($users as $user) {
         $to = $user-> get_email();
-        $subject = "RFP system";
+        $subject = $project-> get_project_name();
         $headers = "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-        $headers .= "From: E-logic <elogic@e-logic.us>\r\n";
+        $headers .= "From:" . " $_SESSION['username'] " . "E-logic <elogic@e-logic.us>\r\n";
         $message = '
         <html>
         <body>
-        <h1>' . $project-> get_project_name() .'</h1>
-        <p>' . $_POST['story_comments'] . '</p>
+        <h3>Project details:</h3>
+        <h5>Project:</h5>
+        <p><a href="' . INFO_PROJECT_AND_SERVICES . $project-> get_id() . '">' . $project-> get_project_name() . '</a></p>
+        <h5>Comment:</h5>
+        <p>' . nl2br($_POST['story_comments']) . '</p>
         </body>
         </html>
         ';
@@ -155,15 +158,19 @@ if($user-> get_level() != 5){
   }
   if($_POST['story_comments'] != ''){
     foreach ($users as $user) {
-      $to = $user-> obtener_email();
-      $subject = "RFP system";
+      $to = $user-> get_email();
+      $subject = $project-> get_project_name();
       $headers = "MIME-Version: 1.0\r\n";
       $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+      $headers .= "From:" . " $_SESSION['username'] " . "E-logic <elogic@e-logic.us>\r\n";
       $message = '
       <html>
       <body>
-      <h1>' . $project-> get_project_name() .'</h1>
-      <p>' . $_POST['story_comments'] . '</p>
+      <h3>Project details:</h3>
+      <h5>Project:</h5>
+      <p><a href="' . INFO_PROJECT_AND_SERVICES . $project-> get_id() . '">' . $project-> get_project_name() . '</a></p>
+      <h5>Comment:</h5>
+      <p>' . nl2br($_POST['story_comments']) . '</p>
       </body>
       </html>
       ';

@@ -11,15 +11,17 @@ if(isset($_POST['send_error_quote_email'])){
   Conexion::cerrar_conexion();
 
   $to = $designated_user_rfq_quote-> obtener_email();
-  $subject = "RFP system";
+  $subject = "Proposal: " . $rfq_quote-> obtener_id();
   $headers = "MIME-Version: 1.0\r\n";
   $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-  $headers .= "From: E-logic <elogic@e-logic.us>\r\n";
+  $headers .= "From: " . $_SESSION['username'] . " E-logic <elogic@e-logic.us>\r\n";
   $message = '
   <html>
   <body>
-  <h1>Proposal: ' . $rfq_quote-> obtener_id() . '</h1>
-  <p>' . $_POST['comments_error_quote_email'] . '</p>
+  <h3>Link:</h3>
+  <p><a href="http://www.elogicportal.com/rfq/perfil/cotizaciones/editar_cotizacion/' . $rfq_quote-> obtener_id() . '">E-logic portal</a></p>
+  <h3>Comment:</h3>
+  <p>' . nl2br($_POST['comments_error_quote_email']) . '</p>
   </body>
   </html>
   ';

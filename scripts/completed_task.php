@@ -8,17 +8,16 @@ TaskRepository::set_completed_task(Connection::get_connection(), $id_task);
 Connection::close_connection();
 
 $to = $author_user-> get_email();
-$subject = "RFP system";
+$subject = $project-> get_project_name();
 $headers = "MIME-Version: 1.0\r\n";
 $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-$headers .= "From: E-logic <elogic@e-logic.us>\r\n";
+$headers .= "From: " . $_SESSION['username'] . " E-logic <elogic@e-logic.us>\r\n";
 $message = '
 <html>
 <body>
-<h1>' . $project-> get_project_name() .'</h1>
-<p>Task: <br><i>' .
-$_POST['task_description']
- . '</i><br>was completed by: '. $designated_user-> get_username() .'</p>
+<h3>Completed task!</h3>
+<h4>Description:</h4>
+<p>' . nl2br($_POST['task_description']) . '</p>
 </body>
 </html>
 ';
