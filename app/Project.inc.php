@@ -35,8 +35,9 @@ class Project{
   private $address;
   private $ship_to;
   private $total;
+  private $members;
 
-  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart, $designated_user, $reviewed_project, $priority_color, $subject, $result, $proposed_price, $business_type, $submitted, $follow_up, $award, $submitted_date, $award_date, $quantity_years, $proposal_description1, $proposal_quantity1, $proposal_amount1, $proposal_description2, $proposal_quantity2, $proposal_amount2, $expiration_date, $address, $ship_to, $total){
+  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart, $designated_user, $reviewed_project, $priority_color, $subject, $result, $proposed_price, $business_type, $submitted, $follow_up, $award, $submitted_date, $award_date, $quantity_years, $proposal_description1, $proposal_quantity1, $proposal_amount1, $proposal_description2, $proposal_quantity2, $proposal_amount2, $expiration_date, $address, $ship_to, $total, $members){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> start_date = $start_date;
@@ -72,6 +73,7 @@ class Project{
     $this-> address = $address;
     $this-> ship_to = $ship_to;
     $this-> total = $total;
+    $this-> members = $members;
   }
 
   public function get_id(){
@@ -212,6 +214,10 @@ class Project{
 
   public function get_total(){
     return $this-> total;
+  }
+
+  public function get_members(){
+    return $this-> members;
   }
 }
 ?>

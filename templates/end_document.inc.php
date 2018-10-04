@@ -34,7 +34,7 @@
 </div>
 
 <div class="modal fade" id="add_project" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Add project</h5>
@@ -59,6 +59,22 @@
               <label id="label_file_create" class="custom-file-label" for="file_input_info_create">Choose file</label>
             </div>
           </div>
+          <label>Members:</label><br>
+          <?php
+          Connection::open_connection();
+          $users = UserRepository::get_all_users_enabled(Connection::get_connection());
+          Connection::close_connection();
+          foreach ($users as $user) {
+            if($user-> get_level() != 2){
+              ?>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="members[]" value="<?php echo $user-> get_id(); ?>" id="<?php echo $user-> get_id(); ?>" <?php if($user-> get_level() < 4){echo 'checked';} ?>>
+                <label class="form-check-label" for="<?php echo $user-> get_id(); ?>"><?php echo $user-> get_username(); ?></label>
+              </div>
+              <?php
+            }
+          }
+          ?>
         </form>
       </div>
       <div class="modal-footer">
