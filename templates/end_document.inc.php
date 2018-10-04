@@ -68,8 +68,8 @@
             if($user-> get_level() != 2){
               ?>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="members[]" value="<?php echo $user-> get_id(); ?>" id="<?php echo $user-> get_id(); ?>" <?php if($user-> get_level() < 4){echo 'checked';} ?>>
-                <label class="form-check-label" for="<?php echo $user-> get_id(); ?>"><?php echo $user-> get_username(); ?></label>
+                <input class="form-check-input" type="checkbox" name="members[]" value="<?php echo $user-> get_id(); ?>" id="<?php echo $user-> get_id() . 'modal'; ?>" <?php if($user-> get_level() < 4){echo 'checked';} ?>>
+                <label class="form-check-label" for="<?php echo $user-> get_id() . 'modal'; ?>"><?php echo $user-> get_username(); ?></label>
               </div>
               <?php
             }
