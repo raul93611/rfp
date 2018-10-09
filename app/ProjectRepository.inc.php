@@ -77,9 +77,10 @@ class ProjectRepository{
   }
 
   public static function get_all_end_dates_my_projects($connection, $id_user){
+    $id_user = '%' . $id_user . '%';
     if(isset($connection)){
       try{
-        $sql = 'SELECT id, project_name as title, end_date as start, priority_color as color, reviewed_project FROM projects WHERE reviewed_project = 1 AND designated_user = :id_user AND submitted = 0';
+        $sql = 'SELECT id, project_name as title, end_date as start, priority_color as color, reviewed_project FROM projects WHERE reviewed_project = 1 AND members LIKE :id_user AND submitted = 0';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $id_user, PDO::PARAM_STR);
         $sentence-> execute();
@@ -92,9 +93,10 @@ class ProjectRepository{
   }
 
   public static function get_all_new_dates_my_projects($connection, $id_user){
+    $id_user = '%' . $id_user . '%';
     if(isset($connection)){
       try{
-        $sql = 'SELECT id, link as title, start_date as start, reviewed_project FROM projects WHERE reviewed_project = 0 AND designated_user = :id_user';
+        $sql = 'SELECT id, link as title, start_date as start, reviewed_project FROM projects WHERE reviewed_project = 0 AND members LIKE :id_user';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $id_user, PDO::PARAM_STR);
         $sentence-> execute();

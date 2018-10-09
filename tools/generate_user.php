@@ -1,4 +1,5 @@
 <?php
+/*
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 Connection::open_connection();
@@ -7,7 +8,8 @@ $sql = 'ALTER TABLE projects ADD members VARCHAR(255) NOT NULL';
 $sentence = $connection-> prepare($sql);
 $sentence-> execute();
 Connection::close_connection();
-/*
+*/
+
 Connection::open_connection();
 $username = 'raul93611';
 $password = password_hash('elogic93611', PASSWORD_DEFAULT);
@@ -49,5 +51,5 @@ $activo = 1;
 $user = new User('', $username, $password, $names, $last_names, $level, $email, $activo);
 UserRepository::insert_user(Connection::get_connection(), $user);
 Connection::close_connection();
-*/
+
 ?>

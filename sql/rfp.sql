@@ -51,6 +51,7 @@ CREATE TABLE projects(
   address TEXT CHARACTER SET utf8 NOT NULL,
   ship_to TEXT CHARACTER SET utf8 NOT NULL,
   total DECIMAL(20,2),
+  members VARCHAR(255) NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_user)
     REFERENCES users(id)
