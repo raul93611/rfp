@@ -41,7 +41,7 @@ if(isset($_POST['save_changes_project'])){
     $designated_user = $id_rfq_users[$designated_user_index];
     $quote_rfq_exists = RepositorioRfq::quote_rfq_exists(Conexion::obtener_conexion(), $_POST['id_project']);
     if(!$quote_rfq_exists){
-      $quote_rfq = New Rfq('', $designated_user, $designated_user, '', '(Detail the code ...)', '', $_POST['start_date'], $_POST['end_date'], 0, 0, 0, 0, '', 0, '', '', '', '', '', '', '', '', 0, 0, '', '', 0, $id_project);
+      $quote_rfq = New Rfq('', $designated_user, $designated_user, '', $_POST['code'], '', $_POST['start_date'], $_POST['end_date'], 0, 0, 0, 0, '', 0, '', '', '', '', '', '', '', '', 0, 0, '', '', 0, $id_project);
       list($cotizacion_insertada, $id_rfq) = RepositorioRfq::insertar_cotizacion(Conexion::obtener_conexion(), $quote_rfq);
       if($cotizacion_insertada){
         $cuestionario = new Cuestionario('', $id_rfq, '', '', '', '', '', '', '', '', '');
@@ -60,8 +60,26 @@ if(isset($_POST['save_changes_project'])){
         }
         closedir($manager);
       }
+      $designated_user_object = RepositorioUsuario::obtener_usuario_por_id(Conexion::obtener_conexion(), $designated_user);
+      $to = $designated_user_object-> obtener_email();
+      $subject = "Proposal: " . $id_rfq;
+      $headers = "MIME-Version: 1.0\r\n";
+      $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+      $headers .= "From: " . $_SESSION['username'] . " E-logic <elogic@e-logic.us>\r\n";
+      $message = '
+      <html>
+      <body>
+      <h3>Link:</h3>
+      <p><a href="http://www.elogicportal.com/rfq/perfil/cotizaciones/rfp_quotes">E-logic portal</a></p>
+      <h3>Comment:</h3>
+      <p>RFP Team created a new quote.</p>
+      </body>
+      </html>
+      ';
+      mail($to, $subject, $message, $headers);
     }
     Conexion::cerrar_conexion();
+
   }
   Connection::open_connection();
   ProjectRepository::fill_out_project(Connection::get_connection(), $_POST['id_project'], $_POST['code'], $_POST['project_name'], $end_date, $_POST['priority'], htmlspecialchars($_POST['description']), $_POST['submission_instructions'], $_POST['type'], $priority_color, $_POST['subject'], $_POST['business_type'], $_POST['quantity_years']);
