@@ -143,19 +143,19 @@ if($user-> get_level() != 5){
         }
       }
       Conexion::cerrar_conexion();
-    }
-    $rfq_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfq/documentos/' . $rfq_quote-> obtener_id();
-    $rfp_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
-    mkdir($rfq_directory, 0777);
-    if(is_dir($rfp_directory)){
-      $manager = opendir($rfp_directory);
-      $folder = @scandir($rfp_directory);
-      while(($file = readdir($manager)) !== false){
-        if($file != '.' && $file != '..'){
-          copy($rfp_directory . '/' . $file, $rfq_directory . '/' . $file);
+      $rfq_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfq/documentos/' . $rfq_quote-> obtener_id();
+      $rfp_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
+      //mkdir($rfq_directory, 0777);
+      if(is_dir($rfp_directory)){
+        $manager = opendir($rfp_directory);
+        $folder = @scandir($rfp_directory);
+        while(($file = readdir($manager)) !== false){
+          if($file != '.' && $file != '..'){
+            copy($rfp_directory . '/' . $file, $rfq_directory . '/' . $file);
+          }
         }
+        closedir($manager);
       }
-      closedir($manager);
     }
     if($_POST['story_comments'] != ''){
       foreach ($users as $user) {
