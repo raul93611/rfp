@@ -34,6 +34,46 @@ if($user-> get_level() != 5){
           }
           $new_path = $directory . '/' . $file;
           move_uploaded_file($tmp_path, $new_path);
+          foreach ($users as $user) {
+            if($user-> get_level() == 2){
+              $to = $user-> get_email();
+              $subject = $project-> get_project_name();
+              $headers = "MIME-Version: 1.0\r\n";
+              $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+              $headers .= "From: " . $_SESSION['username'] . "E-logic <elogic@e-logic.us>\r\n";
+              $message = '
+              <html>
+              <body>
+              <h3>Project details:</h3>
+              <h5>Project:</h5>
+              <p><a href="' . INFO_PROJECT_AND_SERVICES . $project-> get_id() . '">' . $project-> get_project_name() . '</a></p>
+              <h5>Comment:</h5>
+              <p>A document was uploaded: ' . $file . '</p>
+              </body>
+              </html>
+              ';
+              mail($to, $subject, $message, $headers);
+            }
+          }
+          foreach ($members as $member) {
+            $to = $member-> get_email();
+            $subject = $project-> get_project_name();
+            $headers = "MIME-Version: 1.0\r\n";
+            $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+            $headers .= "From:" .  $_SESSION['username']  . "E-logic <elogic@e-logic.us>\r\n";
+            $message = '
+            <html>
+            <body>
+            <h3>Project details:</h3>
+            <h5>Project:</h5>
+            <p><a href="' . INFO_PROJECT_AND_SERVICES . $project-> get_id() . '">' . $project-> get_project_name() . '</a></p>
+            <h5>Comment:</h5>
+            <p>A document was uploaded: ' . $file . '</p>
+            </body>
+            </html>
+            ';
+            mail($to, $subject, $message, $headers);
+          }
         }
     }
     Connection::open_connection();
@@ -103,6 +143,19 @@ if($user-> get_level() != 5){
         }
       }
       Conexion::cerrar_conexion();
+    }
+    $rfq_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfq/documentos/' . $rfq_quote-> obtener_id();
+    $rfp_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
+    mkdir($rfq_directory, 0777);
+    if(is_dir($rfp_directory)){
+      $manager = opendir($rfp_directory);
+      $folder = @scandir($rfp_directory);
+      while(($file = readdir($manager)) !== false){
+        if($file != '.' && $file != '..'){
+          copy($rfp_directory . '/' . $file, $rfq_directory . '/' . $file);
+        }
+      }
+      closedir($manager);
     }
     if($_POST['story_comments'] != ''){
       foreach ($users as $user) {
@@ -183,6 +236,46 @@ if($user-> get_level() != 5){
         }
         $new_path = $directory . '/' . $file;
         move_uploaded_file($tmp_path, $new_path);
+        foreach ($users as $user) {
+          if($user-> get_level() == 2){
+            $to = $user-> get_email();
+            $subject = $project-> get_project_name();
+            $headers = "MIME-Version: 1.0\r\n";
+            $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+            $headers .= "From: " . $_SESSION['username'] . "E-logic <elogic@e-logic.us>\r\n";
+            $message = '
+            <html>
+            <body>
+            <h3>Project details:</h3>
+            <h5>Project:</h5>
+            <p><a href="' . INFO_PROJECT_AND_SERVICES . $project-> get_id() . '">' . $project-> get_project_name() . '</a></p>
+            <h5>Comment:</h5>
+            <p>A document was uploaded: ' . $file . '</p>
+            </body>
+            </html>
+            ';
+            mail($to, $subject, $message, $headers);
+          }
+        }
+        foreach ($members as $member) {
+          $to = $member-> get_email();
+          $subject = $project-> get_project_name();
+          $headers = "MIME-Version: 1.0\r\n";
+          $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+          $headers .= "From:" .  $_SESSION['username']  . "E-logic <elogic@e-logic.us>\r\n";
+          $message = '
+          <html>
+          <body>
+          <h3>Project details:</h3>
+          <h5>Project:</h5>
+          <p><a href="' . INFO_PROJECT_AND_SERVICES . $project-> get_id() . '">' . $project-> get_project_name() . '</a></p>
+          <h5>Comment:</h5>
+          <p>A document was uploaded: ' . $file . '</p>
+          </body>
+          </html>
+          ';
+          mail($to, $subject, $message, $headers);
+        }
       }
   }
   if($_POST['story_comments'] != ''){

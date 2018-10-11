@@ -37,10 +37,10 @@ if($level != 1){
       <label for="email">Email:</label>
       <input type="email" class="form-control" id="email" name="email" placeholder="Email ..." required value="<?php echo $user-> get_email(); ?>">
     </div>
-      <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" class="form-control" id="password" name="password" placeholder="Password ...">
-      </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Password ...">
+    </div>
   </div>
   <div class="card-footer">
     <button type="submit" class="btn btn-success" name="edit_user"><i class="fa fa-check"></i> Save</button>

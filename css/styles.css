@@ -282,19 +282,19 @@ a.text-primary:hover, a.text-primary:focus {
 START TABLE ITEM STYLES
 ********************************************************************************************************************************************************/
 table{
-    font-size: 0.8em;
+  font-size: 0.8em;
 }
 
 .list-group-item:hover{
-    background-color: #f4f6f9;
+  background-color: #f4f6f9;
 }
 
 #items_table .description{
-    width: 150px !important;
+  width: 150px !important;
 }
 
 #items_table .options{
-    width: 150px !important;
+  width: 150px !important;
 }
 
 #items_table .qty{
@@ -306,7 +306,7 @@ table{
 }
 
 #items_table #numeration{
-    width: 20px !important;
+  width: 20px !important;
 }
 
 /****************************************************************************************************************************************************

@@ -20,7 +20,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
 <input type="hidden" name="id_project" id="id_project" value="<?php echo $id_project; ?>">
 <div class="card card-primary">
   <div class="card-header">
-      <h3 class="card-title"><i class="fa fa-plus"></i> Links and documents</h3>
+    <h3 class="card-title"><i class="fa fa-plus"></i> Links and documents</h3>
   </div>
   <div class="card-body">
     <div class="form-group">
@@ -43,22 +43,22 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
       <?php
       $directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
       if (is_dir($directory)) {
-          $manager = opendir($directory);
-          echo '<div class="list-group">';
-          $folder = @scandir($directory);
-          if(count($folder) <= 2){
-            echo '<h3 class="text-center text-danger"><i class="fa fa-times"></i> No files!</h3>';
+        $manager = opendir($directory);
+        echo '<div class="list-group">';
+        $folder = @scandir($directory);
+        if(count($folder) <= 2){
+          echo '<h3 class="text-center text-danger"><i class="fa fa-times"></i> No files!</h3>';
+        }
+        while (($file = readdir($manager)) !== false) {
+          $complete_directory = $directory . "/" . $file;
+          if ($file != "." && $file != "..") {
+            $file_url = str_replace(' ', '%20', $file);
+            $file_url = str_replace('#', '%23', $file_url);
+            echo '<li class="list-group-item"><a download href="' . DOCS . $id_project . '/' . $file_url . '">' . $file . '</a></li>';
           }
-          while (($file = readdir($manager)) !== false) {
-              $complete_directory = $directory . "/" . $file;
-              if ($file != "." && $file != "..") {
-                  $file_url = str_replace(' ', '%20', $file);
-                  $file_url = str_replace('#', '%23', $file_url);
-                  echo '<li class="list-group-item"><a download href="' . DOCS . $id_project . '/' . $file_url . '">' . $file . '</a></li>';
-              }
-          }
-          closedir($manager);
-          echo "</div>";
+        }
+        closedir($manager);
+        echo "</div>";
       }
       ?>
     </div>
@@ -169,6 +169,31 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
               <option value="services_and_equipment" <?php if($project-> get_type() == 'services_and_equipment'){echo 'selected';} ?>>Services and equipment</option>
             </select>
           </div>
+        </div>
+        <div id="designated_user_rfq" class="form-group row">
+            <?php
+            Conexion::abrir_conexion();
+            $usuarios = RepositorioUsuario::obtener_usuarios_rfq(Conexion::obtener_conexion());
+            Conexion::cerrar_conexion();
+            ?>
+            <?php
+            if (count($usuarios)) {
+              ?>
+              <label class="col-sm-2 col-form-label col-form-label-sm" for="designated_user_rfq">Designated user RFQ:</label>
+              <div class="col-sm-10">
+                <select class="form-control form-control-sm" name="designated_user_rfq">
+                  <?php
+                  foreach ($usuarios as $usuario) {
+                    ?>
+                    <option value="<?php echo $usuario-> obtener_id(); ?>"><?php echo $usuario->obtener_nombre_usuario(); ?></option>
+                    <?php
+                  }
+                  ?>
+                </select>
+              </div>
+              <?php
+            }
+            ?>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label col-form-label-sm" for="subject">Subject:</label>

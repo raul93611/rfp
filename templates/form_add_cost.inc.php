@@ -16,6 +16,6 @@
   </div>
 </div>
 <div class="card-footer">
-    <button type="submit" class="btn btn-success" name="save_cost"><i class="fa fa-check"></i> Save</button>
-    <a class="btn btn-danger" href="<?php echo INFO_PROJECT_AND_SERVICES . $id_project . '#costs'; ?>"><i class="fa fa-ban"></i> Cancel</a>
+  <button type="submit" class="btn btn-success" name="save_cost"><i class="fa fa-check"></i> Save</button>
+  <a class="btn btn-danger" href="<?php echo INFO_PROJECT_AND_SERVICES . $id_project . '#costs'; ?>"><i class="fa fa-ban"></i> Cancel</a>
 </div>

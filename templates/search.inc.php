@@ -8,57 +8,57 @@ if(isset($_POST['search'])){
 }
 ?>
 <div class="content-wrapper">
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Search</h1>
-                </div>
-                <div class="col-sm-6">
-
-                </div>
-            </div>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Search</h1>
         </div>
-    </section>
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title"><i class="fas fa-search"></i> Search form</h3>
-                        </div>
-                        <div class="card-body">
-                          <div class="row">
-                            <div class="col-4">
+        <div class="col-sm-6">
 
-                            </div>
-                            <div class="col-4">
-                              <form role="form" method="post" action="<?php echo SEARCH; ?>">
-                                <div class="form-group">
-                                  <input type="search" name="search_term" class="form-control" placeholder="Search ..." required autofocus <?php if(isset($_POST['search'])){echo 'value="' . $_POST['search_term'] . '"';} ?>>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-block" name="search">Search</button>
-                              </form>
-                            </div>
-                            <div class="col-4">
-
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="card card-primary">
-                      <div class="card-header">
-                          <h3 class="card-title"><i class="fas fa-search"></i> Projects</h3>
-                      </div>
-                      <div class="card-body">
-                        <?php
-                        ProjectRepository::print_search_results($projects);
-                        ?>
-                      </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-search"></i> Search form</h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">
+
+                </div>
+                <div class="col-4">
+                  <form role="form" method="post" action="<?php echo SEARCH; ?>">
+                    <div class="form-group">
+                      <input type="search" name="search_term" class="form-control" placeholder="Search ..." required autofocus <?php if(isset($_POST['search'])){echo 'value="' . $_POST['search_term'] . '"';} ?>>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" name="search">Search</button>
+                  </form>
+                </div>
+                <div class="col-4">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fas fa-search"></i> Projects</h3>
+            </div>
+            <div class="card-body">
+              <?php
+              ProjectRepository::print_search_results($projects);
+              ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>

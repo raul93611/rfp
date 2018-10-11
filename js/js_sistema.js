@@ -2,6 +2,25 @@
 STARTJQUERY CODE
 **********************************************************************************************************************/
 $(document).ready(function(){
+  /***************************************WATCH USERS RFQ WHEN SERVICES AN DEQUIPMENT IS SELECTED********/
+  if($('#designated_user_rfq').length != 0){
+    var designated_user_rfq = $('#designated_user_rfq');
+    var type = $('#type');
+    designated_user_rfq.hide();
+    type.change(function(){
+      if(type.val() == 'services_and_equipment'){
+        designated_user_rfq.fadeIn();
+      }else{
+        designated_user_rfq.fadeOut();
+      }
+    });
+
+    if(type.val() == 'services_and_equipment'){
+      designated_user_rfq.fadeIn();
+    }else{
+      designated_user_rfq.fadeOut();
+    }
+  }
 /***********************************VARIABLES INICIALES PARA EL BORRADO*********************/
   var link_to_delete;
   var alert_delete_system = $('#alert_delete_system');

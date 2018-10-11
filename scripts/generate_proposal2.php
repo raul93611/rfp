@@ -237,6 +237,6 @@ try{
   $mpdf->Output($_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $project-> get_id() . '/' . str_replace('/', ' ', $project-> get_code()) . '.pdf', 'F');
   $mpdf->Output(str_replace('/', ' ', $project-> get_code()) . '.pdf', 'I');
 } catch (\Mpdf\MpdfException $e) {
-    echo $e->getMessage();
+  echo $e->getMessage();
 }
 ?>

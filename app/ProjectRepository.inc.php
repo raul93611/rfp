@@ -609,54 +609,54 @@ class ProjectRepository{
   }
 
   public static function print_search_result($project) {
-      if (!isset($project)) {
-          return;
-      }
-      $submitted_date = self::mysql_date_to_english_format($project-> get_submitted_date());
-      $award_date = self::mysql_date_to_english_format($project-> get_award_date());
-      ?>
-      <tr>
-          <td>
-              <a href="<?php echo INFO_PROJECT_AND_SERVICES .$project-> get_id(); ?>" class="btn-block">
-                  <?php echo $project-> get_code(); ?>
-              </a>
-          </td>
-          <td>
-              <?php
-              Connection::open_connection();
-              $user = UserRepository::get_user_by_id(Connection::get_connection(), $project-> get_designated_user());
-              Connection::close_connection();
-              echo $user-> get_username();
-              ?>
-          </td>
-          <td><?php echo $submitted_date; ?></td>
-          <td><?php echo $award_date; ?></td>
-          <td><?php echo $project-> get_result(); ?></td>
-          <td><?php echo $project-> get_id(); ?></td>
-      </tr>
-      <?php
+    if (!isset($project)) {
+      return;
+    }
+    $submitted_date = self::mysql_date_to_english_format($project-> get_submitted_date());
+    $award_date = self::mysql_date_to_english_format($project-> get_award_date());
+    ?>
+    <tr>
+      <td>
+        <a href="<?php echo INFO_PROJECT_AND_SERVICES .$project-> get_id(); ?>" class="btn-block">
+          <?php echo $project-> get_code(); ?>
+        </a>
+      </td>
+      <td>
+        <?php
+        Connection::open_connection();
+        $user = UserRepository::get_user_by_id(Connection::get_connection(), $project-> get_designated_user());
+        Connection::close_connection();
+        echo $user-> get_username();
+        ?>
+      </td>
+      <td><?php echo $submitted_date; ?></td>
+      <td><?php echo $award_date; ?></td>
+      <td><?php echo $project-> get_result(); ?></td>
+      <td><?php echo $project-> get_id(); ?></td>
+    </tr>
+    <?php
   }
 
   public static function print_search_results($projects){
     ?>
     <table id="search_table" class="table table-bordered table-responsive-md">
-        <thead>
-            <tr>
-              <th>CODE</th>
-              <th>DEDIGNATED USER</th>
-              <th>SUBMITTED DATE</th>
-              <th>AWARD DATE</th>
-              <th>RESULT</th>
-              <th>PROPOSAL</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($projects as $project) {
-                self::print_search_result($project);
-            }
-            ?>
-        </tbody>
+      <thead>
+        <tr>
+          <th>CODE</th>
+          <th>DEDIGNATED USER</th>
+          <th>SUBMITTED DATE</th>
+          <th>AWARD DATE</th>
+          <th>RESULT</th>
+          <th>PROPOSAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($projects as $project) {
+          self::print_search_result($project);
+        }
+        ?>
+      </tbody>
     </table>
     <?php
   }

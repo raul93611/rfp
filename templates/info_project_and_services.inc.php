@@ -4,40 +4,40 @@ $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $i
 Connection::close_connection();
 ?>
 <div class="content-wrapper">
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-5">
-                    <h1>Project: <small><?php echo $project-> get_id(); ?></small></h1>
-                </div>
-                <div class="col-sm-5">
-                  <a href="<?php echo DELETE_PROJECT . $project-> get_id(); ?>" class="delete_complete_project_button btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
-                </div>
-                <div class="col-sm-2">
-                  <?php
-                  if($project-> get_award()){
-                    ?><h1 class="text-success float-right"><i class="fa fa-check"></i> Award</h1><?php
-                  }else if($project-> get_submitted()){
-                    ?><h1 class="text-success float-right"><i class="fa fa-check"></i> Submitted</h1><?php
-                  }
-                  ?>
-                </div>
-            </div>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-5">
+          <h1>Project: <small><?php echo $project-> get_id(); ?></small></h1>
         </div>
-    </section>
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                  <form role="form" method="post" id="form_info_project_and_services" enctype="multipart/form-data" action="<?php echo SAVE_INFO_PROJECT_AND_SERVICES . $id_project; ?>">
-                      <?php
-                        include_once 'templates/form_info_project_and_services.inc.php';
-                      ?>
-                  </form>
-                </div>
-            </div>
+        <div class="col-sm-5">
+          <a href="<?php echo DELETE_PROJECT . $project-> get_id(); ?>" class="delete_complete_project_button btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
         </div>
-    </section>
+        <div class="col-sm-2">
+          <?php
+          if($project-> get_award()){
+            ?><h1 class="text-success float-right"><i class="fa fa-check"></i> Award</h1><?php
+          }else if($project-> get_submitted()){
+            ?><h1 class="text-success float-right"><i class="fa fa-check"></i> Submitted</h1><?php
+          }
+          ?>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <form role="form" method="post" id="form_info_project_and_services" enctype="multipart/form-data" action="<?php echo SAVE_INFO_PROJECT_AND_SERVICES . $id_project; ?>">
+            <?php
+              include_once 'templates/form_info_project_and_services.inc.php';
+            ?>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 <!--*****************************************MODAL TASK**********************************************************************-->
 <div class="modal fade" id="form_add_task" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

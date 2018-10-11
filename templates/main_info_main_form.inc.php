@@ -113,6 +113,24 @@
             <input class="form-control form-control-sm" name="type" id="type" readonly value="<?php if($project-> get_type() == 'services_and_equipment'){echo 'Services and equipment';}else{echo 'Services';} ?>">
           </div>
         </div>
+        <?php
+        if($project-> get_type() == 'services_and_equipment'){
+          ?>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label col-form-label-sm">Designated user RFQ:</label>
+            <div class="col-sm-10">
+              <input class="form-control form-control-sm" name="type" readonly value="<?php echo $designated_user_rfq_quote-> obtener_nombre_usuario(); ?>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label col-form-label-sm">Proposal RFQ:</label>
+            <div class="col-sm-10">
+              <input class="form-control form-control-sm" name="proposal_rfq" readonly value="<?php echo $rfq_quote-> obtener_id(); ?>">
+            </div>
+          </div>
+          <?php
+        }
+        ?>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label col-form-label-sm" for="subject">Subject:</label>
           <div class="col-sm-10">

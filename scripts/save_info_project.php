@@ -33,15 +33,17 @@ if(isset($_POST['save_changes_project'])){
   }
   if($_POST['type'] == 'services_and_equipment'){
     Conexion::abrir_conexion();
+    /*
     $rfq_users = RepositorioUsuario::obtener_usuarios_rfq(Conexion::obtener_conexion());
     foreach ($rfq_users as $rfq_user) {
       $id_rfq_users[] = $rfq_user-> obtener_id();
     }
     $designated_user_index = array_rand($id_rfq_users);
     $designated_user = $id_rfq_users[$designated_user_index];
+    */
     $quote_rfq_exists = RepositorioRfq::quote_rfq_exists(Conexion::obtener_conexion(), $_POST['id_project']);
     if(!$quote_rfq_exists){
-      $quote_rfq = New Rfq('', $designated_user, $designated_user, '', $_POST['code'], '', $_POST['start_date'], $_POST['end_date'], 0, 0, 0, 0, '', 0, '', '', '', '', '', '', '', '', 0, 0, '', '', 0, $id_project);
+      $quote_rfq = New Rfq('', $_POST['designated_user_rfq'], $_POST['designated_user_rfq'], '', $_POST['code'], '', $_POST['start_date'], $_POST['end_date'], 0, 0, 0, 0, '', 0, '', '', '', '', '', '', '', '', 0, 0, '', '', 0, $id_project, 0);
       list($cotizacion_insertada, $id_rfq) = RepositorioRfq::insertar_cotizacion(Conexion::obtener_conexion(), $quote_rfq);
       if($cotizacion_insertada){
         $cuestionario = new Cuestionario('', $id_rfq, '', '', '', '', '', '', '', '', '');
@@ -60,7 +62,7 @@ if(isset($_POST['save_changes_project'])){
         }
         closedir($manager);
       }
-      $designated_user_object = RepositorioUsuario::obtener_usuario_por_id(Conexion::obtener_conexion(), $designated_user);
+      $designated_user_object = RepositorioUsuario::obtener_usuario_por_id(Conexion::obtener_conexion(), $_POST['designated_user_rfq']);
       $to = $designated_user_object-> obtener_email();
       $subject = "Proposal: " . $id_rfq;
       $headers = "MIME-Version: 1.0\r\n";
