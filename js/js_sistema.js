@@ -76,7 +76,7 @@ $(document).ready(function(){
       if($('#submitted').prop('checked')){
         console.log('fdsf');
         form_info_project_and_services.submit(function(){
-          if($('#address').val() == '' || $('#ship_to').val() == '' || $('#project_name').val() == '' || $('#no_staff').length != 0 || $('#no_costs').length != 0){
+          if($('#address').val() == '' || $('#ship_to').val() == '' || $('#project_name').val() == '' || $('#no_staff').length != 0){
             $('#form_uncompleted_body').html('<h4 class="text-center text-danger">All fields must be fill out.</h4>');
             $('#form_uncompleted').modal();
             return false;
