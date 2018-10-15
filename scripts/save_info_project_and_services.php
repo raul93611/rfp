@@ -107,6 +107,32 @@ if($user-> get_level() != 5){
     if(!empty($_POST['story_comments'])){
       $comment = new Comment('', $id_project, $_SESSION['id_user'], '', htmlspecialchars($_POST['story_comments']));
       CommentRepository::insert_comment(Connection::get_connection(), $comment);
+      if($project-> get_type() == 'services_and_equipment'){
+        $quote_rfq_exists = RepositorioRfq::quote_rfq_exists(Conexion::obtener_conexion(), $id_project);
+        if($quote_rfq_exists){
+          Conexion::abrir_conexion();
+          $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $id_project);
+          $designated_user_rfq = RepositorioUsuario::obtener_usuario_por_id(Conexion::obtener_conexion(), $rfq_quote-> obtener_usuario_designado());
+          Conexion::cerrar_conexion();
+          $to = $designated_user_rfq-> obtener_email();
+          $subject = $project-> get_project_name();
+          $headers = "MIME-Version: 1.0\r\n";
+          $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+          $headers .= "From:" .  $_SESSION['username']  . " <elogic@e-logic.us>\r\n";
+          $message = '
+          <html>
+          <body>
+          <h3>Project details:</h3>
+          <h5>Proposal:</h5>
+          <p><a href="http://www.elogicportal.com/rfq/perfil/cotizaciones/editar_cotizacion/' . $rfq_quote-> obtener_id() . '">' . $rfq_quote-> obtener_id() . '</a></p>
+          <h5>Comment:</h5>
+          <p>' . nl2br($_POST['story_comments']) . '</p>
+          </body>
+          </html>
+          ';
+          mail($to, $subject, $message, $headers);
+        }
+      }
     }
 
     if($project-> get_submitted()){
