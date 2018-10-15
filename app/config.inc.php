@@ -32,6 +32,7 @@ define('SAVE_PROJECT', SERVER . 'save_project');
 define('INFO_PROJECT', PROFILE . 'info_project/');
 define('SAVE_INFO_PROJECT_AND_SERVICES', SERVER . 'save_info_project_and_services/');
 define('DELETE_PROJECT', SERVER . 'delete_project/');
+define('DELETE_ONLY_PROJECT', SERVER . 'delete_only_project/');
 define('SAVE_INFO_PROJECT', SERVER . 'save_info_project/');
 define('FLOWCHART', PROFILE . 'flowchart/');
 define('SAVE_FLOWCHART', SERVER . 'save_flowchart/');

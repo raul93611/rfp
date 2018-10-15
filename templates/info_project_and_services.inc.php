@@ -12,6 +12,13 @@ Connection::close_connection();
         </div>
         <div class="col-sm-5">
           <a href="<?php echo DELETE_PROJECT . $project-> get_id(); ?>" class="delete_complete_project_button btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+          <?php
+          if($project-> get_type() == 'services_and_equipment'){
+            ?>
+            <a href="<?php echo DELETE_ONLY_PROJECT . $project-> get_id(); ?>" class="delete_only_project_button btn btn-danger"><i class="fas fa-trash"></i> Delete only project</a>
+            <?php
+          }
+          ?>
         </div>
         <div class="col-sm-2">
           <?php

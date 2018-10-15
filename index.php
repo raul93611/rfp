@@ -149,6 +149,10 @@ if($parts_route[0] == 'rfp'){
         $id_project = $parts_route[2];
         $chosen_route = 'scripts/delete_project.php';
         break;
+      case 'delete_only_project':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/delete_only_project.php';
+        break;
       case 'save_info_project_and_services':
         $id_project = $parts_route[2];
         $chosen_route = 'scripts/save_info_project_and_services.php';

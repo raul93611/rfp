@@ -40,6 +40,11 @@ $(document).ready(function(){
     habilitar_continue_button($(this));
     return false;
   });
+  /********************************ALERT DELETE ONLY PROJECT BUTTON*****************************************/
+  $('.delete_only_project_button').click(function(){
+    habilitar_continue_button($(this));
+    return false;
+  });
   /**************************************ADD TASK BUTTON*****************************************************************/
   $('#add_task').click(function(){
     $('#form_add_task').modal();
