@@ -40,7 +40,7 @@ if($user-> get_level() != 5){
               $subject = $project-> get_project_name();
               $headers = "MIME-Version: 1.0\r\n";
               $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-              $headers .= "From: " . $_SESSION['username'] . "E-logic <elogic@e-logic.us>\r\n";
+              $headers .= "From: " . $_SESSION['username'] . " <elogic@e-logic.us>\r\n";
               $message = '
               <html>
               <body>
@@ -60,7 +60,7 @@ if($user-> get_level() != 5){
             $subject = $project-> get_project_name();
             $headers = "MIME-Version: 1.0\r\n";
             $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-            $headers .= "From:" .  $_SESSION['username']  . "E-logic <elogic@e-logic.us>\r\n";
+            $headers .= "From:" .  $_SESSION['username']  . " <elogic@e-logic.us>\r\n";
             $message = '
             <html>
             <body>
@@ -164,7 +164,7 @@ if($user-> get_level() != 5){
           $subject = $project-> get_project_name();
           $headers = "MIME-Version: 1.0\r\n";
           $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-          $headers .= "From:" .  $_SESSION['username']  . "E-logic <elogic@e-logic.us>\r\n";
+          $headers .= "From:" .  $_SESSION['username']  . " <elogic@e-logic.us>\r\n";
           $message = '
           <html>
           <body>
@@ -184,7 +184,7 @@ if($user-> get_level() != 5){
         $subject = $project-> get_project_name();
         $headers = "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-        $headers .= "From:" .  $_SESSION['username']  . "E-logic <elogic@e-logic.us>\r\n";
+        $headers .= "From:" .  $_SESSION['username']  . " <elogic@e-logic.us>\r\n";
         $message = '
         <html>
         <body>
@@ -242,7 +242,7 @@ if($user-> get_level() != 5){
             $subject = $project-> get_project_name();
             $headers = "MIME-Version: 1.0\r\n";
             $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-            $headers .= "From: " . $_SESSION['username'] . "E-logic <elogic@e-logic.us>\r\n";
+            $headers .= "From: " . $_SESSION['username'] . " <elogic@e-logic.us>\r\n";
             $message = '
             <html>
             <body>
@@ -262,7 +262,7 @@ if($user-> get_level() != 5){
           $subject = $project-> get_project_name();
           $headers = "MIME-Version: 1.0\r\n";
           $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-          $headers .= "From:" .  $_SESSION['username']  . "E-logic <elogic@e-logic.us>\r\n";
+          $headers .= "From:" .  $_SESSION['username']  . " <elogic@e-logic.us>\r\n";
           $message = '
           <html>
           <body>
@@ -285,7 +285,7 @@ if($user-> get_level() != 5){
         $subject = $project-> get_project_name();
         $headers = "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-        $headers .= "From:" .  $_SESSION['username']  . "E-logic <elogic@e-logic.us>\r\n";
+        $headers .= "From:" .  $_SESSION['username']  . " <elogic@e-logic.us>\r\n";
         $message = '
         <html>
         <body>
@@ -305,7 +305,7 @@ if($user-> get_level() != 5){
       $subject = $project-> get_project_name();
       $headers = "MIME-Version: 1.0\r\n";
       $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-      $headers .= "From:" .  $_SESSION['username']  . "E-logic <elogic@e-logic.us>\r\n";
+      $headers .= "From:" .  $_SESSION['username']  . " <elogic@e-logic.us>\r\n";
       $message = '
       <html>
       <body>
