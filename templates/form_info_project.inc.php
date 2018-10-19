@@ -99,7 +99,17 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
         <div class="form-group row">
           <label class="col-sm-2 col-form-label col-form-label-sm" for="code">Code:</label>
           <div class="col-sm-10">
-            <input type="text" name="code" id="code" class="form-control form-control-sm" value="<?php echo $project-> get_code(); ?>" placeholder="Code ..." autofocus>
+            <?php
+            if($project-> get_type() == 'services_and_equipment'){
+              ?>
+              <input type="text" name="code" id="code" readonly class="form-control form-control-sm" value="<?php echo $project-> get_code(); ?>" placeholder="Code ..." autofocus>
+              <?php
+            }else{
+              ?>
+              <input type="text" name="code" id="code" class="form-control form-control-sm" value="<?php echo $project-> get_code(); ?>" placeholder="Code ..." autofocus>
+              <?php
+            }
+            ?>
           </div>
         </div>
         <div class="form-group row">
@@ -127,7 +137,17 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
         <div class="form-group row">
           <label class="col-sm-2 col-form-label col-form-label-sm" for="end_date">End date:</label>
           <div class="col-sm-10">
-            <input class="form-control form-control-sm" type="text" id="end_date" name="end_date" value="<?php echo $end_date; ?>">
+            <?php
+            if($project-> get_type() == 'services_and_equipment'){
+              ?>
+              <input class="form-control form-control-sm" readonly type="text" id="end_date" name="end_date" value="<?php echo $end_date; ?>">
+              <?php
+            }else{
+              ?>
+              <input class="form-control form-control-sm" type="text" id="end_date" name="end_date" value="<?php echo $end_date; ?>">
+              <?php
+            }
+            ?>
           </div>
         </div>
         <div class="form-group row">
@@ -164,10 +184,21 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
         <div class="form-group row">
           <label class="col-sm-2 col-form-label col-form-label-sm" for="type">Type:</label>
           <div class="col-sm-10">
-            <select class="form-control form-control-sm" name="type" id="type">
-              <option value="services" <?php if($project-> get_type() == 'services'){echo 'selected';} ?>>Services</option>
-              <option value="services_and_equipment" <?php if($project-> get_type() == 'services_and_equipment'){echo 'selected';} ?>>Services and equipment</option>
-            </select>
+            <?php
+            if($project-> get_type() == 'services_and_equipment'){
+              ?>
+              <input type="hidden" id="type" class="form-control form-control-sm" name="type" value="services_and_equipment">
+              <input type="text" readonly class="form-control form-control-sm" value="Services and equipment">
+              <?php
+            }else{
+              ?>
+              <select class="form-control form-control-sm" name="type" id="type">
+                <option value="services" <?php if($project-> get_type() == 'services'){echo 'selected';} ?>>Services</option>
+                <option value="services_and_equipment" <?php if($project-> get_type() == 'services_and_equipment'){echo 'selected';} ?>>Services and equipment</option>
+              </select>
+              <?php
+            }
+            ?>
           </div>
         </div>
         <div id="designated_user_rfq" class="form-group row">
@@ -175,23 +206,35 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
             Conexion::abrir_conexion();
             $usuarios = RepositorioUsuario::obtener_usuarios_rfq(Conexion::obtener_conexion());
             Conexion::cerrar_conexion();
-            ?>
-            <?php
-            if (count($usuarios)) {
+            if($project-> get_type() == 'services_and_equipment'){
+              Conexion::abrir_conexion();
+              $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $project-> get_id());
+              $usuario_designado_rfq = RepositorioUsuario::obtener_usuario_por_id(Conexion::obtener_conexion(), $rfq_quote-> obtener_usuario_designado());
+              Conexion::cerrar_conexion();
               ?>
               <label class="col-sm-2 col-form-label col-form-label-sm" for="designated_user_rfq">Designated user RFQ:</label>
               <div class="col-sm-10">
-                <select class="form-control form-control-sm" name="designated_user_rfq">
-                  <?php
-                  foreach ($usuarios as $usuario) {
-                    ?>
-                    <option value="<?php echo $usuario-> obtener_id(); ?>"><?php echo $usuario->obtener_nombre_usuario(); ?></option>
-                    <?php
-                  }
-                  ?>
-                </select>
+                <input type="hidden" name="designated_user_rfq" value="<?php echo $rfq_quote-> obtener_usuario_designado(); ?>">
+                <input type="text" readonly class="form-control form-control-sm" value="<?php echo $usuario_designado_rfq-> obtener_nombre_usuario(); ?>">
               </div>
               <?php
+            }else{
+              if (count($usuarios)) {
+                ?>
+                <label class="col-sm-2 col-form-label col-form-label-sm" for="designated_user_rfq">Designated user RFQ:</label>
+                <div class="col-sm-10">
+                  <select class="form-control form-control-sm" name="designated_user_rfq">
+                    <?php
+                    foreach ($usuarios as $usuario) {
+                      ?>
+                      <option value="<?php echo $usuario-> obtener_id(); ?>"><?php echo $usuario->obtener_nombre_usuario(); ?></option>
+                      <?php
+                    }
+                    ?>
+                  </select>
+                </div>
+                <?php
+              }
             }
             ?>
         </div>
