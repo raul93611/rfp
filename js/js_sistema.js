@@ -2,6 +2,10 @@
 STARTJQUERY CODE
 **********************************************************************************************************************/
 $(document).ready(function(){
+  /***************************************BUTTON TO SHOW COMMENTS*****************************************/
+  $('#project_comments_button').click(function(){
+    $('#all_comments_project').modal();
+  });
   /***************************************WATCH USERS RFQ WHEN SERVICES AN DEQUIPMENT IS SELECTED********/
   if($('#designated_user_rfq').length != 0){
     var designated_user_rfq = $('#designated_user_rfq');

@@ -57,7 +57,7 @@ class CommentRepository{
     if(count($comments)){
       ?>
       <ul class="timeline">
-        <li class="clickable_title">
+        <li>
           <i class="fa fa-bookmark"></i>
           <div class="timeline-item">
             <h3 class="timeline-header">Project: <?php echo $project-> get_project_name(); ?></h3>
@@ -95,6 +95,21 @@ class CommentRepository{
         </ul>
       <?php
     }
+  }
+
+  public static function count_all_comments_project($connection, $id_project){
+    $all_comments_project = 0;
+    if(isset($connection)){
+      $sql = 'SELECT COUNT(*) as all_comments_project FROM comments WHERE id_project = :id_project';
+      $sentence = $connection-> prepare($sql);
+      $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+      $sentence-> execute();
+      $result = $sentence-> fetch(PDO::FETCH_ASSOC);
+      if(count($result)){
+        $all_comments_project = $result['all_comments_project'];
+      }
+    }
+    return $all_comments_project;
   }
 }
 ?>
