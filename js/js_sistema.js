@@ -513,7 +513,12 @@ if($('#form_add_staff').length != 0){
       var burdened_rate = 0;
       var fblr = 0;
       var total_fblr = 0;
-    }else {
+    }else if(rate == 0 && office_expenses == 0){
+      var burdened_rate = hourly_rate;
+      var fblr = burdened_rate;
+      var total_burdened_rate = hourly_rate*hours_project;
+      var total_fblr = total_burdened_rate;
+    }else{
       var burdened_rate = ((rate + 1.08)*(office_expenses + 2592.56*hourly_rate + 3000))/2080;
       var fblr = burdened_rate + burdened_rate*0.0075;
       var total_burdened_rate = hours_project*burdened_rate;
