@@ -11,12 +11,6 @@ Connection::close_connection();
           <h1>Project: <small><?php echo $project-> get_id(); ?></small></h1>
         </div>
         <div class="col-sm-6 text-center">
-          <?php
-          Connection::open_connection();
-          $all_comments_project = CommentRepository::count_all_comments_project(Connection::get_connection(), $project-> get_id());
-          Connection::close_connection();
-          ?>
-          <button type="button" class="btn btn-primary" id="project_comments_button"><i class="fas fa-comments"></i> Comments(<?php echo $all_comments_project; ?>)</button>
           <a href="<?php echo DELETE_PROJECT . $project-> get_id(); ?>" class="delete_complete_project_button btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
           <?php
           if($project-> get_type() == 'services_and_equipment'){
@@ -101,19 +95,6 @@ Connection::close_connection();
       <div class="modal-footer">
         <button type="submit" name="save_task" form="form_task" class="btn btn-success"><i class="fa fa-check"></i> Send</button>
         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-ban"></i> Cancel</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!--*************************************************MODAL TO SHOW COMMENTS*************************************************************-->
-<div class="modal fade" id="all_comments_project" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <?php
-        CommentRepository::print_comments($project-> get_id());
-        ?>
-        <br>
       </div>
     </div>
   </div>

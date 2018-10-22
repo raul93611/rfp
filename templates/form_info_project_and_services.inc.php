@@ -86,3 +86,11 @@ if($level != 5){
   }
   ?>
 </div>
+<div class="container-fluid">
+  <?php
+  CommentRepository::print_comments($project-> get_id());
+  ?>
+  <br>
+  <br>
+  <br>
+</div>
