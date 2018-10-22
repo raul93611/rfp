@@ -27,8 +27,14 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
       <label>Link:</label><br>
       <span>
         <?php if($project-> get_link() != ''){
+          if($project-> get_link() == 'RFQ project'){
+            ?><p>RFQ project</p><?php
+          }else {
+            ?>
+            <a href="<?php echo $project-> get_link(); ?>" target="_blank"><?php echo $project-> get_link(); ?></a>
+            <?php
+          }
         ?>
-        <a href="<?php echo $project-> get_link(); ?>" target="_blank"><?php echo $project-> get_link(); ?></a>
         <?php
         }else{
           ?>

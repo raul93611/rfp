@@ -395,8 +395,14 @@ $(document).ready(function(){
         new_link_fill_out = link_fill_out + calEvent.id;
         $('#fill_out').attr('href', new_link_fill_out);
         $('#delete_project').attr('href', new_link_delete_project);
-        $('#link_project').html(calEvent.title);
-        $('#link_project').attr('href', calEvent.title);
+        if(calEvent.title != 'RFQ project'){
+          $('#normal_text').html('');
+          $('#link_project').html(calEvent.title);
+          $('#link_project').attr('href', calEvent.title);
+        }else{
+          $('#link_project').html('');
+          $('#normal_text').html(calEvent.title);
+        }
         $('#view_project').modal();
         $('#delete_project').click(function(){
           $('#view_project').modal('hide');

@@ -122,6 +122,7 @@
         <div class="form-group">
           <label>Link:</label>
           <p class="break_words"><a href="" target="_blank" class="link" id="link_project"></a></p>
+          <p id="normal_text"></p>
         </div>
       </div>
       <div class="modal-footer">
