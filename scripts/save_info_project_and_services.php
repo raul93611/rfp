@@ -347,6 +347,28 @@ if($user-> get_level() != 5){
     }
   }
 
+  if($project-> get_type() == 'services_and_equipment'){
+    Conexion::abrir_conexion();
+    $quote_rfq_exists = RepositorioRfq::quote_rfq_exists(Conexion::obtener_conexion(), $id_project);
+    if($quote_rfq_exists){
+      $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $id_project);
+    }
+    Conexion::cerrar_conexion();
+    $rfq_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfq/documentos/' . $rfq_quote-> obtener_id();
+    $rfp_directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
+    //mkdir($rfq_directory, 0777);
+    if(is_dir($rfp_directory)){
+      $manager = opendir($rfp_directory);
+      $folder = @scandir($rfp_directory);
+      while(($file = readdir($manager)) !== false){
+        if($file != '.' && $file != '..'){
+          copy($rfp_directory . '/' . $file, $rfq_directory . '/' . $file);
+        }
+      }
+      closedir($manager);
+    }
+  }
+
   if(!empty($_POST['story_comments'])){
     $comment = new Comment('', $id_project, $_SESSION['id_user'], '', htmlspecialchars($_POST['story_comments']));
     CommentRepository::insert_comment(Connection::get_connection(), $comment);
