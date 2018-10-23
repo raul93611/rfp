@@ -234,8 +234,8 @@ try{
   $html .= '</table>';
   $html .= '</body></html>';
   $mpdf->WriteHTML($html);
-  $mpdf->Output($_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $project-> get_id() . '/' . str_replace('/', ' ', $project-> get_code()) . '.pdf', 'F');
-  $mpdf->Output(str_replace('/', ' ', $project-> get_code()) . '.pdf', 'I');
+  $mpdf->Output($_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $project-> get_id() . '/' . str_replace('/', ' ', $project-> get_code()) . '(proposal).pdf', 'F');
+  $mpdf->Output(str_replace('/', ' ', $project-> get_code()) . '(proposal).pdf', 'I');
 } catch (\Mpdf\MpdfException $e) {
   echo $e->getMessage();
 }
