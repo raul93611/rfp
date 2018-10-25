@@ -160,7 +160,7 @@ if($user-> get_level() != 5){
       $quote_rfq_exists = RepositorioRfq::quote_rfq_exists(Conexion::obtener_conexion(), $id_project);
       if($quote_rfq_exists){
         $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $id_project);
-        RepositorioRfq::actualizar_end_date(Conexion::obtener_conexion(), $_POST['end_date'], $rfq_quote-> obtener_id());
+        RepositorioRfq::actualizar_end_date_address_ship_to(Conexion::obtener_conexion(), $_POST['end_date'], $_POST['address'], $_POST['ship_to'], $rfq_quote-> obtener_id());
         if($project-> get_submitted()){
           RepositorioRfq::actualizar_fecha_y_submitted(Conexion::obtener_conexion(), $rfq_quote-> obtener_id());
         }
