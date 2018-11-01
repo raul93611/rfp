@@ -197,6 +197,14 @@ if($parts_route[0] == 'rfp'){
         $id_task = $parts_route[2];
         $chosen_route = 'scripts/completed_task.php';
         break;
+      case 'delete_single_staff':
+        $id_single_staff = $parts_route[2];
+        $chosen_route = 'scripts/delete_single_staff.php';
+        break;
+      case 'delete_cost':
+        $id_cost = $parts_route[2];
+        $chosen_route = 'scripts/delete_cost.php';
+        break;
       }
   }else if(count($parts_route) == 4){
     if($parts_route[1] == 'profile'){

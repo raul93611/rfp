@@ -59,7 +59,13 @@ class CostRepository{
     <tr>
       <td><?php echo $cost-> get_description(); ?></td>
       <td>$ <?php echo $cost-> get_amount(); ?></td>
-      <td><?php echo '<a href="' . EDIT_COST . $cost-> get_id() . '" class="btn btn-block btn-sm btn-warning"><i class="fa fa-edit"></i> Edit</a>'; ?></td>
+      <td>
+        <?php
+        echo '<a href="' . EDIT_COST . $cost-> get_id() . '" class="delete_cost_button btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>';
+        echo ' ';
+        echo '<a href="' . DELETE_COST . $cost-> get_id() . '" class="delete_cost_button btn btn-sm btn-warning"><i class="fa fa-trash"></i></a>';
+        ?>
+      </td>
     </tr>
     <?php
   }
@@ -127,6 +133,19 @@ class CostRepository{
         $sql = 'DELETE FROM costs WHERE id_service = :id_service';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_service', $id_service, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
+
+  public static function delete_cost($connection, $id_cost){
+    if(isset($connection)){
+      try{
+        $sql = 'DELETE FROM costs WHERE id = :id_cost';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_cost', $id_cost, PDO::PARAM_STR);
         $sentence-> execute();
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';

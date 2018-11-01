@@ -30,6 +30,16 @@ $(document).ready(function(){
     link_to_delete = boton.attr('href');
     continue_button.attr('href', link_to_delete);
   }
+  /**********************************ALERT BUTTON DELETE COST********************************/
+  $('.delete_cost_button').click(function(){
+    habilitar_continue_button($(this));
+    return false;
+  });
+  /**********************************ALERT BUTTON DELETE STAFF********************************/
+  $('.delete_staff_button').click(function(){
+    habilitar_continue_button($(this));
+    return false;
+  });
   /******************************ALERT EN BOTONES PARA BORRAR DOCUMENTOS********************/
   $('.delete_document_button').click(function(){
     habilitar_continue_button($(this));

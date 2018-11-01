@@ -47,10 +47,12 @@ define('ADD_STAFF', PROFILE . 'add_staff/');
 define('SAVE_STAFF', SERVER . 'save_staff/');
 define('EDIT_SINGLE_STAFF', PROFILE . 'edit_single_staff/');
 define('SAVE_EDIT_SINGLE_STAFF', SERVER . 'save_edit_single_staff/');
+define('DELETE_SINGLE_STAFF', SERVER . 'delete_single_staff/');
 define('ADD_COST', PROFILE . 'add_cost/');
 define('SAVE_COST', SERVER . 'save_cost/');
 define('EDIT_COST', PROFILE . 'edit_cost/');
 define('SAVE_EDIT_COST', SERVER . 'save_edit_cost/');
+define('DELETE_COST', SERVER . 'delete_cost/');
 /********************************************************************************/
 /**********************************SAVE TASK*************************************/
 define('SAVE_TASK', SERVER . 'save_task');
