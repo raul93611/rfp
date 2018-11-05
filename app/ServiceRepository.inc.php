@@ -120,5 +120,20 @@ class ServiceRepository{
       }
     }
   }
+
+  public static function set_info_proposal($connection, $description, $quantity, $id_service){
+    if(isset($connection)){
+      try{
+        $sql = 'UPDATE services SET description = :description, quantity = :quantity WHERE id = :id_service';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':description', $description, PDO::PARAM_STR);
+        $sentence-> bindParam(':quantity', $quantity, PDO::PARAM_STR);
+        $sentence-> bindParam(':id_service', $id_service, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
 }
 ?>

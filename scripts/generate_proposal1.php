@@ -3,7 +3,7 @@ session_start();
 include_once 'vendor/autoload.php';
 Connection::open_connection();
 $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
-$service = ServiceRepository::get_service_by_id_project(Connection::get_connection(), $id_project);
+$services = ServiceRepository::get_services_by_id_project(Connection::get_connection(), $id_project);
 $user = UserRepository::get_user_by_id(Connection::get_connection(), $project-> get_designated_user());
 Connection::close_connection();
 if($project-> get_type() == 'services_and_equipment'){
@@ -12,11 +12,6 @@ if($project-> get_type() == 'services_and_equipment'){
   $items = RepositorioItem::obtener_items_por_id_rfq(Conexion::obtener_conexion(), $cotizacion-> obtener_id());
   Conexion::cerrar_conexion();
 }
-
-$quantity_years = $project-> get_quantity_years();
-$proposal_description1 = explode('|', $project-> get_proposal_description1());
-$proposal_quantity1 = explode('|', $project-> get_proposal_quantity1());
-$proposal_amount1 = explode('|', $project-> get_proposal_amount1());
 $submitted_date = ProjectRepository::mysql_date_to_english_format($project-> get_submitted_date());
 $expiration_date = ProjectRepository::mysql_date_to_english_format($project-> get_expiration_date());
 try{
@@ -192,14 +187,15 @@ try{
       $a++;
     }
   }
-  for ($i = 1; $i <= $quantity_years; $i++) {
+  for ($i = 1; $i <= count($services); $i++) {
+    $service = $services[$i - 1];
     $html .= '
     <tr>
       <td>' . $a . '</td>
-      <td>' . nl2br($proposal_description1[$i - 1]) . '</td>
-      <td style="text-align:right;">' . $proposal_quantity1[$i - 1] . '</td>
-      <td style="text-align:right;">$ ' . number_format($proposal_amount1[$i - 1], 2) . '</td>
-      <td style="text-align:right;">$ ' . number_format($proposal_amount1[$i - 1], 2) . '</td>
+      <td>' . nl2br($service-> get_description()) . '</td>
+      <td style="text-align:right;">' . $service-> get_quantity() . '</td>
+      <td style="text-align:right;">$ ' . number_format($service-> get_total(), 2) . '</td>
+      <td style="text-align:right;">$ ' . number_format($service-> get_total(), 2) . '</td>
     </tr>
     ';
     $a++;
@@ -216,7 +212,7 @@ try{
       <td style="border:none;"></td>
       <td style="border:none;"></td>
       <td style="font-size:12pt;">TOTAL:</td>
-      <td style="font-size:12pt;text-align:right;">$ ' . number_format($project-> get_total(), 2) . '</td>
+      <td style="font-size:12pt;text-align:right;">$ ' . number_format($project-> get_total_service() + $project-> get_total_equipment(), 2) . '</td>
     </tr>
     ';
   }else{
@@ -226,7 +222,7 @@ try{
       <td style="border:none;"></td>
       <td style="border:none;"></td>
       <td style="font-size:12pt;">TOTAL:</td>
-      <td style="font-size:12pt;text-align:right;">$ ' . number_format($project-> get_total(), 2) . '</td>
+      <td style="font-size:12pt;text-align:right;">$ ' . number_format($project-> get_total_service(), 2) . '</td>
     </tr>
     ';
   }

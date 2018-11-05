@@ -5,26 +5,26 @@
   </div>
   <div class="card-body">
     <?php
-    $quantity_years = $project-> get_quantity_years();
-    for ($i = 1; $i <= $quantity_years ; $i++) {
+    foreach ($services as $i=>$service) {
+      $a = $i + 1;
       ?>
       <div class="row">
         <div class="col-7">
           <div class="from-group">
-            <label for="proposal_description">Description (Year <?php echo $i; ?>):</label>
-            <textarea name="proposal_description<?php echo $i; ?>" rows="5" class="form-control form-control-sm"><?php echo $proposal_description1[$i - 1]; ?></textarea>
+            <label for="proposal_description">Description (Year <?php echo $a; ?>):</label>
+            <textarea name="proposal_description<?php echo $service-> get_id(); ?>" rows="5" class="form-control form-control-sm"><?php echo $service-> get_description(); ?></textarea>
           </div>
         </div>
         <div class="col-2">
           <div class="form-group">
             <label for="proposal_quantity">Quantity:</label>
-            <input type="number" name="proposal_quantity<?php echo $i; ?>" class="form-control form-control-sm" value="<?php echo $proposal_quantity1[$i - 1]; ?>">
+            <input type="number" name="proposal_quantity<?php echo $service-> get_id(); ?>" class="form-control form-control-sm" value="<?php echo $service-> get_quantity(); ?>">
           </div>
         </div>
         <div class="col-3">
           <div class="form-group">
             <label for="total_service_cost">Service cost ($):</label>
-            <input type="number" step=".01" readonly name="proposal_amount<?php echo $i; ?>" class="form-control form-control-sm" value="<?php $number = number_format($proposal_amount1[$i-1], 2, '.', '');echo $number; ?>">
+            <input type="number" step=".01" disabled class="form-control form-control-sm" value="<?php echo $service-> get_total(); ?>">
           </div>
         </div>
       </div>
