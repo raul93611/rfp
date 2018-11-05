@@ -11,7 +11,7 @@ foreach ($id_members as $id_member) {
 $users = UserRepository::get_all_users_enabled(Connection::get_connection());
 Connection::close_connection();
 if($user-> get_level() != 5){
-  if(isset($_POST['save_info_project_and_services']) || isset($_POST['make_proposal1']) || isset($_POST['make_proposal2'])){
+  if(isset($_POST['save_info_project_and_services']) || isset($_POST['make_proposal'])){
     $directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $_POST['id_project'];
     $documents = array_filter($_FILES['documents']['name']);
     $total = count($documents);
@@ -226,10 +226,8 @@ if($user-> get_level() != 5){
 
     if(isset($_POST['save_info_project_and_services'])){
       Redirection::redirect(INFO_PROJECT_AND_SERVICES . $_POST['id_project']);
-    }else if(isset($_POST['make_proposal1'])){
-      Redirection::redirect(MAKE_PROPOSAL1 . $_POST['id_project']);
-    }else if(isset($_POST['make_proposal2'])){
-      Redirection::redirect(MAKE_PROPOSAL2 . $_POST['id_project']);
+    }else if(isset($_POST['make_proposal'])){
+      Redirection::redirect(MAKE_PROPOSAL . $_POST['id_project']);
     }
   }
 }else if(isset($_POST['save_info_project_and_services'])){

@@ -11,8 +11,11 @@ class Staff{
   private $hours_project;
   private $total_burdened_rate;
   private $total_fblr;
+  private $description;
+  private $quantity;
+  private $amount_proposal;
 
-  public function __construct($id, $id_service, $name, $hourly_rate, $rate, $office_expenses, $burdened_rate, $fblr, $hours_project, $total_burdened_rate, $total_fblr){
+  public function __construct($id, $id_service, $name, $hourly_rate, $rate, $office_expenses, $burdened_rate, $fblr, $hours_project, $total_burdened_rate, $total_fblr, $description, $quantity, $amount_proposal){
     $this-> id = $id;
     $this-> id_service = $id_service;
     $this-> name = $name;
@@ -24,6 +27,9 @@ class Staff{
     $this-> hours_project = $hours_project;
     $this-> total_burdened_rate = $total_burdened_rate;
     $this-> total_fblr = $total_fblr;
+    $this-> description = $description;
+    $this-> quantity = $quantity;
+    $this-> amount_proposal = $amount_proposal;
   }
 
   public function get_id(){
@@ -68,6 +74,18 @@ class Staff{
 
   public function get_total_fblr(){
     return $this-> total_fblr;
+  }
+
+  public function get_description(){
+    return $this-> description;
+  }
+
+  public function get_quantity(){
+    return $this-> quantity;
+  }
+
+  public function get_amount_proposal(){
+    return $this-> amount_proposal;
   }
 }
 ?>

@@ -8,7 +8,7 @@ $service = new Service('', $id_project, $service_1-> get_total(), $service_1-> g
 $id_service = ServiceRepository::insert_service(Connection::get_connection(), $service);
 if(count($staff_1)){
   foreach ($staff_1 as $single_staff_1) {
-    $staff = new Staff('', $id_service, $single_staff_1-> get_name(), $single_staff_1-> get_hourly_rate(), $single_staff_1-> get_rate(), $single_staff_1-> get_office_expenses(), $single_staff_1-> get_burdened_rate(), $single_staff_1-> get_fblr(), $single_staff_1-> get_hours_project(), $single_staff_1-> get_total_burdened_rate(), $single_staff_1-> get_total_fblr());
+    $staff = new Staff('', $id_service, $single_staff_1-> get_name(), $single_staff_1-> get_hourly_rate(), $single_staff_1-> get_rate(), $single_staff_1-> get_office_expenses(), $single_staff_1-> get_burdened_rate(), $single_staff_1-> get_fblr(), $single_staff_1-> get_hours_project(), $single_staff_1-> get_total_burdened_rate(), $single_staff_1-> get_total_fblr(), $single_staff_1-> get_description(), $single_staff_1-> get_quantity(), $single_staff_1-> get_amount_proposal());
     StaffRepository::insert_staff(Connection::get_connection(), $staff);
   }
 }

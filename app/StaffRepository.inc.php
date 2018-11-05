@@ -3,7 +3,7 @@ class StaffRepository{
   public static function insert_staff($connection, $staff){
     if(isset($connection)){
       try{
-        $sql = 'INSERT INTO staff(id_service, name, hourly_rate, rate, office_expenses, burdened_rate, fblr, hours_project, total_burdened_rate, total_fblr) VALUES(:id_service, :name, :hourly_rate, :rate, :office_expenses, :burdened_rate, :fblr, :hours_project, :total_burdened_rate, :total_fblr)';
+        $sql = 'INSERT INTO staff(id_service, name, hourly_rate, rate, office_expenses, burdened_rate, fblr, hours_project, total_burdened_rate, total_fblr, description, quantity, amount_proposal) VALUES(:id_service, :name, :hourly_rate, :rate, :office_expenses, :burdened_rate, :fblr, :hours_project, :total_burdened_rate, :total_fblr, :description, :quantity, :amount_proposal)';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_service', $staff-> get_id_service(), PDO::PARAM_STR);
         $sentence-> bindParam(':name', $staff-> get_name(), PDO::PARAM_STR);
@@ -15,6 +15,9 @@ class StaffRepository{
         $sentence-> bindParam(':hours_project', $staff-> get_hours_project(), PDO::PARAM_STR);
         $sentence-> bindParam(':total_burdened_rate', $staff-> get_total_burdened_rate(), PDO::PARAM_STR);
         $sentence-> bindParam(':total_fblr', $staff-> get_total_fblr(), PDO::PARAM_STR);
+        $sentence-> bindParam(':description', $staff-> get_description(), PDO::PARAM_STR);
+        $sentence-> bindParam(':quantity', $staff-> get_quantity(), PDO::PARAM_STR);
+        $sentence-> bindParam(':amount_proposal', $staff-> get_amount_proposal(), PDO::PARAM_STR);
         $sentence-> execute();
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';
@@ -55,7 +58,7 @@ class StaffRepository{
         $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
         if(count($result)){
           foreach ($result as $row) {
-            $staff[] = new Staff($row['id'], $row['id_service'], $row['name'], $row['hourly_rate'], $row['rate'], $row['office_expenses'], $row['burdened_rate'], $row['fblr'], $row['hours_project'], $row['total_burdened_rate'], $row['total_fblr']);
+            $staff[] = new Staff($row['id'], $row['id_service'], $row['name'], $row['hourly_rate'], $row['rate'], $row['office_expenses'], $row['burdened_rate'], $row['fblr'], $row['hours_project'], $row['total_burdened_rate'], $row['total_fblr'], $row['description'], $row['quantity'], $row['amount_proposal']);
           }
         }
       }catch(PDOException $ex){
@@ -151,7 +154,7 @@ class StaffRepository{
         $sentence-> execute();
         $result = $sentence-> fetch(PDO::FETCH_ASSOC);
         if(!empty($result)){
-          $staff = new Staff($result['id'], $result['id_service'], $result['name'], $result['hourly_rate'], $result['rate'], $result['office_expenses'], $result['burdened_rate'], $result['fblr'], $result['hours_project'], $result['total_burdened_rate'], $result['total_fblr']);
+          $staff = new Staff($result['id'], $result['id_service'], $result['name'], $result['hourly_rate'], $result['rate'], $result['office_expenses'], $result['burdened_rate'], $result['fblr'], $result['hours_project'], $result['total_burdened_rate'], $result['total_fblr'], $result['description'], $result['quantity'], $result['amount_proposal']);
         }
       }catch(PDOException $ex){
         print 'ERROR:' . $ex->getMessage() . '<br>';

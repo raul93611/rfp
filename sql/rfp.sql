@@ -126,6 +126,9 @@ CREATE TABLE staff(
   hours_project INT NOT NULL,
   total_burdened_rate DECIMAL(20,2) NOT NULL,
   total_fblr DECIMAL(20,2) NOT NULL,
+  description TEXT CHARACTER SET utf8 NOT NULL,
+  quantity INT NOT NULL,
+  amount_proposal DECIMAL(20,2) NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_service)
     REFERENCES services(id)

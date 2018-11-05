@@ -21,9 +21,9 @@ Connection::close_connection();
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <form role="form" method="post" enctype="multipart/form-data" action="<?php echo SAVE_PROPOSAL_DATA1 . $id_project; ?>">
+          <form role="form" method="post" enctype="multipart/form-data" action="<?php echo SAVE_PROPOSAL_DATA . $id_project; ?>">
             <?php
-              include_once 'templates/form_proposal_data1.inc.php';
+              include_once 'templates/form_proposal_data.inc.php';
             ?>
           </form>
         </div>
