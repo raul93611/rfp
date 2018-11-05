@@ -1,4 +1,4 @@
-<input type="hidden" name="id_project" value="<?php echo $id_project; ?>">
+<input type="hidden" name="id_service" value="<?php echo $id_service; ?>">
 <div class="card-body">
   <div class="row">
     <div class="col">
@@ -17,5 +17,5 @@
 </div>
 <div class="card-footer">
   <button type="submit" class="btn btn-success" name="save_cost"><i class="fa fa-check"></i> Save</button>
-  <a class="btn btn-danger" href="<?php echo INFO_PROJECT_AND_SERVICES . $id_project . '#costs'; ?>"><i class="fa fa-ban"></i> Cancel</a>
+  <a class="btn btn-danger" href="<?php echo SERVICE . $id_service; ?>"><i class="fa fa-ban"></i> Cancel</a>
 </div>

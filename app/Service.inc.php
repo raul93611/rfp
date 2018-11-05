@@ -2,14 +2,16 @@
 class Service{
   private $id;
   private $id_project;
-  private $total_service;
-  private $total_equipment;
+  private $total;
+  private $description;
+  private $quantity;
 
-  public function __construct($id, $id_project, $total_service, $total_equipment){
+  public function __construct($id, $id_project, $total, $description, $quantity){
     $this-> id = $id;
     $this-> id_project = $id_project;
-    $this-> total_service = $total_service;
-    $this-> total_equipment = $total_equipment;
+    $this-> total = $total;
+    $this-> description = $description;
+    $this-> quantity = $quantity;
   }
 
   public function get_id(){
@@ -20,12 +22,16 @@ class Service{
     return $this-> id_project;
   }
 
-  public function get_total_service(){
-    return $this-> total_service;
+  public function get_total(){
+    return $this-> total;
   }
 
-  public function get_total_equipment(){
-    return $this-> total_equipment;
+  public function get_description(){
+    return $this-> description;
+  }
+
+  public function get_quantity(){
+    return $this-> quantity;
   }
 }
 ?>

@@ -1,8 +1,3 @@
-CREATE DATABASE rfp
-  DEFAULT CHARACTER SET utf8;
-USE rfp;
-
-
 CREATE TABLE users(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   username VARCHAR(100) NOT NULL UNIQUE,
@@ -18,11 +13,11 @@ CREATE TABLE users(
 CREATE TABLE projects(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_user INT NOT NULL,
-  start_date DATE NOT NULL,
+  start_date DATE,
   code VARCHAR(255) NOT NULL,
   link VARCHAR(255) NOT NULL,
   project_name VARCHAR(255) NOT NULL,
-  end_date DATETIME NOT NULL,
+  end_date DATETIME,
   priority VARCHAR(255) NOT NULL,
   description TEXT CHARACTER SET utf8 NOT NULL,
   submission_instructions VARCHAR(255) NOT NULL,
@@ -38,14 +33,19 @@ CREATE TABLE projects(
   submitted TINYINT NOT NULL,
   follow_up TINYINT NOT NULL,
   award TINYINT NOT NULL,
-  submitted_date DATE NOT NULL,
-  award_date DATE NOT NULL,
-  expiration_date DATE NOT NULL,
+  submitted_date DATE,
+  award_date DATE,
+  quantity_years INT NOT NULL,
+  proposal_description1 TEXT CHARACTER SET utf8 NOT NULL,
+  proposal_quantity1 TEXT CHARACTER SET utf8 NOT NULL,
+  proposal_amount1 TEXT CHARACTER SET utf8 NOT NULL,
+  proposal_description2 TEXT CHARACTER SET utf8 NOT NULL,
+  proposal_quantity2 TEXT CHARACTER SET utf8 NOT NULL,
+  proposal_amount2 TEXT CHARACTER SET utf8 NOT NULL,
+  expiration_date DATE,
   address TEXT CHARACTER SET utf8 NOT NULL,
   ship_to TEXT CHARACTER SET utf8 NOT NULL,
-  total_service DECIMAL(20,2) NOT NULL,
-  total_equipment DECIMAL(20,2) NOT NULL,
-  members VARCHAR(255) NOT NULL,
+  total DECIMAL(20,2),
   PRIMARY KEY(id),
   FOREIGN KEY(id_user)
     REFERENCES users(id)
@@ -57,7 +57,7 @@ CREATE TABLE comments(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_project INT NOT NULL,
   id_user INT NOT NULL,
-  comment_date DATETIME NOT NULL,
+  comment_date DATETIME,
   comment TEXT CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(id_project)
@@ -75,7 +75,7 @@ CREATE TABLE tasks(
   id_project INT NOT NULL,
   id_user INT NOT NULL,
   designated_user INT NOT NULL,
-  end_date DATE NOT NULL,
+  end_date DATE,
   description TEXT CHARACTER SET utf8 NOT NULL,
   completed TINYINT NOT NULL,
   PRIMARY KEY(id),
@@ -92,9 +92,8 @@ CREATE TABLE tasks(
 CREATE TABLE services(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_project INT NOT NULL,
-  total DECIMAL(20,2) NOT NULL,
-  description TEXT CHARACTER SET utf8 NOT NULL,
-  quantity INT NOT NULL,
+  total_service DECIMAL(20,2),
+  total_equipment DECIMAL(20,2),
   PRIMARY KEY(id),
   FOREIGN KEY(id_project)
     REFERENCES projects(id)
@@ -106,7 +105,7 @@ CREATE TABLE costs(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_service INT NOT NULL,
   description VARCHAR(255) NOT NULL,
-  amount DECIMAL(20,2) NOT NULL,
+  amount DECIMAL(20,2),
   PRIMARY KEY(id),
   FOREIGN KEY(id_service)
     REFERENCES services(id)
@@ -118,14 +117,14 @@ CREATE TABLE staff(
   id INT NOT NULL AUTO_INCREMENT UNIQUE,
   id_service INT NOT NULL,
   name VARCHAR(255) NOT NULL,
-  hourly_rate DECIMAL(20,2) NOT NULL,
-  rate DECIMAL(20,2) NOT NULL,
-  office_expenses DECIMAL(20,2) NOT NULL,
-  burdened_rate DECIMAL(20,2) NOT NULL,
-  fblr DECIMAL(20,2) NOT NULL,
-  hours_project INT NOT NULL,
-  total_burdened_rate DECIMAL(20,2) NOT NULL,
-  total_fblr DECIMAL(20,2) NOT NULL,
+  hourly_rate DECIMAL(20,2),
+  rate DECIMAL(20,2),
+  office_expenses DECIMAL(20,2),
+  burdened_rate DECIMAL(20,2),
+  fblr DECIMAL(20,2),
+  hours_project INT,
+  total_burdened_rate DECIMAL(20,2),
+  total_fblr DECIMAL(20,2),
   PRIMARY KEY(id),
   FOREIGN KEY(id_service)
     REFERENCES services(id)

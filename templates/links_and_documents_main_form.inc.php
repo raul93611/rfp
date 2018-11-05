@@ -38,9 +38,13 @@
       <label>Link:</label><br>
       <span>
         <?php if($project-> get_link() != ''){
-        ?>
-        <a href="<?php echo $project-> get_link(); ?>" target="_blank"><?php echo $project-> get_link(); ?></a>
-        <?php
+          if($project-> get_link() == 'RFQ project'){
+            ?><p>RFQ project</p><?php
+          }else {
+            ?>
+            <a href="<?php echo $project-> get_link(); ?>" target="_blank"><?php echo $project-> get_link(); ?></a>
+            <?php
+          }
         }else{
           ?>
           <h3 class="text-center text-danger"><i class="fa fa-times"></i> No link!</h3>

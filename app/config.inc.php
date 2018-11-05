@@ -30,7 +30,7 @@ define('SEARCH', PROFILE . 'search');
 /********************OPTIONS PROJECTS*******************************************/
 define('SAVE_PROJECT', SERVER . 'save_project');
 define('INFO_PROJECT', PROFILE . 'info_project/');
-define('SAVE_INFO_PROJECT_AND_SERVICES', SERVER . 'save_info_project_and_services/');
+define('SAVE_INFO_PROJECT_AND_SERVICES', SERVER . 'save_info_project_and_services');
 define('DELETE_PROJECT', SERVER . 'delete_project/');
 define('DELETE_ONLY_PROJECT', SERVER . 'delete_only_project/');
 define('SAVE_INFO_PROJECT', SERVER . 'save_info_project/');
@@ -41,15 +41,19 @@ define('INFO_PROJECT_AND_SERVICES', PROFILE . 'info_project_and_services/');
 define('SUBMITTED_PROJECTS', PROFILE . 'submitted_projects');
 define('AWARD_PROJECTS', PROFILE . 'award_projects');
 define('FOLLOW_UP_PROJECTS', PROFILE . 'follow_up_projects');
-/*******************************************************************************/
-/********************************SERVICES OPTIONS*******************************/
+/*******************************SERVICES OPTINOS*****************************/
+define('ADD_SERVICE', SERVER . 'add_service/');
+define('SERVICE', PROFILE . 'service/');
+define('SAVE_EDIT_SERVICE', SERVER . 'save_edit_service');
+define('DELETE_SERVICE', SERVER . 'delete_service/');
+/********************************STAFF AND COSTS OPTIONS*******************************/
 define('ADD_STAFF', PROFILE . 'add_staff/');
-define('SAVE_STAFF', SERVER . 'save_staff/');
+define('SAVE_STAFF', SERVER . 'save_staff');
 define('EDIT_SINGLE_STAFF', PROFILE . 'edit_single_staff/');
 define('SAVE_EDIT_SINGLE_STAFF', SERVER . 'save_edit_single_staff/');
 define('DELETE_SINGLE_STAFF', SERVER . 'delete_single_staff/');
 define('ADD_COST', PROFILE . 'add_cost/');
-define('SAVE_COST', SERVER . 'save_cost/');
+define('SAVE_COST', SERVER . 'save_cost');
 define('EDIT_COST', PROFILE . 'edit_cost/');
 define('SAVE_EDIT_COST', SERVER . 'save_edit_cost/');
 define('DELETE_COST', SERVER . 'delete_cost/');

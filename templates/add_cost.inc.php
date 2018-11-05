@@ -19,7 +19,7 @@
             <div class="card-header">
               <h3 class="card-title"><i class="fas fa-highlighter"></i> Enter data</h3>
             </div>
-            <form role="form" method="post" action="<?php echo SAVE_COST . $id_project; ?>">
+            <form role="form" method="post" action="<?php echo SAVE_COST; ?>">
               <?php
                 include_once 'templates/form_add_cost.inc.php';
               ?>

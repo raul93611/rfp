@@ -36,15 +36,7 @@ include_once 'templates/links_and_documents_main_form.inc.php';
 if($level != 5){
   include_once 'templates/main_info_main_form.inc.php';
   include_once 'templates/items_main_form.inc.php';
-  include_once 'templates/staff_and_costs_main_form.inc.php';
-  include_once 'templates/total_main_form.inc.php';
-  $total = $total_service + $total_equipment;
-  ?>
-  <input type="hidden" name="total_by_year" value="<?php echo $total_by_year; ?>">
-  <input type="hidden" name="total_service" value="<?php echo $total_service; ?>">
-  <input type="hidden" name="total_equipment" value="<?php echo $total_equipment; ?>">
-  <input type="hidden" name="total" value="<?php echo $total; ?>">
-  <?php
+  include_once 'templates/years_main_form.inc.php';
   include_once 'templates/options_when_submitted_main_form.inc.php';
 }
 ?>
@@ -67,14 +59,6 @@ if($level != 5){
   if($level != 5){
     ?>
     <a class="btn  btn-info add_item_charter" href="<?php echo FLOWCHART . $id_project; ?>"><i class="fa fa-book"></i> Flowchart</a>
-    <?php
-    if($project-> get_flowchart()){
-      ?>
-      <a class="btn  btn-info add_item_charter" href="<?php echo ADD_STAFF . $id_project; ?>"><i class="fa fa-plus"></i> Add staff</a>
-      <a class="btn btn-primary" href="<?php echo ADD_COST . $id_project; ?>"><i class="fa fa-plus"></i> Add costs</a>
-      <?php
-    }
-    ?>
     <button type="button" class="btn btn-primary" id="add_task"><i class="fas fa-tasks"></i> Add task</button>
     <?php
     if($project-> get_submitted()){

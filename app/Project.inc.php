@@ -24,20 +24,14 @@ class Project{
   private $award;
   private $submitted_date;
   private $award_date;
-  private $quantity_years;
-  private $proposal_description1;
-  private $proposal_quantity1;
-  private $proposal_amount1;
-  private $proposal_description2;
-  private $proposal_quantity2;
-  private $proposal_amount2;
   private $expiration_date;
   private $address;
   private $ship_to;
-  private $total;
+  private $total_service;
+  private $total_equipment;
   private $members;
 
-  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart, $designated_user, $reviewed_project, $priority_color, $subject, $result, $proposed_price, $business_type, $submitted, $follow_up, $award, $submitted_date, $award_date, $quantity_years, $proposal_description1, $proposal_quantity1, $proposal_amount1, $proposal_description2, $proposal_quantity2, $proposal_amount2, $expiration_date, $address, $ship_to, $total, $members){
+  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart, $designated_user, $reviewed_project, $priority_color, $subject, $result, $proposed_price, $business_type, $submitted, $follow_up, $award, $submitted_date, $award_date, $expiration_date, $address, $ship_to, $total_service, $total_equipment, $members){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> start_date = $start_date;
@@ -62,17 +56,11 @@ class Project{
     $this-> award = $award;
     $this-> submitted_date = $submitted_date;
     $this-> award_date = $award_date;
-    $this-> quantity_years = $quantity_years;
-    $this-> proposal_description1 = $proposal_description1;
-    $this-> proposal_quantity1 = $proposal_quantity1;
-    $this-> proposal_amount1 = $proposal_amount1;
-    $this-> proposal_description2 = $proposal_description2;
-    $this-> proposal_quantity2 = $proposal_quantity2;
-    $this-> proposal_amount2 = $proposal_amount2;
     $this-> expiration_date = $expiration_date;
     $this-> address = $address;
     $this-> ship_to = $ship_to;
-    $this-> total = $total;
+    $this-> total_service = $total_service;
+    $this-> total_equipment = $total_equipment;
     $this-> members = $members;
   }
 
@@ -172,34 +160,6 @@ class Project{
     return $this-> award_date;
   }
 
-  public function get_quantity_years(){
-    return $this-> quantity_years;
-  }
-
-  public function get_proposal_description1(){
-    return $this-> proposal_description1;
-  }
-
-  public function get_proposal_quantity1(){
-    return $this-> proposal_quantity1;
-  }
-
-  public function get_proposal_amount1(){
-    return $this-> proposal_amount1;
-  }
-
-  public function get_proposal_description2(){
-    return $this-> proposal_description2;
-  }
-
-  public function get_proposal_quantity2(){
-    return $this-> proposal_quantity2;
-  }
-
-  public function get_proposal_amount2(){
-    return $this-> proposal_amount2;
-  }
-
   public function get_expiration_date(){
     return $this-> expiration_date;
   }
@@ -212,8 +172,12 @@ class Project{
     return $this-> ship_to;
   }
 
-  public function get_total(){
-    return $this-> total;
+  public function get_total_service(){
+    return $this-> total_service;
+  }
+
+  public function get_total_equipment(){
+    return $this-> total_equipment;
   }
 
   public function get_members(){

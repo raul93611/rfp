@@ -157,12 +157,6 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label col-form-label-sm" for="quantity_years">Years:</label>
-          <div class="col-sm-10">
-            <input type="number" name="quantity_years"  min="1" class="form-control form-control-sm" id="quantity_years" value="<?php echo $project-> get_quantity_years(); ?>">
-          </div>
-        </div>
-        <div class="form-group row">
           <label class="col-sm-2 col-form-label col-form-label-sm" for="priority">Priority:</label>
           <div class="col-sm-10">
             <select class="form-control form-control-sm" name="priority" id="priority">

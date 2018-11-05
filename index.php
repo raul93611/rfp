@@ -61,25 +61,37 @@ if($parts_route[0] == 'rfp'){
     $chosen_route = 'views/home.php';
   }else if(count($parts_route) == 2){
     switch ($parts_route[1]) {
-        case 'profile':
-          $current_manager = '';
-          $chosen_route = 'views/profile.php';
-          break;
-        case 'generate_user':
-          $chosen_route = 'tools/generate_user.php';
-          break;
-        case 'log_out':
-          $chosen_route = 'scripts/log_out.php';
-          break;
-        case 'save_project':
-          $chosen_route = 'scripts/save_project.php';
-          break;
-        case 'save_task':
-          $chosen_route = 'scripts/save_task.php';
-          break;
-        case 'send_error_quote_email':
-          $chosen_route = 'scripts/send_error_quote_email.php';
-          break;
+      case 'profile':
+        $current_manager = '';
+        $chosen_route = 'views/profile.php';
+        break;
+      case 'generate_user':
+        $chosen_route = 'tools/generate_user.php';
+        break;
+      case 'log_out':
+        $chosen_route = 'scripts/log_out.php';
+        break;
+      case 'save_project':
+        $chosen_route = 'scripts/save_project.php';
+        break;
+      case 'save_task':
+        $chosen_route = 'scripts/save_task.php';
+        break;
+      case 'send_error_quote_email':
+        $chosen_route = 'scripts/send_error_quote_email.php';
+        break;
+      case 'save_staff':
+        $chosen_route = 'scripts/save_staff.php';
+        break;
+      case 'save_cost':
+        $chosen_route = 'scripts/save_cost.php';
+        break;
+      case 'save_edit_service':
+        $chosen_route = 'scripts/save_edit_service.php';
+        break;
+      case 'save_info_project_and_services':
+        $chosen_route = 'scripts/save_info_project_and_services.php';
+        break;
     }
   }else if(count($parts_route) == 3){
     switch($parts_route[1]){
@@ -153,21 +165,9 @@ if($parts_route[0] == 'rfp'){
         $id_project = $parts_route[2];
         $chosen_route = 'scripts/delete_only_project.php';
         break;
-      case 'save_info_project_and_services':
-        $id_project = $parts_route[2];
-        $chosen_route = 'scripts/save_info_project_and_services.php';
-        break;
-      case 'save_staff':
-        $id_project = $parts_route[2];
-        $chosen_route = 'scripts/save_staff.php';
-        break;
       case 'save_edit_single_staff':
         $id_staff = $parts_route[2];
         $chosen_route = 'scripts/save_edit_single_staff.php';
-        break;
-      case 'save_cost':
-        $id_project = $parts_route[2];
-        $chosen_route = 'scripts/save_cost.php';
         break;
       case 'save_edit_cost':
         $id_cost = $parts_route[2];
@@ -205,6 +205,14 @@ if($parts_route[0] == 'rfp'){
         $id_cost = $parts_route[2];
         $chosen_route = 'scripts/delete_cost.php';
         break;
+      case 'add_service':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/add_service.php';
+        break;
+      case 'delete_service':
+        $id_service = $parts_route[2];
+        $chosen_route = 'scripts/delete_service.php';
+        break;
       }
   }else if(count($parts_route) == 4){
     if($parts_route[1] == 'profile'){
@@ -225,7 +233,7 @@ if($parts_route[0] == 'rfp'){
           $chosen_route = 'views/profile.php';
           break;
         case 'add_staff':
-          $id_project = $parts_route[3];
+          $id_service = $parts_route[3];
           $current_manager = 'add_staff';
           $chosen_route = 'views/profile.php';
           break;
@@ -235,7 +243,7 @@ if($parts_route[0] == 'rfp'){
           $chosen_route = 'views/profile.php';
           break;
         case 'add_cost':
-          $id_project = $parts_route[3];
+          $id_service = $parts_route[3];
           $current_manager = 'add_cost';
           $chosen_route = 'views/profile.php';
           break;
@@ -257,6 +265,11 @@ if($parts_route[0] == 'rfp'){
         case 'edit_user':
           $id_user = $parts_route[3];
           $current_manager = 'edit_user';
+          $chosen_route = 'views/profile.php';
+          break;
+        case 'service':
+          $id_service = $parts_route[3];
+          $current_manager = 'service';
           $chosen_route = 'views/profile.php';
           break;
         default:

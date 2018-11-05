@@ -84,6 +84,9 @@ switch ($current_manager) {
   case 'follow_up_projects':
     include_once 'templates/follow_up_projects.inc.php';
     break;
+  case 'service':
+    include_once 'templates/edit_service.inc.php';
+    break;
 }
 include_once 'templates/end_document.inc.php';
 ?>

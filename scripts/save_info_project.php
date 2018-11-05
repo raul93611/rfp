@@ -33,14 +33,6 @@ if(isset($_POST['save_changes_project'])){
   }
   if($_POST['type'] == 'services_and_equipment'){
     Conexion::abrir_conexion();
-    /*
-    $rfq_users = RepositorioUsuario::obtener_usuarios_rfq(Conexion::obtener_conexion());
-    foreach ($rfq_users as $rfq_user) {
-      $id_rfq_users[] = $rfq_user-> obtener_id();
-    }
-    $designated_user_index = array_rand($id_rfq_users);
-    $designated_user = $id_rfq_users[$designated_user_index];
-    */
     $quote_rfq_exists = RepositorioRfq::quote_rfq_exists(Conexion::obtener_conexion(), $_POST['id_project']);
     if(!$quote_rfq_exists){
       $quote_rfq = New Rfq('', $_POST['designated_user_rfq'], $_POST['designated_user_rfq'], '', $_POST['code'], '', $_POST['start_date'], $_POST['end_date'], 0, 0, 0, 0, '', 0, '', '', '', '', '', '', '', '', 0, 0, '', '', 0, $id_project, 0);
@@ -84,7 +76,7 @@ if(isset($_POST['save_changes_project'])){
 
   }
   Connection::open_connection();
-  ProjectRepository::fill_out_project(Connection::get_connection(), $_POST['id_project'], $_POST['code'], $_POST['project_name'], $end_date, $_POST['priority'], htmlspecialchars($_POST['description']), $_POST['submission_instructions'], $_POST['type'], $priority_color, $_POST['subject'], $_POST['business_type'], $_POST['quantity_years']);
+  ProjectRepository::fill_out_project(Connection::get_connection(), $_POST['id_project'], $_POST['code'], $_POST['project_name'], $end_date, $_POST['priority'], htmlspecialchars($_POST['description']), $_POST['submission_instructions'], $_POST['type'], $priority_color, $_POST['subject'], $_POST['business_type']);
   Connection::close_connection();
   Redirection::redirect(FLOWCHART . $id_project);
 }
