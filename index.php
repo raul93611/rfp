@@ -205,6 +205,10 @@ if($parts_route[0] == 'rfp'){
         $id_service = $parts_route[2];
         $chosen_route = 'scripts/delete_service.php';
         break;
+      case 'add_previous_contract':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/add_previous_contract.php';
+        break;
       }
   }else if(count($parts_route) == 4){
     if($parts_route[1] == 'profile'){

@@ -67,7 +67,8 @@ define('SAVE_PROPOSAL_DATA', SERVER . 'save_proposal_data/');
 define('GENERATE_PROPOSAL', SERVER . 'generate_proposal/');
 /*****************************SEND ERROR QUOTE EMAIL****************************/
 define('SEND_ERROR_QUOTE_EMAIL', SERVER . 'send_error_quote_email');
-/*******************************************************************************/
+/********************************PREVIOUS CONTRACT*****************************/
+define('ADD_PREVIOUS_CONTRACT', SERVER . 'add_previous_contract/');
 /*********************************REPORTS***************************************/
 define('REPORTS', PROFILE . 'reports');
 /*****************************EXTRA ROUTES**************************************/

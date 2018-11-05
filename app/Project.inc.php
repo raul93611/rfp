@@ -30,8 +30,9 @@ class Project{
   private $total_service;
   private $total_equipment;
   private $members;
+  private $previous_contract;
 
-  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart, $designated_user, $reviewed_project, $priority_color, $subject, $result, $proposed_price, $business_type, $submitted, $follow_up, $award, $submitted_date, $award_date, $expiration_date, $address, $ship_to, $total_service, $total_equipment, $members){
+  public function __construct($id, $id_user, $start_date, $code, $link, $project_name, $end_date, $priority, $description, $submission_instructions, $type, $flowchart, $designated_user, $reviewed_project, $priority_color, $subject, $result, $proposed_price, $business_type, $submitted, $follow_up, $award, $submitted_date, $award_date, $expiration_date, $address, $ship_to, $total_service, $total_equipment, $members, $previous_contract){
     $this-> id = $id;
     $this-> id_user = $id_user;
     $this-> start_date = $start_date;
@@ -62,6 +63,7 @@ class Project{
     $this-> total_service = $total_service;
     $this-> total_equipment = $total_equipment;
     $this-> members = $members;
+    $this-> previous_contract = $previous_contract;
   }
 
   public function get_id(){
@@ -182,6 +184,10 @@ class Project{
 
   public function get_members(){
     return $this-> members;
+  }
+
+  public function get_previous_contract(){
+    return $this-> previous_contract;
   }
 }
 ?>

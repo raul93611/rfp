@@ -32,6 +32,28 @@
         <?php
       }
     }
+    if(!$project-> get_previous_contract()){
+      Connection::open_connection();
+      $previous_contracts = ProjectRepository::get_all_previous_contracts(Connection::get_connection(), $project-> get_id());
+      Connection::close_connection();
+      ?>
+      <div class="form-group">
+        <br>
+        <label>Previous contracts:</label>
+        <div class="list-group">
+          <?php
+          if(count($previous_contracts)){
+            foreach ($previous_contracts as $i => $previous_contract) {
+              ?>
+              <a class="list-group-item list-group-item-action" href="<?php echo INFO_PROJECT_AND_SERVICES . $previous_contract-> get_id(); ?>">Previous contract: <?php echo $previous_contract-> get_id(); ?></a>
+              <?php
+            }
+          }
+          ?>
+        </div>
+      </div>
+      <?php
+    }
     ?>
     <div class="form-group">
       <br>

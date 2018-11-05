@@ -33,7 +33,7 @@ CREATE TABLE projects(
   priority_color VARCHAR(255) NOT NULL,
   subject VARCHAR(255) NOT NULL,
   result VARCHAR(255) NOT NULL,
-  proposed_price DECIMAL(20,2) NOT NULL,
+  proposed_price DECIMAL(20,2),
   business_type VARCHAR(255) NOT NULL,
   submitted TINYINT NOT NULL,
   follow_up TINYINT NOT NULL,

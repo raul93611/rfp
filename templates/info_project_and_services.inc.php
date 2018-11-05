@@ -9,7 +9,16 @@ Connection::close_connection();
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-3">
-          <h1>Project: <small><?php echo $project-> get_id(); ?></small></h1>
+          <h1>
+            <?php
+            if($project-> get_previous_contract()){
+              echo 'Previous contract: ';
+            }else {
+              echo 'Project: ';
+            }
+            ?>
+            <small><?php echo $project-> get_id(); ?></small>
+          </h1>
         </div>
         <div class="col-sm-6 text-center">
           <a href="<?php echo DELETE_PROJECT . $project-> get_id(); ?>" class="delete_complete_project_button btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
