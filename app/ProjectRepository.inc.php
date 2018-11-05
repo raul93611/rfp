@@ -46,7 +46,7 @@ class ProjectRepository{
   public static function get_all_unreviewed_projects($connection){
     if(isset($connection)){
       try{
-        $sql = 'SELECT id, start_date as start, link as title FROM projects WHERE reviewed_project = 0';
+        $sql = 'SELECT id, start_date as start, link as title FROM projects WHERE reviewed_project = 0 AND previous_contract = 0';
         $sentence = $connection-> prepare($sql);
         $sentence->execute();
         $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
@@ -60,7 +60,7 @@ class ProjectRepository{
   public static function get_all_end_dates_reviewed_projects($connection){
     if(isset($connection)){
       try{
-        $sql = 'SELECT id, project_name as title, end_date as start, priority_color as color FROM projects WHERE reviewed_project = 1 AND submitted = 0';
+        $sql = 'SELECT id, project_name as title, end_date as start, priority_color as color FROM projects WHERE reviewed_project = 1 AND submitted = 0 AND previous_contract = 0';
         $sentence = $connection-> prepare($sql);
         $sentence-> execute();
         $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
@@ -75,7 +75,7 @@ class ProjectRepository{
     $id_user = '%' . $id_user . '%';
     if(isset($connection)){
       try{
-        $sql = 'SELECT id, project_name as title, end_date as start, priority_color as color, reviewed_project FROM projects WHERE reviewed_project = 1 AND members LIKE :id_user AND submitted = 0';
+        $sql = 'SELECT id, project_name as title, end_date as start, priority_color as color, reviewed_project FROM projects WHERE reviewed_project = 1 AND members LIKE :id_user AND submitted = 0 AND previous_contract = 0';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $id_user, PDO::PARAM_STR);
         $sentence-> execute();
@@ -91,7 +91,7 @@ class ProjectRepository{
     $id_user = '%' . $id_user . '%';
     if(isset($connection)){
       try{
-        $sql = 'SELECT id, link as title, start_date as start, reviewed_project FROM projects WHERE reviewed_project = 0 AND members LIKE :id_user';
+        $sql = 'SELECT id, link as title, start_date as start, reviewed_project FROM projects WHERE reviewed_project = 0 AND members LIKE :id_user AND previous_contract = 0';
         $sentence = $connection-> prepare($sql);
         $sentence-> bindParam(':id_user', $id_user, PDO::PARAM_STR);
         $sentence-> execute();
@@ -261,8 +261,8 @@ class ProjectRepository{
     if(isset($connection)){
       try{
         for ($i = 1; $i <= 12 ; $i++) {
-          $sql = 'SELECT COUNT(*) as submitted_projects_by_month FROM projects WHERE submitted = 1 AND MONTH(submitted_date) =' . $i . ' AND YEAR(submitted_date) = YEAR(CURDATE())';
-          $sql1 = 'SELECT COUNT(*) as award_projects_by_month FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(CURDATE())';
+          $sql = 'SELECT COUNT(*) as submitted_projects_by_month FROM projects WHERE submitted = 1 AND MONTH(submitted_date) =' . $i . ' AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+          $sql1 = 'SELECT COUNT(*) as award_projects_by_month FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(CURDATE()) AND previous_contract = 0';
           $sql2 = 'SELECT SUM(total_service) as award_by_amount_projects_by_month FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(CURDATE())';
 
           $sentence = $connection-> prepare($sql);
@@ -309,8 +309,8 @@ class ProjectRepository{
     if(isset($connection)){
       try{
         for ($i = 1; $i <= 12 ; $i++) {
-          $sql = 'SELECT COUNT(*) as submitted_projects_by_month_last_year FROM projects WHERE submitted = 1 AND MONTH(submitted_date) =' . $i . ' AND YEAR(submitted_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 YEAR))';
-          $sql1 = 'SELECT COUNT(*) as award_projects_by_month_last_year FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 YEAR))';
+          $sql = 'SELECT COUNT(*) as submitted_projects_by_month_last_year FROM projects WHERE submitted = 1 AND MONTH(submitted_date) =' . $i . ' AND YEAR(submitted_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 YEAR)) AND previous_contract = 0';
+          $sql1 = 'SELECT COUNT(*) as award_projects_by_month_last_year FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 YEAR)) AND previous_contract = 0';
           $sql2 = 'SELECT SUM(total_service) as award_by_amount_projects_by_month_last_year FROM projects WHERE submitted = 1 AND award = 1 AND MONTH(award_date) =' . $i . ' AND YEAR(award_date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 YEAR))';
 
           $sentence = $connection-> prepare($sql);
@@ -355,8 +355,8 @@ class ProjectRepository{
     $no_follow_up = 0;
     if(isset($connection)){
       try{
-        $sql = 'SELECT COUNT(*) AS follow_up FROM projects WHERE submitted = 1 AND follow_up = 1 AND award = 0 AND YEAR(submitted_date) = YEAR(CURDATE())';
-        $sql1 = 'SELECT COUNT(*) AS no_follow_up FROM projects WHERE submitted = 1 AND follow_up = 0 AND award = 0 AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql = 'SELECT COUNT(*) AS follow_up FROM projects WHERE submitted = 1 AND follow_up = 1 AND award = 0 AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+        $sql1 = 'SELECT COUNT(*) AS no_follow_up FROM projects WHERE submitted = 1 AND follow_up = 0 AND award = 0 AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
 
         $sentence = $connection-> prepare($sql);
         $sentence1 = $connection-> prepare($sql1);
@@ -389,11 +389,11 @@ class ProjectRepository{
     $sources_sought = 0;
     if(isset($connection)){
       try{
-        $sql = 'SELECT COUNT(*) AS ocho_a FROM projects WHERE submitted = 1 AND priority = "8a" AND YEAR(submitted_date) = YEAR(CURDATE())';
-        $sql1 = 'SELECT COUNT(*) AS full_and_open FROM projects WHERE submitted = 1 AND priority = "full_and_open" AND YEAR(submitted_date) = YEAR(CURDATE())';
-        $sql2 = 'SELECT COUNT(*) AS hubzone FROM projects WHERE submitted = 1 AND priority = "hubzone" AND YEAR(submitted_date) = YEAR(CURDATE())';
-        $sql3 = 'SELECT COUNT(*) AS small_business FROM projects WHERE submitted = 1 AND priority = "small_business" AND YEAR(submitted_date) = YEAR(CURDATE())';
-        $sql4 = 'SELECT COUNT(*) AS sources_sought FROM projects WHERE submitted = 1 AND priority = "sources_sought" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql = 'SELECT COUNT(*) AS ocho_a FROM projects WHERE submitted = 1 AND priority = "8a" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+        $sql1 = 'SELECT COUNT(*) AS full_and_open FROM projects WHERE submitted = 1 AND priority = "full_and_open" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+        $sql2 = 'SELECT COUNT(*) AS hubzone FROM projects WHERE submitted = 1 AND priority = "hubzone" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+        $sql3 = 'SELECT COUNT(*) AS small_business FROM projects WHERE submitted = 1 AND priority = "small_business" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+        $sql4 = 'SELECT COUNT(*) AS sources_sought FROM projects WHERE submitted = 1 AND priority = "sources_sought" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
 
         $sentence = $connection-> prepare($sql);
         $sentence1 = $connection-> prepare($sql1);
@@ -447,10 +447,10 @@ class ProjectRepository{
 
     if(isset($connection)){
       try{
-        $sql = 'SELECT COUNT(*) AS av FROM projects WHERE submitted = 1 AND subject = "av" AND YEAR(submitted_date) = YEAR(CURDATE())';
-        $sql1 = 'SELECT COUNT(*) AS it FROM projects WHERE submitted = 1 AND subject = "it" AND YEAR(submitted_date) = YEAR(CURDATE())';
-        $sql2 = 'SELECT COUNT(*) AS logistics FROM projects WHERE submitted = 1 AND subject = "logistics" AND YEAR(submitted_date) = YEAR(CURDATE())';
-        $sql3 = 'SELECT COUNT(*) AS sources_sought FROM projects WHERE submitted = 1 AND subject = "sources_sought" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql = 'SELECT COUNT(*) AS av FROM projects WHERE submitted = 1 AND subject = "av" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+        $sql1 = 'SELECT COUNT(*) AS it FROM projects WHERE submitted = 1 AND subject = "it" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+        $sql2 = 'SELECT COUNT(*) AS logistics FROM projects WHERE submitted = 1 AND subject = "logistics" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+        $sql3 = 'SELECT COUNT(*) AS sources_sought FROM projects WHERE submitted = 1 AND subject = "sources_sought" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
 
         $sentence = $connection-> prepare($sql);
         $sentence1 = $connection-> prepare($sql1);
@@ -497,11 +497,11 @@ class ProjectRepository{
     $to_be_determined = 0;
     if(isset($connection)){
       try{
-        $sql = 'SELECT COUNT(*) AS cancelled FROM projects WHERE submitted = 1 AND result = "cancelled" AND YEAR(submitted_date) = YEAR(CURDATE())';
-        $sql1 = 'SELECT COUNT(*) AS disqualified FROM projects WHERE submitted = 1 AND result = "disqualified" AND YEAR(submitted_date) = YEAR(CURDATE())';
-        $sql2 = 'SELECT COUNT(*) AS loss FROM projects WHERE submitted = 1 AND result = "loss" AND YEAR(submitted_date) = YEAR(CURDATE())';
-        $sql3 = 'SELECT COUNT(*) AS re_posted FROM projects WHERE submitted = 1 AND result = "re_posted" AND YEAR(submitted_date) = YEAR(CURDATE())';
-        $sql4 = 'SELECT COUNT(*) AS to_be_determined FROM projects WHERE submitted = 1 AND result = "to_be_determined" AND YEAR(submitted_date) = YEAR(CURDATE())';
+        $sql = 'SELECT COUNT(*) AS cancelled FROM projects WHERE submitted = 1 AND result = "cancelled" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+        $sql1 = 'SELECT COUNT(*) AS disqualified FROM projects WHERE submitted = 1 AND result = "disqualified" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+        $sql2 = 'SELECT COUNT(*) AS loss FROM projects WHERE submitted = 1 AND result = "loss" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+        $sql3 = 'SELECT COUNT(*) AS re_posted FROM projects WHERE submitted = 1 AND result = "re_posted" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
+        $sql4 = 'SELECT COUNT(*) AS to_be_determined FROM projects WHERE submitted = 1 AND result = "to_be_determined" AND YEAR(submitted_date) = YEAR(CURDATE()) AND previous_contract = 0';
 
         $sentence = $connection-> prepare($sql);
         $sentence1 = $connection-> prepare($sql1);
@@ -778,7 +778,7 @@ class ProjectRepository{
         ?>
       </td>
       <td><?php echo $submitted_date; ?></td>
-      <td>$ <?php echo number_format($project-> get_total_service(), 2); ?></td>
+      <td>$ <?php echo number_format($submitted_project-> get_total_service(), 2); ?></td>
       <td><?php echo $submitted_project-> get_result(); ?></td>
       <td><?php echo $submitted_project-> get_id(); ?></td>
     </tr>
@@ -853,7 +853,7 @@ class ProjectRepository{
         ?>
       </td>
       <td><?php echo $submitted_date; ?></td>
-      <td>$ <?php echo number_format($project-> get_total_service(), 2); ?></td>
+      <td>$ <?php echo number_format($follow_up_project-> get_total_service(), 2); ?></td>
       <td><?php echo $follow_up_project-> get_result(); ?></td>
       <td><?php echo $follow_up_project-> get_id(); ?></td>
     </tr>
@@ -928,7 +928,7 @@ class ProjectRepository{
         ?>
       </td>
       <td><?php echo $award_date; ?></td>
-      <td>$ <?php echo number_format($project-> get_total_service(), 2); ?></td>
+      <td>$ <?php echo number_format($award_project-> get_total_service(), 2); ?></td>
       <td><?php echo $award_project-> get_result(); ?></td>
       <td><?php echo $award_project-> get_id(); ?></td>
     </tr>
