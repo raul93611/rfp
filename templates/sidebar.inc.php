@@ -148,6 +148,30 @@
             <p>Reports</p>
           </a>
         </li>
+        <li class="nav-item has-treeview menu-open">
+          <a href="<?php echo CONTACT_LIST; ?>" class="nav-link
+          <?php
+          if ($current_manager == 'contact_list') {
+            echo 'active';
+          }
+          ?>
+             ">
+            <i class="fas fa-list-ul nav-icon"></i>
+            <p>Contact list</p>
+          </a>
+        </li>
+        <li class="nav-item has-treeview menu-open">
+          <a href="<?php echo PARTNER_LIST; ?>" class="nav-link
+          <?php
+          if ($current_manager == 'partner_list') {
+            echo 'active';
+          }
+          ?>
+             ">
+            <i class="fas fa-list-ol nav-icon"></i>
+            <p>Partner list</p>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>

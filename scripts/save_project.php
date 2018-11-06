@@ -19,6 +19,8 @@ if(isset($_POST['save_project'])){
   $id_project = ProjectRepository::insert_project(Connection::get_connection(), $project);
   $service = new Service('', $id_project, 0, '', 0);
   ServiceRepository::insert_service(Connection::get_connection(), $service);
+  $contact = new ContactList('', $id_project, '', '', '', '');
+  ContactListRepository::insert_contact(Connection::get_connection(), $contact);
   if(!empty($_POST['create_part_comments'])){
     $comment = new Comment('', $id_project, $_SESSION['id_user'], '', htmlspecialchars($_POST['create_part_comments']));
     CommentRepository::insert_comment(Connection::get_connection(), $comment);

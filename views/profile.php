@@ -84,6 +84,12 @@ switch ($current_manager) {
   case 'service':
     include_once 'templates/edit_service.inc.php';
     break;
+  case 'contact_list':
+    include_once 'templates/contact_list.inc.php';
+    break;
+  case 'partner_list':
+    include_once 'templates/partner_list.inc.php';
+    break;
 }
 include_once 'templates/end_document.inc.php';
 ?>

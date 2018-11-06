@@ -2,6 +2,23 @@
 STARTJQUERY CODE
 **********************************************************************************************************************/
 $(document).ready(function(){
+  /***************************************EDIT PARTNER MODAL*******************************************/
+  $('.edit_partner_button').click(function(){
+    console.log('http://' + document.location.hostname + '/rfp/load_modal_partner/' + $('.id_partner').val());
+    $('#partner_modal .modal-body').load('http://' + document.location.hostname + '/rfp/load_modal_partner/' + $('.id_partner').val(), function(){
+      $('#partner_modal').modal();
+    });
+  });
+  /***************************************NEW PARTNER MODAL*******************************************/
+  $('#partner_new_modal').click(function(){
+    $('#new_partner_modal').modal();
+  });
+  /**************************************MODAL EDIT CONTACT*****************************************/
+  $('.edit_contact_button').click(function(){
+    $('#contact_modal .modal-body').load('http://' + document.location.hostname + '/rfp/load_modal/' + $(this).html(), function(){
+      $('#contact_modal').modal();
+    });
+  });
   /***************************************WATCH USERS RFQ WHEN SERVICES AN DEQUIPMENT IS SELECTED********/
   if($('#designated_user_rfq').length != 0){
     var designated_user_rfq = $('#designated_user_rfq');
@@ -163,6 +180,14 @@ $(document).ready(function(){
 
   $('#follow_up_projects_table').DataTable({
     'order': [[2, 'desc']]
+  });
+
+  $('#contact_list_table').DataTable({
+    'order': [[6, 'desc']]
+  });
+
+  $('#partner_list_table').DataTable({
+    'order': [[0, 'desc']]
   });
 /*********************************************************************************************************************/
 

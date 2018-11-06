@@ -1,15 +1,30 @@
 <?php
-/*
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 Connection::open_connection();
 $connection = Connection::get_connection();
-$sql = 'ALTER TABLE projects ADD members VARCHAR(255) NOT NULL';
+$sql = 'CREATE TABLE partner1_list(
+  id INT NOT NULL AUTO_INCREMENT UNIQUE,
+  id_user INT NOT NULL,
+  company_name VARCHAR(255) NOT NULL,
+  poc_name VARCHAR(255) NOT NULL,
+  phone VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  area_of_expertise VARCHAR(255) NOT NULL,
+  elogic_poc_partner VARCHAR(255) NOT NULL,
+  worked_before TINYINT NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(id_user)
+    REFERENCES users(id)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
+)';
 $sentence = $connection-> prepare($sql);
 $sentence-> execute();
 Connection::close_connection();
-*/
 
+/*
 Connection::open_connection();
 $username = 'raul93611';
 $password = password_hash('elogic93611', PASSWORD_DEFAULT);
@@ -51,5 +66,6 @@ $activo = 1;
 $user = new User('', $username, $password, $names, $last_names, $level, $email, $activo);
 UserRepository::insert_user(Connection::get_connection(), $user);
 Connection::close_connection();
-
+*/
+echo 'asdsadsadsadsadasdsa';
 ?>

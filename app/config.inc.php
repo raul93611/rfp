@@ -71,6 +71,13 @@ define('SEND_ERROR_QUOTE_EMAIL', SERVER . 'send_error_quote_email');
 define('ADD_PREVIOUS_CONTRACT', SERVER . 'add_previous_contract/');
 /*********************************REPORTS***************************************/
 define('REPORTS', PROFILE . 'reports');
+/****************************CONTACT LIST***************************************/
+define('CONTACT_LIST', PROFILE . 'contact_list');
+define('SAVE_CONTACT', SERVER . 'save_contact');
+/****************************PARTNER LIST***************************************/
+define('PARTNER_LIST', PROFILE . 'partner_list');
+define('SAVE_NEW_PARTNER', SERVER . 'save_new_partner');
+define('SAVE_PARTNER', SERVER . 'save_partner');
 /*****************************EXTRA ROUTES**************************************/
 define('CSS', SERVER . 'css/');
 define('JS', SERVER . 'js/');

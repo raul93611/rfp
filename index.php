@@ -48,6 +48,12 @@ include_once 'app/CommentRepository.inc.php';
 include_once 'app/Task.inc.php';
 include_once 'app/TaskRepository.inc.php';
 
+include_once 'app/PartnerList.inc.php';
+include_once 'app/PartnerListRepository.inc.php';
+
+include_once 'app/ContactList.inc.php';
+include_once 'app/ContactListRepository.inc.php';
+
 $url_components = parse_url($_SERVER['REQUEST_URI']);
 $route = $url_components['path'];
 
@@ -92,6 +98,15 @@ if($parts_route[0] == 'rfp'){
       case 'save_info_project_and_services':
         $chosen_route = 'scripts/save_info_project_and_services.php';
         break;
+      case 'save_contact':
+        $chosen_route = 'scripts/save_contact.php';
+        break;
+      case 'save_new_partner':
+        $chosen_route = 'scripts/save_new_partner.php';
+        break;
+      case 'save_partner':
+        $chosen_route = 'scripts/save_partner.php';
+        break;
     }
   }else if(count($parts_route) == 3){
     switch($parts_route[1]){
@@ -135,6 +150,14 @@ if($parts_route[0] == 'rfp'){
             break;
           case 'follow_up_projects':
             $current_manager = 'follow_up_projects';
+            $chosen_route = 'views/profile.php';
+            break;
+          case 'contact_list':
+            $current_manager = 'contact_list';
+            $chosen_route = 'views/profile.php';
+            break;
+          case 'partner_list':
+            $current_manager = 'partner_list';
             $chosen_route = 'views/profile.php';
             break;
           default:
@@ -208,6 +231,14 @@ if($parts_route[0] == 'rfp'){
       case 'add_previous_contract':
         $id_project = $parts_route[2];
         $chosen_route = 'scripts/add_previous_contract.php';
+        break;
+      case 'load_modal':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/load_modal.php';
+        break;
+      case 'load_modal_partner':
+        $id_partner = $parts_route[2];
+        $chosen_route = 'scripts/load_modal_partner.php';
         break;
       }
   }else if(count($parts_route) == 4){

@@ -62,7 +62,9 @@
           </div>
           <div class="row">
             <?php
-            if($project-> get_follow_up()){
+            if($project-> get_award()){
+
+            }else if($project-> get_follow_up()){
               ?>
               <div class="col-md-12">
                 <div class="custom-control custom-checkbox">
