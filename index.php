@@ -160,6 +160,10 @@ if($parts_route[0] == 'rfp'){
             $current_manager = 'partner_list';
             $chosen_route = 'views/profile.php';
             break;
+          case 'employee_docs_page':
+            $current_manager = 'employee_docs_page';
+            $chosen_route = 'views/profile.php';
+            break;
           default:
             break;
         }

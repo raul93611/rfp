@@ -90,6 +90,9 @@ switch ($current_manager) {
   case 'partner_list':
     include_once 'templates/partner_list.inc.php';
     break;
+  case 'employee_docs_page':
+    include_once 'templates/employee_docs_page.inc.php';
+    break;
 }
 include_once 'templates/end_document.inc.php';
 ?>

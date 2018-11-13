@@ -78,6 +78,8 @@ define('SAVE_CONTACT', SERVER . 'save_contact');
 define('PARTNER_LIST', PROFILE . 'partner_list');
 define('SAVE_NEW_PARTNER', SERVER . 'save_new_partner');
 define('SAVE_PARTNER', SERVER . 'save_partner');
+/******************************************************************************/
+define('EMPLOYEE_DOCS_PAGE', PROFILE . 'employee_docs_page/');
 /*****************************EXTRA ROUTES**************************************/
 define('CSS', SERVER . 'css/');
 define('JS', SERVER . 'js/');
@@ -85,5 +87,6 @@ define('IMG', SERVER . 'img/');
 define('PLUGINS', SERVER . 'plugins/');
 define('DIST', SERVER . 'dist/');
 define('DOCS', SERVER . 'documents/');
+define('EMPLOYEE_DOCS', SERVER . 'employee_docs/');
 /*******************************************************************************/
 ?>
