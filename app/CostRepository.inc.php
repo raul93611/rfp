@@ -61,7 +61,7 @@ class CostRepository{
       <td>$ <?php echo $cost-> get_amount(); ?></td>
       <td>
         <?php
-        echo '<a href="' . EDIT_COST . $cost-> get_id() . '" class="delete_cost_button btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>';
+        echo '<a href="' . EDIT_COST . $cost-> get_id() . '" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>';
         echo ' ';
         echo '<a href="' . DELETE_COST . $cost-> get_id() . '" class="delete_cost_button btn btn-sm btn-warning"><i class="fa fa-trash"></i></a>';
         ?>

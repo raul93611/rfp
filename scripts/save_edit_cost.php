@@ -6,6 +6,6 @@ if(isset($_POST['save_edit_cost'])){
   $service = ServiceRepository::get_service_by_id(Connection::get_connection(), $cost-> get_id_service());
   CostRepository::edit_cost(Connection::get_connection(), $_POST['description'], $_POST['amount'], $_POST['id_cost']);
   Connection::close_connection();
-  Redirection::redirect(INFO_PROJECT_AND_SERVICES . $service-> get_id_project() . '#costs');
+  Redirection::redirect(SERVICE . $service-> get_id());
 }
 ?>

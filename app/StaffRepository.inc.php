@@ -83,7 +83,7 @@ class StaffRepository{
       <td>$ <?php if($gsa){echo $single_staff-> get_total_fblr();}else{echo $single_staff-> get_total_burdened_rate();} ?></td>
       <td class="text-center">
         <?php
-        echo '<a href="' . EDIT_SINGLE_STAFF . $single_staff-> get_id() . '" class="delete_staff_button btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>';
+        echo '<a href="' . EDIT_SINGLE_STAFF . $single_staff-> get_id() . '" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>';
         echo ' ';
         echo '<a href="' . DELETE_SINGLE_STAFF . $single_staff-> get_id() . '" class="delete_staff_button btn btn-sm btn-warning"><i class="fa fa-trash"></i></a>';
         ?>
