@@ -41,6 +41,7 @@ if($project-> get_type() == 'services_and_equipment'){
   }
   Conexion::cerrar_conexion();
 }
+ContactListRepository::delete_contact(Connection::get_connection(), $id_project);
 ProjectRepository::delete_project(Connection::get_connection(), $id_project);
 Connection::close_connection();
 Redirection::redirect(CALENDAR_NEW_PROJECTS);

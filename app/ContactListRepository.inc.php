@@ -105,5 +105,18 @@ class ContactListRepository{
     </table>
     <?php
   }
+
+  public static function delete_contact($connection, $id_project){
+    if(isset($connection)){
+      try{
+        $sql = 'DELETE FROM contact_list WHERE id_project = :id_project';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
+        $sentence-> execute();
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+  }
 }
 ?>
