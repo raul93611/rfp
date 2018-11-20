@@ -27,16 +27,19 @@ if($project-> get_type() == 'services_and_equipment'){
   if($quote_rfq_exists){
     $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $id_project);
     $items = RepositorioItem::obtener_items_por_id_rfq(Conexion::obtener_conexion(), $rfq_quote-> obtener_id());
-    foreach ($items as $item) {
-      $subitems = RepositorioSubitem::obtener_subitems_por_id_item(Conexion::obtener_conexion(), $item-> obtener_id());
-      if(count($subitems)){
-        foreach ($subitems as $subitem) {
-          RepositorioSubitem::delete_subitem(Conexion::obtener_conexion(), $subitem-> obtener_id());
+    if(count($items)){
+      foreach ($items as $item) {
+        $subitems = RepositorioSubitem::obtener_subitems_por_id_item(Conexion::obtener_conexion(), $item-> obtener_id());
+        if(count($subitems)){
+          foreach ($subitems as $subitem) {
+            RepositorioSubitem::delete_subitem(Conexion::obtener_conexion(), $subitem-> obtener_id());
+          }
         }
+        RepositorioItem::delete_item(Conexion::obtener_conexion(), $item->obtener_id());
       }
-      RepositorioItem::delete_item(Conexion::obtener_conexion(), $item->obtener_id());
     }
     RepositorioCuestionario::delete_cuestionario_por_id_rfq(Conexion::obtener_conexion(), $rfq_quote-> obtener_id());
+    RepositorioComment::delete_all_comments(Conexion::obtener_conexion(), $rfq_quote-> obtener_id());
     RepositorioRfq::delete_quote(Conexion::obtener_conexion(), $rfq_quote-> obtener_id());
   }
   Conexion::cerrar_conexion();

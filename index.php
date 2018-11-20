@@ -18,6 +18,8 @@ include_once '../rfq/app/RepositorioUsuario.inc.php';
 include_once '../rfq/app/Rfq.inc.php';
 include_once '../rfq/app/RepositorioRfq.inc.php';
 
+include_once '../rfq/app/RepositorioComment.inc.php';
+
 include_once '../rfq/app/Item.inc.php';
 include_once '../rfq/app/RepositorioItem.inc.php';
 
