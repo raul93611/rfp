@@ -146,7 +146,7 @@ if($project-> get_end_date() != '0000-00-00 00:00:00'){
             <?php
             if($project-> get_type() == 'services_and_equipment'){
               ?>
-              <input class="form-control form-control-sm" readonly type="text" id="end_date" name="end_date" value="<?php echo $end_date; ?>">
+              <input class="form-control form-control-sm" readonly type="text" name="end_date" value="<?php echo $end_date; ?>">
               <?php
             }else{
               ?>
