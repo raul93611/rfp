@@ -4,8 +4,8 @@ STARTJQUERY CODE
 $(document).ready(function(){
   /***************************************EDIT PARTNER MODAL*******************************************/
   $('.edit_partner_button').click(function(){
-    console.log('http://' + document.location.hostname + '/rfp/load_modal_partner/' + $('.id_partner').val());
-    $('#partner_modal .modal-body').load('http://' + document.location.hostname + '/rfp/load_modal_partner/' + $('.id_partner').val(), function(){
+    console.log('http://' + document.location.hostname + '/rfp/load_modal_partner/' + $('.id_partner', this).val());
+    $('#partner_modal .modal-body').load('http://' + document.location.hostname + '/rfp/load_modal_partner/' + $('.id_partner', this).val(), function(){
       $('#partner_modal').modal();
     });
   });

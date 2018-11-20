@@ -66,8 +66,10 @@ class PartnerListRepository{
     ?>
     <tr>
       <td>
-        <input type="hidden" class="id_partner" value="<?php echo $partner-> get_id(); ?>">
-        <a href="#" class="edit_partner_button btn-block"><?php echo $partner-> get_company_name(); ?></a>
+        <a href="#" class="edit_partner_button btn-block">
+          <?php echo $partner-> get_company_name(); ?>
+          <input type="hidden" class="id_partner" value="<?php echo $partner-> get_id(); ?>">
+        </a>
       </td>
       <td><?php echo $partner-> get_poc_name(); ?></td>
       <td><?php echo $partner-> get_phone(); ?></td>
