@@ -966,8 +966,9 @@ class ProjectRepository{
     $previous_contracts = [];
     if(isset($connection)){
       try{
-        $sql = 'SELECT * FROM projects WHERE previous_contract != 0 ORDER BY id DESC';
+        $sql = 'SELECT * FROM projects WHERE previous_contract = :id_project ORDER BY id DESC';
         $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_project', $id_project, PDO::PARAM_STR);
         $sentence-> execute();
         $result = $sentence-> fetchAll(PDO::FETCH_ASSOC);
         if(count($result)){

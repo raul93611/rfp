@@ -54,10 +54,11 @@
           </div>
           <div class="form-group">
             <label for="documents">Upload documents:</label><br>
-            <div class="custom-file">
+            <!--<div class="custom-file">
               <input type="file" name="documents[]" multiple class="custom-file-input" id="file_input_info_create">
               <label id="label_file_create" class="custom-file-label" for="file_input_info_create">Choose file</label>
-            </div>
+            </div>-->
+            <input type="file" id="fileinput_create_part" multiple name="documents[]">
           </div>
           <label>Members:</label><br>
           <?php
@@ -67,9 +68,13 @@
           foreach ($users as $user) {
             if($user-> get_level() != 2){
               ?>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" name="members[]" value="<?php echo $user-> get_id(); ?>" id="<?php echo $user-> get_id() . 'modal'; ?>" <?php if($user-> get_level() < 4){echo 'checked';} ?>>
-                <label class="form-check-label" for="<?php echo $user-> get_id() . 'modal'; ?>"><?php echo $user-> get_username(); ?></label>
+              <!--<div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" name="members[]" value="<?php #echo $user-> get_id(); ?>" id="<?php #echo $user-> get_id() . 'modal'; ?>" <?php if($user-> get_level() < 4){echo 'checked';} ?>>
+                <label class="form-check-label" for="<?php #echo $user-> get_id() . 'modal'; ?>"><?php #echo $user-> get_username(); ?></label>
+              </div>-->
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="members[]" value="<?php echo $user-> get_id(); ?>" id="<?php echo $user-> get_id() . 'modal'; ?>" <?php if($user-> get_level() < 4){echo 'checked';} ?>>
+                <label class="custom-control-label" for="<?php echo $user-> get_id() . 'modal'; ?>"><?php echo $user-> get_username(); ?></label>
               </div>
               <?php
             }
@@ -188,6 +193,11 @@
 <script src="<?php echo PLUGINS; ?>bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script src="<?php echo PLUGINS; ?>slimScroll/jquery.slimscroll.min.js"></script>
 <script src="<?php echo PLUGINS; ?>fullcalendar/fullcalendar.js"></script>
+<script src="<?php echo SERVER; ?>bower_components/bootstrap-fileinput/js/plugins/piexif.min.js"></script>
+<script src="<?php echo SERVER; ?>bower_components/bootstrap-fileinput/js/plugins/sortable.min.js"></script>
+<script src="<?php echo SERVER; ?>bower_components/bootstrap-fileinput/js/plugins/purify.min.js"></script>
+<script src="<?php echo SERVER; ?>bower_components/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script src="<?php echo SERVER; ?>bower_components/bootstrap-fileinput/themes/explorer-fas/theme.min.js"></script>
 <script src="<?php echo PLUGINS; ?>iCheck/icheck.js"></script>
 <script src="<?php echo JS; ?>js_sistema.js"></script>
 </body>

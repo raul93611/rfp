@@ -2,6 +2,53 @@
 STARTJQUERY CODE
 **********************************************************************************************************************/
 $(document).ready(function(){
+  $('#fileinput_create_part').fileinput({
+    theme: 'explorer-fas',
+    initialPreviewAsData: true,
+    showUpload: false,
+    overwriteInitial: false,
+    fileActionSettings:
+    {
+      showZoom: false,
+      showUpload: false,
+      showRemove: false
+    }
+  });
+
+  if($('#file_input').length != 0){
+    var files = $('#files').val();
+    var array_div_files = [];
+    var array_options = [];
+    if(files != ''){
+      files = files.split(',');
+
+      for (var i = 0; i < files.length; i++) {
+        array_div_files.push('"<h3>' + "<i class='" + "fas fa-file" + "'></i>" + '</h3>"');
+        array_options.push('{"previewAsData": false, "caption": "' + files[i] + '", "url": "' + 'http://' + document.location.hostname + '/rfp/delete_document/' + $('input[name="id_project"]').val() + '/' + files[i] + '", "downloadUrl": "' + 'http://' + document.location.hostname + '/rfp/documents/' + $('input[name="id_project"]').val() + '/' + files[i] + '", "key": ' + i + '}');
+      }
+      array_div_files.join(',');
+      array_div_files = '[' + array_div_files + ']';
+      console.log(array_div_files);
+      array_div_files = jQuery.parseJSON(array_div_files);
+      array_options.join(',');
+      array_options = '[' + array_options + ']';
+      array_options = jQuery.parseJSON(array_options);
+      console.log(array_div_files);
+      console.log(array_options);
+    }
+    $('#file_input').fileinput({
+      theme: 'explorer-fas',
+      uploadUrl: 'http://' + document.location.hostname + '/rfp/load_img/' + $('input[name="id_project"]').val(),
+      overwriteInitial: false,
+      initialPreviewAsData: true,
+      initialPreview: array_div_files,
+      initialPreviewConfig: array_options,
+      fileActionSettings:
+      {
+        showZoom: false
+      }
+    });
+  }
   /***************************************EDIT PARTNER MODAL*******************************************/
   $('.edit_partner_button').click(function(){
     console.log('http://' + document.location.hostname + '/rfp/load_modal_partner/' + $('.id_partner', this).val());

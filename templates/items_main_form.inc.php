@@ -37,8 +37,8 @@ if($project-> get_type() == 'services_and_equipment'){
               <th id="numeration">#</th>
               <th>DESCRIPTION</th>
               <th class="quantity">QTY</th>
-              <th>UNIT PRICE</th>
-              <th class="total_ancho">TOTAL</th>
+              <th class="amount_width">UNIT PRICE</th>
+              <th class="amount_width">TOTAL</th>
             </tr>
           </thead>
           <tbody>

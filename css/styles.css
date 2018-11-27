@@ -364,3 +364,7 @@ END USERS TABLE STYLES
 .card-documents .close{
   color: #13A8F0 !important;
 }
+
+.amount_width{
+  min-width: 150px !important;
+}

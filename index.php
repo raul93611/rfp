@@ -246,6 +246,10 @@ if($parts_route[0] == 'rfp'){
         $id_partner = $parts_route[2];
         $chosen_route = 'scripts/load_modal_partner.php';
         break;
+      case 'load_img':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/load_img.php';
+        break;
       }
   }else if(count($parts_route) == 4){
     if($parts_route[1] == 'profile'){

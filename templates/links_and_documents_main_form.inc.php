@@ -11,8 +11,8 @@
     foreach ($users as $user) {
       if($user-> get_level() != 2){
         ?>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" name="members[]" value="<?php echo $user-> get_id(); ?>" id="<?php echo $user-> get_id(); ?>"
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" name="members[]" value="<?php echo $user-> get_id(); ?>" id="<?php echo $user-> get_id(); ?>"
           <?php
           $members = explode('|', $project-> get_members());
           if(count($members)){
@@ -27,7 +27,7 @@
           }
           ?>
           >
-          <label class="form-check-label" for="<?php echo $user-> get_id(); ?>"><?php echo $user-> get_username(); ?></label>
+          <label class="custom-control-label" for="<?php echo $user-> get_id(); ?>"><?php echo $user-> get_username(); ?></label>
         </div>
         <?php
       }
@@ -48,6 +48,10 @@
               <a class="list-group-item list-group-item-action" href="<?php echo INFO_PROJECT_AND_SERVICES . $previous_contract-> get_id(); ?>">Previous contract: <?php echo $previous_contract-> get_id(); ?></a>
               <?php
             }
+          }else{
+            ?>
+            <h3 class="text-center text-danger"><i class="fa fa-times"></i> No previous contracts!</h3>
+            <?php
           }
           ?>
         </div>
@@ -80,6 +84,30 @@
       <?php
       $directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
       if (is_dir($directory)) {
+        $manager = opendir($directory);
+        $folder = @scandir($directory);
+        if(count($folder) <= 2){
+        }
+        $files = [];
+        while (($file = readdir($manager)) !== false) {
+          $complete_directory = $directory . "/" . $file;
+          if ($file != "." && $file != "..") {
+            $files[] = $file;
+          }
+        }
+        $files = implode(',', $files);
+        ?>
+        <input type="hidden" id="files" value="<?php echo $files; ?>">
+        <?php
+        closedir($manager);
+      }
+      ?>
+      <input type="file" id="file_input" multiple name="file_input[]">
+      <br>
+      <?php
+      /*
+      $directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_project;
+      if (is_dir($directory)) {
           $manager = opendir($directory);
           echo '<div class="list-group">';
           $folder = @scandir($directory);
@@ -95,15 +123,15 @@
           }
           closedir($manager);
           echo "</div>";
-      }
+      }*/
       ?>
     </div>
-    <div class="form-group">
+    <!--<div class="form-group">
       <label for="documents">Upload documents:</label><br>
       <div class="custom-file">
         <input type="file" name="documents[]" multiple class="custom-file-input" id="file_input_info">
         <label id="label_file" class="custom-file-label" for="file_input_info">Choose file</label>
       </div>
-    </div>
+    </div>-->
   </div>
 </div>
