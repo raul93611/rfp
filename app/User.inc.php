@@ -8,8 +8,9 @@ class User{
   private $level;
   private $email;
   private $status;
+  private $hash_recover_password;
 
-  public function __construct($id, $username, $password, $names, $last_names, $level, $email, $status){
+  public function __construct($id, $username, $password, $names, $last_names, $level, $email, $status, $hash_recover_password){
     $this-> id = $id;
     $this-> username = $username;
     $this-> password = $password;
@@ -18,6 +19,7 @@ class User{
     $this-> level = $level;
     $this-> email = $email;
     $this-> status = $status;
+    $this-> hash_recover_password = $hash_recover_password;
   }
 
   public function get_id(){
@@ -50,6 +52,10 @@ class User{
 
   public function get_status(){
     return $this-> status;
+  }
+
+  public function get_hash_recover_password(){
+    return $this-> hash_recover_password;
   }
 }
 ?>

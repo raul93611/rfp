@@ -109,6 +109,9 @@ if($parts_route[0] == 'rfp'){
       case 'save_partner':
         $chosen_route = 'scripts/save_partner.php';
         break;
+      case 'recover_password_form':
+        $chosen_route = 'tools/recover_password_form.php';
+        break;
     }
   }else if(count($parts_route) == 3){
     switch($parts_route[1]){
@@ -249,6 +252,10 @@ if($parts_route[0] == 'rfp'){
       case 'load_img':
         $id_project = $parts_route[2];
         $chosen_route = 'scripts/load_img.php';
+        break;
+      case 'restart_password':
+        $hash = $parts_route[2];
+        $chosen_route = 'tools/restart_password.php';
         break;
       }
   }else if(count($parts_route) == 4){

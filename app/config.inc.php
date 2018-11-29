@@ -8,7 +8,7 @@ define('NOMBRE_SERVIDOR', 'localhost');
 define('NOMBRE_USUARIO', 'root');
 define('NOMBRE_BD', 'elogic');
 
-define('SERVER', 'http://192.168.1.80/rfp/');
+define('SERVER', 'http://localhost/rfp/');
 define('ERROR', SERVER . 'error');
 define('PROFILE', SERVER . 'profile/');
 define('LOG_OUT', SERVER . 'log_out');
@@ -80,6 +80,9 @@ define('SAVE_NEW_PARTNER', SERVER . 'save_new_partner');
 define('SAVE_PARTNER', SERVER . 'save_partner');
 /******************************************************************************/
 define('EMPLOYEE_DOCS_PAGE', PROFILE . 'employee_docs_page/');
+/********************************************************************************/
+define('RECOVER_PASSWORD_FORM', SERVER . 'recover_password_form');
+define('RESTART_PASSWORD', SERVER . 'restart_password/');
 /*****************************EXTRA ROUTES**************************************/
 define('CSS', SERVER . 'css/');
 define('JS', SERVER . 'js/');
