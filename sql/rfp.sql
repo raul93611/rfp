@@ -12,6 +12,7 @@ CREATE TABLE users(
   level TINYINT NOT NULL,
   email VARCHAR(100) NOT NULL,
   status TINYINT NOT NULL,
+  hash_recover_password VARCHAR(255) NOT NULL,
   PRIMARY KEY(id)
 );
 
