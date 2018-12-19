@@ -1,4 +1,6 @@
 <?php
+session_save_path('temp');
+session_start();
 include_once 'app/config.inc.php';
 include_once 'app/Connection.inc.php';
 include_once 'app/SessionControl.inc.php';

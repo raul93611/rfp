@@ -1,7 +1,7 @@
 <?php
 define('SERVER_NAME', 'localhost');
 define('USER_NAME', 'root');
-define('PASSWORD', 'raul93611');
+define('PASSWORD', '');
 define('BD_NAME', 'rfp');
 
 define('NOMBRE_SERVIDOR', 'localhost');
