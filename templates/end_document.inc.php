@@ -132,7 +132,7 @@
       </div>
       <div class="modal-footer">
         <a href="<?php echo INFO_PROJECT; ?>" id="fill_out" class="btn btn-success"><i class="fas fa-book-reader"></i> Review</a>
-        <a href="<?php echo DELETE_PROJECT; ?>" id="delete_project" class="btn btn-danger"><i class="fa fa-times"></i> Delete</a>
+        <a href="<?php echo DELETE_ONLY_PROJECT; ?>" id="delete_project" class="btn btn-danger"><i class="fa fa-times"></i> Delete</a>
       </div>
     </div>
   </div>
