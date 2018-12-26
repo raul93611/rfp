@@ -9,19 +9,19 @@
       $a = $i + 1;
       ?>
       <div class="row">
-        <div class="col-7">
+        <div class="col-md-7">
           <div class="from-group">
             <label for="proposal_description">Description (Year <?php echo $a; ?>):</label>
             <textarea name="proposal_description<?php echo $service-> get_id(); ?>" rows="5" class="form-control form-control-sm"><?php echo $service-> get_description(); ?></textarea>
           </div>
         </div>
-        <div class="col-2">
+        <div class="col-md-2">
           <div class="form-group">
             <label for="proposal_quantity">Quantity:</label>
             <input type="number" name="proposal_quantity<?php echo $service-> get_id(); ?>" class="form-control form-control-sm" value="<?php echo $service-> get_quantity(); ?>">
           </div>
         </div>
-        <div class="col-3">
+        <div class="col-md-3">
           <div class="form-group">
             <label for="total_service_cost">Service cost ($):</label>
             <input type="number" step=".01" disabled class="form-control form-control-sm" value="<?php echo $service-> get_total(); ?>">

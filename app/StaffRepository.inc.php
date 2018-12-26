@@ -101,7 +101,7 @@ class StaffRepository{
       $staff_exists = 1;
       ?>
       <h3>Staff:</h3>
-      <table id="staff_table" class="table table-bordered table-hover">
+      <table id="staff_table" class="table table-bordered table-hover table-responsive-md">
         <thead>
           <tr>
             <th>NAME</th>

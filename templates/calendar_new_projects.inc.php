@@ -8,10 +8,10 @@ Connection::close_connection();
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-md-4">
                     <h1 class="m-0 text-dark">New projects</h1>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-md-8">
                   <div class="btn-group" role="group">
                     <a class="btn btn-<?php if($current_manager == 'calendar_new_projects'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo CALENDAR_NEW_PROJECTS; ?>">New projects</a>
                     <a class="btn btn-<?php if($current_manager == 'calendar_project'){echo 'primary';}else{echo 'secondary';} ?>" href="<?php echo CALENDAR_PROJECTS; ?>">All projects</a>
@@ -25,7 +25,7 @@ Connection::close_connection();
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-2">
+          <div class="col-md-2">
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title"><i class="fa fa-copy"></i> References</h3>
@@ -43,7 +43,7 @@ Connection::close_connection();
               </div>
             </div>
           </div>
-          <div class="col-10">
+          <div class="col-md-10">
             <div class="card">
               <div class="card-body">
                 <div id="calendar_new_projects"></div>

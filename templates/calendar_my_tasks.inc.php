@@ -25,7 +25,7 @@ Connection::close_connection();
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-2">
+          <div class="col-md-2">
             <div class="card card-primary">
               <div class="card-header">
                 <h3 class="card-title"><i class="fa fa-copy"></i> References</h3>
@@ -43,7 +43,7 @@ Connection::close_connection();
               </div>
             </div>
           </div>
-          <div class="col-10">
+          <div class="col-md-10">
             <div class="card">
               <div class="card-body">
                 <div id="calendar_my_tasks"></div>

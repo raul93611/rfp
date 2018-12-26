@@ -7,13 +7,13 @@ Connection::close_connection();
 <input type="hidden" name="id_cost" value="<?php echo $id_cost; ?>">
 <div class="card-body">
   <div class="row">
-    <div class="col">
+    <div class="col-md-6">
       <div class="form-group">
         <label for="description">Description:</label>
         <input type="text" class="form-control form-control-sm" id="description" name="description" autofocus required value="<?php echo $cost-> get_description(); ?>">
       </div>
     </div>
-    <div class="col">
+    <div class="col-md-6">
       <div class="form-group">
         <label for="amount">Amount ($):</label>
         <input type="number" step=".01" class="form-control form-control-sm" id="amount" name="amount" required value="<?php echo $cost-> get_amount(); ?>">

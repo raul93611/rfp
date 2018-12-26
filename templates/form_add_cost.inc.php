@@ -1,13 +1,13 @@
 <input type="hidden" name="id_service" value="<?php echo $id_service; ?>">
 <div class="card-body">
   <div class="row">
-    <div class="col">
+    <div class="col-md-6">
       <div class="form-group">
         <label for="description">Description:</label>
         <input type="text" class="form-control form-control-sm" id="description" name="description" autofocus required>
       </div>
     </div>
-    <div class="col">
+    <div class="col-md-6">
       <div class="form-group">
         <label for="amount">Amount ($):</label>
         <input type="number" step=".01" class="form-control form-control-sm" id="amount" name="amount" required value="0">

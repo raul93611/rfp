@@ -50,7 +50,15 @@ if($level != 5){
     </div>
   </div>
 </div>
-<div class="card-footer footer">
+<div class="container-fluid">
+  <?php
+  CommentRepository::print_comments($project-> get_id());
+  ?>
+  <br>
+  <br>
+  <br>
+</div>
+<div class="card-footer footer" id="footer_lg">
   <a class="btn btn-primary" id="go_back" href="<?php echo CALENDAR_PROJECTS; ?>"><i class="fa fa-reply"></i></a>
   <?php
   if($project-> get_flowchart()){
@@ -71,12 +79,4 @@ if($level != 5){
     <?php
   }
   ?>
-</div>
-<div class="container-fluid">
-  <?php
-  CommentRepository::print_comments($project-> get_id());
-  ?>
-  <br>
-  <br>
-  <br>
 </div>

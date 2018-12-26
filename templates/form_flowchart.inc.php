@@ -2,9 +2,9 @@
 <input type="hidden" name="flowchart_result" val="" id="flowchart_result">
 <div class="card-body">
   <div class="row">
-    <div class="col-3">
+    <div class="col-md-3">
     </div>
-    <div class="col-6">
+    <div class="col-md-6">
       <div class="callout callout-warning" id="q1">
         <h4>Fits out strategic direction?</h4>
           <div class="form-check-inline">
@@ -177,7 +177,7 @@
         <h1 class="display-1 text-center text-danger"><i class="fa fa-times"></i> No Bid</h1>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-md-3">
     </div>
   </div>
   <div class="row" id="project_comments">

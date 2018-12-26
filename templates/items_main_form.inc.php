@@ -31,7 +31,7 @@ if($project-> get_type() == 'services_and_equipment'){
           </tbody>
         </table>
         <br>
-        <table id="items_table" class="table table-bordered table-hover">
+        <table id="items_table" class="table table-bordered table-hover table-responsive-md">
           <thead>
             <tr>
               <th id="numeration">#</th>
