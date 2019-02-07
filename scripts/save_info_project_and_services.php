@@ -109,7 +109,10 @@ if($user-> get_level() != 5){
         $quote_rfq_exists = RepositorioRfq::quote_rfq_exists(Conexion::obtener_conexion(), $_POST['id_project']);
         if($quote_rfq_exists){
           Conexion::abrir_conexion();
+          $user_0 = RepositorioUsuario::obtener_usuario_0(Conexion::obtener_conexion());
           $rfq_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $_POST['id_project']);
+          $rfq_comment = new RfqComment('', $rfq_quote-> obtener_id(), $user_0-> obtener_id(), htmlspecialchars($_POST['story_comments']), '');
+          RepositorioComment::insertar_comment(Conexion::obtener_conexion(), $rfq_comment);
           $designated_user_rfq = RepositorioUsuario::obtener_usuario_por_id(Conexion::obtener_conexion(), $rfq_quote-> obtener_usuario_designado());
           Conexion::cerrar_conexion();
           $to = $designated_user_rfq-> obtener_email();

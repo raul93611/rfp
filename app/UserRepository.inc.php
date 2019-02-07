@@ -144,6 +144,24 @@ class UserRepository{
     return $user;
   }
 
+  public static function get_user_level_0($connection) {
+    $user = null;
+    if (isset($connection)) {
+      try {
+        $sql = "SELECT * FROM users WHERE level = 0";
+        $sentence = $connection->prepare($sql);
+        $sentence->execute();
+        $result = $sentence->fetch(PDO::FETCH_ASSOC);
+        if (!empty($result)) {
+          $user = new User($result['id'], $result['username'], $result['password'], $result['names'], $result['last_names'], $result['level'], $result['email'], $result['status'], $result['hash_recover_password']);
+        }
+      } catch (PDOException $ex) {
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $user;
+  }
+
   public static function username_exists($connection, $username) {
     $username_exists = true;
     if (isset($connection)) {
