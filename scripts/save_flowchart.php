@@ -46,5 +46,9 @@ if(!empty($_POST['project_comments'])){
   CommentRepository::insert_comment(Connection::get_connection(), $comment);
 }
 Connection::close_connection();
-Redirection::redirect(PROFILE . 'calendar_projects');
+if($project-> get_previous_contract()){
+  Redirection::redirect(INFO_PROJECT_AND_SERVICES . $project-> get_id());
+}else{
+  Redirection::redirect(PROFILE . 'calendar_projects');
+}
 ?>

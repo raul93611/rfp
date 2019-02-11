@@ -7,5 +7,8 @@ $id_previous_contract = ProjectRepository::insert_project(Connection::get_connec
 $service = new Service('', $id_previous_contract, 0, '', 0);
 ServiceRepository::insert_service(Connection::get_connection(), $service);
 Connection::close_connection();
+
+$directory = $_SERVER['DOCUMENT_ROOT'] . '/rfp/documents/' . $id_previous_contract;
+mkdir($directory, 0777);
 Redirection::redirect(INFO_PROJECT . $id_previous_contract);
 ?>

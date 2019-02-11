@@ -74,9 +74,11 @@ if($level != 5){
       <button type="submit" class="btn btn-success" name="make_proposal"><i class="fa fa-cogs"></i> Proposal</button>
       <?php
     }
-    ?>
-    <a class="btn btn-primary" href="<?php echo ADD_PREVIOUS_CONTRACT . $id_project; ?>"><i class="fas fa-plus"></i> Previous contract</a>
-    <?php
+    if(!$project-> get_previous_contract()){
+      ?>
+      <a class="btn btn-primary" href="<?php echo ADD_PREVIOUS_CONTRACT . $id_project; ?>"><i class="fas fa-plus"></i> Previous contract</a>
+      <?php
+    }
   }
   ?>
 </div>
