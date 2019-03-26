@@ -79,6 +79,17 @@ if($level != 5){
       <a class="btn btn-primary" href="<?php echo ADD_PREVIOUS_CONTRACT . $id_project; ?>"><i class="fas fa-plus"></i> Previous contract</a>
       <?php
     }
+    if(is_null($fulfillment_project)){
+      if($project-> get_award()){
+        ?>
+        <button type="button" id="fulfillment_button" class="btn btn-primary" name="button"><i class="fas fa-share-square"></i> Fulfillment</button>
+        <?php
+      }
+    }else if(!$fulfillment_project-> get_received() && $project-> get_award()){
+      ?>
+      <button type="button" id="fulfillment_button" class="btn btn-primary" name="button"><i class="fas fa-share-square"></i> Fulfillment</button>
+      <?php
+    }
   }
   ?>
 </div>

@@ -29,11 +29,47 @@ include_once '../rfq/app/RepositorioItem.inc.php';
 include_once '../rfq/app/Provider.inc.php';
 include_once '../rfq/app/RepositorioProvider.inc.php';
 
+include_once '../rfq/app/ProviderSubitem.inc.php';
+include_once '../rfq/app/RepositorioProviderSubitem.inc.php';
+
 include_once '../rfq/app/Subitem.inc.php';
 include_once '../rfq/app/RepositorioSubitem.inc.php';
 
 include_once '../rfq/app/Cuestionario.inc.php';
 include_once '../rfq/app/RepositorioCuestionario.inc.php';
+
+include_once '../rfq/app/ReQuote.inc.php';
+include_once '../rfq/app/ReQuoteRepository.inc.php';
+
+include_once '../rfq/app/ReQuoteItem.inc.php';
+include_once '../rfq/app/ReQuoteItemRepository.inc.php';
+
+include_once '../rfq/app/ReQuoteProvider.inc.php';
+include_once '../rfq/app/ReQuoteProviderRepository.inc.php';
+
+include_once '../rfq/app/ReQuoteSubitem.inc.php';
+include_once '../rfq/app/ReQuoteSubitemRepository.inc.php';
+
+include_once '../rfq/app/ReQuoteSubitemProvider.inc.php';
+include_once '../rfq/app/ReQuoteSubitemProviderRepository.inc.php';
+
+include_once '../fullfillment/app/ConnectionFullFillment.inc.php';
+include_once '../fullfillment/app/RepositorioRfqFullFillment.inc.php';
+include_once '../fullfillment/app/RepositorioItemFullFillment.inc.php';
+include_once '../fullfillment/app/RepositorioProviderFullFillment.inc.php';
+include_once '../fullfillment/app/RepositorioSubitemFullFillment.inc.php';
+include_once '../fullfillment/app/RepositorioProviderSubitemFullFillment.inc.php';
+include_once '../fullfillment/app/CommentRfqFullFillment.inc.php';
+include_once '../fullfillment/app/RepositorioRfqFullFillmentComment.inc.php';
+include_once '../fullfillment/app/RfqFullFillmentPart.inc.php';
+include_once '../fullfillment/app/RfqFullFillmentPartRepository.inc.php';
+include_once '../fullfillment/app/UserFullFillmentRepository.inc.php';
+include_once '../fullfillment/app/ExtraItem.inc.php';
+include_once '../fullfillment/app/ExtraSubitem.inc.php';
+include_once '../fullfillment/app/ExtraItemRepository.inc.php';
+include_once '../fullfillment/app/ExtraSubitemRepository.inc.php';
+include_once '../fullfillment/app/RealProjectExtracost.inc.php';
+include_once '../fullfillment/app/RealProjectExtracostRepository.inc.php';
 
 include_once 'app/Project.inc.php';
 include_once 'app/ProjectRepository.inc.php';
@@ -58,6 +94,16 @@ include_once 'app/PartnerListRepository.inc.php';
 
 include_once 'app/ContactList.inc.php';
 include_once 'app/ContactListRepository.inc.php';
+
+include_once '../fullfillment/app/ConnectionFullFillment.inc.php';
+
+include_once '../fullfillment/app/ProjectComment.inc.php';
+include_once '../fullfillment/app/ProjectCommentRepository.inc.php';
+
+include_once '../fullfillment/app/UserFullFillmentRepository.inc.php';
+
+include_once '../fullfillment/app/FulfillmentProject.inc.php';
+include_once '../fullfillment/app/FulfillmentProjectRepository.inc.php';
 
 $url_components = parse_url($_SERVER['REQUEST_URI']);
 $route = $url_components['path'];
@@ -115,6 +161,9 @@ if($parts_route[0] == 'rfp'){
       case 'recover_password_form':
         $chosen_route = 'tools/recover_password_form.php';
         break;
+      case 'fulfillment':
+        $chosen_route = 'scripts/fulfillment.php';
+        break;
     }
   }else if(count($parts_route) == 3){
     switch($parts_route[1]){
@@ -158,6 +207,10 @@ if($parts_route[0] == 'rfp'){
             break;
           case 'follow_up_projects':
             $current_manager = 'follow_up_projects';
+            $chosen_route = 'views/profile.php';
+            break;
+          case 'fulfillment':
+            $current_manager = 'fulfillment';
             $chosen_route = 'views/profile.php';
             break;
           case 'contact_list':

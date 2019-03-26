@@ -93,6 +93,9 @@ switch ($current_manager) {
   case 'employee_docs_page':
     include_once 'templates/employee_docs_page.inc.php';
     break;
+  case 'fulfillment':
+    include_once 'templates/fulfillment.inc.php';
+    break;
 }
 include_once 'templates/end_document.inc.php';
 ?>

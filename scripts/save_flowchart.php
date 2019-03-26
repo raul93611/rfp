@@ -9,7 +9,22 @@ if(!$_POST['flowchart_result']){
     Conexion::abrir_conexion();
     $rfp_quote = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $_POST['id_project']);
     RepositorioRfq::establecer_no_bid(Conexion::obtener_conexion(), $rfp_quote-> obtener_id());
+    $user = RepositorioUsuario::obtener_usuario_por_id(Conexion::obtener_conexion(), $rfp_quote-> obtener_usuario_designado());
     Conexion::cerrar_conexion();
+    $to = $user-> obtener_email();
+    $subject = "Proposal: " . $rfp_quote-> obtener_id();
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type: text/html; charset=UTF-8\r\n";
+    $headers .= "From: " . $_SESSION['username'] . " E-logic <elogic@e-logic.us>\r\n";
+    $message = '
+    <html>
+    <body>
+    <h3>Comment:</h3>
+    <p>The quote was set as NO BID.</p>
+    </body>
+    </html>
+    ';
+    mail($to, $subject, $message, $headers);
   }
 }else{
   if($project-> get_type() == 'services_and_equipment'){

@@ -2,6 +2,25 @@
 STARTJQUERY CODE
 **********************************************************************************************************************/
 $(document).ready(function(){
+  /*******************************send to fulfillment***************************/
+  $('#fulfillment_button').click(function(){
+    $('#fulfillment_modal').modal();
+  });
+
+  $('#fulfillment_form').submit(function(){
+    $.post('http://' + document.location.hostname + '/rfp/fulfillment', $(this).serialize(), function(res){
+      console.log('dasdsadsadsa');
+      console.log(res.error);
+      $('#fulfillment_modal').modal('hide');
+      if(res.error == 'error'){
+        $('#error_modal').modal();
+      }else{
+        $('#fulfillment_button').hide();
+      }
+    });
+    return false;
+  });
+  /********************************fileinput********************************************/
   $('#fileinput_create_part').fileinput({
     theme: 'explorer-fas',
     initialPreviewAsData: true,
@@ -28,13 +47,10 @@ $(document).ready(function(){
       }
       array_div_files.join(',');
       array_div_files = '[' + array_div_files + ']';
-      console.log(array_div_files);
       array_div_files = jQuery.parseJSON(array_div_files);
       array_options.join(',');
       array_options = '[' + array_options + ']';
       array_options = jQuery.parseJSON(array_options);
-      console.log(array_div_files);
-      console.log(array_options);
     }
     $('#file_input').fileinput({
       theme: 'explorer-fas',

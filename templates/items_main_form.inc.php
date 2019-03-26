@@ -7,9 +7,13 @@ if($project-> get_type() == 'services_and_equipment'){
     </div>
     <div class="card-body">
       <?php
-      if($rfq_quote-> obtener_completado()){
+      if($rfq_quote-> obtener_completado() || $rfq_quote-> obtener_status()){
+        if(!$project-> get_submitted()){
+          ?>
+          <a href="#" id="report_error_button" class="float-right btn btn-warning"><i class="fa fa-exclamation-triangle"></i> Report error</a><br><br>
+          <?php
+        }
         ?>
-        <a href="#" id="report_error_button" class="float-right btn btn-warning"><i class="fa fa-exclamation-triangle"></i> Report error</a><br><br>
         <table class="table table-bordered table-hover">
           <thead>
             <tr>

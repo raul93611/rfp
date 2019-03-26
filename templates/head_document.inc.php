@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="<?php echo SERVER; ?>bower_components/bootstrap-fileinput/themes/explorer-fas/theme.min.css">
     <link rel="stylesheet" href="<?php echo PLUGINS; ?>iCheck/all.css">
     <link rel="stylesheet" href="<?php echo CSS; ?>styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700,900" rel="stylesheet">
   </head>
   <body class="hold-transition sidebar-mini sidebar-collapse">
     <div class="wrapper">

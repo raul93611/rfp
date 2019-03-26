@@ -8,6 +8,11 @@ define('NOMBRE_SERVIDOR', 'localhost');
 define('NOMBRE_USUARIO', 'root');
 define('NOMBRE_BD', 'elogic');
 
+define('SERVERNAME_FULLFILLMENT', 'localhost');
+define('BD_NAME_FULLFILLMENT', 'fullfillment');
+define('USERNAME_FULLFILLMENT', 'root');
+define('PASSWORD_FULLFILLMENT', '');
+
 define('SERVER', 'http://localhost/rfp/');
 define('ERROR', SERVER . 'error');
 define('PROFILE', SERVER . 'profile/');
@@ -38,9 +43,11 @@ define('FLOWCHART', PROFILE . 'flowchart/');
 define('SAVE_FLOWCHART', SERVER . 'save_flowchart/');
 define('DELETE_DOCUMENT', SERVER . 'delete_document/');
 define('INFO_PROJECT_AND_SERVICES', PROFILE . 'info_project_and_services/');
+/****************************************************************/
 define('SUBMITTED_PROJECTS', PROFILE . 'submitted_projects');
 define('AWARD_PROJECTS', PROFILE . 'award_projects');
 define('FOLLOW_UP_PROJECTS', PROFILE . 'follow_up_projects');
+define('FULFILLMENT', PROFILE . 'fulfillment');
 /*******************************SERVICES OPTINOS*****************************/
 define('ADD_SERVICE', SERVER . 'add_service/');
 define('SERVICE', PROFILE . 'service/');

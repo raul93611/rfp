@@ -70,6 +70,18 @@ class CostRepository{
     <?php
   }
 
+  public static function show_cost($cost){
+    if(!isset($cost)){
+      return;
+    }
+    ?>
+    <tr>
+      <td><?php echo $cost-> get_description(); ?></td>
+      <td>$ <?php echo $cost-> get_amount(); ?></td>
+    </tr>
+    <?php
+  }
+
   public static function print_costs($id_service){
     Connection::open_connection();
     $costs = self::get_all_costs_by_id_service(Connection::get_connection(), $id_service);
@@ -106,6 +118,37 @@ class CostRepository{
       $costs_exists = 0;
     }
     return array($total_costs, $costs_exists);
+  }
+
+  public static function show_costs($id_service){
+    Connection::open_connection();
+    $costs = self::get_all_costs_by_id_service(Connection::get_connection(), $id_service);
+    $total_cost = self::get_total_cost(Connection::get_connection(), $id_service);
+    Connection::close_connection();
+    if(count($costs)){
+      ?>
+      <h3>Costs:</h3>
+      <table id="costs_table" class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>DESCRIPTION</th>
+            <th>AMOUNT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($costs as $cost) {
+            self::show_cost($cost);
+          }
+          ?>
+          <tr>
+            <td>TOTAL:</td>
+            <td>$ <?php echo $total_cost; ?></td>
+          </tr>
+        </tbody>
+      </table>
+      <?php
+    }
   }
 
   public static function get_cost_by_id($connection, $id_cost){
@@ -151,6 +194,25 @@ class CostRepository{
         print 'ERROR:' . $ex->getMessage() . '<br>';
       }
     }
+  }
+
+  public static function get_total_cost($connection, $id_service){
+    $total = 0;
+    if(isset($connection)){
+      try{
+        $sql = 'SELECT SUM(amount) as total FROM costs WHERE id_service = :id_service';
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_service', $id_service, PDO::PARAM_STR);
+        $sentence-> execute();
+        $result = $sentence-> fetch(PDO::FETCH_ASSOC);
+        if(!empty($result['total'])){
+          $total = $result['total'];
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $total;
   }
 }
 ?>

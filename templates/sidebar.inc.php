@@ -134,6 +134,17 @@
                 <p>Award</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="<?php echo FULFILLMENT; ?>" class="nav-link
+                <?php
+                if($current_manager == 'fulfillment'){
+                  echo 'active';
+                }
+                ?>
+                ">
+                <p>Fulfillment</p>
+              </a>
+            </li>
           </ul>
         </li>
         <li class="nav-item has-treeview menu-open">

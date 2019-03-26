@@ -144,6 +144,64 @@ class StaffRepository{
     return array($total_staff, $staff_exists);
   }
 
+  public static function show_staff($id_service, $gsa){
+    Connection::open_connection();
+    $staff = self::get_all_staff_by_id_service(Connection::get_connection(), $id_service);
+    $total_staff = self::get_total_staff(Connection::get_connection(), $id_service, $gsa);
+    Connection::close_connection();
+    if(count($staff)){
+      ?>
+      <h3>Staff:</h3>
+      <table id="staff_table" class="table table-bordered table-responsive-md">
+        <thead>
+          <tr>
+            <th>NAME</th>
+            <th>HOURLY RATE</th>
+            <th>RATE</th>
+            <th>OFFICE EXPENSES</th>
+            <th>BURDENED RATE</th>
+            <th>HOURS PROJECT</th>
+            <th>TOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          foreach ($staff as $single_staff) {
+            self::show_single_staff($single_staff, $gsa);
+          }
+          ?>
+          <tr>
+            <td>TOTAL:</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>$ <?php echo $total_staff; ?></td>
+          </tr>
+        </tbody>
+      </table>
+      <?php
+    }
+  }
+
+  public static function show_single_staff($single_staff, $gsa){
+    if(!isset($single_staff)){
+      return;
+    }
+    ?>
+    <tr>
+      <td><?php echo $single_staff-> get_name(); ?></td>
+      <td>$ <?php echo $single_staff-> get_hourly_rate(); ?></td>
+      <td><?php echo $single_staff-> get_rate(); ?> %</td>
+      <td>$ <?php echo $single_staff-> get_office_expenses(); ?></td>
+      <td>$ <?php if($gsa){echo $single_staff-> get_fblr();}else{echo $single_staff-> get_burdened_rate();} ?></td>
+      <td><?php echo $single_staff-> get_hours_project(); ?></td>
+      <td>$ <?php if($gsa){echo $single_staff-> get_total_fblr();}else{echo $single_staff-> get_total_burdened_rate();} ?></td>
+    </tr>
+    <?php
+  }
+
   public static function get_staff_by_id($connection, $id_staff){
     $staff = null;
     if(isset($connection)){
@@ -187,6 +245,29 @@ class StaffRepository{
         print 'ERROR:' . $ex->getMessage() . '<br>';
       }
     }
+  }
+
+  public static function get_total_staff($connection, $id_service, $gsa){
+    $total = 0;
+    if(isset($connection)){
+      try{
+        if($gsa){
+          $sql = 'SELECT SUM(total_fblr)as total FROM staff WHERE id_service = :id_service';
+        }else{
+          $sql = 'SELECT SUM(total_burdened_rate) as total FROM staff WHERE id_service = :id_service';
+        }
+        $sentence = $connection-> prepare($sql);
+        $sentence-> bindParam(':id_service', $id_service, PDO::PARAM_STR);
+        $sentence-> execute();
+        $result = $sentence-> fetch(PDO::FETCH_ASSOC);
+        if(!empty($result['total'])){
+          $total = $result['total'];
+        }
+      }catch(PDOException $ex){
+        print 'ERROR:' . $ex->getMessage() . '<br>';
+      }
+    }
+    return $total;
   }
 }
 ?>

@@ -82,7 +82,7 @@
                 </div>
               </div>
               <?php
-            }else{
+            }else if($rfq_quote-> obtener_completado()){
               ?>
               <div class="col-md-12">
                 <div class="custom-control custom-checkbox">

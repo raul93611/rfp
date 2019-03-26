@@ -321,7 +321,7 @@ class UserRepository{
     $users = [];
     if (isset($connection)) {
       try {
-        $sql = "SELECT * FROM users WHERE level != 1 AND status = 1";
+        $sql = "SELECT * FROM users WHERE level != 1 AND level != 0 AND status = 1";
         $sentence = $connection->prepare($sql);
         $sentence->execute();
         $result = $sentence->fetchAll(PDO::FETCH_ASSOC);

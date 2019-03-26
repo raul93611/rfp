@@ -781,6 +781,7 @@ class ProjectRepository{
       <td>$ <?php echo number_format($submitted_project-> get_total_service(), 2); ?></td>
       <td><?php echo $submitted_project-> get_result(); ?></td>
       <td><?php echo $submitted_project-> get_id(); ?></td>
+      <td><span class="text-info"><?php if($submitted_project-> get_previous_contract()){echo 'Previous contract';}else{echo 'Project';} ?></span></td>
     </tr>
     <?php
   }
@@ -799,6 +800,7 @@ class ProjectRepository{
           <th>AMOUNT</th>
           <th>RESULT</th>
           <th>PROPOSAL</th>
+          <th>TYPE</th>
         </tr>
       </thead>
       <tbody>
@@ -856,6 +858,7 @@ class ProjectRepository{
       <td>$ <?php echo number_format($follow_up_project-> get_total_service(), 2); ?></td>
       <td><?php echo $follow_up_project-> get_result(); ?></td>
       <td><?php echo $follow_up_project-> get_id(); ?></td>
+      <td><span class="text-info"><?php if($follow_up_project-> get_previous_contract()){echo 'Previous contract';}else{echo 'Project';} ?></span></td>
     </tr>
     <?php
   }
@@ -874,6 +877,7 @@ class ProjectRepository{
           <th>AMOUNT</th>
           <th>RESULT</th>
           <th>PROPOSAL</th>
+          <th>TYPE</th>
         </tr>
       </thead>
       <tbody>
@@ -931,6 +935,7 @@ class ProjectRepository{
       <td>$ <?php echo number_format($award_project-> get_total_service(), 2); ?></td>
       <td><?php echo $award_project-> get_result(); ?></td>
       <td><?php echo $award_project-> get_id(); ?></td>
+      <td><span class="text-info"><?php if($award_project-> get_previous_contract()){echo 'Previous contract';}else{echo 'Project';} ?></span></td>
     </tr>
     <?php
   }
@@ -949,16 +954,88 @@ class ProjectRepository{
           <th>AMOUNT</th>
           <th>RESULT</th>
           <th>PROPOSAL</th>
+          <th>TYPE</th>
         </tr>
       </thead>
       <tbody>
         <?php
         foreach ($award_projects as $award_project) {
-          self::print_award_project($award_project);
+          ConnectionFullFillment::open_connection();
+          $fulfillment_project = FulfillmentProjectRepository::get_fulfillment_project_by_id_project(ConnectionFullFillment::get_connection(), $award_project-> get_id());
+          ConnectionFullFillment::close_connection();
+          if(is_null($fulfillment_project)){
+            self::print_award_project($award_project);
+          }else if(!$fulfillment_project-> get_received()){
+            self::print_award_project($award_project);
+          }
         }
         ?>
       </tbody>
     </table>
+    <?php
+  }
+
+  public static function print_fulfillment_projects(){
+    Connection::open_connection();
+    $projects = self::get_all_award_projects(Connection::get_connection());
+    Connection::close_connection();
+    ?>
+    <table id="award_projects_table" class="table table-bordered table-responsive-md">
+      <thead>
+        <tr>
+          <th>CODE</th>
+          <th>DEDIGNATED USER</th>
+          <th>FULFILLMENT DATE</th>
+          <th>AMOUNT</th>
+          <th>RESULT</th>
+          <th>PROPOSAL</th>
+          <th>TYPE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        foreach ($projects as $project) {
+          ConnectionFullFillment::open_connection();
+          $fulfillment_project = FulfillmentProjectRepository::get_fulfillment_project_by_id_project(ConnectionFullFillment::get_connection(), $project-> get_id());
+          ConnectionFullFillment::close_connection();
+          if(!is_null($fulfillment_project)){
+            if($fulfillment_project-> get_received()){
+              self::print_fulfillment_project($project, $fulfillment_project);
+            }
+          }
+        }
+        ?>
+      </tbody>
+    </table>
+    <?php
+  }
+
+  public static function print_fulfillment_project($project, $fulfillment_project){
+    if (!isset($project)) {
+      return;
+    }
+    $received_date = self::mysql_date_to_english_format($fulfillment_project-> get_received_date());
+    ?>
+    <tr>
+      <td>
+        <a href="<?php echo INFO_PROJECT_AND_SERVICES . $project-> get_id(); ?>" class="btn-block">
+          <?php echo $project-> get_code(); ?>
+        </a>
+      </td>
+      <td>
+        <?php
+        Connection::open_connection();
+        $user = UserRepository::get_user_by_id(Connection::get_connection(), $project-> get_designated_user());
+        Connection::close_connection();
+        echo $user-> get_username();
+        ?>
+      </td>
+      <td><?php echo $received_date; ?></td>
+      <td>$ <?php echo number_format($project-> get_total_service(), 2); ?></td>
+      <td><?php echo $project-> get_result(); ?></td>
+      <td><?php echo $project-> get_id(); ?></td>
+      <td><span class="text-info"><?php if($project-> get_previous_contract()){echo 'Previous contract';}else{echo 'Project';} ?></span></td>
+    </tr>
     <?php
   }
 
