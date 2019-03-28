@@ -82,7 +82,13 @@
                 </div>
               </div>
               <?php
-            }else if($rfq_quote-> obtener_completado()){
+            }else if($project-> get_type() == 'services_and_equipment'){
+              if($rfq_quote-> obtener_completado()){
+                ?>
+
+                <?php
+              }
+            }else{
               ?>
               <div class="col-md-12">
                 <div class="custom-control custom-checkbox">
