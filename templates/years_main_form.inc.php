@@ -85,7 +85,12 @@
             }else if($project-> get_type() == 'services_and_equipment'){
               if($rfq_quote-> obtener_completado()){
                 ?>
-
+                <div class="col-md-12">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="submitted" value="yes" id="submitted">
+                    <label class="custom-control-label" for="submitted">Submitted</label>
+                  </div>
+                </div>
                 <?php
               }
             }else{
