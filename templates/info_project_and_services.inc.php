@@ -47,6 +47,8 @@ Connection::close_connection();
             ?><h1 class="text-success float-right"><i class="fa fa-check"></i> Award</h1><?php
           }else if($project-> get_submitted()){
             ?><h1 class="text-success float-right"><i class="fa fa-check"></i> Submitted</h1><?php
+          }else if(!$project-> get_flowchart()){
+            ?><h1 class="text-danger float-right"><i class="fa fa-times"></i> No Bid</h1><?php
           }
           ?>
         </div>
