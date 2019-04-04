@@ -72,6 +72,7 @@ define('COMPLETED_TASK', SERVER . 'completed_task/');
 define('MAKE_PROPOSAL', PROFILE . 'make_proposal/');
 define('SAVE_PROPOSAL_DATA', SERVER . 'save_proposal_data/');
 define('GENERATE_PROPOSAL', SERVER . 'generate_proposal/');
+define('GENERATE_PROPOSAL_SERVICES', SERVER . 'generate_proposal_services/');
 /*****************************SEND ERROR QUOTE EMAIL****************************/
 define('SEND_ERROR_QUOTE_EMAIL', SERVER . 'send_error_quote_email');
 /********************************PREVIOUS CONTRACT*****************************/

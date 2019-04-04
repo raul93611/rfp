@@ -35,6 +35,24 @@
   <div class="card-footer footer">
     <a class="btn btn-primary" id="go_back" href="<?php echo INFO_PROJECT_AND_SERVICES . $id_project; ?>"><i class="fa fa-reply"></i></a>
     <button type="submit" class="btn btn-success" name="save_proposal_data"><i class="fa fa-check"></i> Save</button>
-    <a  class="btn btn-info" target="_blank" href="<?php echo GENERATE_PROPOSAL . $id_project; ?>"><i class="fa fa-book"></i> Generate proposal</a>
+    <?php
+    if($project-> get_type() == 'services_and_equipment'){
+      ?>
+      <div class="dropdown d-inline-block">
+        <button class="btn btn-success dropdown-toggle" type="button" id="generate_proposal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-book"></i> Generate proposal
+        </button>
+        <div class="dropdown-menu" aria-labelledby="generate_proposal">
+          <a class="dropdown-item" target="_blank" href="<?php echo GENERATE_PROPOSAL_SERVICES . $id_project; ?>">Services</a>
+          <a class="dropdown-item" target="_blank" href="<?php echo GENERATE_PROPOSAL . $id_project; ?>">Services and equipment</a>
+        </div>
+      </div>
+      <?php
+    }else{
+      ?>
+      <a class="btn btn-info" target="_blank" href="<?php echo GENERATE_PROPOSAL . $id_project; ?>"><i class="fa fa-book"></i> Generate proposal</a>
+      <?php
+    }
+    ?>
   </div>
 </div>

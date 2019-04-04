@@ -269,6 +269,10 @@ if($parts_route[0] == 'rfp'){
         $id_project = $parts_route[2];
         $chosen_route = 'scripts/generate_proposal.php';
         break;
+      case 'generate_proposal_services':
+        $id_project = $parts_route[2];
+        $chosen_route = 'scripts/generate_proposal_services.php';
+        break;
       case 'save_edit_user':
         $id_user = $parts_route[2];
         $chosen_route = 'scripts/save_edit_user.php';
