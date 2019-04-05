@@ -164,7 +164,6 @@ try{
         $item = $items[$i];
           if (strlen($item-> obtener_description()) >= 300) {
             $indice = 300;
-            echo strlen($item-> obtener_description());
             while($item-> obtener_description()[$indice] != ' ' && $indice < strlen($item-> obtener_description())){
               $indice = $indice + 1;
             }
@@ -179,7 +178,6 @@ try{
             <td style="text-align:right;border-bottom: 0;">$ ' . number_format($item->obtener_unit_price(), 2) . '</td>
             <td style="text-align:right;border-bottom: 0;">$ ' . number_format($item->obtener_total_price(), 2) . '</td>
           </tr>';
-          echo strlen($item_description);
             while(strlen($item_description) >= 300){
               $indice = 300;
               while($item_description[$indice] != ' ' && $indice < strlen($item_description)){
