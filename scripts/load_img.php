@@ -1,5 +1,6 @@
 <?php
 session_start();
+header('Content-Type: application/json');
 Connection::open_connection();
 $project = ProjectRepository::get_project_by_id(Connection::get_connection(), $id_project);
 $user = UserRepository::get_user_by_id(Connection::get_connection(), $_SESSION['id_user']);
@@ -74,5 +75,7 @@ for ($i = 0; $i < $total; $i++) {
     }
   }
 }
-echo 0;
+echo json_encode(array(
+  'result'=> '1'
+));
 ?>
