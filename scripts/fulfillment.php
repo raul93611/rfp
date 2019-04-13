@@ -15,7 +15,7 @@ if($project-> get_type() == 'services_and_equipment'){
   if(!is_null($re_quote)){
     RepositorioRfq::check_fullfillment(Conexion::obtener_conexion(), $cotizacion-> obtener_id());
     $cotizacion = RepositorioRfq::obtener_cotizacion_por_id_project(Conexion::obtener_conexion(), $_POST['id_project']);
-    $fulfillment_project = new FulfillmentProject('', $_POST['id_project'], 1, '');
+    $fulfillment_project = new FulfillmentProject('', $_POST['id_project'], 1, '', '', '', '', '', 0, '', '');
     $id_fulfillment_project = FulfillmentProjectRepository::insert_fulfillment_project(ConnectionFullFillment::get_connection(), $fulfillment_project);
     if(count($services)){
       $real_project_cost = new RealProjectExtracost('', $id_fulfillment_project, '', 0);
@@ -127,7 +127,7 @@ if($project-> get_type() == 'services_and_equipment'){
   }
 }else{
   ConnectionFullFillment::open_connection();
-  $fulfillment_project = new FulfillmentProject('', $_POST['id_project'], 1, '');
+  $fulfillment_project = new FulfillmentProject('', $_POST['id_project'], 1, '', '', '', '', '', 0, '', '');
   $id_fulfillment_project = FulfillmentProjectRepository::insert_fulfillment_project(ConnectionFullFillment::get_connection(), $fulfillment_project);
   if(count($services)){
     $real_project_cost = new RealProjectExtracost('', $id_fulfillment_project, '', 0);
